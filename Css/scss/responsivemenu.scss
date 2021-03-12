@@ -1,0 +1,228 @@
+// Variables
+$vjsm-menu-wrapper: navigation_container !default;
+$vjsm-mobile-indicator: rm-mobile-indicator !default;
+$vjsm-mobile-submenu-indicator: rm-mobile-submenu-indicator !default;
+$vjsm-menu: ul !default;
+$vjsm-menu-width: 600px !default;
+$vjsm-submenu-width: $vjsm-menu-width !default;
+$vjsm-closed-class: rm-closed !default;
+$vjsm-no-js-class: no-js !default;
+$vjsm-js-class: js !default;
+$vjsm-children-zindex: 1 !default;
+$vjsm-absolutemenu-zindex: 1 !default;
+$vjsm-multi-level: false !default;
+$vjsm-horizontal-css-behavior: true !default;
+$vjsm-horizontal-css-behavior-position: relative !default;
+$vjsm-horizontal-css-behavior-zindex: 1 !default;
+$vjsm-horizontal-css-behavior-ul-position: absolute !default;
+$vjsm-horizontal-css-behavior-ul-zindex: -1 !default;
+$vjsm-horizontal-css-behavior-ul-left: -9999px !default;
+$vjsm-horizontal-css-behavior-ul-left-hover: 0 !default;
+$vjsm-horizontal-css-behavior-ul-top: 100% !default;
+$vjsm-horizontal-css-behavior-ul-width: 100% !default;
+$vjsm-horizontal-css-behavior-ul-li-float: left !default;
+$vjsm-horizontal-css-behavior-ul-li-position: relative !default;
+$vjsm-horizontal-css-behavior-li-ul-left: 100% !default;
+$vjsm-horizontal-css-behavior-li-ul-top: 0 !default;
+$vjsm-sticky: false !default;
+$vjsm-absolute: false !default; // Accessible hide
+@mixin accessible-hide {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+// Accessible show
+@mixin accessible-show {
+  overflow: visible;
+  clip: auto;
+  height: auto;
+  width: auto;
+  margin: auto;
+}
+@if $vjsm-sticky == true {
+  /* Sticky menu */
+  .rm-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  // Overflow
+  .rm-bodyoverflowhidden {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rm-menuoverflowauto {
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+}
+@if $vjsm-absolute == true {
+  /* Absolute menu */
+  .rm-absolutemenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $vjsm-absolutemenu-zindex;
+  }
+}
+/* hide close buttons when closed so they wont show up in tabindex */
+
+.#{$vjsm-closed-class} {
+  display: none;
+}
+/* Accessible hide the menu itself */
+
+#{$vjsm-menu}.#{$vjsm-closed-class} {
+  @include accessible-hide;
+}
+/* Mobile mainmenu indicator styling */
+
+##{$vjsm-mobile-indicator} {
+  @include accessible-hide;
+  z-index: 0;
+  @media (min-width: $vjsm-menu-width) {
+    z-index: 1;
+  }
+}
+/* Mobile submenu indicator styling */
+@if $vjsm-multi-level == true {
+  ##{$vjsm-mobile-submenu-indicator} {
+    @include accessible-hide;
+    z-index: 0;
+    @media (min-width: $vjsm-submenu-width) {
+      z-index: 1;
+    }
+  }
+}
+@if $vjsm-multi-level == true {
+  /**
+    * When JS is disabled
+    *
+    * 1. initially hide all li>ul so we get a small list when JS is disabled
+    * 2. Show on "desktop"
+    * 3. Show them on current/active items
+    */
+  .#{$vjsm-no-js-class} {
+    .#{$vjsm-menu-wrapper} {
+      li {
+        ul {
+          @include accessible-hide;
+          /* 1 */
+          @media (min-width: $vjsm-submenu-width) {
+            @include accessible-show;
+            /* 2 */
+          }
+        }
+
+        &.active,
+        &.current {
+          & > ul {
+            @include accessible-show;
+            /* 3 */
+          }
+        }
+      }
+    }
+  }
+}
+/**
+ * When JS is enabled
+ *
+ * 1. We can use display none because we set display block again with JS immediately after initiating the menu
+ * 2. Display menu when initiated
+ * 3. Display menu on "desktop"
+ * 4. Display focused items
+ */
+.#{$vjsm-js-class} {
+  .#{$vjsm-menu-wrapper} {
+    display: none;
+    /* 1 */
+    &.rm-initiated {
+      display: block;
+      /* 2 */
+    }
+    @media (min-width: $vjsm-menu-width) {
+      display: block;
+      /* 3 */
+    }
+
+    .rm-focused {
+      overflow: visible;
+      /* 4 */
+    }
+  }
+}
+@if $vjsm-multi-level == true {
+  /**
+   * When JS is either disabled or enabled
+   *
+   * 1. Relative to position li > ul items
+   * 2. Hide overflowing content so we can display on tabbing
+   * 3. Display on hover / focus
+   * 4. Children should have position absolute to hide them
+   */
+  .#{$vjsm-menu-wrapper} {
+    li {
+      position: relative;
+      /* 1 */
+      @media (min-width: $vjsm-menu-width) {
+        overflow: hidden;
+        /* 2 */
+        &:focus,
+        &:hover {
+          overflow: visible;
+          /* 3 */
+        }
+      }
+
+      ul {
+        @media (min-width: $vjsm-submenu-width) {
+          position: absolute;
+          /* 4 */
+        }
+      }
+    }
+  }
+  @if $vjsm-horizontal-css-behavior == true {
+    .#{$vjsm-menu-wrapper} {
+      @media (min-width: $vjsm-menu-width) {
+        position: $vjsm-horizontal-css-behavior-position;
+        z-index: $vjsm-horizontal-css-behavior-zindex;
+      }
+      @media (min-width: $vjsm-submenu-width) {
+        li {
+          ul {
+            position: $vjsm-horizontal-css-behavior-ul-position;
+            left: $vjsm-horizontal-css-behavior-ul-left;
+            top: $vjsm-horizontal-css-behavior-ul-top;
+            z-index: $vjsm-horizontal-css-behavior-ul-zindex;
+            width: $vjsm-horizontal-css-behavior-ul-width;
+          }
+
+          li {
+            position: $vjsm-horizontal-css-behavior-ul-li-position;
+            float: $vjsm-horizontal-css-behavior-ul-li-float;
+          }
+
+          &:hover > ul {
+            left: $vjsm-horizontal-css-behavior-ul-left-hover;
+          }
+
+          li:hover > ul {
+            left: $vjsm-horizontal-css-behavior-li-ul-left;
+            top: $vjsm-horizontal-css-behavior-li-ul-top;
+          }
+        }
+      }
+    }
+  }
+}
