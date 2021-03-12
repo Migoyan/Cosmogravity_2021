@@ -1,0 +1,311 @@
+{
+  "page_index":{
+    "version": "<strong>Version Beta</strong> 1.1 (01/02/2021)",
+    "composition":"Le programme est composé de 2 parties :",
+    "univers":"Modèles d’univers de Friedmann-Lemaître et calculs annexes",
+    "trajectoire":"Trajectoires d'une particule libre en espace-temps de Schwarzschild & Kerr",
+    "path_image0":"Images\\Slide\\image0.png",
+    "path_image1":"Images\\Slide\\image1_fr.png",
+    "path_image2":"Images\\Slide\\image2_fr.png",
+    "path_image3":"Images\\Slide\\image3_fr.png",
+    "path_image4":"Images\\Slide\\image4_fr.png"
+  },
+
+  "page_apropos":{
+    "directeurs":"<strong>Directeurs : </strong>David Cassagne (LCC) &amp; Brahim Guizal (LCC) ",
+    "encadrants":"<strong>Encadrants : </strong>Jean-Pierre Cordoni &amp; Henri Reboul (LUPM), Isabelle Mougenot (LIRMM)",
+    "participants":"<strong>Participants : </strong>Matthieu Carrère (LUPM),Claude Zurbach (LUPM),Stéphane Nou (LUPM)",
+    "version":"<strong>Version Beta</strong> 1.1 (01/02/2021) révisée par Jean Pierre Cordoni",
+    "descriptif":"<strong>Application </strong>créée dans le cadre de projets tuteurés du Master 1 de Physique Numérique de l'Université de Montpellier.",
+																																 
+    "contact":"<strong>Contactez nous:<br/></strong>",
+    "envoyer":"Envoyer",
+    "remerciements":"<strong>Remerciements</strong> à Éric Gourgoulhon (LUTH) et Jean-Philippe Uzan (IAP) pour leurs conseils",
+    "version_2019":"<strong>Version 2019 :</strong><br />  Youssef Jeyar, Mahmoud Najah, Ivan Sproudé, Elie Faye, Estuardo Quand, avec l'aide de Matthieu Carrère",
+	"version_2020":"<strong>Version 2020 :</strong><br />  Karim Hakim, Sanxi Padovani, Yuming Xiang, Badreddine Zaidi"
+  },
+
+"page_menu":{
+	"Ututo" : "Univers",
+	"Ttuto" : "Trajectoires",
+	"tuto" : "Tutoriel",
+    "accueil": "Accueil",
+    "univers":"Univers",
+    "theorie":"Théorie",
+    "simulation":"Simulation",
+    "standard":"Constante cosmologique",
+    "energiesombre":"Energie sombre",
+    "trajectoire":"Trajectoires",
+    "schwarzschild":"Schwarzschild",
+	"metmbaryonique":"Masse et mobile baryoniques",
+	"metpbaryonique":"Masse baryonique et photon",
+	"metmnonbaryonique":"Masse et/ou mobile non baryonique(s)",
+	"metpnonbaryonique":"Masse non baryonique et photon",
+    "part_massive":"Particule massive",
+	"part_massive_kerr":"Particule massive kerr",
+    "part_photon":"Photon",
+    "kerr":"Kerr",
+    "apropos":"A propos",
+    "maj":"MAJ",
+    "langue":"Langues",
+    "langue_fr":"Français",
+    "langue_en":"Anglais"
+	
+  },
+
+  "page_univers_general":{
+	"zoomtxt" : "Zoom si a &#8712; [0,1[ ",
+    "bouton_tracer":"Tracer",
+    "bouton_enregistrer":"Enregistrer",
+    "bouton_constantes":"Constantes",
+    "bouton_calculsAnnexes":"Calculs Annexes",
+    "enregistrerEn":"Enregistrer en",
+    "entrees":"Entrées",
+    "sorties":"Sorties",
+    "tempsBigBang":"Temps depuis le Big Bang",
+    "dureeUnivers":"Durée de l'univers",
+    "simuavertissement":"Avertissement",
+    "avertissement":"La simulation Univers avec ses calculs annexes permet de choisir les valeurs d'une dizaine de paramètres (en comptant celles des constantes fondamentales). Le code actuel n'est évidemment pas robuste sur tout le domaine accessible de cet espace à 10 dimensions.   Nous espérons que les résultats sont exacts dans un voisinage 'prudent' du modèle standard, des valeurs usuelles des observables (z, thêta) et des constantes fondamentales. Nous pensons qu'ils le sont encore pour des univers très différents du nôtre mais il est évident que le risque d'échec de la simulation (temps de calcul excessif sur le processeur de l'utilisateur) ou, pire, de résultat inexact augmente lorsque l'on s'aventure très loin du modèle standard. L'option 'mono-fluides', avec son formalisme analytique, permet d'aller plus fiablement explorer les extrêmes. Près des 'séparatrices' entre types d'univers différents (avec ou sans Big Bang, avec ou sans Big Crunch), un avertissement automatique est normalement affiché."
+  },
+
+  "page_univers":{
+    "titre": "&Eacute;volution de l'univers FL (ΛCDM)",
+    "bouton_monofluides":"Modèles Monofluides",
+    "bouton_tracer":"Tracer",
+    "univers_plat":"Univers Plat (Ω<sub>k0</sub> = 0)",
+    "matierelambdaRFCNeu":"Matière, Lambda, RFC et Neutrinos",
+    "matierelambdaRFC":"Matière, Lambda et RFC",
+    "matierelambda":"Matière et Lambda"
+  },
+
+  "page_univers_calculs":{
+    "titre": "Calculs Annexes",
+    "bouton_tracer":"Tracer",
+    "bouton_calcul":"Calcul",
+    "bouton_retour":"Retour",
+    "infoCalculs":"Les 2 entrees suivants utilisent soit z<sub>1</sub> soit z<sub>2</sub> apres calcul,",
+    "parametres":"Les paramètres cosmologiques :",
+    "valeursZ":"Valeurs des z (z>-1) à définir pour obtenir les distances métriques et les temps d'émission/réception :",
+    "valeursZ1":"Les paramètres cosmologiques à z<sub>1</sub> et z<sub>2</sub>:",
+    "univers_plat":"Univers Plat (Ω<sub>k0</sub> = 0)",
+    "matierelambdaRFCNeu":"Matière, Lambda, RFC et Neutrinos",
+    "matierelambdaRFC":"Matière, Lambda et RFC",
+    "matierelambda":"Matière et Lambda",
+    "matiereEsombreRFCNeu":"Matière, Energie Sombre, RFC et Neutrinos",
+    "matiereEsombreRFC":"Matière, Energie Sombre et RFC",
+    "matiereEsombre":"Matière et Energie Sombre",
+    "secondeArc":"(Seconde d'arc)",
+    "calculInverse":"Calculs inverses",
+    "temission":"t<sub>émission</sub> =",
+    "treception":"t<sub>réception</sub> =",
+    "annee":"(a)",
+    "resultats":"Résultats :",
+    "message_z1_incorrect":"z1 n'a pas une valeur correcte !",
+    "message_z2_incorrect":"z2 n'a pas une valeur correcte !",
+    "message_valeur_critique":"L'écart entre z1 et z2 est trop important et votre appareil risque de surchauffer. Opération rejetée !",
+    "Intensite":"Valeur de l'Intensite pour des resultats de photometrie (E<sub>e</sub>,L<sub>e</sub>):",
+    "Geometrie":"Geometrie:",
+    "Photometrie":"Photometrie:",
+    "tracer_d":"Tracer d<sub>i</sub>(z)",
+	"tracer_t":"Tracer t(z)",
+    "tracer_omega":"Tracer &Omega;<sub>i</sub>(z)",
+    "GenerateurG":"Generateur des Graphiques:",
+    "zmin":"z<sub>min</sub>",
+    "zmax":"z<sub>max</sub>"
+  },
+
+  "page_constantes":{
+    "titre": "Constantes",
+    "gregorien":"Grégorienne",
+    "sideral":"Sidérale",
+    "julienne":"Julienne",
+    "tropique":"Tropique (2000)",
+    "annee":"Année :",
+    "enregistrer":"Enregistrer",
+    "retour":"Retour"
+  },
+
+  "page_univers_noire":{
+    "titre": "&Eacute;volution de l'univers FL avec énergie sombre",
+    "bouton_monofluides":"Modèles Monofluides",
+    "univers_plat":"Univers Plat (Ω<sub>k0</sub> = 0)",
+    "matiereEsombreRFCNeu":"Matière, Energie Sombre, RFC et Neutrinos",
+    "matiereEsombreRFC":"Matière, Energie Sombre et RFC",
+    "matiereEsombre":"Matière et Energie Sombre"
+  },
+
+  "page_univers_monofluides":{
+    "titre": "Modèles d'Univers de Friedmann-Lemaître à un seul fluide",
+    "mod_choix":"Choisissez un modèle : ",
+    "mod_einstein":"Matière",
+    "mod_weinberg":"Rayonnement",
+    "mod_sitter":"Constante cosmologique",
+    "mod_courbure":"Courbure",
+    "bouton_retour":"Retour"
+  },
+
+  "page_univers_monofluides_noire":{
+    "titre": "Modèles d'Univers de Friedmann-Lemaître à un seul fluide avec Energie Noire",
+    "mod_choix":"Choisissez un modèle : ",
+    "mod_einstein":"Matière",
+    "mod_weinberg":"Rayonnement",
+    "mod_sitter":"Constante cosmologique",
+    "mod_courbure":"Courbure",
+    "bouton_retour":"Retour"
+  },
+
+  "calculs_univers":{
+
+    "tempsdepuisBC":"Temps depuis le Big Crunch = ",
+
+    "tempsavtBC":"Temps avant le Big Crunch = ",
+    "calculBC":"Big Crunch &agrave; calculer",
+    "pasBC":"Pas de Big Crunch",
+    "pasBB":"Pas de Big Bang",
+    "entrees":"Entrées",
+    "sorties":"Sorties",
+    "titre":"\u00c9volution du facteur d'\u00e9chelle r\u00e9duit",
+    "separatrice":"Proximit\u00e9 s\u00e9paratrice : calcul incertain"
+  },
+
+  "canvas_univers":{
+    "BB":"Big Bang",
+    "BC":"Big Crunch",
+    "noBB":"Pas de Big Bang",
+    "noBC":"Pas de Big Crunch",
+    "niBB":"Ni Big Bang",
+    "niBC":"Ni Big Crunch",
+    "ferme":"Fermé",
+    "plat":"Plat",
+    "ouvert":"Ouvert"
+  },
+
+  "pages_trajectoire":{
+    "photon": "Photon",
+	"txt_explosion" : " Le rebond est limité à une vitesse d'impact de",
+	"txt_vlimite" : "Si la vitessse est supérieure à",
+	"horizon1" : "Horizon extérieur",
+	"horizon2" : "Horizon intérieur",
+	"moment" : "Moment angulaire",
+	"spin" : "paramètre de spin",										 
+    "gravtitle":"grav en g",
+    "r3":"distance >> rs ... sans être cosmologique",
+    "ctreastre":"Distance initiale du projectile au centre de l'astre",
+    "rayonschwars":"Rayon de Schwarzschild",
+    "diffderive":"Différence des dérivées seconde de r",
+	"depart":"Distance initiale",
+    "massetxt":"Masse de l'astre",
+    "txt_rphysique":"Rayon physique de l'astre",
+
+    "labelnumberfusees":"Nombre de mobiles",
+    "labelgp":"Afficher le graphe du potentiel",
+
+    "vrarret":"0",
+    "vphiarret":"0",
+
+    "vphikerrarret":"Infinity",
+
+    "vitesseurlabelt":"dr/dt initial ",
+    "vitesseuphilabelt":"r.(d&phi;/dt) initial ", 
+    "vitesseurt":"dr/dt",
+    "vitesseuphit":"r.(d&phi;/dt)",
+
+    "vitesseurlabeltau":"dr/d&tau; initial ",
+    "vitesseuphilabeltau":"r.(d&phi;/d&tau;) initial ",
+    "vitesseurtau":"dr/d&tau;",
+    "vitesseuphitau":"r.(d&phi;/d&tau;)",
+
+    "vitesseurlabellambda":"dr/d&lambda; initial",
+    "vitesseuphilabellambda":"r.(d&phi;/d&lambda;) initial",
+    "vitesseurlambda":"dr/d&lambda;",
+    "vitesseuphilambda":"r.(d&phi;/d&lambda;)",
+
+    "calcul_termine":"<b>Calculs terminés</b>",
+    "calcul_encours":"<b>Calculs en cours</b>",
+    "calcul_enpause":"<b>Calculs en pause</b>",
+    "vitesse_limite":"La particule se déplace à une vitesse supérieure à celle de la lumière !",
+    "erreur":"Erreur",
+    "projectile_sort":"Le projectile sort de la zone d'affichage.",
+    "singulartie_atteinte":"Singularité centrale atteinte !",
+    "particule_ecrasee":"Rayon physique atteint !",
+    "bouton_moins":"Décélérer",
+    "bouton_plus":"Accélérer (attention, réduit la précision)",
+    "bouton_pause":"Pause",
+    "bouton_lecture":"Lecture",
+    "bouton_start":"Start",
+    "bouton_reset":"Reset",
+    "bouton_enregistrer":"Enregistrer",
+	"trajectoire_complete":"Trajectoire complète",
+    "trajectoire_simple":"Trajectoire simple",											 
+    "temps_ecoule":"Temps propre mobile",
+	"parametre":"Paramètre",
+    "acceleration":"Gradient d'accélération &nbsp;<span id='DivClignotante'></span>",
+    "titre_graphe":"Potentiel Effectif",
+    "impossible_canvas":"Impossible de récupérer le canvas.",
+    "impossible_context":"Impossible de récupérer le context.",
+    "bouton_stop":"Stop",
+    "boutton_recup":"Valeurs précédentes",
+    "ouvreengrand":"Trajectoire en grande fenêtre",
+    "rayon_neg":"Distance négative impossible !",
+    "rayonPhyInfHorz":"Rayon physique inférieur à celui de l'horizon !",
+    "EouLisNaN":"E(ou L) est non calculable",
+    "rayonHorzInfRayonSchw":"Veuillez saisir une valeur de r0 stictement supérieure au rayon de Schwarschild.",
+	"rphysetrs":"Rayon physique trop proche du rayon de Schwarschild",
+    "rayonHorzInfRayon":"Veuillez saisir une valeur de r0 strictement supérieure à l'horizon extérieur Rh+ !",
+    "lancerInterdit":"Lancer depuis l'intérieur du rayon physique interdit !",
+    "simuavertissement":"Avertissement",
+    "avertissement":"Les simulations trajectoires respectent la cinématique. Pour certaines  conditions initiales le pas de calcul devient trop grand  près des périastres et cela entraine des erreurs sur la suite de la trajectoire. Pour la matière non baryonique, les trajectoires calculées numériquement au voisinage de r=0 sont parfois imprévisibles (les équations des géodésiques ont « r » en dénominateur). <br> Le bouton « Décélérer » permet, en diminuant interactivement le pas de calcul, de palier (la plupart du temps) à ces  difficultés numériques.<br> Les valeurs initiales de  U<sub>r</sub> et  U<sub>&phi;</sub> sont toujours des fonctions <br> de &tau; (temps propre du spationaute) ou de &lambda; (paramètre du photon).",
+    "message_enregistrer":"Tracez avant d'enregistrer !",
+    "entrees":"Entrées :",
+    "horiz_ext_atteint":"Horizon extérieur atteint !",
+	"vitesses_initiales_nulles":"photon au repos !!!!",
+
+    "observateur":"Observateur distant",
+    "mobile":"Spationaute",
+   
+
+	"temps_obs":"Temps observateur distant",
+	"decal_spect":"Décalage spectral", 
+	"r0egale0": "r0 est  positif",
+	"commandes_horsSchwarMassif":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z\n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c"
+  },
+
+  "page_trajectoire_massive":{
+    "titre":"Trajectoire d'un projectile en métrique de Schwarzchild",
+    "rayon_physique":"r<sub>physique</sub> (m) =",
+    "particule_arretee":"Le projectile s'est posé sur la surface du corps céleste.",
+    "particule_ecrasee":"Le projectile s'est écrasé sur la surface du corps céleste.",
+    "particule_atteint_rh":"Le projectile a atteint Rh+.",
+    "rebond":"Rebond",
+    "amortissement":"Coefficient d'amortissement : le rebond est limité à une vitesse d'impact de ",
+	"non_baryonique":"Masse et/ou mobile non baryonique(s)",
+	"titre2":"Masse et mobile baryoniques",
+	"commandes":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z \n- Avec ou sans rebond : touche e \n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c"
+  },
+
+  "page_trajectoire_photon":{
+    "titre":"Trajectoire d'un photon en métrique de Schwarzchild",
+	"titre3":"Masse baryonique et photon",
+    "rayon_physique":"r<sub>physique</sub> (m) =",
+	"non_baryonique_photon":"Masse non baryonique et photon",
+	"vitesses_initiales_nulles":"conditions initiales nulles",
+	"rebond":"Rebond"
+  },
+
+  "page_trajectoire_massive_nonBar":{
+    "titre":"Trajectoire d'un projectile en métrique de Schwarzchild <br/> (cas non baryonique)"
+  },
+
+  "page_trajectoire_photon_nonBar":{
+    "titre":"Trajectoire d'un photon en métrique de Schwarzchild <br/> (cas non baryonique)"
+  },
+  "page_trajectoire_massive_kerr":{
+    "titre":"Trajectoire d'une particule massive en métrique de Kerr",
+    "moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
+  },
+
+  "page_trajectoire_photon_kerr":{
+    "titre":"Trajectoire d'un photon en métrique de Kerr",
+    "moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
+  }
+}

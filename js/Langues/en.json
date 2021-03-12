@@ -1,0 +1,302 @@
+{
+  "page_index":{
+      "version": "<strong>Beta Version </strong> 1.1 (2021/02/01)",
+      "composition":"This program is structured in 2 parts :",
+      "univers":"Friedmann-Lemaître universes models and annex calculations",
+      "trajectoire":"Trajectory of a free particule in the Schwarzschild & Kerr space-time",
+      "path_image0":"Images\\Slide\\image0.png",
+      "path_image1":"Images\\Slide\\image1_en.png",
+      "path_image2":"Images\\Slide\\image2_en.png",
+      "path_image3":"Images\\Slide\\image3_en.png",
+      "path_image4":"Images\\Slide\\image4_en.png"
+    },
+
+  "page_apropos":{
+	"participants":"<strong>Participants : </strong>Matthieu Carrère (LUPM), Claude Zurbach (LUPM), Stéphane Nou (LUPM)",																							
+    "encadrants":"<strong>The supervisory staff :</strong> Jean-Pierre Cordoni &amp; Henri Reboul (LUPM), Isabelle Mougenot (LIRMM)",
+    "directeurs":"<strong>Directors : </strong>David Cassagne (LCC) &amp; Brahim Guizal (LCC) ",																														 
+	"remerciements":"<strong>Thanks to </strong> Éric Gourgoulhon (LUTH) and Jean-Philippe Uzan (IAP) for their advice.",
+    "version":"<strong>Beta Version </strong> 1.1 (2021/02/01) revised by  Jean Pierre Cordoni",
+    "descriptif":"<strong> Application </strong>created in the framework of tutored projects of the Master 1 of Digital Physics of the University of Montpellier.",
+    "contact":"<strong>Contact:<br/></strong>",
+    "envoyer":"Send",
+    "version_2019":"<strong>Version 2019 :</strong><br />  Youssef Jeyar, Mahmoud Najah, Ivan Sproudé, Elie Faye, Estuardo Quand, with help of Matthieu Carrère"		,
+	"version_2020":"<strong>Version 2020 :</strong><br />  Karim Hakim, Sanxi Padovani, Yuming Xiang, Badreddine Zaidi"		
+  },
+
+  "page_menu":{
+	"Ututo" : "Universe",
+	"Ttuto" : "Trajectories",
+	"tuto" :"Tutorial",
+    "accueil": "Home",
+    "univers":"Universe",
+    "theorie":"Theory",
+    "simulation":"Simulation",
+    "standard":"Cosmological constant",
+    "energiesombre":"Dark energy",
+    "trajectoire":"Trajectories",
+    "schwarzschild":"Schwarzschild",
+	"metmbaryonique":"Baryonic mass and mobile",
+	"metpbaryonique":"Baryonic mass and photon",
+	"metmnonbaryonique":"Non-baryonic mass and/or mobile",
+	"metpnonbaryonique":"Non Baryonic mass and photon",
+    "part_massive":"Massive Particle",
+	"part_photon":"Photon",
+    "kerr":"Kerr",
+    "apropos":"About",
+    "maj":"MAJ",
+    "langue":"Languages",
+    "langue_fr":"French",
+    "langue_en":"English"
+	
+  },
+
+  "page_univers_general":{
+    "zoomtxt" : "Zoom if a &#8712; [0,1[ ",
+    "bouton_tracer":"Plot",
+    "bouton_enregistrer":"Save",
+    "bouton_constantes":"Constants",
+    "bouton_calculsAnnexes":"Adjunct computation",
+    "enregistrerEn":"Save as",
+    "entrees":"Inputs",
+    "sorties":"Outputs",
+    "tempsBigBang":"Time since Big Bang",
+    "dureeUnivers":"Universe duration",
+    "simuavertissement":"Warning",
+    "avertissement":"The Universe simulation with it's annex calculations allows 10 or so parameters to be chosen(counting the fundamental constants). The current code is obviously not robust on all the accessible domain of this 10 dimensional space. We hope the results are exact in a 'prudent' neighborhood of the standard model, of the usual observable values (z, thêta) and of the fundamental constants. We think that they are still exact for universes very different from our own but it's obvious that the simulation's chances to fail(too long of a calculation time on the user's processor) or, worse, of erroneous results increase the further away we go from the standard model. The 'mono-fluids' option, with it's analytical formalism, allows us to explore more accurately those extremes. Near the 'seperators(?)' between different types of universes(with or without a Big Bang, with or without a Big Crunch), an automatic warning is normally displayed."
+  },
+
+  "page_univers":{
+    "titre": "FL universe evolution (ΛCDM)",
+    "bouton_monofluides":"Monofluids Models",
+    "univers_plat":"Flat universe(Ω<sub>k0</sub> = 0)",
+    "matierelambdaRFCNeu":"Matter, Lambda, CMB and Neutrinos",
+    "matierelambdaRFC":"Matter, Lambda and CMB",
+    "matierelambda":"Matter and Lambda"
+  },
+
+  "page_univers_calculs":{
+    "titre": "Adjunct computation",
+    "bouton_retour":"Back",
+    "bouton_tracer":"Plot",
+    "bouton_calcul":"Calculate",
+    "infoCalculs":"Following inputs use either z<sub>1</sub> or z<sub>2</sub> after calculation",
+    "parametres":"Cosmological parameters :",
+    "valeursZ":"Input z (z>-1) values for getting metrics distances and emission/reception times :",
+    "valeursZ1":"Cosmological parameters at z<sub>1</sub> and z<sub>2</sub> :",
+    "univers_plat":"Flat universe(Ω<sub>k0</sub> = 0)",
+    "matierelambdaRFCNeu":"Matter, Lambda, CMB and Neutrinos",
+    "matierelambdaRFC":"Matter, Lambda and CMB",
+    "matierelambda":"Matter and Lambda",
+    "matiereEsombreRFCNeu":"Matter, Dark Energie, CMB and Neutrinos",
+    "matiereEsombreRFC":"Matter, Dark Energie and CMB",
+    "matiereEsombre":"Matter and Dark Energie",
+    "secondeArc":"(arcsecond)",
+    "calculInverse":"Inverse Calculation",
+    "temission":"t<sub>emitted</sub> =",
+    "treception":"t<sub>reception</sub> =",
+    "annee":"(y)",
+    "resultats":"Results :",
+    "message_z1_incorrect":"z1 is not a correct value !",
+    "message_z2_incorrect":"z2 is not a correct value !",
+    "message_valeur_critique":"The gap between z1 and z2 is too big and your device runs the risk of overheating. Operation cancelled !",
+    "Intensite":"Intensity input for photometric results (E<sub>e</sub>,L<sub>e</sub>):",
+    "Geometrie": "Geometry:",
+    "Photometrie": "Photometry:",
+    "tracer_d":"Plot d<sub>i</sub>(z)",
+	"tracer_t":"Plot t(z)",
+    "tracer_omega":"Plot &Omega;<sub>i</sub>(z)",
+    "GenerateurG":"Graph Generator:",
+    "zmin":"z<sub>min</sub>",
+    "zmax":"z<sub>max</sub>"
+  },
+
+  "page_constantes":{
+    "titre": "Constants",
+    "gregorien":"Gregorian",
+    "sideral":"Sidereal",
+    "julienne":"Julian",
+    "tropique":"Tropic (2000)",
+    "annee":"Year type :",
+    "enregistrer":"Save",
+    "retour":"Back"
+  },
+
+  "page_univers_noire":{
+    "titre": "FL universe evolution with Dark Energy",
+    "bouton_monofluides":"Monofluids Models",
+    "univers_plat":"Flat universe(Ω<sub>k0</sub> = 0)",
+    "matiereEsombreRFCNeu":"Matter, Dark Energie, CMB and Neutrinos",
+    "matiereEsombreRFC":"Matter, Dark Energie and CMB",
+    "matiereEsombre":"Matter and Dark Energie"
+  },
+
+  "page_univers_monofluides":{
+    "titre": "Monofluids Models",
+    "mod_choix":"Choose predefined values : ",
+    "mod_einstein":"Matter",
+    "mod_weinberg":"Radiation",
+    "mod_sitter":"Cosmological constant",
+    "mod_courbure":"Curvature",
+    "bouton_retour":"Back"
+  },
+
+  "page_univers_monofluides_noire":{
+    "titre": "Monofluids Models with Black Energy",
+    "mod_choix":"Choose predefined values : ",
+    "mod_einstein":"Matter",
+    "mod_weinberg":"Radiation",
+    "mod_sitter":"Cosmological constant",
+    "mod_courbure":"Curvature",
+    "bouton_retour":"Back"
+  },
+
+  "calculs_univers":{
+    "tempsdepuisBC":"Time since Crunch = ",
+    "tempsavtBC":"Time before Big Crunch = ",
+    "calculBC":"Big Crunch &agrave; calculate.",
+    "pasBC":"No Big Crunch",
+    "pasBB":"No Big Bang",
+    "entrees":"Inputs",
+    "sorties":"Outputs",
+    "titre":"<b>Reduced scale factor evolution</b>",
+    "separatrice":"separator proximity : uncertain calculation"
+  },
+
+  "canvas_univers":{
+    "BB":"Big Bang",
+    "BC":"Big Crunch",
+    "noBB":"No Big Bang",
+    "noBC":"No Big Crunch",
+    "niBB":"No Big Bang",
+    "niBC":"No Big Crunch",
+    "ferme":"Close",
+    "plat":"Flat",
+    "ouvert":"Open"
+  },
+
+  "pages_trajectoire":{
+	"txt_explosion" : "The bounce is limited to an impact speed of",
+    "photon" : "Photon",
+	"horizon1" : "Outer horizon",
+	"horizon2" : "Inner horizon",
+	"moment" : "Angular momentum",
+	"spin" : "spin parameter",
+    "gravtitle":"grav in g",
+    "r3":"distance >> rs ... without being cosmologic",
+    "ctreastre":"Initial distance of the projectile from the centre of the celestial body",
+    "rayonschwars":"Schwarzschild's radius",
+    "diffderive":"Difference of r's second derivatives",
+    "massetxt":"Celestial body mass",
+    "txt_rphysique":"Physical radius of the celestial body",
+	"depart":"Distance anglaise",
+    "labelnumberfusees":"Number of projectiles",
+    "labelgp":"Show the potential's graph",
+
+    "vrarret":"0",
+    "vphiarret":"0",
+
+    "vphikerrarret":"Infinity",
+
+    "vitesseurlabelt":"Initial dr/dt",
+    "vitesseuphilabelt":"Initial  r.(d&phi;/dt)", 
+    "vitesseurt":"dr/dt",
+    "vitesseuphit":"r.(d&phi;/dt)",
+
+    "vitesseurlabeltau":"Initial  dr/d&tau;",
+    "vitesseuphilabeltau":"Initial r.(d&phi;/d&tau;)",
+    "vitesseurtau":"dr/d&tau;",
+    "vitesseuphitau":"r.(d&phi;/d&tau;)",
+
+    "vitesseurlabellambda":"Initial dr/d&lambda;",
+    "vitesseuphilabellambda":"Initial r.(d&phi;/d&lambda;)",
+    "vitesseurlambda":"dr/d&lambda;",
+    "vitesseuphilambda":"r.(d&phi;/d&lambda;)",
+
+    "calcul_termine":"<b>Calculation finished</b>",
+    "calcul_encours":"<b>Calculation in progress</b>",
+    "calcul_enpause":"<b>Calculation on break</b>",
+    "vitesse_limite":"Particule is quicker than light speed !",
+    "erreur":"Error",
+    "projectile_sort":"Particule leaves the window !",
+    "singulartie_atteinte":"Central singularity is achievement !",
+    "particule_ecrasee":"Physical radius is reaching !",
+    "bouton_moins":"Less",
+    "bouton_plus":"More (warning, calculations will be accurateless)",
+    "bouton_pause":"Pause",
+    "bouton_lecture":"Play",
+    "bouton_start":"Start",
+    "bouton_reset":"Reset",
+    "bouton_enregistrer":"Save",
+    "trajectoire_complete":"Complete trajectory",
+    "trajectoire_simple":"Simple trajectory",
+    "temps_ecoule":"Proper time",
+	"parametre":"Parameter",
+    "acceleration":"Acceleration gradient &nbsp;<span id='DivClignotante'></span>",
+    "titre_graphe":"Effective Potential",
+    "impossible_canvas":"We can't get the canvas.",
+    "impossible_context":"We can't get the context.",
+    "bouton_stop":"Stop",
+    "boutton_recup":"Last values",
+    "ouvreengrand":"Trajectory in a bigger window",
+    "rayon_neg":"Negative radius impossible !",
+    "rayonPhyInfHorz":"Physical radius biggest than horizon radius !",
+    "EouLisNaN":"E(or L) is not computable",
+    "rayonHorzInfRayonSchw":"Please, input a value of r0 higher than Schwarschild's radius !",
+    "rayonHorzInfRayon":"Please, input a value of r0 higher than outer horizon Rh+ !",
+    "lancerInterdit":"Throw in physical radius is forbidden !",
+    "simuavertissement":"Warning",
+    "avertissement":"The simulations of the trajectories respect the velocity dynamics. When the initial conditions are chosen to make this dynamic too big, the calculation step becomes too big(the trajectory appears in dots) near the periaster and this creates mistakes in the rest of the trajectory. The plus and minus buttons are there to interactively adapt the calculation step for those excentric orbitals. <br> A too big of a modification on this 'speed' will alter the precision of the trajectory. <br> The initial values of U<sub>r</sub> and U<sub>&phi;</sub> are always functions <br> from &tau; (space walker  own time) or from &lambda; (photon parameter).",
+    "message_enregistrer":"Plot before saving !",
+    "entrees":"Inputs :",
+    "horiz_ext_atteint":"Outer horizon is reached !",
+
+	"vitesses_initiales_nulles":"photon at rest !!!!",													   	
+    "observateur":"Distant observer",
+    "mobile":"Space Walker",
+	"temps_obs":"Distant observer time",
+	"decal_spect": "spectral shift",
+	"r0egale0": "r0 is positif",
+    "commandes_horsSchwarMassif":"Keyboard : \n\n- Complete trajectory : key a \n- Simple trajectory : key z\n- Stop the calculate : key q \n- Reset : key s \n- Save : key d \n- Last values : key f \n- Slow down : key w \n- Pause / Read : key x \n- Speed up : key c"
+  },
+
+  "page_trajectoire_massive":{
+    "titre":"Trajectory of a massive projectile with Schwarzschild metric",
+	"titre2":"Baryonic mass and particle",
+    "rayon_physique":"r<sub>physical</sub> (m) =",
+    "particule_arretee":"The projectile landed on the celestial body's surface.",
+    "particule_ecrasee":"The projectile crashed on the celestial body's surface.",
+    "particule_atteint_rh":"The projectile has gotten to Rh+.",
+    "rebond":"Bounce",
+    "amortissement":"Shock absorption : the bounce is limited to an impact speed of",
+	"non_baryonique":"Nonbaryonic mass and or particle",													 
+    "commandes":"Keyboard : \n\n- Complete trajectory : key a \n- Simple trajectory : key z \n- With or without rebbond : key e \n- Stop the calculate : key q \n- Reset : key s \n- Save : key d \n- Last values : key f \n- Slow down : key w \n- Pause / Read : key x \n- Speed up : key c"
+  },
+
+  "page_trajectoire_photon":{
+    "titre":"Trajectory of a photon with Schwarzschild metric",
+	"titre3":"Baryonic mass and photon",
+    "rayon_physique":"r<sub>physical</sub> (m) =",
+	"non_baryonique_photon":"Nonbaryonic mass and photon",											   
+	"vitesses_initiales_nulles":"initial conditions null",													   
+    "rebond":"Bounce"
+  },
+
+  "page_trajectoire_massive_nonBar":{
+    "titre":"Trajectory of a massive projectile with Schwarzschild metric <br/> (non baryonic case)"
+  },
+
+  "page_trajectoire_photon_nonBar":{
+    "titre":"Trajectory of a photon with Schwarzschild metric <br/> (non baryonic case)"
+  },
+  "page_trajectoire_massive_kerr":{
+    "titre":"Trajectory of a massive particle with Kerr metric",
+    "moment_angulaire":"Angular momentum is bigger than maximum value "
+  },
+
+  "page_trajectoire_photon_kerr":{
+    "titre":"Trajectory of a photon with Kerr metric",
+    "moment_angulaire":"Angular momentum is bigger than maximum value "
+  }
+
+}

@@ -1,0 +1,5 @@
+function stopclig() {
+
+	clearInterval(periode);
+
+}

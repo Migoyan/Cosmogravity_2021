@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/* CSS Document */
+
+label {
+  float: left;
+  width: 40px;
+}
+
+#type {
+  width: 80px;
+}
+
+#type_ang {
+  width: 80px;
+}
+
+#nbre {
+  width: 110px;
+}
+
+#nbre_ang {
+  width: 130px;
+}
+
+#formu_params {
+  margin-left: 8px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-left: 10px;
+  background: #a73f2d;
+  color: white;
+}

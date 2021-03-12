@@ -1,0 +1,36 @@
+{ "modeles_monofl":
+  [
+    {
+      "Om0": "1",
+      "Or0": "0",
+      "Ol0": "0",
+      "Ok0": "0",
+      "chemin_graphe":"Images\\Modeles\\Einstein_Sitter.JPG",
+      "chemin_graphe_eng":"Images\\Modeles\\Einstein_Sitter_eng.JPG"
+    },
+    {
+      "Om0": "0",
+      "Or0": "1",
+      "Ol0": "0",
+      "Ok0": "0",
+      "chemin_graphe":"Images\\Modeles\\Weinberg_Courbure.JPG",
+      "chemin_graphe_eng":"Images\\Modeles\\Weinberg_Courbure_eng.JPG"
+    },
+    {
+      "Om0": "0",
+      "Or0": "0",
+      "Ol0": "1",
+      "Ok0": "0",
+      "chemin_graphe":"Images\\Modeles\\Sitter.JPG",
+      "chemin_graphe_eng":"Images\\Modeles\\Sitter_eng.JPG"
+    },
+    {
+      "Om0": "0",
+      "Or0": "0",
+      "Ol0": "0",
+      "Ok0": "1",
+      "chemin_graphe":"Images\\Modeles\\Weinberg_Courbure.JPG",
+      "chemin_graphe_eng":"Images\\Modeles\\Weinberg_Courbure_eng.JPG"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/* CSS Document */
+#TOUT {
+	margin-left: 10px;
+}
+
+header {
+	
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 10px;
+    background: #c62d1f;
+    color: white;
+}
