@@ -991,7 +991,7 @@ if(element2.value == "mobile"){
     mobile.phi_obs=mobile.phi_obs+varphi_obs;
 
 	vr_1_obs=mobile.A_part_obs;
-	vp_1_obs=c*mobile.L/mobile.r_part_obs; 
+	vp_1_obs= c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
 	
     } else {
 			
@@ -1008,7 +1008,7 @@ if(element2.value == "mobile"){
 	
 		
 	vr_1_obs=mobile.A_part_obs;
-	vp_1_obs=c*mobile.L /mobile.r_part_obs;  
+	vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E;  
 	}
 }	
 	

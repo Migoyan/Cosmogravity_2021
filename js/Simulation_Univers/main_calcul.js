@@ -147,8 +147,7 @@ function calcul() { // fonction principale de cosmogravity
 //	modele 5  H0<0 sans big bang et avec big crunch
 
 	  
-  eps = 1.;
-
+  
  
     //calcul de l'age de l'univers   age en annees ou bien NaN
  /*   if (Or != 0 && t0 >= 2) {
@@ -160,15 +159,20 @@ function calcul() { // fonction principale de cosmogravity
 		console.log("ligne 159",age_ans);
       
     } else {  */
+	eps=1;
 	
+		
+	age_ans= (1. / H0enannee) *simpson(0, 1e12, temps, Number(omegam0), Number(omegalambda0), Number(Or), eps);
 	
-      initial_a = 0;
+	console.log("ligne 166",age_ans); 
+
+ /*     initial_a = 0;
       age_ans = simpson(0, 0.9999999, cv_fonction_integrale,
         Number(omegam0), Number(omegalambda0), Number(Or), eps);
-		
-		
-		console.log("ligne 170",age_ans);
-      
+		console.log("ligne 174",age_ans);
+*/		
+	
+	
    		if(H0<0){age_ans=-age_ans;}
  
 
@@ -244,11 +248,9 @@ function calcul() { // fonction principale de cosmogravity
  //  Modele sans big bang et sans big crunch
  
 	if(modele==1) {
-			if (Math.abs(H0)>=100) {
-			pas =  1e-6*H0;						   
-			} else  {
-			pas = 1e-5 ;  // 5e-4
-			}
+	
+	pas = 5e-4 ;  
+
 		if(amax1<=1) {amax1=5;}
 		//  on part de a=1 et on va vers les temps négatifs
 	m=0; 
@@ -292,10 +294,10 @@ function calcul() { // fonction principale de cosmogravity
     tBC=0;
 	if(age != 0) {
 			if (Math.abs(H0)>=100) {
-			pas = age * 1e-6*Math.abs(H0);						   
+				exposant=Math.round(Math.log10(H0));
+			pas =  5e-6*age*Math.pow(10,exposant);
 			} else  {
-			pas = age*5e-4 ;  
-			} 
+			pas = age*5e-4 ;  }
 				if(proche_vert) {pas=age*1e-2;}
 				if(proche_bleu) {pas=age*1e-2;}
 
@@ -317,12 +319,10 @@ function calcul() { // fonction principale de cosmogravity
   if(adetau1bis<=0) { modelebis=20;  tBC = i / H0engannee; tBC_sec= tBC*nbJoursParAn()*86400*1e9;}
 	
 	
-	console.log("ligne 322 pas adetau1bis tBC  modele",pas,adetau1bis,tBC,modelebis); 
-	
-	
 // recherche big bang
 		if (Math.abs(H0)>=100) {
-			pas = age * 1e-6*Math.abs(H0);						   
+			exposant=Math.round(Math.log10(Math.abs(H0)));
+			pas =  5e-6*age*Math.pow(10,exposant);				   
 			} else  {
 			pas = age*5e-4 ;  
 			} 
@@ -340,9 +340,7 @@ function calcul() { // fonction principale de cosmogravity
   if(adetau1ter<=0) { modeleter=25;  tBB = i/ H0engannee; tBB_sec= tBB*nbJoursParAn()*86400*1e9;}
 	}
 
-	console.log("ligne 346 adetau1ter tBB  modele",adetau1ter,tBB,modeleter); 
-
-  }
+	 }
 
 	if(modelebis==20 && modeleter==25) {modele=2;}  
 	
@@ -356,8 +354,14 @@ function calcul() { // fonction principale de cosmogravity
     if(modele==2 ) {
 		// calcul indispensable meme pour amax<1 du temps depuis le big bang
 		if(amin2>=1) {amin2=0;}
-		//console.log("ligne 332",age);
+		if (Math.abs(H0)>=100) {
+			exposant=Math.round(Math.log10(Math.abs(H0)));
+			pas =  1e-6*age*Math.pow(10,exposant);						   
+			} else  {
 			pas=Math.abs(age)*1e-4;  
+			}
+										
+			 
 			
 			if(proche_vert) {pas=age*1e-4;}
 				if(proche_bleu) {pas=age*1e-4}
@@ -430,8 +434,13 @@ function calcul() { // fonction principale de cosmogravity
 		zmin= (1-amin2)/amin2;	
 		agedebut= simpson_simple_degre2(fonction_integrale, Number(zmin), Number(omegam0), Number(omegalambda0), Number(Or))*1e-9;
 		}
+		if (Math.abs(H0)>=100) {
+			exposant=Math.round(Math.log10(Math.abs(H0)));
+			pas =  1e-7*age*Math.pow(10,exposant);						   
+			} else  {
 		pas=Math.abs(agefinal-agedebut)*1e-5;
-	console.log("ligne 437 pas",pas);		
+			}
+			
 		
 		if(H0 < 0) {agegraphe=agefinal+tBC; 
 		} else {
@@ -478,7 +487,13 @@ function calcul() { // fonction principale de cosmogravity
 		agedebut= simpson_simple_degre2(fonction_integrale, Number(zmin), Number(omegam0), Number(omegalambda0), Number(Or))*1e-9;
 		}
 		
+		if (Math.abs(H0)>=100) {
+			exposant=Math.round(Math.log10(Math.abs(H0)));
+			pas =  Math.abs(agefinal-agedebut)*1e-7*Math.pow(10,exposant);						   
+			} else  {
 		pas=Math.abs(agefinal-agedebut)*1e-5;
+			}
+		
 		if(H0<0) {agegraphe=agefinal+tBB;}else{agegraphe=agefinal;}
 		
 		console.log("ligne 483 tBC  tBB agefinal",tBC,tBB,agefinal);

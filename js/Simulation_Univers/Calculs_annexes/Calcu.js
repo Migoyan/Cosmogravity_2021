@@ -232,6 +232,7 @@ function calcu(path) {
   // Calcul du temps d'émission
   if (Number(z1) <= 1e12) {
     tempsEmission = simpson_simple_degre2(fonction_integrale, Number(z1), omegam0, Number(omegalambda0), Number(Or));
+	
   }
 
   else {
@@ -759,7 +760,7 @@ function graphique_creation_d(){
   var img_svg = d3.select('#svg-1');
 
   Plotly.newPlot('graphique', data, {
-    title: "d<sub>m</sub>  d<sub>l</sub>  d<sub>a</sub>  d<sub>LT</sub>",
+    title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
 	titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 	
     xaxis: {
