@@ -1,7 +1,7 @@
 // JavaScript Document
 
 const ORDRE_ARRONDI=4;
-const LUMIERE = 9460730472580800;  // une année lumière en mètres
+const LUMIERE = 9460730472580800n;  // une année lumière en mètres
 const LUMIERE_INV= 1/LUMIERE;
 const AU = 149597870700; // unite astronomique en mètres
 
