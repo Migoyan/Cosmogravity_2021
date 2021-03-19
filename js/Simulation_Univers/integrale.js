@@ -1,3 +1,16 @@
+function temps(x,omegam0, omegalambda0, Or) {
+	return  (1. / (1. + x)) *												
+    Math.pow(Or * Math.pow(1. + x, 4) +
+      omegam0 * Math.pow(1. + x, 3) -
+      (omegalambda0 + Or + omegam0 - 1.) * Math.pow(1. + x, 2) +
+      omegalambda0, -1. / 2);
+
+}
+
+
+
+
+
 //formule utilis�e pour le calcul de l'age de l'univers
 function fonction_integrale(x, omegam0, omegalambda0, Or) {
   return  (1. / H0enannee) *(1. / (1. + x)) *												
@@ -52,13 +65,13 @@ function recursive_asr(bornInf, bornSup, fonction, omegam0, omegalambda0, Or, ep
   var gauche = inetgrate_area_simpson(bornInf, centre, fonction, omegam0, omegalambda0, Or);
   var droite = inetgrate_area_simpson(centre, bornSup, fonction, omegam0, omegalambda0, Or);
   if (alerter === 0) {
-    if (Math.abs(gauche + droite - whole) <= 15 * eps) {
+    if (Math.abs(gauche + droite - whole)/15 <= eps) {
       return gauche + droite + (gauche + droite - whole) / 15.0;
     } else {
       if (isNaN(gauche + droite)) {
         alerter = 1;
       } else {
-        return recursive_asr(bornInf, centre, fonction, omegam0, omegalambda0, Or, eps / 2.0, gauche) + recursive_asr(centre, bornSup, fonction, omegam0, omegalambda0, Or, eps / 2.0, droite);
+        return recursive_asr(bornInf, centre, fonction, omegam0, omegalambda0, Or, eps / 2., gauche) + recursive_asr(centre, bornSup, fonction, omegam0, omegalambda0, Or, eps / 2.0, droite);
       }
     }
   } else {
