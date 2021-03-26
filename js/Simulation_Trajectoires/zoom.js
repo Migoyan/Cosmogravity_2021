@@ -3,7 +3,7 @@
 
 
 // Fonction bouton pause
-// tirer du dossier calcul_trajectoire_inter_photon
+// tirée du dossier calcul_trajectoire_inter_photon
 function pausee(compteur,mobile,mobilefactor) {
 
     if (mobile.pause == false) {
@@ -23,3 +23,33 @@ function pausee(compteur,mobile,mobilefactor) {
       }
     }
   }
+
+
+//Fonction bouton zoom
+//tirée du dossier calcul_trajectoire_inter_photon
+
+//Pour rendre visible le paneau de zoom.
+document.getElementById("panneau_mobile2").style.visibility='visible';
+
+// Gestion des bouttons Zoom moins
+document.getElementById('moinszoom').addEventListener('click', function() {
+	mobilefactor[compteur] /= 1.2;
+	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
+	mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
+	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
+	mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);  
+	majFondFixe44(mobile);      
+	rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+}, false);
+
+
+document.getElementById('pluszoom').addEventListener('click', function() {       
+	mobilefactor[compteur] *= 1.2;
+	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
+	mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
+	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
+	mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+	majFondFixe44(mobile); 
+	rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+}, false);
+
