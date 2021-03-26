@@ -259,18 +259,19 @@ function trajectoire() {
     }, false);
 
     document.getElementById('moinsvite').addEventListener('click', function() {
-	       if (dtau <= Dtau2) {
-         dtau = Dtau2;
-       } else {					   
-        dtau /= 2;
-	   clicks -= 1 ;  }
+	      if (dtau <= Dtau2) {
+          dtau = Dtau2;
+        } 
+        else {					   
+          dtau /= 2;
+	        clicks -= 1 ;  }
     }, false);
-    document.getElementById('moinszoom').addEventListener('click', function() {
 
+    document.getElementById('moinszoom').addEventListener('click', function() {
       scale_factor /= 1.2;
       posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2);
       posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2);
-	  posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
+	    posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
       posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2);
       majFondFixe22();																				   
       rafraichir2();
