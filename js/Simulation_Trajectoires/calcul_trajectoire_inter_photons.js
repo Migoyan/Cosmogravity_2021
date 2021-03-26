@@ -36,14 +36,16 @@ var listejsonfusees={};
 
 //Fonction pour arrondir l'échelle:
 function testnum(a){
+	for (var i = -30; i < 30; i++) {
+		resu=a/(10**i);
+		if (resu >1 && resu <10){
+    		z=i; 
+			return z;
+		}
+	}
+}
 
-for (var i = -30; i < 30; i++) {
-resu=a/(10**i);
-if (resu >1 && resu <10){
-    z=i; return z;
-  }}}
-
-  // Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.
+// Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.
 function testvaleur(x) {
         if (isNaN(x)) {
           return 'Not a Number!';
@@ -54,13 +56,10 @@ function testvaleur(x) {
 
 
 function generateurCouleur(){
-
-redd=Math.floor(Math.random() * 255); 
-greenn=Math.floor(Math.random() * 255); 
-
-bluee=Math.floor(Math.random() * 255); 
-
-return [redd,greenn,bluee];
+	redd=Math.floor(Math.random() * 255); 
+	greenn=Math.floor(Math.random() * 255); 
+	bluee=Math.floor(Math.random() * 255); 
+	return [redd,greenn,bluee];
 }
 
 function initialisationGenerale(fuseecompteur){
@@ -84,7 +83,6 @@ function lancerDeFusees(fuseecompteur){
     r_phy = Number(document.getElementById("r_phy").value);
     m = G * M / Math.pow(c, 2); 
     rs=2*m;
-
 	for (compteur = 1; compteur <= fuseecompteur; compteur += 1) {
         trajectoire(compteur,listejsonfusees[compteur]);
 	}
@@ -93,7 +91,7 @@ function lancerDeFusees(fuseecompteur){
 
 
 function supprHtml(){
-var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
+	var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
     document.getElementById('tableauconstanteslers').innerHTML = ''; 
     document.getElementById('tableauresultatsimu').innerHTML = ''; 
 
@@ -101,34 +99,25 @@ var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
    if (sessionStorage.getItem("nombredefusees")){
        var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
    }
-
 	var elementcanvasasuppr = document.getElementById("myCanvas");
 	elementcanvasasuppr.parentNode.removeChild(elementcanvasasuppr);
+  	var canvaswh = document.getElementById("canvaswidthheight").value;
 
+	for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
+		var elementrayonasuppr = document.getElementById("rayon"+countt.toString()+"");
+		elementrayonasuppr.parentNode.removeChild(elementrayonasuppr);
+		var elementvpasuppr = document.getElementById("vitessep"+countt.toString()+"");
+		elementvpasuppr.parentNode.removeChild(elementvpasuppr);
+		var elementvrasuppr = document.getElementById("vitesser"+countt.toString()+"");
+		elementvrasuppr.parentNode.removeChild(elementvrasuppr);
+		var elementcanvasbouleasuppr = document.getElementById("myCanvasBoule"+countt.toString()+"");
+		elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
+		if(canvaswh=="750"){
+			var elementgrapheasuppr = document.getElementById("grsvg_"+countt.toString()+"");
+			elementgrapheasuppr.parentNode.removeChild(elementgrapheasuppr);
+    	}
 
-
-  var canvaswh = document.getElementById("canvaswidthheight").value;
-  
-
-for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
-	var elementrayonasuppr = document.getElementById("rayon"+countt.toString()+"");
-	elementrayonasuppr.parentNode.removeChild(elementrayonasuppr);
-	var elementvpasuppr = document.getElementById("vitessep"+countt.toString()+"");
-	elementvpasuppr.parentNode.removeChild(elementvpasuppr);
-	var elementvrasuppr = document.getElementById("vitesser"+countt.toString()+"");
-	elementvrasuppr.parentNode.removeChild(elementvrasuppr);
-
-	var elementcanvasbouleasuppr = document.getElementById("myCanvasBoule"+countt.toString()+"");
-	elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
-
-    if(canvaswh=="750"){
-
-		var elementgrapheasuppr = document.getElementById("grsvg_"+countt.toString()+"");
-		elementgrapheasuppr.parentNode.removeChild(elementgrapheasuppr);
-    }
-
-}
-
+	}	
 	var elementcanvas3asuppr = document.getElementById("myCanvas3three");
 	elementcanvas3asuppr.parentNode.removeChild(elementcanvas3asuppr);
 
@@ -137,188 +126,172 @@ for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
 
 //Fonction htmlDecode écrite par Comrade Programmer#7608, ce qui résout le problème d'affichage. 
 function htmlDecode(input) {
-  var doc = new DOMParser().parseFromString(input, "text/html");
-  return doc.documentElement.textContent;
+	var doc = new DOMParser().parseFromString(input, "text/html");
+ 	return doc.documentElement.textContent;
 }
 
 function genereHtml(){
-var nbredefuseesgenere = Number(document.getElementById("nombredefusees").value);
+	var nbredefuseesgenere = Number(document.getElementById("nombredefusees").value);
 
 
-lenbdefusees = nbredefuseesgenere;
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","rayon"+countt.toString()+"");
+		lenbdefusees = nbredefuseesgenere;
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","rayon"+countt.toString()+"");
 
-	var divchampsr = document.getElementById('champs_a_remplir');
-
-
-	divchampsr.appendChild(span);
-    if(countt==1){
-	var newlabel = document.createElement("Label");
-	//newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
-	newlabel.setAttribute("id","ctreastre");
-    newlabel.setAttribute("title","");										 
-	newlabel.setAttribute("for","r01");
-	newlabel.innerHTML = "r<sub>0</sub> (m) =";
-	span.appendChild(newlabel);}
+		var divchampsr = document.getElementById('champs_a_remplir');
 
 
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","r0"+countt.toString()+"");
-	newinput.setAttribute("value","5e3");
-	newinput.setAttribute("align","left");
-
-	newinput.setAttribute("maxlength","10");
-
-	newinput.setAttribute("type","text");
-
-	newinput.setAttribute("size","10");
-
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
-	span.appendChild(newinput);
-}
+		divchampsr.appendChild(span);
+		if(countt==1){
+		var newlabel = document.createElement("Label");
+		//newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
+		newlabel.setAttribute("id","ctreastre");
+		newlabel.setAttribute("title","");										 
+		newlabel.setAttribute("for","r01");
+		newlabel.innerHTML = "r<sub>0</sub> (m) =";
+		span.appendChild(newlabel);}
 
 
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","r0"+countt.toString()+"");
+		newinput.setAttribute("value","5e3");
+		newinput.setAttribute("align","left");
 
+		newinput.setAttribute("maxlength","10");
 
+		newinput.setAttribute("type","text");
 
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitessep"+countt.toString()+"");
-	var divchampsr = document.getElementById('champs_a_remplir');
+		newinput.setAttribute("size","10");
 
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
 
-	divchampsr.appendChild(span);
-    if(countt==1){
-	var newlabel = document.createElement("Label");
-    newlabel.setAttribute("id","vitesseuphilabel");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","vphi1");
-    newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
-	span.appendChild(newlabel);}
-
-
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","vphi"+countt.toString()+"");
-	newinput.setAttribute("value","-3e8");
-
-	newinput.setAttribute("maxlength","10");
-
-	newinput.setAttribute("type","text");
-
-	newinput.setAttribute("size","10");
-
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
-	span.appendChild(newinput);
-}
+		span.appendChild(newinput);
+	}
 
 
 
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitesser"+countt.toString()+"");
-
-	var divchampsr = document.getElementById('champs_a_remplir');
 
 
-	divchampsr.appendChild(span);
-    if(countt==1){
-	var newlabel = document.createElement("Label"); 
-    newlabel.setAttribute("id","vitesseurlabel");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","vr1");
-	newlabel.innerHTML = "U<sub>r</sub> (m.s<sup>-1</sup>) =";
-	span.appendChild(newlabel);}
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","vitessep"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			newlabel.setAttribute("id","vitesseuphilabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","vphi1");
+			newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","vphi"+countt.toString()+"");
+		newinput.setAttribute("value","-3e8");
+
+		newinput.setAttribute("maxlength","10");
+
+		newinput.setAttribute("type","text");
+
+		newinput.setAttribute("size","10");
+
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+
+		span.appendChild(newinput);
+	}
+
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","vitesser"+countt.toString()+"");
+
+		var divchampsr = document.getElementById('champs_a_remplir');
 
 
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","vr"+countt.toString()+"");
-	newinput.setAttribute("value","-3.65e7");
-
-	newinput.setAttribute("maxlength","10");
-
-	newinput.setAttribute("type","text");
-
-	newinput.setAttribute("size","10");
-
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
-	span.appendChild(newinput);
-}
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label"); 
+			newlabel.setAttribute("id","vitesseurlabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","vr1");
+			newlabel.innerHTML = "U<sub>r</sub> (m.s<sup>-1</sup>) =";
+			span.appendChild(newlabel);
+		}
 
 
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","vr"+countt.toString()+"");
+		newinput.setAttribute("value","-3.65e7");
+
+		newinput.setAttribute("maxlength","10");
+
+		newinput.setAttribute("type","text");
+
+		newinput.setAttribute("size","10");
+
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+
+		span.appendChild(newinput);
+	}
 		var newRow=document.getElementById('tableauconstanteslers').insertRow();
 
         var jstring = '<tr id="tgggg1" >'
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<th class="tg-aicv">$L'+countt.toString()+'(m)$</th>';}
+        for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+            jstring += '<th class="tg-aicv">$L'+countt.toString()+'(m)$</th>';
+		}
 
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+        for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
             jstring += '<th class="tg-aicv">$E'+countt.toString()+'$</th>';
-            }
+        }
+    //pour katex il faux mettre un antislash devant le antislash 
+        jstring +='<th class="tg-6l4m" id="rayonschwars"  title="" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
+		jstring +='<th class="tg-6l4m" id="gravtxt" title="">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';
+        jstring +='</tr>';
 
- 
-             //pour katex il faux mettre un antislash devant le antislash 
-             jstring +='<th class="tg-6l4m" id="rayonschwars"  title="" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
- 
-			jstring +='<th class="tg-6l4m" id="gravtxt" title="">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';
- 
-          jstring +='</tr>';
-
-          
         newRow.innerHTML = jstring;
 
 		var newRow2=document.getElementById('tableauconstanteslers').insertRow();
 
         var jstring = '<tr id="tgggg2" >'
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';}
+        for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+            jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';
+		}
 
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';}
+        for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+            jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';
+		}
 
-
-
-             jstring +='<td class="tg-3ozo" id="m">0</td>';
-			 jstring +='<td class="tg-3ozo" id="g">0</td>';														
-          jstring +='</tr>';
+        jstring +='<td class="tg-3ozo" id="m">0</td>';
+		jstring +='<td class="tg-3ozo" id="g">0</td>';														
+        jstring +='</tr>';
 
         newRow2.innerHTML = jstring;
 
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var newRow=document.getElementById('tableauresultatsimu').insertRow();
+		// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
+		newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
+					<th class="tg-aicv">r(m)</th>
+					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
+					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>`;
 
-
-
-
-
-
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	  var newRow=document.getElementById('tableauresultatsimu').insertRow();
-	  // il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
-	  newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
-				<th class="tg-aicv">r(m)</th>
-				<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-				<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
-				<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-				<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>`;
-
-	 var newRow2=document.getElementById('tableauresultatsimu').insertRow();
+		var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
 		newRow2.innerHTML =       `<tr id="tg2ggb`+countt.toString()+`">
-				<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="ga`+countt.toString()+`"></td>
-				<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>`
+					<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="ga`+countt.toString()+`"></td>
+					<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>`
 
-}
+	}
 
-  var canvaswidthheight = document.getElementById("canvaswidthheight").value;
-
+	var canvaswidthheight = document.getElementById("canvaswidthheight").value;
 	var canvasgenere = document.createElement("canvas");
     canvasgenere.setAttribute("id","myCanvas");
     canvasgenere.setAttribute("width",canvaswidthheight);
@@ -326,28 +299,20 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
     canvasgenere.setAttribute("class","canvaslaclasse");
     if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
     else{var wrappergenere = document.getElementById('wrapperengrand');}
-	
-    
+
     wrappergenere.appendChild(canvasgenere);
 
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var canvasboulegenere = document.createElement("canvas");
+		canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
+		canvasboulegenere.setAttribute("width",canvaswidthheight);
+		canvasboulegenere.setAttribute("height",canvaswidthheight);
+		canvasboulegenere.setAttribute("class","canvaslaclasse");
+		if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
+		else{var wrappergenere = document.getElementById('wrapperengrand');}
+		wrappergenere.appendChild(canvasboulegenere);
 
-
-
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var canvasboulegenere = document.createElement("canvas");
-    canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
-    canvasboulegenere.setAttribute("width",canvaswidthheight);
-    canvasboulegenere.setAttribute("height",canvaswidthheight);
-
-    canvasboulegenere.setAttribute("class","canvaslaclasse");
-    if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
-    else{var wrappergenere = document.getElementById('wrapperengrand');}
-    wrappergenere.appendChild(canvasboulegenere);
-
-}
-
-
-
+	}
 	var canvas3genere = document.createElement("canvas");
     canvas3genere.setAttribute("id","myCanvas3three");
     canvas3genere.setAttribute("width",canvaswidthheight);
@@ -359,25 +324,24 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
     wrappergenere.appendChild(canvas3genere);
 
 if(canvaswidthheight=="750"){
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-
-  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-   svg.setAttribute("id", "grsvg_"+countt.toString()+"");
-  document.getElementById("wrapper2").appendChild(svg);
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		svg.setAttribute("id", "grsvg_"+countt.toString()+"");
+		document.getElementById("wrapper2").appendChild(svg);
+	}
 }
-}
 
-  texteTrajectoirePhotonNonBar(nbredefuseesgenere);
-  notationvitesseree1();
-  infobulleobservateurdistant();
+	texteTrajectoirePhotonNonBar(nbredefuseesgenere);
+	notationvitesseree1();
+	infobulleobservateurdistant();
 	textegravetetc();					
-    //pour le bon affichage du katex
+	//pour le bon affichage du katex
 	renderMathInElement(document.body, {
 				// ...options...
 				delimiters:[
 				{left:"$",right:'$',display: false},
 				]
-			});
+	});
 	 
 }
 
@@ -1294,7 +1258,8 @@ function pausee(compteur,mobile,mobilefactor) {
       document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture;
       document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause;
       clearInterval(mobile.myInterval);
-  } else {
+  } 
+  else {
     if(mobile.peuxonrelancer == true) {
     mobile.pause = false;
     document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
@@ -1302,8 +1267,6 @@ function pausee(compteur,mobile,mobilefactor) {
     document.getElementById("pau").src = "Images/pause.png";
     mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10/6);
     }
-
-
   }
 }
 
