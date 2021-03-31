@@ -61,56 +61,56 @@ if (resu >1 && resu <10){   z=i; return z;   }
   
   
 function initialisation(){
-  c = 299792458;
-  G = 6.6742 * Math.pow(10, -11);
-  r0 = Number(document.getElementById("r0").value);
-   M = Number(document.getElementById("M").value);
-  vphi = Number(document.getElementById("vphi").value); 
-  vr = Number(document.getElementById("vr").value);
-  J = Number(document.getElementById("J").value);
-  a = J / (c * M);
-  m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
-  rs = 2 * G * M / Math.pow(c, 2);
-  rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
-  rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
-  rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
+    c = 299792458;
+    G = 6.6742 * Math.pow(10, -11);
+    r0 = Number(document.getElementById("r0").value);
+    M = Number(document.getElementById("M").value);
+    vphi = Number(document.getElementById("vphi").value); 
+    vr = Number(document.getElementById("vr").value);
+    J = Number(document.getElementById("J").value);
+    a = J / (c * M);
+    m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
+    rs = 2 * G * M / Math.pow(c, 2);
+    rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
+    rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
+    rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
+    E = Math.sqrt((vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2)));
+    L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
 
-  E = Math.sqrt((vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2)));
-  L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
-		textegravetetc_Kerr();				   
-  document.getElementById("a").innerHTML = a.toExponential(3);
-  document.getElementById("m").innerHTML = rs.toExponential(3);
-  document.getElementById("L").innerHTML = L.toExponential(3);
-  document.getElementById("E").innerHTML = E.toExponential(3);
+    textegravetetc_Kerr();				   
+    document.getElementById("a").innerHTML = a.toExponential(3);
+    document.getElementById("m").innerHTML = rs.toExponential(3);
+    document.getElementById("L").innerHTML = L.toExponential(3);
+    document.getElementById("E").innerHTML = E.toExponential(3);
 
-if (isNaN(rhp)){document.getElementById("rhp").innerHTML = 0;}
-else {  document.getElementById("rhp").innerHTML = rhp.toExponential(3);}
+    if (isNaN(rhp)){document.getElementById("rhp").innerHTML = 0;}
+    else {  document.getElementById("rhp").innerHTML = rhp.toExponential(3);}
 
-if (isNaN(rhm)){document.getElementById("rhm").innerHTML = 0;}
-else { document.getElementById("rhm").innerHTML = rhm.toExponential(3);;}
+    if (isNaN(rhm)){document.getElementById("rhm").innerHTML = 0;}
+    else { document.getElementById("rhm").innerHTML = rhm.toExponential(3);;}
 
 }
 
 function verifnbr() {
 
-  r0 = document.getElementById("r0").value;
-  vphi = document.getElementById("vphi").value;
-  vr = document.getElementById("vr").value;
-  M = document.getElementById("M").value;
-  J = document.getElementById("J").value;
+    r0 = document.getElementById("r0").value;
+    vphi = document.getElementById("vphi").value;
+    vr = document.getElementById("vr").value;
+    M = document.getElementById("M").value;
+    J = document.getElementById("J").value;
 
-  if (isNaN(r0)){
-    alert ("Veuillez vérifier vos saisie en r0");}
-   if (isNaN(vr)){
-    alert ("Veuillez vérifier vos saisie en Vr"); }
-  if (isNaN(vphi)){
-    alert ("Veuillez vérifier vos saisie en Vphi");  }
-  
-  if (isNaN(M)){
-    alert ("Veuillez vérifier vos saisie en M");																						 							  																														  	  														   
-  }
-  if (isNaN(J)){
-      alert ("Veuillez vérifier vos saisie en J");
+    if (isNaN(r0)){
+        alert ("Veuillez vérifier vos saisie en r0");}
+    if (isNaN(vr)){
+        alert ("Veuillez vérifier vos saisie en Vr"); }
+    if (isNaN(vphi)){
+        alert ("Veuillez vérifier vos saisie en Vphi");  
+    }
+    if (isNaN(M)){
+        alert ("Veuillez vérifier vos saisie en M");																						 							  																														  	  														   
+    }
+    if (isNaN(J)){
+        alert ("Veuillez vérifier vos saisie en J");
     }						   
 }
 
@@ -153,11 +153,11 @@ function trajectoire() {
     temps_chute_libre = (Math.PI * r0 * Math.sqrt(r0 / (2 * G * M)) / 2);
     A_init = vr;
     r_init = r0;
-	A_part = A_init;
+	  A_part = A_init;
     r_part = r_init;			 
-	A_init_obs = vr*delta(r0)/( (Math.pow(r0,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r0)*E - rs*a*L/r0 );
+	  A_init_obs = vr*delta(r0)/( (Math.pow(r0,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r0)*E - rs*a*L/r0 );
     A_part_obs=A_init_obs;												
-	r_init_obs = r0; r_part_obs=r_init_obs;					 
+	  r_init_obs = r0; r_part_obs=r_init_obs;					 
     vrobs=A_init_obs; vphiobs=vphi*(1-rs/r0)/E;
     data1 = [];
     data2 = [];
@@ -165,7 +165,7 @@ function trajectoire() {
     temps_observateur = 0;
     bool = true;
     confirme = false;
-        // permet de gérer les touches du clavier pour certaines actions
+    // permet de gérer les touches du clavier pour certaines actions
     clavierEvenement();
 
     /* ----- */
@@ -176,15 +176,14 @@ function trajectoire() {
 	 element2=document.getElementById('traject_type2');
 	 
 
-		if (element2.value != "mobile"){
-	dtau=r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
-     if(dtau>temps_chute_libre/500.){dtau= temps_chute_libre/500.;} 
-	}else{ //dtau=r0/(Math.sqrt(vr*vr+vphi*vphi)+1e-20)/1000;
+  if (element2.value != "mobile"){
+      dtau=r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
+      if(dtau>temps_chute_libre/500.){dtau= temps_chute_libre/500.;} 
+	}
+  else{ 
+    //dtau=r0/(Math.sqrt(vr*vr+vphi*vphi)+1e-20)/1000;
      dtau= 1e-3*r0/ (Math.abs(vr)+Math.abs(vphi)+1) ;}
 	//}
-	
-
-	 
 	   /*
     L'enjeu ici est donc de calculer pour chaque itérations les coordonnées de la particule x2_part y2_part, x2_obs y2_obs
     on a donc d'abord besoin de calculer r_part et r_obs par Runge-Kutta, puis d'en déduire le calucl de phi et phi2, le
@@ -246,39 +245,39 @@ function trajectoire() {
     var Dtau2 = temps_chute_libre / 1e8;
 
     document.getElementById('bouton_pause').addEventListener('click', function() {
-      pausee();
+        pausee();
     }, false);
 
     document.getElementById('plusvite').addEventListener('click', function() {
       if (dtau >= Dtau1) {
-        dtau = Dtau1;
-      } else {
+    	dtau = Dtau1;
+      } 
+	  else {
         dtau += dtau;
         clicks += 1 ;
       }
     }, false);
 
     document.getElementById('moinsvite').addEventListener('click', function() {
-	      if (dtau <= Dtau2) {
+	    if (dtau <= Dtau2) {
           dtau = Dtau2;
         } 
         else {					   
-          dtau /= 2;
+          	dtau /= 2;
 	        clicks -= 1 ;  }
     }, false);
 
     document.getElementById('moinszoom').addEventListener('click', function() {
-      scale_factor /= 1.2;
-      posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2);
-      posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2);
-	    posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
-      posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2);
-      majFondFixe22();																				   
-      rafraichir2();
-
+        scale_factor /= 1.2;
+        posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2);
+        posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2);
+        posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
+        posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2);
+        majFondFixe22();																				   
+        rafraichir2();
     }, false);
-    document.getElementById('pluszoom').addEventListener('click', function() {
 
+    document.getElementById('pluszoom').addEventListener('click', function() {
         scale_factor *= 1.2;
         posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2);
         posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2);
@@ -291,26 +290,27 @@ function trajectoire() {
     }, false);
 
     document.getElementById('initialiser').addEventListener('click', function() {
-        //majEchelle();
-      scale_factor =280 ;
-      posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2);
-      posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2);
-	  posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
-      posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2);	
-      majFondFixe22();																			   
-      rafraichir2();
+    //majEchelle();
+		scale_factor =280 ;
+		posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2);
+		posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2);
+		posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
+		posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2);	
+		majFondFixe22();																			   
+		rafraichir2();
 
     }, false);
 	
     function rafraichir2() {
-	majFondFixe();
-	creation_blocs(context); }
+		majFondFixe();
+		creation_blocs(context); 
+	}
 	//Pour ouvrir le pop up qui nous si on veut afficher le graphe de potentiel ou pas
 	function CentrerPopPotentiel() {
-	document.getElementById("bloc_resultats").style.display= "block";
-	var node = document.getElementById('grsvg_2');
-	if (node.parentNode){
-    node.parentNode.removeChild(node);
+		document.getElementById("bloc_resultats").style.display= "block";
+		var node = document.getElementById('grsvg_2');
+		if (node.parentNode){
+			node.parentNode.removeChild(node);
 		}
 	}
 	if (document.getElementById("toggle").checked==false) {
@@ -332,9 +332,6 @@ function trajectoire() {
 
 	
 element2=document.getElementById('traject_type2');												  
-
-
-
 
 	if (element2.value != "mobile"){
     //ceci est le code pour verifier si il n'y as pas d'infinis, si il y en a un on commence a un point des absicce apres celui ci.
@@ -385,199 +382,175 @@ element2=document.getElementById('traject_type2');
 	 }												
 
 
-
-
-
-
-
-
-   } else {
-    myInterval = setInterval(animate, 10 / 6);		  
-   }   //  fin if(pause....
+   } 
+    else {
+        myInterval = setInterval(animate, 10 / 6);		  
+    }  //  fin if(pause....
 
   document.getElementById('start').addEventListener('click', function() {rafraichir();}, false);
   document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_stop;
-}  //  fin fonction trajectoire
+}  // fin fonction trajectoire
 
 
 // tracé de la particule
 
 function animate() {
-  onestarrete=0;
-  estUnMobile();
-  element = document.getElementById('traject_type');
-  choixTrajectoire();
-  element2=document.getElementById('traject_type2');
+    onestarrete=0;
+    estUnMobile();
+    element = document.getElementById('traject_type');
+    choixTrajectoire();
+    element2=document.getElementById('traject_type2');
 
 
-  if (r0 != 0.0) {
-	  
-  varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
-  phi = phi + varphi;
-  varphi_obs = c *dtau* ( rs*a*E/r_part_obs + (1-rs/r_part_obs)*L )/( (Math.pow(r_part_obs,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part_obs)*E - rs*a*L/r_part_obs ); 
-  phi_obs=phi_obs+varphi_obs;
-	
-	
-	val = rungekutta(dtau, r_part, A_part);
-    r_part = val[0];
-    A_part = val[1];
-	vr_3=A_part;
-	vp_3=r_part* varphi/dtau;
-	
-	val_obs = rungekutta_obs(dtau, r_part_obs, A_part_obs);
-    r_part_obs = val_obs[0];
-	
-	if(r_part_obs<rhp*1.001) { r_part_obs=rhp;}
-	
-    A_part_obs = val_obs[1];
-	vr_3_obs=A_part_obs;
-	
-	if(r_part_obs<rhp*1.0001) { vr_3_obs=0;}
-	
-	vp_3_obs= r_part_obs*varphi_obs/dtau; 
+    if (r0 != 0.0) {
+        
+		varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
+		phi = phi + varphi;
+		varphi_obs = c *dtau* ( rs*a*E/r_part_obs + (1-rs/r_part_obs)*L )/( (Math.pow(r_part_obs,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part_obs)*E - rs*a*L/r_part_obs ); 
+		phi_obs=phi_obs+varphi_obs;
+        val = rungekutta(dtau, r_part, A_part);
+        r_part = val[0];
+        A_part = val[1];
+        vr_3=A_part;
+        vp_3=r_part* varphi/dtau;
+        
+        val_obs = rungekutta_obs(dtau, r_part_obs, A_part_obs);
+        r_part_obs = val_obs[0];
+        
+        if(r_part_obs<rhp*1.001) { r_part_obs=rhp;}
+        
+        A_part_obs = val_obs[1];
+        vr_3_obs=A_part_obs;
+        
+        if(r_part_obs<rhp*1.0001) { vr_3_obs=0;}
+        
+        vp_3_obs= r_part_obs*varphi_obs/dtau; 
+
+        posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
+        posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
+        posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
+        posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
+        
+
+        if (element2.value != "mobile"){	
+			V = Vr_obs(r_part_obs);
+			data2 = [];
+			data2.push({date: r_part_obs, close: V });
+			update_graphique_2();
+        }
+		else{
+			V = Vr_mob(r_part);
+			data2 = [];
+			data2.push({date: r_part, close: V });
+			update_graphique_2();		
+        }									
+
+        if(r_part<=0){ r_part=0;}				   
+                        
+    //Tracé de la particule
 
 
-    posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
-    posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
-	posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
-    posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
-	
+        if (element2.value != "mobile"){
+        if (r_part_obs >= rhp){
+			context.beginPath();
+			context.fillStyle = COULEUR_NOIR;
+			context.rect(posX2, posY2, 1, 1);
+			context.lineWidth = "1";
+			context.fill();
+			majFondFixe22();
+			context22.beginPath();
+			context22.fillStyle = COULEUR_BLEU;
+			context22.arc(posX2, posY2 , 5, 0, Math.PI * 2);
+			context22.lineWidth = "1";
+			context22.fill();
 
-	if (element2.value != "mobile"){	
-    V = Vr_obs(r_part_obs);
-    data2 = [];
-    data2.push({date: r_part_obs, close: V });
-    update_graphique_2();
-	}else{
-     V = Vr_mob(r_part);
-    data2 = [];
-    data2.push({date: r_part, close: V });
-    update_graphique_2();		
-	}									
+        }
+        }
+		else{
+			context.beginPath();
+			context.fillStyle = COULEUR_ROUGE_COSMO;
+			context.rect(posX1, posY1, 1, 1);
+			context.lineWidth = "1";
+			context.fill();
+			majFondFixe22();
+			context22.beginPath();
+			context22.fillStyle = COULEUR_BLEU;
+			context22.arc(posX1, posY1 , 5, 0, Math.PI * 2);
+			context22.lineWidth = "1";
+			context22.fill();
 
-      if(r_part<=0){ r_part=0;}				   
- 					
-//Tracé de la particule
-
-
-    if (element2.value != "mobile"){
-      if (r_part_obs >= rhp){
-    context.beginPath();
-    context.fillStyle = COULEUR_NOIR;
-    context.rect(posX2, posY2, 1, 1);
-    context.lineWidth = "1";
-    context.fill();
+        }
 
 
-    majFondFixe22();
-    context22.beginPath();
-    context22.fillStyle = COULEUR_BLEU;
-    context22.arc(posX2, posY2 , 5, 0, Math.PI * 2);
-    context22.lineWidth = "1";
-    context22.fill();
-
+    //console.log("r part et rhp",r_part,rhp);
+    if(element2.value == "mobile"){
+        if(r_part<=rhp){
+                textesfinarret_kerrphoton();
+                onestarrete=1;
+                alert(texte.page_trajectoire_massive.particule_atteint_rh);
+                arretkerr();
+                peuxonrelancer=false;
+        }	
     }
-    }else{
-    context.beginPath();
-    context.fillStyle = COULEUR_ROUGE_COSMO;
-    context.rect(posX1, posY1, 1, 1);
-    context.lineWidth = "1";
-    context.fill();
-
-
-    majFondFixe22();
-    context22.beginPath();
-    context22.fillStyle = COULEUR_BLEU;
-    context22.arc(posX1, posY1 , 5, 0, Math.PI * 2);
-    context22.lineWidth = "1";
-    context22.fill();
-
-    }
-
-
-   //console.log("r part et rhp",r_part,rhp);
-   if(element2.value == "mobile"){
-       
-	   if(r_part<=rhp){
-			textesfinarret_kerrphoton();
-			onestarrete=1;
-			alert(texte.page_trajectoire_massive.particule_atteint_rh);
-			arretkerr();
-            peuxonrelancer=false;
-	   }	
-   }
 
 
 
-    // gradient d'accélération
+        // gradient d'accélération
 
 		if (element2.value != "mobile"){
-		gm = derivee_seconde_Kerr_photon_obs(r_part_obs);
-		gmp = derivee_seconde_Kerr_photon_obs(r_part_obs + 1);
-		fm = Math.abs(gm - gmp);
-		}else{
-		fm = 0;			
+			gm = derivee_seconde_Kerr_photon_obs(r_part_obs);
+			gmp = derivee_seconde_Kerr_photon_obs(r_part_obs + 1);
+			fm = Math.abs(gm - gmp);
 		}
+		else{fm = 0;}
 
-
-    
-	if (element2.value != "mobile"){
-		if(r_part_obs >= rhp)   {
-			temps_particule =0;
-			document.getElementById("tp").innerHTML = temps_particule.toExponential(3);
-			document.getElementById("ga").innerHTML = '';
-			document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
-			document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
-           // if(onestarrete==0){
-		    document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);  // }
+        if (element2.value != "mobile"){
+            if(r_part_obs >= rhp){
+                temps_particule =0;
+                document.getElementById("tp").innerHTML = temps_particule.toExponential(3);
+                document.getElementById("ga").innerHTML = '';
+                document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
+                document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
+            // if(onestarrete==0){
+                document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);  // }
             }
-		
-		}else{
-			
-		if (r_part>=0){
-			temps_particule+=0;
-			document.getElementById("tp").innerHTML = temps_particule.toExponential(3); 
-			document.getElementById("ga").innerHTML = '';
-			document.getElementById("r_par").innerHTML = r_part.toExponential(3);
-			document.getElementById("vrkp").innerHTML = vr_3.toExponential(3);
-           // if(onestarrete==0){ 
-			if(J==0) {vp_3= c*L/r_part;}
-				if(r_part<=rhp && J!=0) {vp_3=1/0;}
-			document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);  //}					
+        }
+		else{    
+            if (r_part>=0){
+                temps_particule+=0;
+                document.getElementById("tp").innerHTML = temps_particule.toExponential(3); 
+                document.getElementById("ga").innerHTML = '';
+                document.getElementById("r_par").innerHTML = r_part.toExponential(3);
+                document.getElementById("vrkp").innerHTML = vr_3.toExponential(3);
+            // if(onestarrete==0){ 
+                if(J==0) {vp_3= c*L/r_part;}
+                    if(r_part<=rhp && J!=0) {vp_3=1/0;}
+                document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);  //}					
+                }
+        }
+        if (element2.value != "mobile"){
+            temps_observateur += dtau;
+            document.getElementById("to").innerHTML = temps_observateur.toExponential(3);	
+        }
+		else{
+            if(r_part > rhp) {
+                temps_observateur+=dtau*( (Math.pow(r_part,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part)*E - rs*a*L/r_part )/delta(r_part); 
             }
-		}
-		
+			else{ 
+                temps_observateur=1/0;   //infini
+            }
+            document.getElementById("to").innerHTML = temps_observateur.toExponential(3);
+        }
+    }// fin r0!=0
+}//  fin fonction animate
 
-	if (element2.value != "mobile"){
-		temps_observateur += dtau;
-		document.getElementById("to").innerHTML = temps_observateur.toExponential(3);	
-	}else{
-		if(r_part > rhp) {
-			temps_observateur+=dtau*( (Math.pow(r_part,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part)*E - rs*a*L/r_part )/delta(r_part); 
-		}else{ 
-			temps_observateur=1/0;   //  infini
-		}
-		document.getElementById("to").innerHTML = temps_observateur.toExponential(3);
+// Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.  
+function testvaleur(x) {
+	if (isNaN(x)) {
+		return 'Not a Number!';
 	}
-	
-    
-
-	  
-	  
-	 	  
-  
-	
-	
-  }   // fin r0!=0
-}   //  fin fonction animate
-
- // Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.  
-      function testvaleur(x) {
-      if (isNaN(x)) {
-        return 'Not a Number!';
-      }
-      return x ;
-    }							
+	return x ;
+}							
 // Expression du potentiel divisé par c^2
 function Vr_mob(r) {
   return potentiel_Kerr_photon(r);
@@ -586,11 +559,11 @@ function Vr_mob(r) {
 function Vr_obs(r) {
 	denom=(Math.pow(r,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r)*E-rs*a*L/r;
 	dtausurdtaucarre = Math.pow(delta(r)/denom,2);
-  return Math.pow(E,2)-( Math.pow(E,2)-potentiel_Kerr_photon(r) )*dtausurdtaucarre  ;
+  	return Math.pow(E,2)-( Math.pow(E,2)-potentiel_Kerr_photon(r) )*dtausurdtaucarre  ;
 }
 
 function potentiel_Kerr_photon(r) {
-  return -(Math.pow(a*E,2)-Math.pow(L,2)) / Math.pow(r, 2) - rs / Math.pow(r, 3) * Math.pow(L - a * E, 2);
+	return -(Math.pow(a*E,2)-Math.pow(L,2)) / Math.pow(r, 2) - rs / Math.pow(r, 3) * Math.pow(L - a * E, 2);
 }
 
 function derivee_seconde_Kerr_photon(r) {
@@ -619,13 +592,13 @@ function derivee_seconde_Kerr_photon_obs(r) {
 	Ea_L2=Math.pow(L-a*E,2) ;  
 	denom=(Math.pow(r,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r)*E-rs*a*L/r ;
 	
-return  0.5*Math.pow(c,2)*delta(r)/Math.pow(denom,2)*( 
+	return  0.5*Math.pow(c,2)*delta(r)/Math.pow(denom,2)*( 
 
-             ( -2*(EaL2_a2)/Math.pow(r,3)-3*rs*Ea_L2/Math.pow(r,4) )*delta(r)
+            ( -2*(EaL2_a2)/Math.pow(r,3)-3*rs*Ea_L2/Math.pow(r,4) )*delta(r)
 
             +2*(Math.pow(E,2)+(EaL2_a2)/Math.pow(r,2)+rs*Ea_L2/Math.pow(r,3))*(2*r-rs)  
 
-            -2*(Math.pow(E,2)+(EaL2_a2)/Math.pow(r,2)+rs*Ea_L2/Math.pow(r,3))*delta(r)*((2*r-rs*Math.pow(a,2)/Math.pow(r,2))*E+rs*a*L/Math.pow(r,2))/denom )   ;
+            -2*(Math.pow(E,2)+(EaL2_a2)/Math.pow(r,2)+rs*Ea_L2/Math.pow(r,3))*delta(r)*((2*r-rs*Math.pow(a,2)/Math.pow(r,2))*E+rs*a*L/Math.pow(r,2))/denom );
 }
 			  
 function rungekutta_obs(h, r, A) {
@@ -687,7 +660,6 @@ function calcul_rmax(){
 
 
 
-
 // Fonction bouton pause
 function pausee() {
   if (pause == false) {
@@ -697,14 +669,15 @@ function pausee() {
     document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture;
     document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause;
     clearInterval(myInterval);
-  } else {
+  } 
+  else {
     if(peuxonrelancer == true) {
     pause = false;
     document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
     document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
     document.getElementById("pau").src = "Images/pause.png";
     myInterval = setInterval(animate, 1000 / 300);
-    }
+  }
 /*    if (rmax > 100000) {
       dtau = temps_chute_libre / 100;
     } else {
