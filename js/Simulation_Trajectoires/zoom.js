@@ -53,3 +53,16 @@ document.getElementById('pluszoom').addEventListener('click', function() {
 	rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
 }, false);
 
+
+
+#Ouvre une nouvelle fenetre htlm
+#js
+#<a href="index2.html" onclick="window.open(this.href);return false">Index 2</a>
+#html
+#<a href="index2.html">Index 2</a>
+
+#Ferme la fenetre htlm
+#js
+#<a href="index2.html" onclick="window.close(this.href);return false">Index 2</a>
+
+
