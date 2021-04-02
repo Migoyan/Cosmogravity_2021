@@ -775,7 +775,7 @@ function graphique_creation_d(){
       autorange: true,
 	    title: 'al',
 	    titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
-      showline: true;
+      showline: true
     },
     annotations: annots,
     },
