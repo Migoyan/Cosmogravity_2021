@@ -3,16 +3,16 @@
 function simpson_simple_degre2(fonction,bornInf, omegam0, omegalambda0, Or){
   var Sum=0.0;
   var n=Math.pow(10,5);
-  for(var i=1;i<=7;i+=1){  //7
-    if(bornInf<10 && i==1){   //100
+  for(var i=1;i<=7;i+=1){
+    if(bornInf<100 && i==1){
 
       var bornI=bornInf;
-      var bornS=bornInf+10;  //1000
+      var bornS=bornInf+1000;
     }
-    else if(bornInf<10 && i!=1){   //100
+    else if(bornInf<100 && i!=1){
 
         var bornI=bornS;
-        var bornS=bornS*10;   //10
+        var bornS=bornS*10;
     }
     else if(i==1){
       var bornI=bornInf;
@@ -22,7 +22,7 @@ function simpson_simple_degre2(fonction,bornInf, omegam0, omegalambda0, Or){
       var bornI=bornS;
       var bornS=(Math.pow(10,i+1)*bornInf);
     }
-    var S_0=0.0;
+    var S=0.0;
     var S_0=fonction(bornI,omegam0,omegalambda0,Or)+fonction(bornS,omegam0,omegalambda0,Or);
     var S_1=0.0;
     var S_2=0.0;
@@ -36,7 +36,7 @@ function simpson_simple_degre2(fonction,bornInf, omegam0, omegalambda0, Or){
         S_1+=fonction(x1,omegam0,omegalambda0,Or);
       }
     }
-    S=(h/3.0)*( S_0 + 4.0*S_1 + 2*S_2);  
+    S=(h/3.0)*( S_0 + 4.0*S_1 + 2.0*S_2);
     Sum+=S;
   }
   return Sum;

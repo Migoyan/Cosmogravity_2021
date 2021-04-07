@@ -766,14 +766,16 @@ function graphique_creation_d(){
     xaxis: {
       autorange: true,
       title: 'z',
-	  titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"}
+	    titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+      showline: true
     },
 
     yaxis: {
       rangemode: 'tozero',
       autorange: true,
-	  title: 'al',
-	  titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"}
+	    title: 'al',
+	    titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+      showline: true
     },
     annotations: annots,
     },
@@ -917,13 +919,15 @@ function graphique_creation_omega(){
     xaxis: {
       autorange: true,
       title: 'z',
-	  titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"}
+	    titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+      showline: true
     },
 
     yaxis: {
       rangemode: 'tozero',
       autorange: true,
-      title: ''
+      title: '',
+      showline: true
     },
     annotations: annots,
     },
@@ -1033,12 +1037,14 @@ function graphique_creation_t(){
     xaxis: {
       autorange: true,
       title: 'z',
-	  titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"}
+	    titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+      showline: true
     },
 
     yaxis: {
       autorange: true,
-      title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"}
+      title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+      showline: true
     },
     annotations: annots,
     },

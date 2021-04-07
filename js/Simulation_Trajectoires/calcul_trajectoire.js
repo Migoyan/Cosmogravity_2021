@@ -597,7 +597,7 @@ function trajectoire(compteur,mobile) {
     mobile["phi_obs"]=phi_obs;//mobile.phi_obs
 
    // n = 1; //Variable qui comptera le nombre de rebonds effectués par la particule
-    temps_chute_libre = Math.PI * rmax * Math.sqrt(rmax / (2 * G * M)) / 2;
+    temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
 	mobile["temps_chute_libre"]=temps_chute_libre;//mobile.temps_chute_libre
  
 				   
@@ -671,10 +671,11 @@ function trajectoire(compteur,mobile) {
     clavierEvenement();
    
 
-	dtau=rmax/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1e-10)/1e3;
+	dtau=mobile.r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1e-10)/1e3;
     mobile["dtau"]=dtau;//mobile.dtau
      if(mobile.dtau>mobile.temps_chute_libre/500.){mobile.dtau= mobile.temps_chute_libre/500;} 	   
-  // Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur//
+
+    // Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur//
     x1part = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi) / mobile.rmax;
     y1part = mobilefactor[compteur] * mobile.r0 * Math.sin(mobile.phi) / mobile.rmax;
     x1obs = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi_obs) / mobile.rmax;
@@ -1011,7 +1012,7 @@ function animate(compteur,mobile,mobilefactor) {
   varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
   mobile.phi = mobile.phi + varphi;
   varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
-  mobile.phi_obs=mobile.phi_obs + varphi_obs;
+  mobile.phi_obs=mobile.phi_obs+varphi_obs;
 
 
 	val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
@@ -1273,7 +1274,7 @@ if (element2.value != "mobile"){
 
 		if(mobile.r_part_obs >= rs)   {
 
-		
+			//vtotal=Math.sqrt(vr_1_obs*vr_1_obs+vp_1_obs*vp_1_obs); vr_1_obs=vtotal; 
 			mobile.temps_particule += mobile.dtau*(1-rs/mobile.r_part_obs)/mobile.E;
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);

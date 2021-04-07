@@ -567,7 +567,7 @@ function trajectoire(compteur,mobile) {
     mobile["phi_obs"]=phi_obs;//mobile.phi_obs
 
 
-    temps_chute_libre = Math.PI * rmax * Math.sqrt(rmax / (2 * G * M)) / 2;
+    temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
 	mobile["temps_chute_libre"]=temps_chute_libre;//mobile.temps_chute_libre
 
     A_init = mobile.vr;
@@ -648,13 +648,13 @@ function trajectoire(compteur,mobile) {
 	element2=document.getElementById('traject_type2');
 	
 	if (element2.value != "mobile"){
-		dtau=rmax/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
+		dtau=mobile.r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
 		mobile["dtau"]=dtau;//mobile.dtau
      if(mobile.dtau>mobile.temps_chute_libre/500.){
 		mobile.dtau= mobile.temps_chute_libre/500.;
 		} 
 	}else{ //dtau=r0/(Math.sqrt(vr*vr+vphi*vphi)+1e-20)/1000;
-     dtau= 1e-3*rmax/ (Math.abs(mobile.vr)+Math.abs(mobile.vphi)+1) ;
+     dtau= 1e-3*mobile.r0/ (Math.abs(mobile.vr)+Math.abs(mobile.vphi)+1) ;
      mobile["dtau"]=dtau;//mobile.dtau
 	}
 
