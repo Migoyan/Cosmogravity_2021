@@ -1,6 +1,6 @@
 {
   "page_index":{
-      "version": "<strong>Beta Version </strong> 1.1 (2021/02/01)",
+      "version": "<strong>Beta Version </strong> 1.1 (2021/03/24)",
       "composition":"This program is structured in 2 parts :",
       "univers":"Friedmann-Lemaître universes models and annex calculations",
       "trajectoire":"Trajectory of a free particule in the Schwarzschild & Kerr space-time",
@@ -16,7 +16,7 @@
     "encadrants":"<strong>The supervisory staff :</strong> Jean-Pierre Cordoni &amp; Henri Reboul (LUPM), Isabelle Mougenot (LIRMM)",
     "directeurs":"<strong>Directors : </strong>David Cassagne (LCC) &amp; Brahim Guizal (LCC) ",																														 
 	"remerciements":"<strong>Thanks to </strong> Éric Gourgoulhon (LUTH) and Jean-Philippe Uzan (IAP) for their advice.",
-    "version":"<strong>Beta Version </strong> 1.1 (2021/02/01) revised by  Jean Pierre Cordoni",
+    "version":"<strong>Beta Version </strong> 1.1 (2021/03/24) revised by  Jean Pierre Cordoni",
     "descriptif":"<strong> Application </strong>created in the framework of tutored projects of the Master 1 of Digital Physics of the University of Montpellier.",
     "contact":"<strong>Contact:<br/></strong>",
     "envoyer":"Send",

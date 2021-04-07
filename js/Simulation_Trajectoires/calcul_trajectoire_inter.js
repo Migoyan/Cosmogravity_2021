@@ -572,7 +572,7 @@ function trajectoire(compteur,mobile) {
     mobile["phi_obs"]=phi_obs;//mobile.phi_obs
 
 
-    temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
+    temps_chute_libre = Math.PI * rmax * Math.sqrt(rmax / (2 * G * M)) / 2;
 	mobile["temps_chute_libre"]=temps_chute_libre;//mobile.temps_chute_libre
 
     A_init = mobile.vr;
@@ -656,7 +656,7 @@ function trajectoire(compteur,mobile) {
     mobile["dtau"]=dtau;//mobile.dtau
      //ceci devrait etre la meme chose que si l'on est clique 3 x sur moinsvitesse mais il semblerait que ca ne le soit pas
     //peut etre vaudrait il mieux document.click 3x sur moinsvitesse    
-    mobile.dtau /= 8;     
+    //mobile.dtau /= 8;     
 
      if(mobile.dtau>mobile.temps_chute_libre/500.){mobile.dtau= mobile.temps_chute_libre/500.;} 
  

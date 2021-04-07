@@ -702,7 +702,7 @@ function graphique_creation2(){
 
   Plotly.newPlot('graphique', tracer1, {  
   
-    title: {
+     title: {
       text: texte.calculs_univers.titre,
       font: {
         family: 'Time New Roman, sans-serif',
@@ -713,19 +713,19 @@ function graphique_creation2(){
     
 
     xaxis: {
-	    automargin: true,
+		
+	  automargin: true,
       fixedrange: true,
       autorange: false, range:[data_x[1],data_x[data_x.length-1]],
-      title: 't (Ga)',
-      showline: true
-    },
+      title: 't (Ga)'
+        } ,
 
     yaxis: {
+			
       fixedrange: true,
       rangemode: 'tozero',
       autorange: false,range:[Amin,Amax],
-      title: 'a(t)',
-      showline: true
+      title: 'a(t)'
     },
     annotations: annots,
   },
@@ -737,30 +737,29 @@ function graphique_creation2(){
 
   Plotly.newPlot('graphique_enr', tracer1, {
 	  
-    title: {
+     title: {
       text: texte.calculs_univers.titre,
       font: {
-          family: 'Arial black, sans-serif',
-          size: 16,
-          color: '#111111'
-        },
-      xref: 'paper',
-        x: 0.55, 
-      
-    },
+        family: 'Arial black, sans-serif',
+        size: 16,
+        color: '#111111'
+      },
+	  xref: 'paper',
+      x: 0.55, 
+	  
+	 },
     
 
     xaxis: {
-	    autorange: false, range:[data_x[1],data_x[data_x.length-1]],
-      title: 't (Ga)',
-      showline: true
+			
+	  autorange: false, range:[data_x[1],data_x[data_x.length-1]],
+      title: 't (Ga)'
     },
 
     yaxis: {
       rangemode: 'tozero',
       autorange: false,range:[Amin,Amax],
-      title: 'a(t)',
-      showline: true
+      title: 'a(t)'
     },
     annotations: annots,
   }, {
@@ -882,15 +881,13 @@ function graphique_creation(){
     
     xaxis: {
       autorange: true,
-      title: 't (Ga)',
-      showline: true
+      title: 't (Ga)'
     },
 
     yaxis: {
       rangemode: 'tozero',
       autorange: true,
-      title: 'a(t)',
-      showline: true
+      title: 'a(t)'
     },
     annotations: annots,
   },
@@ -917,16 +914,14 @@ function graphique_creation(){
     xaxis: {
       autorange: true,
       autorange: true,
-      title: 't (Ga)',
-      showline: true
+      title: 't (Ga)'
     },
 
 
     yaxis: {
       rangemode: 'tozero',
       autorange: true,
-      title: 'a(t)',
-      showline: true
+      title: 'a(t)'
     },
     annotations: annots,
   }, {
