@@ -4,6 +4,7 @@
 
 // Fonction bouton pause
 // tirée du dossier calcul_trajectoire_inter_photon
+/*
 function pausee(compteur,mobile,mobilefactor) {
 
     if (mobile.pause == false) {
@@ -32,6 +33,7 @@ function pausee(compteur,mobile,mobilefactor) {
 document.getElementById("panneau_mobile2").style.visibility='visible';
 
 // Gestion des bouttons Zoom moins
+/
 document.getElementById('moinszoom').addEventListener('click', function() {
 	mobilefactor[compteur] /= 1.2;
 	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
@@ -64,5 +66,17 @@ document.getElementById('pluszoom').addEventListener('click', function() {
 #Ferme la fenetre htlm
 #js
 #<a href="index2.html" onclick="window.close(this.href);return false">Index 2</a>
+*/
 
+/// test  d'une nouvelle foncion Zoom
 
+function zoom(zoomtype,mobile,canvas){
+	if(zoomtype){mobilefactor[compteur] *= 1.2;}
+	else{mobilefactor[compteur] /= 1.2;}
+	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
+	mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
+	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
+	mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+	majFondFixe44(mobile); 
+	rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+}

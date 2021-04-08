@@ -745,7 +745,7 @@ function graphique_creation_d(){
   y: frame[0].data[0].y.ydlt,
   type: 'scatter',
   name: '<b>d<sub>LT</sub><b>'
-  };
+  }
 
   var data = [trace1, trace2, trace3, trace4];
 
@@ -764,18 +764,18 @@ function graphique_creation_d(){
 	titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 	
     xaxis: {
-      autorange: true,
-      title: 'z',
+      	autorange: true,
+      	title: 'z',
 	    titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-      showline: true
+      	showline: true
     },
 
     yaxis: {
-      rangemode: 'tozero',
-      autorange: true,
+      	rangemode: 'tozero',
+      	autorange: true,
 	    title: 'al',
 	    titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
-      showline: true;
+      	showline: true
     },
     annotations: annots,
     },

@@ -835,7 +835,7 @@ function trajectoire(compteur,mobile) {
       V = Vr_obs(r,mobile.E,mobile.L);
       data1.push({date: r,close: V});
     }
-	V = Vr_obs(mobile.r0,mobile.E,mobile.L);
+	  V = Vr_obs(mobile.r0,mobile.E,mobile.L);
     data2.push({date: mobile.r0,close: V});
     mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 
@@ -856,53 +856,52 @@ function trajectoire(compteur,mobile) {
 
 
     window.addEventListener('resize', function() {
-           //console.log(compteur,"on a resize hay");
-        $('#grsvg_'+compteur.toString()).empty();
-	    data1=[];
+		//console.log(compteur,"on a resize hay");
+		$('#grsvg_'+compteur.toString()).empty();
+		data1=[];
 		data2=[];
 
 		if (element2.value != "mobile"){	
 		
 
-		for (r = rs/2; r < mobile.borne; r += mobile.dr) {
-		  V = Vr_obs(r,mobile.E,mobile.L);
-		  data1.push({date: r,close: V});
-		}
-		V = Vr_obs(mobile.r0,mobile.E,mobile.L);
-		data2.push({date: mobile.r0,close: V});
-		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+			for (r = rs/2; r < mobile.borne; r += mobile.dr) {
+			V = Vr_obs(r,mobile.E,mobile.L);
+			data1.push({date: r,close: V});
+			}
+			V = Vr_obs(mobile.r0,mobile.E,mobile.L);
+			data2.push({date: mobile.r0,close: V});
+			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 
 
 		
-		}else{
-		for (r =rs/2 ; r < mobile.borne; r += mobile.dr) {
-		  V = Vr_mob(r,mobile.E,mobile.L);
-		  data1.push({date: r,close: V});
 		}
+		else{
+			for (r =rs/2 ; r < mobile.borne; r += mobile.dr) {
+			V = Vr_mob(r,mobile.E,mobile.L);
+			data1.push({date: r,close: V});
+			}
 			
-		V = Vr_mob(mobile.r0,mobile.E,mobile.L);
-		data2.push({date: mobile.r0,close: V}); 
-		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+			V = Vr_mob(mobile.r0,mobile.E,mobile.L);
+			data2.push({date: mobile.r0,close: V}); 
+			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 
 		} 
 
         
    
     }, false);
+	}
+	else {
 
-
-
-  } else {
-
-    mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10 / 6);
-    
-  }  // fin du if(pause...
-  document.getElementById('start').addEventListener('click', function() {
-    rafraichir();
-  
-  }, false);
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_stop;
-}  // fin fonction trajectoire
+		mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10 / 6);
+		
+	}  // fin du if(pause...
+	document.getElementById('start').addEventListener('click', function() {
+		rafraichir();
+	
+	}, false);
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_stop;
+	}  // fin fonction trajectoire
 
 
 // tracé de la particule
@@ -915,64 +914,65 @@ function animate(compteur,mobile,mobilefactor) {
    
   if (mobile.r0 != 0.0) {
  
-if(element2.value == "mobile"){ 
-	
-	if(mobile.r_part > r_phy) {
-		 
-    val = rungekutta_externe_photon(mobile.dtau, mobile.r_part, mobile.A_part,mobile.L);
-    mobile.r_part = val[0];
-    mobile.A_part = val[1];
-	
-	varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-    mobile.phi = mobile.phi + varphi;
-	
-	vr_1=mobile.A_part;
-	vp_1=c*mobile.L/mobile.r_part; 
-	
-    } else {
+	if(element2.value == "mobile"){ 
 		
-		
-	val = rungekutta_interne_photon(mobile.dtau, mobile.r_part, mobile.A_part,mobile.E,mobile.L);
-    mobile.r_part = val[0];
-    mobile.A_part = val[1];
-	
-	varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-   	//todo posinterm mobile.phi=mobile.phi+Math.PI ici alors qu pr inter c mobile.phi=Math.PI normal?
-	if(mobile.r_part <= r_phy*5e-3 && varphi <= 1e-3) { if(mobile.posinterm > 0) {mobile.phi=mobile.phi+Math.PI;mobile.A_part=-mobile.A_part;
-	}else{mobile.phi=0; mobile.A_part=-mobile.A_part; }
-	  } else {  mobile.phi = mobile.phi + varphi;}
-	
-	
-	vr_1=mobile.A_part;
-	vp_1=c*mobile.L /mobile.r_part;  
-
-
-	}
-}else{   //observateur
-
-	if(mobile.r_part_obs > r_phy) {
-
-    val = rungekutta_externe_photon_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
-    mobile.r_part_obs = val[0];
-    mobile.A_part_obs = val[1];
-
-	varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
-    mobile.phi_obs=mobile.phi_obs+varphi_obs;
-
-	vr_1_obs=mobile.A_part_obs;
-	vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
-	
-    } else {
+		if(mobile.r_part > r_phy) {	
+			val = rungekutta_externe_photon(mobile.dtau, mobile.r_part, mobile.A_part,mobile.L);
+			mobile.r_part = val[0];
+			mobile.A_part = val[1];
 			
-	val = rungekutta_interne_photon_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
-    mobile.r_part_obs = val[0];
-    mobile.A_part_obs = val[1];
+			varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+			mobile.phi = mobile.phi + varphi;
+			
+			vr_1=mobile.A_part;
+			vp_1=c*mobile.L/mobile.r_part; 
 	
-	varphi_obs = c * mobile.L * mobile.dtau*Math.pow(beta(mobile.r_part_obs),2) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+		} 
+		else {
+			val = rungekutta_interne_photon(mobile.dtau, mobile.r_part, mobile.A_part,mobile.E,mobile.L);
+			mobile.r_part = val[0];
+			mobile.A_part = val[1];
+			
+			varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+			//todo posinterm mobile.phi=mobile.phi+Math.PI ici alors qu pr inter c mobile.phi=Math.PI normal?
+			if(mobile.r_part <= r_phy*5e-3 && varphi <= 1e-3) { 
+				if(mobile.posinterm > 0) {mobile.phi=mobile.phi+Math.PI;mobile.A_part=-mobile.A_part;}
+				else{mobile.phi=0; mobile.A_part=-mobile.A_part; }
+			} 
+			else {mobile.phi = mobile.phi + varphi;}
+		vr_1=mobile.A_part;
+		vp_1=c*mobile.L /mobile.r_part;  
+		}
+	}
+	//observateur
+	else{
+
+		if(mobile.r_part_obs > r_phy) {
+
+			val = rungekutta_externe_photon_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
+			mobile.r_part_obs = val[0];
+			mobile.A_part_obs = val[1];
+
+			varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+			mobile.phi_obs=mobile.phi_obs+varphi_obs;
+
+			vr_1_obs=mobile.A_part_obs;
+			vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
 	
-	if(mobile.r_part_obs <= r_phy*5e-3 && varphi_obs <= 1e-3) { if(mobile.posintero > 0) { mobile.phi_obs=Math.PI;mobile.A_part_obs=-mobile.A_part_obs;
-	}else{mobile.phi_obs=0; mobile.A_part_obs=-mobile.A_part_obs;}
-		}else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
+    	} 
+		else{
+					
+			val = rungekutta_interne_photon_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
+			mobile.r_part_obs = val[0];
+			mobile.A_part_obs = val[1];
+			
+			varphi_obs = c * mobile.L * mobile.dtau*Math.pow(beta(mobile.r_part_obs),2) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+			
+			if(mobile.r_part_obs <= r_phy*5e-3 && varphi_obs <= 1e-3){
+				if(mobile.posintero > 0) { mobile.phi_obs=Math.PI;mobile.A_part_obs=-mobile.A_part_obs;}
+				else{mobile.phi_obs=0; mobile.A_part_obs=-mobile.A_part_obs;}
+			}
+			else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
 	  
 	
 	vr_1_obs=mobile.A_part_obs;
