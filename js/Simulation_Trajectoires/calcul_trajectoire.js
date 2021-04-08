@@ -182,13 +182,14 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 	divchampsr.appendChild(span);
     if(countt==1){
-	var newlabel = document.createElement("Label");
-	//newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
-    newlabel.setAttribute("id","ctreastre");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","r01");
-	newlabel.innerHTML = "r<sub>0</sub> (m) =";
-	span.appendChild(newlabel);}
+		var newlabel = document.createElement("Label");
+		//newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
+		newlabel.setAttribute("id","ctreastre");
+		newlabel.setAttribute("title","");
+		newlabel.setAttribute("for","r01");
+		newlabel.innerHTML = "r<sub>0</sub> (m) =";
+		span.appendChild(newlabel);
+	}
 
 
 	var newinput = document.createElement("Input");
@@ -219,26 +220,20 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 	divchampsr.appendChild(span);
     if(countt==1){
-	var newlabel = document.createElement("Label");
-    newlabel.setAttribute("id","vitesseuphilabel");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","vphi1");
-    newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
-	span.appendChild(newlabel);}
-
-
+		var newlabel = document.createElement("Label");
+		newlabel.setAttribute("id","vitesseuphilabel");
+		newlabel.setAttribute("title","");
+		newlabel.setAttribute("for","vphi1");
+		newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
+		span.appendChild(newlabel);
+	}
 	var newinput = document.createElement("Input");
 	newinput.setAttribute("id","vphi"+countt.toString()+"");
 	newinput.setAttribute("value","5.1e7");
-
 	newinput.setAttribute("maxlength","10");
-
 	newinput.setAttribute("type","text");
-
 	newinput.setAttribute("size","5");
-
 	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
 	span.appendChild(newinput);
 }
 
@@ -253,12 +248,13 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 	divchampsr.appendChild(span);
     if(countt==1){
-	var newlabel = document.createElement("Label");
-    newlabel.setAttribute("id","vitesseurlabel");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","vr1");
-	newlabel.innerHTML = "U<sub>r</sub> (m.s<sup>-1</sup>) =";
-	span.appendChild(newlabel);}
+		var newlabel = document.createElement("Label");
+		newlabel.setAttribute("id","vitesseurlabel");
+		newlabel.setAttribute("title","");
+		newlabel.setAttribute("for","vr1");
+		newlabel.innerHTML = "U<sub>r</sub> (m.s<sup>-1</sup>) =";
+		span.appendChild(newlabel);
+	}
 
 
 	var newinput = document.createElement("Input");
@@ -275,47 +271,42 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 	span.appendChild(newinput);
 }
-
-
         
-		var newRow=document.getElementById('tableauconstanteslers').insertRow();
+	var newRow=document.getElementById('tableauconstanteslers').insertRow();
 
-        var jstring = '<tr id="tgggg1" >'
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<th class="tg-aicv">$L'+countt.toString()+'(m)$</th>';}
+	var jstring = '<tr id="tgggg1" >'
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<th class="tg-aicv">$L'+countt.toString()+'(m)$</th>';}
 
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<th class="tg-aicv">$E'+countt.toString()+'$</th>';
-            }
-
- 
-             //pour katex il faux mettre un antislash devant le antislash
-             //jstring +='<th class="tg-6l4m" title="Rayon de Schwarzschild" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
-             jstring +='<th class="tg-6l4m" id="rayonschwars" title="" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
-
-             //jstring +='<th class="tg-6l4m" title="grav en g">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';
-             jstring +='<th class="tg-6l4m" id="gravtxt" title="">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';
-          jstring +='</tr>';
-
-          
-        newRow.innerHTML = jstring;
-
-		var newRow2=document.getElementById('tableauconstanteslers').insertRow();
-
-        var jstring = '<tr id="tgggg2" >'
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';}
-
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';}
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<th class="tg-aicv">$E'+countt.toString()+'$</th>';
+	}
 
 
+	//pour katex il faux mettre un antislash devant le antislash
+	//jstring +='<th class="tg-6l4m" title="Rayon de Schwarzschild" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
+	jstring +='<th class="tg-6l4m" id="rayonschwars" title="" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
 
-             jstring +='<td class="tg-3ozo" id="m">0</td>';
-             jstring +='<td class="tg-3ozo" id="g">0</td>';
-          jstring +='</tr>';
+	//jstring +='<th class="tg-6l4m" title="grav en g">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';
+	jstring +='<th class="tg-6l4m" id="gravtxt" title="">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';
+	jstring +='</tr>';
 
-        newRow2.innerHTML = jstring;
+		
+	newRow.innerHTML = jstring;
+
+	var newRow2=document.getElementById('tableauconstanteslers').insertRow();
+
+	var jstring = '<tr id="tgggg2" >'
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';}
+
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';
+	}
+	jstring +='<td class="tg-3ozo" id="m">0</td>';
+	jstring +='<td class="tg-3ozo" id="g">0</td>';
+	jstring +='</tr>';
+	newRow2.innerHTML = jstring;
 
 
 
@@ -327,29 +318,28 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	  var newRow=document.getElementById('tableauresultatsimu').insertRow();
 	  // il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
 	  newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
-				<th class="tg-aicv">r(m)</th>
-				<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-				<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
-				<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-				<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
-				<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>`;
+						<th class="tg-aicv">r(m)</th>
+						<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
+						<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
+						<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+						<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+						<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
+						<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>`;
 
 	 var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
-		newRow2.innerHTML =       `<tr id="tg2ggb`+countt.toString()+`">
-				<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>`
+	newRow2.innerHTML = `<tr id="tg2ggb`+countt.toString()+`">
+						<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
+						<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
+						<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
+						<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
+						<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
+						<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
+						<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>`
 
 }
 
-  var canvaswidthheight = document.getElementById("canvaswidthheight").value;
-
+  	var canvaswidthheight = document.getElementById("canvaswidthheight").value;
 	var canvasgenere = document.createElement("canvas");
     canvasgenere.setAttribute("id","myCanvas");
     canvasgenere.setAttribute("width",canvaswidthheight);
@@ -357,18 +347,13 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
     canvasgenere.setAttribute("class","canvaslaclasse");
     if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
     else{var wrappergenere = document.getElementById('wrapperengrand');}
-	
 	wrappergenere.appendChild(canvasgenere);
-
-
-
 
 for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	var canvasboulegenere = document.createElement("canvas");
     canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
     canvasboulegenere.setAttribute("width",canvaswidthheight);
     canvasboulegenere.setAttribute("height",canvaswidthheight);
-  
     canvasboulegenere.setAttribute("class","canvaslaclasse");
     if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
     else{var wrappergenere = document.getElementById('wrapperengrand');}
@@ -387,12 +372,11 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	wrappergenere.appendChild(canvas3genere);
 
 if(canvaswidthheight=="750"){
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-
-  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-   svg.setAttribute("id", "grsvg_"+countt.toString()+"");
-  document.getElementById("wrapper2").appendChild(svg);
-}
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		svg.setAttribute("id", "grsvg_"+countt.toString()+"");
+		document.getElementById("wrapper2").appendChild(svg);
+	}
 }
 
   texteTrajectoireMassive(nbredefuseesgenere);
@@ -414,75 +398,74 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 // calcul en temps réel des E, L,...
 //on crée un objet json(idée de Mme Mougenot) mobile pour chaque mobile, pour bien differencier/contenir les variables appartenant a chaque mobile de maniere distincte.
 function initialisation(compteur){
-  c = 299792458;
-  G = 6.6742 * Math.pow(10, -11);
-  M = Number(document.getElementById("M").value);
-  r_phy = Number(document.getElementById("r_phy").value);
-  m = G * M / Math.pow(c, 2); 
-  rs=2*m;
+	c = 299792458;
+	G = 6.6742 * Math.pow(10, -11);
+	M = Number(document.getElementById("M").value);
+	r_phy = Number(document.getElementById("r_phy").value);
+	m = G * M / Math.pow(c, 2); 
+	rs=2*m;
 
-  
-  r0 = Number(document.getElementById("r0"+compteur.toString()).value);
-  vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
-  vr = Number(document.getElementById("vr"+compteur.toString()).value);
-  L = vphi * r0 / c;
-  E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0) * (1 + Math.pow(vphi/c, 2)));
+	
+	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
+	vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
+	vr = Number(document.getElementById("vr"+compteur.toString()).value);
+	L = vphi * r0 / c;
+	E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0) * (1 + Math.pow(vphi/c, 2)));
 
-  document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
-  document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
-  
-  document.getElementById("m").innerHTML = rs.toExponential(3);
+	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
+	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
+	
+	document.getElementById("m").innerHTML = rs.toExponential(3);
 
-  scale_factor = Number(document.getElementById("scalefactor").value);
-  mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
+	scale_factor = Number(document.getElementById("scalefactor").value);
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
 
-  mobile["pointsvg"]="pointg"+compteur.toString();
-  mobile["graphesvg"]="#grsvg_"+compteur.toString();
+	mobile["pointsvg"]="pointg"+compteur.toString();
+	mobile["graphesvg"]="#grsvg_"+compteur.toString();
 
-  mobile["onestarrete"]=0;
-  mobile["peuxonrelancer"]=true;
+	mobile["onestarrete"]=0;
+	mobile["peuxonrelancer"]=true;
 
 
  /* Calcul de rmax */
-  if( (E>0.99999 & E<1.00001) && (L >= 2*rs || L <=-2*rs ) )
-   { rmax=1.1*r0;  //rmax= 1/(2*rs)*(Math.pow(L,2)+ L*Math.sqrt(Math.pow(L,2)-4*Math.pow(rs,2)));
-     //if(rmax<r0) {rmax=2*r0;} 
-   } else if (E==1 && L==0) {rmax=2*r0;
-   } else {calcul_rmax(L,E,vr,r0,1) ;  if(rmax<r0) {rmax=r0 ;}   }   
+  	if( (E>0.99999 & E<1.00001) && (L >= 2*rs || L <=-2*rs ) ){ 
+		rmax=1.1*r0;
+		//rmax= 1/(2*rs)*(Math.pow(L,2)+ L*Math.sqrt(Math.pow(L,2)-4*Math.pow(rs,2)));
+     	//if(rmax<r0) {rmax=2*r0;} 
+   	} 	
+   else if (E==1 && L==0) {rmax=2*r0; } 
+   else {calcul_rmax(L,E,vr,r0,1) ;  if(rmax<r0) {rmax=r0 ;}   }   
 
-  mobile["rmax"]=rmax; //mobile.rmax
+	mobile["rmax"]=rmax; //mobile.rmax
 
-  mobile["blups"]=0;
+	mobile["blups"]=0;
 
+	rmaxjson[compteur]=rmax;
 
-  rmaxjson[compteur]=rmax;
+	mobilefactor[compteur]=scale_factor;
+	r0o2[compteur] = r0;
 
-  mobilefactor[compteur]=scale_factor;
-  r0o2[compteur] = r0;
-
-  mobile["pause"]=true; //mobile.pause
-  mobile["debut"]=true; //mobile.debut
-  
-  couleurs = generateurCouleur();
-  mobile["couleur"]="rgb("+couleurs[0]+", "+couleurs[1]+", "+couleurs[2]+")";//mobile.couleur
-  mobile["red"]=couleurs[0];
-  mobile["green"]=couleurs[1];
-  mobile["blue"]=couleurs[2];
+	mobile["pause"]=true; //mobile.pause
+	mobile["debut"]=true; //mobile.debut
+	
+	couleurs = generateurCouleur();
+	mobile["couleur"]="rgb("+couleurs[0]+", "+couleurs[1]+", "+couleurs[2]+")";//mobile.couleur
+	mobile["red"]=couleurs[0];
+	mobile["green"]=couleurs[1];
+	mobile["blue"]=couleurs[2];
 
 
   //calcul de grav
   g=(G*M)/(Math.pow(r_phy,2)*9.81);
 
 
-  if(r_phy==0){
-
-    document.getElementById("g").innerHTML=" ";
-  }else{
-
-  document.getElementById("g").innerHTML=g.toExponential(2);
-  }
-  
-  return mobile;
+	if(r_phy==0){
+		document.getElementById("g").innerHTML=" ";
+	}
+	else{
+		document.getElementById("g").innerHTML=g.toExponential(2);
+	}
+	return mobile;
 }  // fin fonction initialisation
 
 
@@ -498,18 +481,18 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 
   var nbrdefuseesverifnbr = Number(document.getElementById("nombredefusees").value);
   for (count = 1; count <= nbrdefuseesverifnbr; count += 1) {
-         var r0verifnbr = Number(document.getElementById("r0"+count.toString()+"").value); 
-		 var vphiverifnbr = Number(document.getElementById("vphi"+count.toString()+"").value);
-		 var vrverifnbr = Number(document.getElementById("vr"+count.toString()+"").value);
-         if(isNaN(r0verifnbr)){
-             onebolean=true;
-         }
-         if(isNaN(vphiverifnbr)){
-             twobolean=true;
-         }
-         if(isNaN(vrverifnbr)){
-             threebolean=true;
-         }
+		var r0verifnbr = Number(document.getElementById("r0"+count.toString()+"").value); 
+		var vphiverifnbr = Number(document.getElementById("vphi"+count.toString()+"").value);
+		var vrverifnbr = Number(document.getElementById("vr"+count.toString()+"").value);
+		if(isNaN(r0verifnbr)){
+			onebolean=true;
+		}
+		if(isNaN(vphiverifnbr)){
+			twobolean=true;
+		}
+		if(isNaN(vrverifnbr)){
+			threebolean=true;
+		}
   }
 
 
@@ -538,7 +521,7 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 // première étape qui lance la partie calculatoire
 function trajectoire(compteur,mobile) {
   texte = o_recupereJson();
-  if (mobile.pause || mobile.debut) {
+  if (mobile.pause || mobile.debut){
     r0setcouleur = document.getElementById("r0"+compteur.toString());
     //stackoverflow questions/9780632,reponse de jack on verifie si la couleur du trace du mobile est plus proche de noir ou blanc
     //pour savoir si on ecrit le texte (color) en noir ou blanc sur la case r0 du mobile pour quon puisse voir le texte(initalement ecrit en noir ds la case)
@@ -556,7 +539,7 @@ function trajectoire(compteur,mobile) {
 
     //joystick
 	
-  //  document.getElementById("joyDiv").style.visibility='visible';
+  	//document.getElementById("joyDiv").style.visibility='visible';
 	
     // pour savoir si on affiche l'information pour les touches claviers ou non
     estUnMobile();
@@ -607,12 +590,13 @@ function trajectoire(compteur,mobile) {
    var nbredefusees = Number(document.getElementById("nombredefusees").value);
    //on passe dans ces conditions seulement une fois
    //on trouve le r0 maximum
-   if (nbredefusees==1) {
-   if(ifUneFois2){
-   maximum=r0o2[1];
-   cle = 1;
-   ifUneFois2=false;
-   }}
+   	if (nbredefusees==1) {
+		if(ifUneFois2){
+			maximum=r0o2[1];
+			cle = 1;
+			ifUneFois2=false;
+		}
+	}
    
    
    if (nbredefusees>=2) {
@@ -659,13 +643,8 @@ function trajectoire(compteur,mobile) {
     mobile["temps_particule"]=temps_particule;
     temps_observateur = 0;
     mobile["temps_observateur"]=temps_observateur;//mobile.temps_observateur
-
-
-	
 	Rebond = document.getElementById("reb").value / 100.0;
     mobile["Rebond"]=Rebond;//mobile.Rebond
-
-
 
     // permet de gérer les touches du clavier pour certaines actions
     clavierEvenement();
@@ -745,11 +724,8 @@ function trajectoire(compteur,mobile) {
     Dtau2 = mobile.temps_chute_libre / 1e8;
     mobile["Dtau2"]=Dtau2;//mobile.Dtau2
     document.getElementById('bouton_pause').addEventListener('click', function() {
-      pausee(compteur,mobile,mobilefactor);
+    	pausee(compteur,mobile,mobilefactor);
     }, false);
-
- 
-
 
     //joystick
     //sert a simuler une poussee au lieu d'etre seulement ds le cas ballistique(sans pousse) du mobile
@@ -814,17 +790,18 @@ function trajectoire(compteur,mobile) {
     document.getElementById('enregistrer2').addEventListener('click', function() {
         element2z=document.getElementById('traject_type2');
 		if (element2z.value != "mobile"){
-		context3.beginPath();
-		context3.fillStyle = COULEUR_BLEU;
-		context3.arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
-		context3.lineWidth = "1";
-		context3.fill();
-		}else{
-		context3.beginPath();
-		context3.fillStyle = COULEUR_BLEU;
-		context3.arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
-		context3.lineWidth = "1";
-        context3.fill();
+			context3.beginPath();
+			context3.fillStyle = COULEUR_BLEU;
+			context3.arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
+			context3.lineWidth = "1";
+			context3.fill();
+		}
+		else{
+			context3.beginPath();
+			context3.fillStyle = COULEUR_BLEU;
+			context3.arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
+			context3.lineWidth = "1";
+			context3.fill();
 		}
     }, false);
 
@@ -839,8 +816,6 @@ function trajectoire(compteur,mobile) {
         mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);  
         majFondFixe44(mobile);      
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
-      
-
     }, false);
 
 
@@ -850,7 +825,6 @@ function trajectoire(compteur,mobile) {
 		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
 		mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
 		mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-		
         majFondFixe44(mobile); 
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
