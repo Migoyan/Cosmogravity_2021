@@ -792,27 +792,27 @@ function trajectoire(compteur,mobile) {
 
     // Gestion des bouttons Zoom moins
     document.getElementById('moinszoom').addEventListener('click',function(){
-       mobilefactor[compteur] /= 1.2;
+       	mobilefactor[compteur] /= 1.2;
         mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
         mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
         mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-        mobile=zoom(false,mobile,canvas);  
-        majFondFixe44(mobile);      
+        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2); 
+		//mobile=bouttons.zoom("o",false,mobile,canvas,mobilefactor[compteur]);
+		majFondFixe44(mobile);      
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
-		
     }, false);
 
 
-    document.getElementById('pluszoom').addEventListener('click', function() {       
+	document.getElementById('pluszoom').addEventListener('click', function() {       
 		mobilefactor[compteur] *= 1.2;
 		mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
 		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
 		mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
 		mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-        majFondFixe44(mobile); 
-        rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
-    }, false);
+		majFondFixe44(mobile); 
+		rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+		bouttons.zoom("o");
+	}, false);
 
     document.getElementById('initialiser').addEventListener('click', function() {
 		for (key = 1; key <= nbredefusees; key += 1) {
@@ -1201,23 +1201,23 @@ if(element2.value != "mobile"){
 	}		
 
 
-      if(mobile.r_part<=0){mobile.r_part=0;}	
+    if(mobile.r_part<=0){mobile.r_part=0;}	
 
 
 
     // gradient d'accélération
 
-		if (element2.value != "mobile"){
-
+	if (element2.value != "mobile"){
 		gm = derivee_seconde_Schwarzchild_massif_obs(mobile.E,mobile.L,mobile.r_part_obs);
 		gmp = derivee_seconde_Schwarzchild_massif_obs(mobile.E,mobile.L,mobile.r_part_obs + 1);
 		fm = Math.abs(gm - gmp);
-		}else{
+	}
+	else{
 		gm = derivee_seconde_Schwarzchild_massif(mobile.L,mobile.r_part);
 		gmp = derivee_seconde_Schwarzchild_massif(mobile.L,mobile.r_part + 1);
 		fm = Math.abs(gm - gmp);
-console.log("ligne 1259 gm gmp fm vp_1 vr_1",gm,gmp,fm,vp_1,vr_1);		
-		}
+		console.log("ligne 1259 gm gmp fm vp_1 vr_1",gm,gmp,fm,vp_1,vr_1);		
+	}
 
 //decalage spectrale
 if (element2.value != "mobile"){

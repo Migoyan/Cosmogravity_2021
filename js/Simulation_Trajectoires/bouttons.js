@@ -68,21 +68,24 @@ document.getElementById('pluszoom').addEventListener('click', function() {
 
 /// test  d'une nouvelle foncion Zoom
 
-var zoomtype;
-var mobile;
-var canvas;
 
 
 
 
-function zoom(zoomtype,mobile,canvas){
-	if(zoomtype==true){mobilefactor[compteur] *= 1.2;}
-	else{mobilefactor[compteur] /= 1.2;}
-	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-	mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-	mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-	majFondFixe44(mobile);      
-    rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
 
-}
+var bouttons = bouttons || (function(){
+	return {
+		zoom: function(text,zoomtype,mobile,canvas,mobilefactor) {
+			if(zoomtype==true){mobilefactor *= 1.2;}
+			else{mobilefactor/= 1.2;}
+			mobile.positionspatio.posX1 = mobilefactor * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
+			mobile.positionspatio.posY1 = mobilefactor * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
+			mobile.position.posX2 = mobilefactor * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
+			mobile.position.posY2 = mobilefactor * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+			//alert(mobile.positionspatio.posX1);
+			return mobile ;
+			
+		}
+	}
+
+})();
