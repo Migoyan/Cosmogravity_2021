@@ -151,13 +151,11 @@ for (count = 1; count <= nbrfuseesuppr; count += 1) {
 	elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
 
     if(canvaswh=="750"){
-
 		var elementgrapheasuppr = document.getElementById("grsvg_"+count.toString()+"");
 		elementgrapheasuppr.parentNode.removeChild(elementgrapheasuppr);
     }
 
 }
-
 	var elementcanvas3asuppr = document.getElementById("myCanvas3three");
 	elementcanvas3asuppr.parentNode.removeChild(elementcanvas3asuppr);
 
@@ -176,10 +174,7 @@ lenbdefusees = nbredefuseesgenere;
 for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	var span = document.createElement("span");
     span.setAttribute("id","rayon"+countt.toString()+"");
-
 	var divchampsr = document.getElementById('champs_a_remplir');
-
-
 	divchampsr.appendChild(span);
     if(countt==1){
 		var newlabel = document.createElement("Label");
@@ -190,21 +185,14 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		newlabel.innerHTML = "r<sub>0</sub> (m) =";
 		span.appendChild(newlabel);
 	}
-
-
 	var newinput = document.createElement("Input");
 	newinput.setAttribute("id","r0"+countt.toString()+"");
 	newinput.setAttribute("value","5e4");
 	newinput.setAttribute("align","left");
-
 	newinput.setAttribute("maxlength","10");
-
 	newinput.setAttribute("type","text");
-
 	newinput.setAttribute("size","5");
-
 	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
 	span.appendChild(newinput);
 }
 
@@ -310,10 +298,6 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 
 
-
-
-
-
 for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	  var newRow=document.getElementById('tableauresultatsimu').insertRow();
 	  // il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
@@ -405,7 +389,6 @@ function initialisation(compteur){
 	m = G * M / Math.pow(c, 2); 
 	rs=2*m;
 
-	
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
 	vr = Number(document.getElementById("vr"+compteur.toString()).value);
@@ -808,14 +791,16 @@ function trajectoire(compteur,mobile) {
 
 
     // Gestion des bouttons Zoom moins
-    document.getElementById('moinszoom').addEventListener('click', function() {
-        mobilefactor[compteur] /= 1.2;
+    document.getElementById('moinszoom').addEventListener('click',function(){
+       mobilefactor[compteur] /= 1.2;
         mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
         mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
         mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);  
+        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+        mobile=zoom(false,mobile,canvas);  
         majFondFixe44(mobile);      
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+		
     }, false);
 
 

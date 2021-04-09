@@ -368,29 +368,30 @@ function initialisation(compteur){
 	}
 
 
-  document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
-  document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
-  
-  document.getElementById("m").innerHTML = rs.toExponential(3);
+	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
+	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
+	
+	document.getElementById("m").innerHTML = rs.toExponential(3);
 
-  scale_factor = Number(document.getElementById("scalefactor").value);
-  mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
-  
-  mobile["pointsvg"]="pointg"+compteur.toString();
-  mobile["graphesvg"]="#grsvg_"+compteur.toString();
+	scale_factor = Number(document.getElementById("scalefactor").value);
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
+	
+	mobile["pointsvg"]="pointg"+compteur.toString();
+	mobile["graphesvg"]="#grsvg_"+compteur.toString();
 
-  mobile["onestarrete"]=0;
-  mobile["peuxonrelancer"]=true;
+	mobile["onestarrete"]=0;
+	mobile["peuxonrelancer"]=true;
 
- /* Calcul de rmax */
-if( E==1 && (L >= 2*rs || L <=-2*rs ) ){ 
-	rmax= 1/(2*rs)*(Math.pow(L,2)+ Math.sqrt(Math.pow(L,4)-4*Math.pow(rs*L,2)));
-    if(rmax<r0) {rmax=2*r0;}}
+	/* Calcul de rmax */
+	if( E==1 && (L >= 2*rs || L <=-2*rs ) ){ 
+		rmax= 1/(2*rs)*(Math.pow(L,2)+ Math.sqrt(Math.pow(L,4)-4*Math.pow(rs*L,2)));
+		if(rmax<r0) {rmax=2*r0;}
+	}
 	else {calcul_rmax(L,E,vr,r0,1) ;  
 		if(rmax<r0) {rmax=r0 ;} 
 	} 
 
- 	if(r0 < r_phy) {rmax=1.5*r_phy;}
+	if(r0 < r_phy) {rmax=1.5*r_phy;}
 
 	mobile["rmax"]=rmax; //mobile.rmax
 	mobile["blups"]=0;

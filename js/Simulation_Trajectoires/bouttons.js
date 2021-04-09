@@ -1,6 +1,4 @@
-/* Fichier pour rasemble les fonction du zoom et autre bouton des simulation */
-
-
+/* Fichier pour rasemble les fonctions de bouttons des different fichiers trajectoires */
 
 // Fonction bouton pause
 // tirée du dossier calcul_trajectoire_inter_photon
@@ -70,13 +68,21 @@ document.getElementById('pluszoom').addEventListener('click', function() {
 
 /// test  d'une nouvelle foncion Zoom
 
+var zoomtype;
+var mobile;
+var canvas;
+
+
+
+
 function zoom(zoomtype,mobile,canvas){
-	if(zoomtype){mobilefactor[compteur] *= 1.2;}
+	if(zoomtype==true){mobilefactor[compteur] *= 1.2;}
 	else{mobilefactor[compteur] /= 1.2;}
 	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
 	mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
 	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
 	mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-	majFondFixe44(mobile); 
-	rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+	majFondFixe44(mobile);      
+    rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+
 }
