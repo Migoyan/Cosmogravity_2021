@@ -788,9 +788,31 @@ function trajectoire(compteur,mobile) {
 		}
     }, false);
 
+    function zoom(zoomtype){
+      if(zoomtype==true){mobilefactor[compteur] *= 1.2;}
+      else{mobilefactor[compteur] /= 1.2;}
+      mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
+      mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
+      mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
+      mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+      majFondFixe44(mobile); 
+      rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
+    }
+	  
+    document.getElementById('moinszoom').addEventListener('click', function() {
+        zoom(false)
+      
+
+    }, false);
 
 
-    // Gestion des bouttons Zoom moins
+    document.getElementById('pluszoom').addEventListener('click', function() {       
+          zoom(true)
+    }, false);
+	//Marche mais on veut la fonction zoom dans le fichier boutton.js
+   
+	/*  
+	  // Gestion des bouttons Zoom moins
     document.getElementById('moinszoom').addEventListener('click',function(){
        mobilefactor[compteur] /= 1.2;
         mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
@@ -813,7 +835,7 @@ function trajectoire(compteur,mobile) {
         majFondFixe44(mobile); 
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
-
+	*/
     document.getElementById('initialiser').addEventListener('click', function() {
 		for (key = 1; key <= nbredefusees; key += 1) {
             mobilefactor[key] = Number(document.getElementById("scalefactor").value);  		
