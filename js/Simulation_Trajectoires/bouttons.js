@@ -82,7 +82,7 @@ var bouttons = bouttons || (function(){
 			mobile.positionspatio.posY1 = mobilefactor * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
 			mobile.position.posX2 = mobilefactor * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
 			mobile.position.posY2 = mobilefactor * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-			//alert(mobile.positionspatio.posX1);
+			alert(mobile.positionspatio.posX1);
 			return mobile ;
 			
 		}
