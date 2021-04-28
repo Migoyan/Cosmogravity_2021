@@ -86,7 +86,7 @@ function calcu(path) {
 	document.getElementById("tempsEmission_alert").innerHTML = "";
 	document.getElementById("tempsReception_alert").innerHTML = "";
 
-	//création d'une liste qui va prendre les résultats des calculs avant qu'elles soient arrondis
+	//création d'une liste qui va prendre les résultats des calculs avant qu'ils soient arrondis
 	arr = [];
 	//recuperation des valeurs
 	c = Number(document.getElementById("c_p").value);
@@ -163,7 +163,7 @@ function calcu(path) {
   	// les fonctions "simpson" présentaient ici sous les méthodes de Simpson adaptives
 
 	// DM
-  var integ_1,integ_2,integ_between;
+  	var integ_1,integ_2,integ_between;
 
 	if (omegak0>0){
 		integ_1 = Math.sqrt( Math.abs(omegak0)) * simpson(0, Number(zz1), fonction_dm, omegam0, Number(omegalambda0), Number(Or),Eps);
@@ -458,15 +458,255 @@ function calcu(path) {
 		document.getElementById("Hz2").innerHTML = Hz2;
 		document.getElementById("Tz2").innerHTML = Tz2;
 
-	}else if (path == 1 && modele==0) {
+	} else if (path == 1 && modele==0) {
+		// Distances' charts in function of z
 		document.getElementById("graph_container_d").style.display = "contents"; //display graph
-		graphique_creation_d();
-	}else if (path == 2 && modele==0) {
+		let annots = [];
+		let val_graph = calculDeDs(zmin,zmax,100);
+		let data = [
+			{
+				x: val_graph[3],
+				y: val_graph[1],
+				type: 'scatter',
+				name: '<b>d<sub>a</sub><b>'
+			},
+			{
+				x: val_graph[3],
+				y: val_graph[2],
+				type: 'scatter',
+				name: '<b>d<sub>m</sub><b>'
+			},
+			{
+				x: val_graph[3],
+				y: val_graph[0],
+				type: 'scatter',
+				name: '<b>d<sub>L</sub><b>'
+			},
+			{
+				x: val_graph[3],
+				y: val_graph[4],
+				type: 'scatter',
+				name: '<b>d<sub>LT</sub><b>'
+			}
+		];
+		let layout = {
+			title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
+			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			
+			xaxis: {
+				autorange: true,
+				title: 'z',
+				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				showline: true
+			},
+	
+			yaxis: {
+				rangemode: 'tozero',
+				autorange: true,
+				title: 'al',
+				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				showline: true
+			},
+			annotations: annots,
+		};
+		graphique_creation("#graphique", ['graphique', data, layout, {displaylogo: false}]);
+	} else if (path == 2 && modele==0) {
+		// Omegas' charts in function of z
 		document.getElementById("graph_container_omega").style.display = "contents"; //display graph
-		graphique_creation_omega();
-	}else if(path == 3 && modele==0){
+		let annots = [];
+		let val_graph = calcul_omegas(zmin,zmax,1000);
+		let data = [
+			{
+				x: val_graph[4],
+				y: val_graph[0],
+				type: 'scatter',
+				name: '<b>Ω<sub>m</sub></b>'
+			},
+			{
+				x: val_graph[4],
+				y: val_graph[1],
+				type: 'scatter',
+				name: '<b>Ω<sub>Λ</sub></b>'
+			},
+			{
+				x: val_graph[4],
+				y: val_graph[2],
+				type: 'scatter',
+				name: '<b>Ω<sub>r</sub></b>'
+			},
+			{
+				x: val_graph[4],
+				y: val_graph[3],
+				type: 'scatter',
+				name: '<b>Ω<sub>k</sub></b>'
+			}
+		];
+		let layout = {
+			title: "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>",
+			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+	
+			xaxis: {
+				autorange: true,
+				title: 'z',
+				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				showline: true
+			},
+	
+			yaxis: {
+				rangemode: 'tozero',
+				autorange: true,
+				title: '',
+				showline: true
+			},
+			annotations: annots,
+		};
+		graphique_creation("#graphique_omega", ['graphique_omega', data, layout, {displaylogo: false}]);
+	} else if(path == 3 && modele==0){
+		// Chart t(z)
 		document.getElementById("graph_container_t").style.display = "contents"; //display graph
-		graphique_creation_t();
+		let annots = [];
+		let val_graph = calcul_temps(zmin,zmax,100);
+		let data = [
+			{
+				x: val_graph[0],
+				y: val_graph[1],
+				type: 'scatter',
+				line: {
+					simplify: false
+				},
+				name: '<b>t(z)</b>'
+			}
+		];
+		let layout = {
+			title: "<b>t(z)</b>",
+			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+
+			xaxis: {
+				autorange: true,
+				title: 'z',
+				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				showline: true
+			},
+
+			yaxis: {
+				autorange: true,
+				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				showline: true
+			},
+
+			newshape: {
+			line: {
+					width: 6
+				},
+			},
+
+			annotations: annots,
+		};
+		graphique_creation("#graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
+	} else if(path == 4 && modele==0){
+		// Distances' charts in function of t
+		document.getElementById("graph_container_dt").style.display = "contents"; //display graph
+		var val_abscissa = calcul_temps(zmin, zmax, 100);
+		let annots = [];
+		let data = [
+			{
+				x: val_abscissa[1],
+				y: val_graph[1],
+				type: 'scatter',
+				name: '<b>d<sub>a</sub><b>'
+			},
+			{
+				x: val_abscissa[1],
+				y: val_graph[2],
+				type: 'scatter',
+				name: '<b>d<sub>m</sub><b>'
+			},
+			{
+				x: val_abscissa[1],
+				y: val_graph[0],
+				type: 'scatter',
+				name: '<b>d<sub>L</sub><b>'
+			},
+			{
+				x: val_abscissa[1],
+				y: val_graph[4],
+				type: 'scatter',
+				name: '<b>d<sub>LT</sub><b>'
+			}
+		];
+		let layout = {
+			title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
+			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			
+			xaxis: {
+				autorange: true,
+				title: 'z',
+				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				showline: true
+			},
+	
+			yaxis: {
+				rangemode: 'tozero',
+				autorange: true,
+				title: 'al',
+				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				showline: true
+			},
+			annotations: annots,
+		};
+		graphique_creation("#graphique_dt", ['graphique_dt', data, layout, {displaylogo: false}]);
+	} else if(path == 5 && modele==0){
+		// Omegas' charts in function of t
+		document.getElementById("graph_container_omegat").style.display = "contents"; //display graph
+		var val_abscissa = calcul_temps(zmin, zmax, 1000);
+		let annots = [];
+		let val_graph = calcul_omegas(zmin,zmax,1000);
+		let data = [
+			{
+				x: val_abscissa[1],
+				y: val_graph[0],
+				type: 'scatter',
+				name: '<b>Ω<sub>m</sub></b>'
+			},
+			{
+				x: val_abscissa[1],
+				y: val_graph[1],
+				type: 'scatter',
+				name: '<b>Ω<sub>Λ</sub></b>'
+			},
+			{
+				x: val_abscissa[1],
+				y: val_graph[2],
+				type: 'scatter',
+				name: '<b>Ω<sub>r</sub></b>'
+			},
+			{
+				x: val_abscissa[1],
+				y: val_graph[3],
+				type: 'scatter',
+				name: '<b>Ω<sub>k</sub></b>'
+			}
+		];
+		let layout = {
+			title: "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>",
+			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+	
+			xaxis: {
+				autorange: true,
+				title: 'z',
+				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				showline: true
+			},
+	
+			yaxis: {
+				rangemode: 'tozero',
+				autorange: true,
+				title: '',
+				showline: true
+			},
+			annotations: annots,
+		};
+		graphique_creation("#graphique_omegat", ['graphique_omegat', data, layout, {displaylogo: false}]);
 	}
 
 	stop_spin();
@@ -526,9 +766,9 @@ function calcultheta() {
 	}
 }
 
-function calculDeDs(zmin,zmax){
+function calculDeDs(zmin,zmax,dt){
 	Eps = Number(0.001);  //0.00001
-	var pas = (zmax - zmin)/100;
+	var pas = (zmax - zmin)/dt;
 
 	var zArr = [];
 	var i = zmin;
@@ -564,7 +804,7 @@ function calculDeDs(zmin,zmax){
 		}
 
 
-																			//  temps en secondes
+		//  temps en secondes
 		temps = simpson_simple_degre2(fonction_integrale, Number(i), omegam0, Number(omegalambda0), Number(Or));
 		temps = temps * H0enannee / H0parsec;
 
@@ -680,432 +920,29 @@ function calcul_temps(zmin,zmax,dt){
 	return [zArr,tempsArr];
 }
 
-function graphique_creation_d(){
-		
-	var val_graph = calculDeDs(zmin,zmax);
+function graphique_creation(id_document, params_to_plotly){
+	/*
+		This function create the graphics for calcul annexe using plotly lib
+		id_document : id of the object on html page
+		result_compute_function : result of function that compute the data to plot
+		graph_div : parameter 0 passed to plotly
+		layout : parameter 2 passed to plotly
+	*/
 
-	graph = $("#graphique");
+	var graph = $(id_document);
 	Plotly.purge(graph);
 	graph.empty();
 
-	wid = graph.width();
+	var wid = graph.width();
 	if (window.innerWidth > 1000) {
-		hei = wid * 0.5;
+		var hei = wid * 0.5;
 	} else {
-		hei = wid * 2 / 3;
+		var hei = wid * 2 / 3;
 	}
 
-	window.document.getElementById("graphique").style.height = hei + "px";
+	window.document.getElementById(id_document).style.height = hei + "px";
 
-	frame = [{
-		name: 'Graphe',
-		data: [{
-		x: [],
-		y:
-		{
-			ydm: [],
-			ydl: [],
-			yda: [],
-			ydlt: []
-		},
-		}]
-	}];
-
-	frame[0].data[0].x = val_graph[3];
-	frame[0].data[0].y.ydm = val_graph[2];
-	frame[0].data[0].y.ydl = val_graph[0];
-	frame[0].data[0].y.yda = val_graph[1];
-	frame[0].data[0].y.ydlt = val_graph[4];
-
-	var trace1 = {
-	x: frame[0].data[0].x,
-	y: frame[0].data[0].y.yda,
-	type: 'scatter',
-	name: '<b>d<sub>a</sub><b>'
-	};
-
-	var trace2 = {
-		x: frame[0].data[0].x,
-		y: frame[0].data[0].y.ydm,
-		type: 'scatter',
-		name: '<b>d<sub>m</sub><b>'
-	};
-
-	var trace3 = {
-	x: frame[0].data[0].x,
-	y: frame[0].data[0].y.ydl,
-	type: 'scatter',
-	name: '<b>d<sub>L</sub><b>'
-	};
-
-	var trace4 = {
-	x: frame[0].data[0].x,
-	y: frame[0].data[0].y.ydlt,
-	type: 'scatter',
-	name: '<b>d<sub>LT</sub><b>'
-	};
-
-	var data = [trace1, trace2, trace3, trace4];
-
-	var data_ex = [trace1, trace2];
-
-
-	annots = [];
-
-	// tracer
-	var img_png = d3.select('#png');
-	var img_jpg = d3.select('#jpg');
-	var img_svg = d3.select('#svg-1');
-
-	Plotly.newPlot('graphique', data, {
-		title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
-		titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-		
-		xaxis: {
-		autorange: true,
-		title: 'z',
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-		showline: true
-		},
-
-		yaxis: {
-		rangemode: 'tozero',
-		autorange: true,
-			title: 'al',
-			titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
-		showline: true
-		},
-		annotations: annots,
-		},
-	{
-		displaylogo: false
-	}
-	);
-
-	//  enregistrement des graphes
-
-	/*  Plotly.newPlot('graphique_enr', data, {
-		title: "<b>D<sub>m</sub>, D<sub>l</sub>, D<sub>a</sub>,  D<sub>LT</sub>",
-
-		xaxis: {
-		autorange: true,
-		title: 'z'
-		},
-
-
-		yaxis: {
-		rangemode: 'tozero',
-		autorange: true,
-		title: 'al'
-		},
-		annotations: annots,
-	}, {
-		displaylogo: false
-	}).then(function(gd) {
-		Plotly.toImage(gd)
-		.then(function(url) {
-			img_png.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'png'
-			})
-		}).then(function(url) {
-			img_jpg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'jpeg'
-			})
-		}).then(function(url) {
-			img_jpg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'jpeg'
-			})
-		}).then(function(url) {
-			img_svg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'svg'
-			})
-		})
-		.then(function(url) {
-			img_svg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'svg'
-			})
-		})
-	});  */
-}
-
-function graphique_creation_omega(){
-
-	var val_graph = calcul_omegas(zmin,zmax,1000);
-
-	graph = $("#graphique_omega");
-	Plotly.purge(graph);
-	graph.empty();
-
-	wid = graph.width();
-	if (window.innerWidth > 1000) {
-		hei = wid * 0.5;
-	} else {
-		hei = wid * 2 / 3;
-	}
-
-	window.document.getElementById("graphique_omega").style.height = hei + "px";
-
-	frame = [{
-		name: 'Graphe',
-		data: [{
-		x: [],
-		y:
-		{
-			yom: [],
-			yol: [],
-			yor: [],
-			yok: []
-		},
-		}]
-	}];
-
-	frame[0].data[0].x = val_graph[4];
-	frame[0].data[0].y.yom = val_graph[0];
-	frame[0].data[0].y.yol = val_graph[1];
-	frame[0].data[0].y.yor = val_graph[2];
-	frame[0].data[0].y.yok = val_graph[3];
-
-	var trace1 = {
-	x: frame[0].data[0].x,
-	y: frame[0].data[0].y.yom,
-	type: 'scatter',
-	name: '<b>Ω<sub>m</sub></b>'
-	};
-
-	var trace2 = {
-		x: frame[0].data[0].x,
-		y: frame[0].data[0].y.yol,
-		type: 'scatter',
-		name: '<b>Ω<sub>Λ</sub></b>'
-	};
-
-	var trace3 = {
-	x: frame[0].data[0].x,
-	y: frame[0].data[0].y.yor,
-	type: 'scatter',
-	name: '<b>Ω<sub>r</sub></b>'
-	};
-
-	var trace4 = {
-	x: frame[0].data[0].x,
-	y: frame[0].data[0].y.yok,
-	type: 'scatter',
-	name: '<b>Ω<sub>k</sub></b>'
-	};
-
-	var data = [trace1, trace2, trace3, trace4];
-
-	var data_ex = [trace1, trace2];
-
-
-	annots = [];
-
-	// tracer
-	var img_png = d3.select('#png');
-	var img_jpg = d3.select('#jpg');
-	var img_svg = d3.select('#svg-1');
-
-	Plotly.newPlot('graphique_omega', data, {
-		title: "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>",
-		titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-
-		xaxis: {
-		autorange: true,
-		title: 'z',
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-		showline: true
-		},
-
-		yaxis: {
-		rangemode: 'tozero',
-		autorange: true,
-		title: '',
-		showline: true
-		},
-		annotations: annots,
-		},
-	{
-		displaylogo: false
-	}
-	);
-
-	/* Plotly.newPlot('graphique_omega_enr', data, {
-		title: "<b>D<sub>m</sub>, D<sub>l</sub>, D<sub>a</sub>,  D<sub>LT</sub>",
-
-		xaxis: {
-		autorange: true,
-		autorange: true,
-		title: 'z'
-		},
-
-
-		yaxis: {
-		rangemode: 'tozero',
-		autorange: true,
-		title: 'al'
-		},
-		annotations: annots,
-	}, {
-		displaylogo: false
-	}).then(function(gd) {
-		Plotly.toImage(gd)
-		.then(function(url) {
-			img_png.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'png'
-			})
-		}).then(function(url) {
-			img_jpg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'jpeg'
-			})
-		}).then(function(url) {
-			img_jpg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'jpeg'
-			})
-		}).then(function(url) {
-			img_svg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'svg'
-			})
-		})
-		.then(function(url) {
-			img_svg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'svg'
-			})
-		})
-	});  */
-}
-
-function graphique_creation_t(){
-
-	var val_graph = calcul_temps(zmin,zmax,100);
-
-	graph = $("#graphique_t");
-	Plotly.purge(graph);
-	graph.empty();
-
-	wid = graph.width();
-	if (window.innerWidth > 1000) {
-		hei = wid * 0.5;
-	} else {
-		hei = wid * 2 / 3;
-	}
-
-	window.document.getElementById("graphique_t").style.height = hei + "px";
-
-	frame = [{
-		name: 'Graphe',
-		data: [{
-		x: [],
-		y: [],
-		}]
-	}];
-
-	frame[0].data[0].x = val_graph[0];
-	frame[0].data[0].y = val_graph[1];
-	
-
-	tracer1 = [{
-		x: frame[0].data[0].x,
-		y: frame[0].data[0].y,
-		line: {
-		simplify: false
-		},
-	}];
-
-	annots = [];
-
-	// tracer
-	var img_png = d3.select('#png');
-	var img_jpg = d3.select('#jpg');
-	var img_svg = d3.select('#svg-1');
-
-	Plotly.newPlot('graphique_t', tracer1, {
-		title: "<b>t(z)</b>",
-		titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-
-		xaxis: {
-		autorange: true,
-		title: 'z',
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-		showline: true
-		},
-
-		yaxis: {
-		autorange: true,
-		title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
-		showline: true
-		},
-
-		newshape: {
-		line: {
-			width: 6
-		},
-		},
-
-		annotations: annots,
-	},
-	{
-		displaylogo: false
-	}
-	);
-
-	/* Plotly.newPlot('graphique_t_enr', tracer1, {
-		title: "<b>D<sub>m</sub>, D<sub>l</sub>, D<sub>a</sub>,  D<sub>LT</sub>",
-
-		xaxis: {
-		autorange: true,
-		autorange: true,
-		title: 'z'
-		},
-
-
-		yaxis: {
-		rangemode: 'tozero',
-		autorange: true,
-		title: 'al'
-		},
-		annotations: annots,
-	}, {
-		displaylogo: false
-	}).then(function(gd) {
-		Plotly.toImage(gd)
-		.then(function(url) {
-			img_png.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'png'
-			})
-		}).then(function(url) {
-			img_jpg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'jpeg'
-			})
-		}).then(function(url) {
-			img_jpg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'jpeg'
-			})
-		}).then(function(url) {
-			img_svg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'svg'
-			})
-		})
-		.then(function(url) {
-			img_svg.attr("href", url);
-			return Plotly.toImage(gd, {
-			format: 'svg'
-			})
-		})
-	});  */
+	Plotly.newPlot(params_to_plotly[0], params_to_plotly[1], params_to_plotly[2], params_to_plotly[3]);
 }
 
 function enre() {

@@ -73,15 +73,15 @@
 	<!-- Script Google Analytics -->
 		<script>
 			(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o),
-				m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function() {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
 			})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
 			ga('create', 'UA-98631213-3', 'auto');
@@ -596,6 +596,23 @@
 							<span id="txt_graphe_t">t(z)</span>
 							</label>
 							<input id="boutonGraphe_t" type="button" onclick="lance_calc(3);ga('send', 'event', 'button', 'click', 'Calcul Annexe Graphe temps');" value="Calcul"></input>
+						</div>
+					</div>
+					<!-- bouton pour tracer graphes en fonction de t -->
+					<div>
+
+						<div style="padding:10px">
+							<label for="boutonGraphe_distances_t">
+							<span id="txt_graphe_d_t"></span>
+							</label>
+							<input id="boutonGraphe_distances_t" type="button" onclick="lance_calc(4);ga('send', 'event', 'button', 'click', 'Calcul Annexe Graphe Distance Temps');" value="Calcul"></input>
+						</div>  
+
+						<div style="padding:10px">
+							<label for="boutonGraphe_omega_t">
+							<span id="txt_graphe_omega_t"></span>
+							</label>
+							<input id="boutonGraphe_omega_t" type="button" onclick="lance_calc(5);ga('send', 'event', 'button', 'click', 'Calcul Annexe Graphe Omega Temps');" value="Calcul"></input>
 						</div>
 					</div>
 				</div>
