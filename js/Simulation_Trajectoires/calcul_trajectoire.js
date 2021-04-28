@@ -355,19 +355,19 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
     else{var wrappergenere = document.getElementById('wrapperengrand');}
 	wrappergenere.appendChild(canvas3genere);
 
-if(canvaswidthheight=="750"){
-	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		svg.setAttribute("id", "grsvg_"+countt.toString()+"");
-		document.getElementById("wrapper2").appendChild(svg);
-	}
+	if(canvaswidthheight=="750"){
+		for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+			var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			svg.setAttribute("id", "grsvg_"+countt.toString()+"");
+			document.getElementById("wrapper2").appendChild(svg);
+		}
 }
 
-  texteTrajectoireMassive(nbredefuseesgenere);
-  notationvitesseree2();
-  infobulleobservateurdistant();
-  textegravetetc();
-    //pour le bon affichage du katex
+	texteTrajectoireMassive(nbredefuseesgenere);
+	notationvitesseree2();
+	infobulleobservateurdistant();
+	textegravetetc();
+	//pour le bon affichage du katex
 	renderMathInElement(document.body, {
 				// ...options...
 				delimiters:[
@@ -617,10 +617,8 @@ function trajectoire(compteur,mobile) {
     r_part_obs=r_init_obs;
     mobile["r_part_obs"]=r_part_obs; //mobile.r_part_obs
 	
-	
     data1 = [];
     data2 = [];
-
 
     temps_particule = 0;
     mobile["temps_particule"]=temps_particule;
@@ -632,10 +630,9 @@ function trajectoire(compteur,mobile) {
     // permet de gérer les touches du clavier pour certaines actions
     clavierEvenement();
    
-
 	dtau=mobile.r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1e-10)/1e3;
     mobile["dtau"]=dtau;//mobile.dtau
-     if(mobile.dtau>mobile.temps_chute_libre/500.){mobile.dtau= mobile.temps_chute_libre/500;} 	   
+    if(mobile.dtau>mobile.temps_chute_libre/500.){mobile.dtau= mobile.temps_chute_libre/500;} 	   
 
     // Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur//
     x1part = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi) / mobile.rmax;
@@ -664,18 +661,15 @@ function trajectoire(compteur,mobile) {
     //faute de temps nous n'avons pas fais de maniere plus efficace
     mobile["canvas22"]= document.getElementById("myCanvasBoule"+compteur.toString());
     mobile["context22"]=mobile["canvas22"].getContext("2d");
-
-
     //pr majFondFixe
 	vphiblab = Number(document.getElementById("vphi1").value);
     vrblab = Number(document.getElementById("vr1").value);
-
     if (nbredefusees>=2) {
-    vphi2i = Number(document.getElementById("vphi2").value);
-    vr2i = Number(document.getElementById("vr2").value);}
+		vphi2i = Number(document.getElementById("vphi2").value);
+		vr2i = Number(document.getElementById("vr2").value);
+	}
 
 	majFondFixe();
-
 	majFondFixe44(mobile);			   
     diametre_particule = DIAMETRE_PART;
     // La position de départ est le milieu de la fenêtre d'affichage auquel on ajoute la position initiale de la particule.
@@ -752,22 +746,24 @@ function trajectoire(compteur,mobile) {
 
 //Gestion des bouttons accélerer et decélerer
     document.getElementById('plusvite').addEventListener('click', function() {
-		if (mobile.dtau >= mobile.Dtau1) {
+		mobile=bouttons.vitesse(mobile,true)
+		/*if (mobile.dtau >= mobile.Dtau1) {
 			mobile.dtau = mobile.Dtau1;
 		} 
 		else {
 			mobile.dtau += mobile.dtau;
 			clicks += 1;
-		}
+		}*/
     }, false);
 
     document.getElementById('moinsvite').addEventListener('click', function() {
-		if (mobile.dtau <= mobile.Dtau2) {
+		mobile=bouttons.vitesse(mobile,false)
+		/*if (mobile.dtau <= mobile.Dtau2) {
 			mobile.dtau = mobile.Dtau2;
 		} 
 		else {
 			mobile.dtau /= 2;
-			clicks-=1; }
+			clicks-=1; }*/
     }, false);
 
 
@@ -792,7 +788,7 @@ function trajectoire(compteur,mobile) {
 
     // Gestion des bouttons Zoom moins
     document.getElementById('moinszoom').addEventListener('click',function(){
-      	var rourt=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur); 
+      	var retour=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur); 
     	mobile=retour[0];
     	mobilefactor=retour[1];   
 		majFondFixe44(mobile);      
@@ -801,7 +797,7 @@ function trajectoire(compteur,mobile) {
 
 
 	document.getElementById('pluszoom').addEventListener('click', function() {
-    	var rourt=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
+    	var retour=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
    		mobile=retour[0];
     	mobilefactor=retour[1];
 		majFondFixe44(mobile); 

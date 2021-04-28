@@ -38,6 +38,30 @@ var bouttons = bouttons || (function(){
 				///alert(mobile.positionspatio.posX1);
 				return [mobile,mobilefactor];
 			
+		}, // ne pas oublier de metre une "," entre deux fonctions
+
+		/// fonction boutton accellerer
+		vitesse : function (mobile,plus) {
+			//accelere la simulation
+			if(plus){
+				if (mobile.dtau >= mobile.Dtau1) {
+					mobile.dtau = mobile.Dtau1;
+				} 
+				else {
+					mobile.dtau += mobile.dtau;
+				
+				}
+			}	
+			// decelere la simulation
+			else{
+				if (mobile.dtau <= mobile.Dtau2) {
+					mobile.dtau = mobile.Dtau2;
+				} 
+				else {
+					mobile.dtau /= 2;
+					clicks-=1; }
+			}
+			return mobile;
 		}
 	}
 
