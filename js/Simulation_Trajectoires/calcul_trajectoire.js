@@ -752,20 +752,22 @@ function trajectoire(compteur,mobile) {
 
 //Gestion des bouttons accélerer et decélerer
     document.getElementById('plusvite').addEventListener('click', function() {
-      if (mobile.dtau >= mobile.Dtau1) {
-        mobile.dtau = mobile.Dtau1;
-      } else {
-        mobile.dtau += mobile.dtau;
-        clicks += 1;
-      }
+		if (mobile.dtau >= mobile.Dtau1) {
+			mobile.dtau = mobile.Dtau1;
+		} 
+		else {
+			mobile.dtau += mobile.dtau;
+			clicks += 1;
+		}
     }, false);
 
     document.getElementById('moinsvite').addEventListener('click', function() {
-      if (mobile.dtau <= mobile.Dtau2) {
-        mobile.dtau = mobile.Dtau2;
-      } else {
-        mobile.dtau /= 2;
-        clicks-=1; }
+		if (mobile.dtau <= mobile.Dtau2) {
+			mobile.dtau = mobile.Dtau2;
+		} 
+		else {
+			mobile.dtau /= 2;
+			clicks-=1; }
     }, false);
 
 
@@ -788,19 +790,11 @@ function trajectoire(compteur,mobile) {
 		}
     }, false);
 
-
-
     // Gestion des bouttons Zoom moins
     document.getElementById('moinszoom').addEventListener('click',function(){
       	var rourt=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur); 
     	mobile=retour[0];
     	mobilefactor=retour[1];   
-       	mobilefactor[compteur] /= 1.2;
-       /*mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-        mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-        mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2); 
-		*/
 		majFondFixe44(mobile);      
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
@@ -809,12 +803,7 @@ function trajectoire(compteur,mobile) {
 	document.getElementById('pluszoom').addEventListener('click', function() {
     	var rourt=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
    		mobile=retour[0];
-    	mobilefactor=retour[1];      
-	/*mobilefactor[compteur] *= 1.2;
-		mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-		mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-		mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);*/
+    	mobilefactor=retour[1];
 		majFondFixe44(mobile); 
 		rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
 		
@@ -847,15 +836,15 @@ function trajectoire(compteur,mobile) {
 			var node = document.getElementById("grsvg_"+countt.toString()+"");
 			console.log("Le film Hackers de 1995 est vraiment bien",countt.toString());
             if(node){
-			if (node.parentNode){
-			node.parentNode.removeChild(node);
-				}} 		
+				if (node.parentNode){
+					node.parentNode.removeChild(node);
+				}
+			}
 		}
-    
 	}
 
 	if (document.getElementById("toggle").checked==false) {
-	CentrerPopPotentiel();
+		CentrerPopPotentiel();
 	}
 
 
@@ -867,51 +856,39 @@ function trajectoire(compteur,mobile) {
     // Tracé du Rayon de Schwarzchild.
     creation_blocs(context,mobilefactor,rmaxjson,maximum,compteur);
 
-
-   //je ne pense pas qu'on en ait besoin 
-    //$(document.params.traj[0]).change(function() {
-      // Tracé du Rayon de Schwarzchild si on change en cours de simulation
-    //  creation_blocs(context);
-    //});
-
-
 	dr = mobile.rmax / 1000;
 	mobile["dr"]=dr;//mobile.dr;
-
 	if(r_phy!=0){
-    rmini=0.9*r_phy;
-    //on prend un peu avant rphy pr faire le graphe
-    }else{
+		rmini=0.9*r_phy;
+		//on prend un peu avant rphy pr faire le graphe
+    }
+	else{
         rmini=rs;
     }
-	
 	element2=document.getElementById('traject_type2');
-
     data1=[];
     data2=[];
 
-
 	if (element2.value != "mobile"){	
-    for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-      V = Vr_obs(mobile.E,mobile.L,r);
-      data1.push({date: r,close: V});
-    }
-
-	V = Vr_obs(mobile.E,mobile.L,mobile.r0);
-    data2.push({date: mobile.r0,close: V});
-    mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);  	
-	}else{
-	if(rmini==rs){
-        rmini=rmini/2;
-    }
-	for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-      V = Vr_mob(mobile.L,r);
-      data1.push({date: r,close: V});
-    }
- 
-	V = Vr_mob(mobile.L,mobile.r0);
-    data2.push({date: mobile.r0,close: V}); 
-    mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+			V = Vr_obs(mobile.E,mobile.L,r);
+			data1.push({date: r,close: V});
+		}
+		V = Vr_obs(mobile.E,mobile.L,mobile.r0);
+		data2.push({date: mobile.r0,close: V});
+		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+	}
+	else{
+		if(rmini==rs){
+			rmini=rmini/2;
+		}
+		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+			V = Vr_mob(mobile.L,r);
+			data1.push({date: r,close: V});
+		}
+		V = Vr_mob(mobile.L,mobile.r0);
+		data2.push({date: mobile.r0,close: V}); 
+		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 	}
 
     //on redessine le potentiel si on resize la fenetre pr que le potentiel soit responsive et s'adapte a la fenetre (retrecit ou s'agrandit)
@@ -922,31 +899,27 @@ function trajectoire(compteur,mobile) {
 		data2=[];
 
 		if (element2.value != "mobile"){	
-		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-		  V = Vr_obs(mobile.E,mobile.L,r);
-		  data1.push({date: r,close: V});
+			for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+				V = Vr_obs(mobile.E,mobile.L,r);
+				data1.push({date: r,close: V});
+			}
+			V = Vr_obs(mobile.E,mobile.L,mobile.r0);
+			data2.push({date: mobile.r0,close: V});
+			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 		}
-		
-
-		V = Vr_obs(mobile.E,mobile.L,mobile.r0);
-		data2.push({date: mobile.r0,close: V});
-        mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
-		}else{
-		if(rmini==rs){
-			rmini=rmini/2;
-		}
-		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-		  V = Vr_mob(mobile.L,r);
-		  data1.push({date: r,close: V});
-		}
-	 
-		V = Vr_mob(mobile.L,mobile.r0);
-		data2.push({date: mobile.r0,close: V}); 
-		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+		else{
+			if(rmini==rs){
+				rmini=rmini/2;
+			}
+			for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+				V = Vr_mob(mobile.L,r);
+				data1.push({date: r,close: V});
+			}
+			V = Vr_mob(mobile.L,mobile.r0);
+			data2.push({date: mobile.r0,close: V}); 
+			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 		}
 
-        
-   
     }, false);
 
 	
@@ -964,89 +937,78 @@ function trajectoire(compteur,mobile) {
 
 // tracé de la particule
 function animate(compteur,mobile,mobilefactor) {
-  mobile.onestarrete=0;
-  // on vérifie le type de trajectoire sélectionné
-  estUnMobile();
-  element = document.getElementById('traject_type');
-  choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,maximum);
-  var isrebond = document.getElementById("boutton_ammorti").value;					  								   
-   //Tracé de la particule
-   element2=document.getElementById('traject_type2');
+	mobile.onestarrete=0;
+	// on vérifie le type de trajectoire sélectionné
+	estUnMobile();
+	element = document.getElementById('traject_type');
+	choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,maximum);
+	var isrebond = document.getElementById("boutton_ammorti").value;					  								   
+	//Tracé de la particule
+	element2=document.getElementById('traject_type2');
 
-  if (mobile.r0 != 0.0) {
-
-  varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-  mobile.phi = mobile.phi + varphi;
-  varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
-  mobile.phi_obs=mobile.phi_obs+varphi_obs;
-
-
-	val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
-    mobile.r_part = val[0];
-    mobile.A_part = val[1];
-	vr_1=mobile.A_part;
-	vp_1=c*mobile.L/mobile.r_part;
-
-	val_obs = rungekutta_obs(mobile.E,mobile.L,mobile.dtau, mobile.r_part_obs, mobile.A_part_obs);
-    mobile.r_part_obs = val_obs[0];
-	
-	if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
-	
-    mobile.A_part_obs = val_obs[1];
-
-	vr_1_obs=mobile.A_part_obs;
-	   
-	if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
-	
-	vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
-	if(mobile.r_part_obs<rs*1.0001) { vp_1_obs=0;}
-	
-	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
-    mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
-	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
-    mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);																			 
+	if (mobile.r0 != 0.0) {
+		varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+		mobile.phi = mobile.phi + varphi;
+		varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+		mobile.phi_obs=mobile.phi_obs+varphi_obs;
+		val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
+		mobile.r_part = val[0];
+		mobile.A_part = val[1];
+		vr_1=mobile.A_part;
+		vp_1=c*mobile.L/mobile.r_part;
+		val_obs = rungekutta_obs(mobile.E,mobile.L,mobile.dtau, mobile.r_part_obs, mobile.A_part_obs);
+		mobile.r_part_obs = val_obs[0];
+		if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
+		mobile.A_part_obs = val_obs[1];
+		vr_1_obs=mobile.A_part_obs;
+		if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
+		vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
+		if(mobile.r_part_obs<rs*1.0001) { vp_1_obs=0;}
+		mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
+		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
+		mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
+		mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);																			 
 
 																				 
 //Tracé de la particule
 
 
     if (element2.value != "mobile"){
+		if (mobile.r_part_obs >= rs){
+			//on dessine le trace
+			context.beginPath();
+			context.fillStyle = mobile.couleur;
+			//round ou floor en bas enleve le pb d'aliasing (tracé de la trajectoire qui est flou quand on zoome sur la capture d'écran), on a un tracé plus précis 
+			//mais des "trous" apparaissent et le tracé n'apparait pas tellement continue
+			//probleme "low level" ou il faux surement soit creer son propre algorithme qui trace de manière exact "pixel par pixel" ou changer et ne pas utiliser canvas
+			//context.rect(Math.round(posX2), Math.round(posY2), 1, 1);
+			context.rect(mobile.position.posX2, mobile.position.posY2, 1, 1);
+			context.lineWidth = "1";
+			context.fill();
+			var nbredefuseesanimate = Number(document.getElementById("nombredefusees").value);
+			majFondFixe44(mobile);
+			//on dessine la boule bleue au bout du trace
+			mobile["context22"].beginPath();
+			mobile["context22"].fillStyle = COULEUR_BLEU;
+			mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
+			mobile["context22"].lineWidth = "1";
+			mobile["context22"].fill();
 
-      if (mobile.r_part_obs >= rs){
-    //on dessine le trace
-    context.beginPath();
-    context.fillStyle = mobile.couleur;
-    //round ou floor en bas enleve le pb d'aliasing (tracé de la trajectoire qui est flou quand on zoome sur la capture d'écran), on a un tracé plus précis 
-    //mais des "trous" apparaissent et le tracé n'apparait pas tellement continue
-    //probleme "low level" ou il faux surement soit creer son propre algorithme qui trace de manière exact "pixel par pixel" ou changer et ne pas utiliser canvas
-    //context.rect(Math.round(posX2), Math.round(posY2), 1, 1);
-    context.rect(mobile.position.posX2, mobile.position.posY2, 1, 1);
-    context.lineWidth = "1";
-    context.fill();
-    var nbredefuseesanimate = Number(document.getElementById("nombredefusees").value);
-    majFondFixe44(mobile);
-    //on dessine la boule bleue au bout du trace
-    mobile["context22"].beginPath();
-    mobile["context22"].fillStyle = COULEUR_BLEU;
-    mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
-    mobile["context22"].lineWidth = "1";
-    mobile["context22"].fill();
-
+    	}
     }
-    }else{
-
-    context.beginPath();
-    context.fillStyle = mobile.couleur;
-    context.rect(mobile.positionspatio.posX1, mobile.positionspatio.posY1, 1, 1);
-    context.lineWidth = "1";
-    context.fill();
-
-    majFondFixe44(mobile);
-    mobile["context22"].beginPath();
-    mobile["context22"].fillStyle = COULEUR_BLEU;
-    mobile["context22"].arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
-    mobile["context22"].lineWidth = "1";
-    mobile["context22"].fill();}
+	else{
+		context.beginPath();
+		context.fillStyle = mobile.couleur;
+		context.rect(mobile.positionspatio.posX1, mobile.positionspatio.posY1, 1, 1);
+		context.lineWidth = "1";
+		context.fill();
+		majFondFixe44(mobile);
+		mobile["context22"].beginPath();
+		mobile["context22"].fillStyle = COULEUR_BLEU;
+		mobile["context22"].arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
+		mobile["context22"].lineWidth = "1";
+		mobile["context22"].fill();
+	}
     
 
       // Gestion du rebond
@@ -1058,34 +1020,29 @@ if(element2.value != "mobile"){
         a = mobile.Rebond;
 		//if(a==0){a=1e-3;}
 		e = Math.sqrt(1 - a); 
-       varphi_choc=c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
-	   mobile.L = mobile.L * e;
-        mobile.r_part_obs = r_phy; 
-
-       A_part_obs_init=mobile.A_part_obs;
-       
-       mobile.A_part_obs=  -mobile.A_part_obs *e;
-	   
+		varphi_choc=c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+		mobile.L = mobile.L * e;
+		mobile.r_part_obs = r_phy; 
+		A_part_obs_init=mobile.A_part_obs;
+		mobile.A_part_obs=  -mobile.A_part_obs *e;
         if (Math.abs(A_part_obs_init)>300) {
-          mobile.onestarrete=0;
-          //Il faux utiliser des contexts differents sinon on ne voit pas une des deux(N) explosions
-          //on dessine une explosion, pleins d'images a la suite apparaissant comme une animation ou gif
-          setTimeout(function(){mobile["context22"].drawImage(expl1,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},200);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},390);
-          setTimeout(function(){mobile["context22"].drawImage(expl2,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},400);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},590);
-          setTimeout(function(){mobile["context22"].drawImage(expl3,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},600);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},790);
-          setTimeout(function(){mobile["context22"].drawImage(expl4,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},800);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},990);
-          setTimeout(function(){mobile["context22"].drawImage(expl5,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1000);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1190);
-          setTimeout(function(){mobile["context22"].drawImage(expl6,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1200);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1390);
-
-          arret(mobile);
-          mobile.peuxonrelancer=false;
-          return;
+			mobile.onestarrete=0;
+			//Il faux utiliser des contexts differents sinon on ne voit pas une des deux(N) explosions
+			//on dessine une explosion, pleins d'images a la suite apparaissant comme une animation ou gif
+			setTimeout(function(){mobile["context22"].drawImage(expl1,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},200);
+			setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},390);
+			setTimeout(function(){mobile["context22"].drawImage(expl2,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},400);
+			setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},590);
+			setTimeout(function(){mobile["context22"].drawImage(expl3,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},600);
+			setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},790);
+			setTimeout(function(){mobile["context22"].drawImage(expl4,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},800);
+			setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},990);
+			setTimeout(function(){mobile["context22"].drawImage(expl5,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1000);
+			setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1190);
+			setTimeout(function(){mobile["context22"].drawImage(expl6,mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1200);
+			setTimeout(function(){mobile["context22"].clearRect(mobile.position.posX2-50,mobile.position.posY2-50,100,100);},1390);
+			arret(mobile);
+			mobile.peuxonrelancer=false;
         }        
 
 	    
@@ -1108,71 +1065,70 @@ if(element2.value != "mobile"){
 
 
 	}else {
-          // FAIRE BOUM
-          if (r_phy == 0) {
-            //alert(texte.pages_trajectoire.singulartie_atteinte);
-            console.log("ceci ne fait rien, il faudrait peux etre faire qqchose ici");
-		   } else {
-            //alert(texte.pages_trajectoire.particule_ecrasee);
-            mobile.onestarrete=0;
+        // FAIRE BOUM
+		if (r_phy == 0) {
+		//alert(texte.pages_trajectoire.singulartie_atteinte);
+		console.log("ceci ne fait rien, il faudrait peux etre faire qqchose ici");
+		} 
+		else {
+			//alert(texte.pages_trajectoire.particule_ecrasee);
+			mobile.onestarrete=0;
 			arret(mobile);
-            mobile.peuxonrelancer=false;
-           // return;
-          }
+			mobile.peuxonrelancer=false;
+			// return;
+		}
          	
 
     } 
 	}
 	
-}else{	
-	    if (mobile.r_part <= r_phy || mobile.r_part==0) {
-      if (mobile.Rebond != 1 && isrebond == 1 && r_phy > 0) {
+}
+else{	
+	    
+	if (mobile.r_part <= r_phy || mobile.r_part==0) {
+      	if (mobile.Rebond != 1 && isrebond == 1 && r_phy > 0) {
+			nbRebonds += 1;
+			a = mobile.Rebond; 
+			//if(a==0){a=1e-3;} 
+			e = Math.sqrt(1 - a);        
+			varphi_choc = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+			mobile.L = mobile.L * e;
+			mobile.r_part = r_phy;
+			A_part_init=mobile.A_part;
+			mobile.A_part = -mobile.A_part * e;        
+			if (Math.abs(A_part_init)>300) {
+				setTimeout(function(){mobile["context22"].drawImage(expl1,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},200);
+				setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},390);
+				setTimeout(function(){mobile["context22"].drawImage(expl2,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},400);
+				setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},590);
+				setTimeout(function(){mobile["context22"].drawImage(expl3,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},600);
+				setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},790);
+				setTimeout(function(){mobile["context22"].drawImage(expl4,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},800);
+				setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},990);
+				setTimeout(function(){mobile["context22"].drawImage(expl5,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1000);
+				setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1190);
+				setTimeout(function(){mobile["context22"].drawImage(expl6,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1200);
+				setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1390);          
+				mobile.onestarrete=0;
+				arret(mobile); 
+				mobile.peuxonrelancer=false;
+        	} 
+			if (nbRebonds == 1) {
+				A_init = A_part_init; //on ré-initialise A_init à la valeur d'accélération au premier rebond
+				//varphi_init=varphi_choc;
+				varphi_init=c * mobile.L * mobile.dtau /Math.pow(r_phy,2);
+			}
+			V2_init=A_init*A_init+(r_phy*varphi_init*r_phy*varphi_init);
+			if (mobile.A_part*mobile.A_part+mobile.r_part*varphi*mobile.r_part*varphi <= V2_init*0.03) {
+				arret(mobile); //si on rebondit avec 10% de l'accélération du premier rebond, le calcul s'arrête
+				// alert(texte.page_trajectoire_massive.particule_arretee);
+				textesfinarret();
+				mobile.onestarrete=1;
+				mobile.peuxonrelancer=false;
+			}
 
-        nbRebonds += 1;
-        a = mobile.Rebond; 
-		//if(a==0){a=1e-3;} 
-		e = Math.sqrt(1 - a);        
-		varphi_choc = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-        mobile.L = mobile.L * e;
-        mobile.r_part = r_phy;
-
-		A_part_init=mobile.A_part;
-        mobile.A_part = -mobile.A_part * e;        
-
-        if (Math.abs(A_part_init)>300) {
-          setTimeout(function(){mobile["context22"].drawImage(expl1,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},200);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},390);
-          
-          setTimeout(function(){mobile["context22"].drawImage(expl2,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},400);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},590);
-          setTimeout(function(){mobile["context22"].drawImage(expl3,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},600);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},790);
-          setTimeout(function(){mobile["context22"].drawImage(expl4,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},800);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},990);
-          setTimeout(function(){mobile["context22"].drawImage(expl5,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1000);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1190);
-          setTimeout(function(){mobile["context22"].drawImage(expl6,mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1200);
-          setTimeout(function(){mobile["context22"].clearRect(mobile.positionspatio.posX1-50,mobile.positionspatio.posY1-50,100,100);},1390);          
-          mobile.onestarrete=0;
-          arret(mobile); 
-          mobile.peuxonrelancer=false;
-        } 
-
-        if (nbRebonds == 1) {
-          A_init = A_part_init; //on ré-initialise A_init à la valeur d'accélération au premier rebond
-		  //varphi_init=varphi_choc;
-          varphi_init=c * mobile.L * mobile.dtau /Math.pow(r_phy,2);
-        }
-		V2_init=A_init*A_init+(r_phy*varphi_init*r_phy*varphi_init);
-        if (mobile.A_part*mobile.A_part+mobile.r_part*varphi*mobile.r_part*varphi <= V2_init*0.03) {
-          arret(mobile); //si on rebondit avec 10% de l'accélération du premier rebond, le calcul s'arrête
-         // alert(texte.page_trajectoire_massive.particule_arretee);
-          textesfinarret();
-          mobile.onestarrete=1;
-          mobile.peuxonrelancer=false;
-        }
-
-        }else {
+    	}
+		else {
           // FAIRE BOUM
           if (r_phy == 0) {
             //alert(texte.pages_trajectoire.singulartie_atteinte);
@@ -1237,76 +1193,39 @@ if (element2.value != "mobile"){
 	
         
 	if (element2.value != "mobile"){
-
 		if(mobile.r_part_obs >= rs)   {
-
 			//vtotal=Math.sqrt(vr_1_obs*vr_1_obs+vp_1_obs*vp_1_obs); vr_1_obs=vtotal; 
 			mobile.temps_particule += mobile.dtau*(1-rs/mobile.r_part_obs)/mobile.E;
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
-
            // if(mobile.onestarrete==0){
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);  //}
 
-            }
-		
-		}else{
-			
-		    if (mobile.r_part>0){	
-				mobile.temps_particule+=mobile.dtau;
-
-				document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
-				document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-				//if(mobile.onestarrete==0){
-				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);  //}
-				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
-				 document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-				} else {
-				mobile.r_part=0;
-				document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-				document.getElementById("ga"+compteur.toString()).innerHTML = 1/0; fm=1/0;
-				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=1/0;
-				if(mobile.L!=0) { document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = 1/0;}				
-				 
-				 
-
-        /*        if(vphi==0){   
-                    if(mobile.temps_observateur.toExponential(3)==1/0){
-                        if(mobile.onestarrete==0){
-                        document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=1/0;}
-                        document.getElementById("ga"+compteur.toString()).innerHTML = 1/0;}
-                    else{
-                    if(mobile.onestarrete==0){
-                    document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);}
-                    document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);}
-                }
-                if(vphi!=0){  
-                    if(mobile.temps_observateur.toExponential(3)==1/0){
-                        if(mobile.onestarrete==0){
-                        document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=1/0;
-                        document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = 1/0;
-                        }
-                        document.getElementById("ga"+compteur.toString()).innerHTML = 1/0;
-                        
-                    }
-                    else{
-                        if(mobile.onestarrete==0){
-                        document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
-                        document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML =vp_1.toExponential(3);
-                        }
-                        document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-                        
-                    }
-
-                }  */
-            }
+        }
+	}
+	else{
+		if (mobile.r_part>0){	
+			mobile.temps_particule+=mobile.dtau;
+			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
+			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
+			//if(mobile.onestarrete==0){
+			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);  //}
+			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
+			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
+		} 
+		else {
+			mobile.r_part=0;
+			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
+			document.getElementById("ga"+compteur.toString()).innerHTML = 1/0; fm=1/0;
+			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=1/0;
+			if(mobile.L!=0) { document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = 1/0;}					 
+		}
 	}
 		
 
 	if (element2.value != "mobile"){
-
 		mobile.temps_observateur += mobile.dtau;
 		document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
 	}else{
@@ -1323,23 +1242,24 @@ if (element2.value != "mobile"){
 //  Gestion de la diode gradient accélération
 if (element2.value == "mobile"){
 
- if (Number(fm) <= 1) {
-      document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
-      document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
-    } else if (1 < Number(fm) && Number(fm) < 5) {
-      document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
-      document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
-    } else if (Number(fm) >= 5) {
-      document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-      document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
-
-    } 
+	if (Number(fm) <= 1) {
+		document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+		document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
+	} 
+	else if (1 < Number(fm) && Number(fm) < 5) {
+		document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+		document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
+	} 
+	else if (Number(fm) >= 5) {
+		document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+		document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
+	} 
     //else {
     //  document.getElementById('DivClignotante'+compteur.toString()).innerHTML = texte.pages_trajectoire.erreur;
     //}
 }
  
-  }    // fin r0!=0
+}    // fin r0!=0
 
 }   //fin fonction animate
 
