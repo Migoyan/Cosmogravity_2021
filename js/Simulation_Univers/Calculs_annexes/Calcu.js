@@ -462,7 +462,7 @@ function calcu(path) {
 		// Distances' charts in function of z
 		document.getElementById("graph_container_d").style.display = "contents"; //display graph
 		let annots = [];
-		let val_graph = calculDeDs(zmin,zmax,100);
+		let val_graph = calculDeDs(zmin, zmax, 100);
 		let data = [
 			{
 				x: val_graph[3],
@@ -605,8 +605,9 @@ function calcu(path) {
 		graphique_creation("graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
 	} else if(path == 4 && modele==0) {
 		// Distances' charts in function of t
-		document.getElementById("graph_container_dt").style.display = "contents"; //display graph
+		document.getElementById("graph_container_d_t").style.display = "contents"; //display graph
 		var val_abscissa = calcul_temps(zmin, zmax, 100);
+		let val_graph = calculDeDs(zmin, zmax, 100);
 		let annots = [];
 		let data = [
 			{
@@ -640,7 +641,7 @@ function calcu(path) {
 			
 			xaxis: {
 				autorange: true,
-				title: 'z',
+				title: 't',
 				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 				showline: true
 			},
@@ -657,10 +658,10 @@ function calcu(path) {
 		graphique_creation("graphique_dt", ['graphique_dt', data, layout, {displaylogo: false}]);
 	} else if(path == 5 && modele==0) {
 		// Omegas' charts in function of t
-		document.getElementById("graph_container_omegat").style.display = "contents"; //display graph
-		var val_abscissa = calcul_temps(zmin, zmax, 1000);
+		document.getElementById("graph_container_omega_t").style.display = "contents"; //display graph
+		var val_abscissa = calcul_temps(zmin, zmax, 500);
+		let val_graph = calcul_omegas(zmin, zmax, 500);
 		let annots = [];
-		let val_graph = calcul_omegas(zmin,zmax,1000);
 		let data = [
 			{
 				x: val_abscissa[1],
@@ -693,7 +694,7 @@ function calcu(path) {
 	
 			xaxis: {
 				autorange: true,
-				title: 'z',
+				title: 't',
 				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 				showline: true
 			},
@@ -724,10 +725,12 @@ function calculD() {
 	var z2 = document.getElementById("z2_checkbox").checked;
 
 	if (z1 && dda !=0){
-		window.document.getElementById("diametre").value = (window.document.getElementById("theta").value / 206265 * Number(dda)).toExponential(2);
+		window.document.getElementById("diametre").value = (window.document.getElementById("theta").value /
+			206265 * Number(dda)).toExponential(2);
 	}
 	else if(z2 && dda_2 !=0){
-		window.document.getElementById("diametre").value = (window.document.getElementById("theta").value / 206265 * Number(dda_2)).toExponential(2);
+		window.document.getElementById("diametre").value = (window.document.getElementById("theta").value /
+			206265 * Number(dda_2)).toExponential(2);
 	}
 }
 
@@ -736,10 +739,12 @@ function calcul1Dkpc(){
 	var z2 = document.getElementById("z2_checkbox").checked;
 
 	if (z1 && dda !=0){
-		window.document.getElementById("diametrekpc").value = ((window.document.getElementById("theta").value / 206265 * Number(dda))* 3.24079* Math.pow(10, -20)).toExponential(2);
+		window.document.getElementById("diametrekpc").value = ((window.document.getElementById("theta").value /
+			206265 * Number(dda))* 3.24079* Math.pow(10, -20)).toExponential(2);
 	}
 	else if(z2 && dda_2 !=0){
-		window.document.getElementById("diametrekpc").value = ((window.document.getElementById("theta").value / 206265 * Number(dda_2))*3.24079* Math.pow(10, -20)).toExponential(2);
+		window.document.getElementById("diametrekpc").value = ((window.document.getElementById("theta").value /
+			206265 * Number(dda_2))*3.24079* Math.pow(10, -20)).toExponential(2);
 	}
 }
 
@@ -748,10 +753,12 @@ function calculthetakpc() {
 	var z2 = document.getElementById("z2_checkbox").checked;
 
 	if (z1 && dda !=0){
-		window.document.getElementById("theta").value = (206265 * (window.document.getElementById("diametrekpc").value*3.0856*Math.pow(10,19)) / Number(dda)).toExponential(2);
+		window.document.getElementById("theta").value = (206265 * (window.document.getElementById("diametrekpc").value*3.0856*Math.pow(10,19)) /
+			Number(dda)).toExponential(2);
 	}
 	else if(z2 && dda_2 !=0){
-		window.document.getElementById("theta").value = (206265 * (window.document.getElementById("diametrekpc").value*3.0856*Math.pow(10,19)) / Number(dda_2)).toExponential(2);
+		window.document.getElementById("theta").value = (206265 * (window.document.getElementById("diametrekpc").value*3.0856*Math.pow(10,19)) /
+			Number(dda_2)).toExponential(2);
 	}
 }
 
@@ -759,17 +766,18 @@ function calcultheta() {
 	var z1 = document.getElementById("z1_checkbox").checked;
 	var z2 = document.getElementById("z2_checkbox").checked;
 	if (z1 && dda !=0){
-		window.document.getElementById("theta").value = (206265 * window.document.getElementById("diametre").value / Number(dda)).toExponential(2);
+		window.document.getElementById("theta").value = (206265 * window.document.getElementById("diametre").value /
+			Number(dda)).toExponential(2);
 	}
 	else if(z2 && dda_2 !=0){
-		window.document.getElementById("theta").value = (206265 * window.document.getElementById("diametre").value / Number(dda_2)).toExponential(2);
+		window.document.getElementById("theta").value = (206265 * window.document.getElementById("diametre").value /
+			Number(dda_2)).toExponential(2);
 	}
 }
 
 function calculDeDs(zmin,zmax,dt){
 	Eps = Number(0.001);  //0.00001
 	var pas = (zmax - zmin)/dt;
-
 	var zArr = [];
 	var i = zmin;
 	var daArr = [];
@@ -833,7 +841,6 @@ function calculDeDs(zmin,zmax,dt){
 	}
 
 	return [dlArr,daArr,dmArr,zArr,dltArr];
-
 }
 
 function calcul_omegas(zmin,zmax,dt){
@@ -871,7 +878,6 @@ function calcul_omegas(zmin,zmax,dt){
 	}
 
 	return [omArr,olArr,orArr,okArr,zArr];
-
 }
 
 
@@ -886,36 +892,25 @@ function calcul_temps(zmin,zmax,dt){
 	
 	i = Number(zmin);
 	
-	while(i<zmax){
-		
+	while(i<zmax){	
 		if (Number(i) <= 1e12) {
-		
-		temps = simpson_simple_degre2(fonction_integrale, Number(i), omegam0, Number(omegalambda0), Number(Or));
-
-		
-		
-		tempsArr.push(temps+temps_0);
-	}
-
-	else{
-		// nécessaire car l'ordre 4 de E(x) est lié à Or, on prend donc l'ordre 3
-		if (Or==0){
-		temps=2/(3*Math.pow(omegam0,1/2)*H0enannee*Math.pow(Number(i)+1,3/2));
-		temps=temps.toExponential(3)
-		tempsArr.push(temps)
+			temps = simpson_simple_degre2(fonction_integrale, Number(i), omegam0, Number(omegalambda0), Number(Or));
+			tempsArr.push(temps+temps_0);
+		} else {
+			// nécessaire car l'ordre 4 de E(x) est lié à Or, on prend donc l'ordre 3
+			if (Or==0){
+				temps=2/(3*Math.pow(omegam0,1/2)*H0enannee*Math.pow(Number(i)+1,3/2));
+				temps=temps.toExponential(3)
+				tempsArr.push(temps)
+			}
+			else{
+				temps = 1 / (Math.pow(1 + Number(i), 2) * 2 * Math.pow(Or, 0.5) * H0enannee);
+				temps=temps.toExponential(3)
+				tempsArr.push(temps)
+			}
 		}
-		else{
-		temps = 1 / (Math.pow(1 + Number(i), 2) * 2 * Math.pow(Or, 0.5) * H0enannee);
-		temps=temps.toExponential(3)
-		tempsArr.push(temps)
-		}
-
-	}
-
-
-	zArr.push(i);
-	i+=pas 
-	
+		zArr.push(i);
+		i+=pas 
 	}
 	return [zArr,tempsArr];
 }
@@ -925,6 +920,8 @@ function graphique_creation(id_document, params_to_plotly){
 		This function create the graphics for calcul annexe using plotly lib
 		id_document : id of the object on html page
 		params_to_plotly : parameters that are passed to plotly
+
+		return : nothing
 	*/
 
 	var graph = $("#"+id_document);

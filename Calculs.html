@@ -624,68 +624,69 @@
 
 		<br/>
 		</div>
+
 		<div id="graph_container_d" style="display:none">
 			<div style="padding:50px" align="center">
 				<div id="graphique"></div>
 				<div style="display:none;" id="graphique_enr"></div>
-				<!-- <div id="enregistrer">
-
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-
-					<select id="format_enr">
-
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-
-					</select>&nbsp;
-
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-
-				</div> -->
 				<a id="png" download="Graphique.png" style="display:none"></a>
 				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
 				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
 				<a id="ret" href="#nav" style="display:none;"></a>
-
+			
 			</div>
+		</div>
 
-			</div>
-			<div id="graph_container_omega" style="display:none">
-				<div style="padding:50px" align="center">
-					<div id="graphique_omega">
-					</div>
-					<div style="display:none;" id="graphique_omega_enr">
-					</div>
-					<!-- <div id="enregistrer">
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-					<select id="format_enr">
-					<option selected>png</option>
-					<option>jpg</option>
-					<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-					</div> -->
-					<a id="png" download="Graphique.png" style="display:none"></a>
-					<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-					<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-					<a id="ret" href="#nav" style="display:none;"></a>
+		<div id="graph_container_omega" style="display:none">
+			<div style="padding:50px" align="center">
+				<div id="graphique_omega">
 				</div>
-			</div>
-			<div id="graph_container_t" style="display:none">
-				<div style="padding:50px" align="center">
-					<div id="graphique_t">
-					</div>
-					<div style="display:none;" id="graphique_t_enr">
-					</div>
-					<a id="png" download="Graphique.png" style="display:none"></a>
-					<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-					<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-					<a id="ret" href="#nav" style="display:none;"></a>
+				<div style="display:none;" id="graphique_omega_enr">
 				</div>
+				<a id="png" download="Graphique.png" style="display:none"></a>
+				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
+				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
+				<a id="ret" href="#nav" style="display:none;"></a>
 			</div>
-			<!-- Obtention des paramètres de la page simulation -->
+		</div>
 
+		<div id="graph_container_t" style="display:none">
+			<div style="padding:50px" align="center">
+				<div id="graphique_t">
+				</div>
+				<div style="display:none;" id="graphique_t_enr">
+				</div>
+				<a id="png" download="Graphique.png" style="display:none"></a>
+				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
+				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
+				<a id="ret" href="#nav" style="display:none;"></a>
+			</div>
+		</div>
+
+		<div id="graph_container_d_t" style="display:none">
+			<div style="padding:50px" align="center">
+				<div id="graphique_dt"></div>
+				<div style="display:none;" id="graphique_enr"></div>
+				<a id="png" download="Graphique.png" style="display:none"></a>
+				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
+				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
+				<a id="ret" href="#nav" style="display:none;"></a>
+			
+			</div>
+		</div>
+
+		<div id="graph_container_omega_t" style="display:none">
+			<div style="padding:50px" align="center">
+				<div id="graphique_omegat">
+				</div>
+				<div style="display:none;" id="graphique_omega_enr">
+				</div>
+				<a id="png" download="Graphique.png" style="display:none"></a>
+				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
+				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
+				<a id="ret" href="#nav" style="display:none;"></a>
+			</div>
+		</div>
 
 		<script>
 			transfert_calcu(update_omegar0_calc, 1);
