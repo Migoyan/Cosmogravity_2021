@@ -509,7 +509,7 @@ function calcu(path) {
 			},
 			annotations: annots,
 		};
-		graphique_creation("#graphique", ['graphique', data, layout, {displaylogo: false}]);
+		graphique_creation("graphique", ['graphique', data, layout, {displaylogo: false}]);
 	} else if (path == 2 && modele==0) {
 		// Omegas' charts in function of z
 		document.getElementById("graph_container_omega").style.display = "contents"; //display graph
@@ -560,7 +560,7 @@ function calcu(path) {
 			},
 			annotations: annots,
 		};
-		graphique_creation("#graphique_omega", ['graphique_omega', data, layout, {displaylogo: false}]);
+		graphique_creation("graphique_omega", ['graphique_omega', data, layout, {displaylogo: false}]);
 	} else if(path == 3 && modele==0){
 		// Chart t(z)
 		document.getElementById("graph_container_t").style.display = "contents"; //display graph
@@ -602,8 +602,8 @@ function calcu(path) {
 
 			annotations: annots,
 		};
-		graphique_creation("#graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
-	} else if(path == 4 && modele==0){
+		graphique_creation("graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
+	} else if(path == 4 && modele==0) {
 		// Distances' charts in function of t
 		document.getElementById("graph_container_dt").style.display = "contents"; //display graph
 		var val_abscissa = calcul_temps(zmin, zmax, 100);
@@ -654,8 +654,8 @@ function calcu(path) {
 			},
 			annotations: annots,
 		};
-		graphique_creation("#graphique_dt", ['graphique_dt', data, layout, {displaylogo: false}]);
-	} else if(path == 5 && modele==0){
+		graphique_creation("graphique_dt", ['graphique_dt', data, layout, {displaylogo: false}]);
+	} else if(path == 5 && modele==0) {
 		// Omegas' charts in function of t
 		document.getElementById("graph_container_omegat").style.display = "contents"; //display graph
 		var val_abscissa = calcul_temps(zmin, zmax, 1000);
@@ -706,7 +706,7 @@ function calcu(path) {
 			},
 			annotations: annots,
 		};
-		graphique_creation("#graphique_omegat", ['graphique_omegat', data, layout, {displaylogo: false}]);
+		graphique_creation("graphique_omegat", ['graphique_omegat', data, layout, {displaylogo: false}]);
 	}
 
 	stop_spin();
@@ -924,12 +924,10 @@ function graphique_creation(id_document, params_to_plotly){
 	/*
 		This function create the graphics for calcul annexe using plotly lib
 		id_document : id of the object on html page
-		result_compute_function : result of function that compute the data to plot
-		graph_div : parameter 0 passed to plotly
-		layout : parameter 2 passed to plotly
+		params_to_plotly : parameters that are passed to plotly
 	*/
 
-	var graph = $(id_document);
+	var graph = $("#"+id_document);
 	Plotly.purge(graph);
 	graph.empty();
 
