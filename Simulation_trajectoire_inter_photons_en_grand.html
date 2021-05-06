@@ -51,7 +51,7 @@ src="./katex/contrib/auto-render.min.js"></script>
   <script src="./Lib/snap.svg.js"></script>
   <script src="./js/Simulation_Trajectoires/calcul_trajectoire_inter_photons.js"></script>
   <script src="./js/Simulation_Trajectoires/equation3d.js"></script>
- 
+  <script src="./js/Simulation_Trajectoires/bouttons.js"></script>
   <script src="./js/Simulation_Trajectoires/stopper.js"></script>
   <script src="./js/Simulation_Trajectoires/graphe_potentiel.js"></script>
   <script src="./js/Simulation_Trajectoires/Get_para.js"></script>
@@ -64,7 +64,7 @@ src="./katex/contrib/auto-render.min.js"></script>
   <script src="./Lib/saveSvgAsPng.js"></script>
   <script src="./Lib/canvas-to-image.js"></script>
 
-  <!-- MENUS
+<!-- MENUS
 Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-using-pure-css/
 																								-->
   <link rel="stylesheet" href="Css/Resp-Menu/normalize.min.css">
@@ -150,17 +150,12 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 		</div>
 	</div>
 
-    <div id="formulaire">
+  <div id="formulaire">
       <form name="params" id="parametres" action="" method="post" autocomplete="off">
         <div id="champs_a_remplir">
           <span id="masse">
-
-
       									<label id= "massetxt"  for="M">M (kg) =</label>
-
-
-
-      										<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
+      									<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
       						</span>
 
       									
@@ -180,7 +175,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
                                                
                                                  <input id="toggle" type="hidden"  checked>
                                                </span>
-     </div>
+    </div>
 
 
         <div id="radio_button">
@@ -219,23 +214,20 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
       <div id="ct_tg">
         <table class="tg" id="tg">
-<tbody id="tableauconstanteslers"></tbody>
+        <tbody id="tableauconstanteslers"></tbody>
         </table>
       </div>
 
       <div id="ct_tg2">
         <table class="tg2" id="tg2">
-<tbody id="tableauresultatsimu"></tbody>
+        <tbody id="tableauresultatsimu"></tbody>
         </table>
       </div>
     </div>
     <span id="indic_calculs"></span>
     <!-- Tracés -->
     <div id="bloc_resultats">
-	<div id="wrapperengrand">
-
-	</div>
-        
+	    <div id="wrapperengrand"></div>   
     </div>
 
   </div>

@@ -44,36 +44,36 @@ src="./katex/contrib/auto-render.min.js"></script>
     });
 </script>
 
-  <!-- Scripts pour calculs -->
-  <script src="./Lib/jquery-1.12.3.min.js"></script>
-  <script src="./Lib/math.min.js"></script>
-  <script src="./Lib/d3.js"></script>
-  <script src="./Lib/snap.svg.js"></script>
-  <script src="./js/Simulation_Trajectoires/calcul_trajectoire.js"></script>
-  <script src="./js/Simulation_Trajectoires/equation3d.js"></script>
+<!-- Scripts pour calculs -->
+<script src="./Lib/jquery-1.12.3.min.js"></script>
+<script src="./Lib/math.min.js"></script>
+<script src="./Lib/d3.js"></script>
+<script src="./Lib/snap.svg.js"></script>
+<script src="./js/Simulation_Trajectoires/calcul_trajectoire.js"></script>
+<script src="./js/Simulation_Trajectoires/equation3d.js"></script>
+<script src="./js/Simulation_Trajectoires/bouttons.js"></script>
+<script src="./js/Simulation_Trajectoires/stopper.js"></script>
+<script src="./js/Simulation_Trajectoires/graphe_potentiel.js"></script>
+<script src="./js/Simulation_Trajectoires/Get_para.js"></script>
+<script src="./js/Langues/gestion_langues.js"></script>
+<script src="./js/Simulation_Trajectoires/agrandit.js"></script>
+<script src="./js/Simulation_Trajectoires/joy.js"></script>  
 
-  <script src="./js/Simulation_Trajectoires/stopper.js"></script>
-  <script src="./js/Simulation_Trajectoires/graphe_potentiel.js"></script>
-  <script src="./js/Simulation_Trajectoires/Get_para.js"></script>
-  <script src="./js/Langues/gestion_langues.js"></script>
-  <script src="./js/Simulation_Trajectoires/agrandit.js"></script>
-  <script src="./js/Simulation_Trajectoires/joy.js"></script>  
 
+<script src="./js/Graphisme/trajectoires.js"></script>
 
-  <script src="./js/Graphisme/trajectoires.js"></script>
+<!-- Pour enregistrer le graphe et le tracé -->
+<script src="./Lib/saveSvgAsPng.js"></script>
+<script src="./Lib/canvas-to-image.js"></script>
 
-  <!-- Pour enregistrer le graphe et le tracé -->
-  <script src="./Lib/saveSvgAsPng.js"></script>
-  <script src="./Lib/canvas-to-image.js"></script>
-
-  <!-- MENUS
+<!-- MENUS
 Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-using-pure-css/
-																								-->
-  <link rel="stylesheet" href="Css/Resp-Menu/normalize.min.css">
-  <link rel="stylesheet" href="Css/Resp-Menu/defaults.min.css">
-  <link rel="stylesheet" href="Css/Resp-Menu/nav-core.min.css">
-  <link rel="stylesheet" href="Css/Resp-Menu/nav-layout.min.css">
-  <script src="js/Graphisme/Menu/rem.min.js"></script>
+																							-->
+<link rel="stylesheet" href="Css/Resp-Menu/normalize.min.css">
+<link rel="stylesheet" href="Css/Resp-Menu/defaults.min.css">
+<link rel="stylesheet" href="Css/Resp-Menu/nav-core.min.css">
+<link rel="stylesheet" href="Css/Resp-Menu/nav-layout.min.css">
+<script src="js/Graphisme/Menu/rem.min.js"></script>
 
  
 
@@ -154,13 +154,8 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
       <form name="params" id="parametres" action="" method="post" autocomplete="off">
         <div id="champs_a_remplir">
           <span id="masse">
-
-
       									<label id="massetxt" title= ""  for="M">M (kg) =</label>
-
-
-
-      										<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisationGenerale(lenbdefusees)">
+      									<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisationGenerale(lenbdefusees)">
       						</span>
 
       									
@@ -189,10 +184,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
           <button id="r2" type="button" name="traj2" class="myButton2" value="simple" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireSimple()"></button>
           <button id="r3" type="button" name="observateur" class="myButton" title="" value="observateur" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonObservateur();notationvitesseree2()"></button>
           <button id="r4" type="button" name="mobile" class="myButton2" value="mobile" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonMobile();notationvitesseree2()"></button>  
-
-
-
-
+		  
           <span id="sp_reb">
                   </span>
           <button id="rebondd" type="button" name="reb" class="myButton2" onclick="ammort();changerBouttonRebond()"></button>
@@ -224,11 +216,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
               </span>
           <span id="rrrrrrrrrrr">
                       <button type="button" class="myButton" id="ouvreengrand" onclick="ouvre_trajEnGrand();"></button>
-              </span>
-
-          
-                      
-              
+              </span>          
         </div>
 
       </form>
@@ -239,7 +227,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
       <div id="ct_tg">
         <table class="tg" id="tg">
-<tbody id="tableauconstanteslers"></tbody>
+          <tbody id="tableauconstanteslers"></tbody>
         </table>
       </div>
 
@@ -253,10 +241,8 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
     <!-- Tracés -->
     <div id="bloc_resultats">
-    <div id="wrapper">
-	</div>
-    <div id="wrapper2">
-        </div>
+      <div id="wrapper"></div>
+      <div id="wrapper2"></div>
     </div>
 
 
@@ -265,10 +251,8 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
   
   <!-- Panneau mobile zoom -->
    <div id="panneau_mobile2" >
-   
-
      <span id="moinszoom">
-               <img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
+            <img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
      </span>
      <span id="initialiser">
          <img id="pau1" src="Images/reset.png"  class="bouton_mobile" title="Echelle par défault">
@@ -277,9 +261,6 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
                <img id="plusvi1" src="Images/plus.png" class="bouton_mobile" title="Zoom (+)">
      </span>
    </div>
-
-
-
 
   <!-- Panneau mobile qui apparait lorsque tracé -->
 
@@ -340,7 +321,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 <script type="text/javascript">
 //joystick
 // Create JoyStick object into the DIV 'joyDiv'
-<!--var joy = new JoyStick('joyDiv');  ->
+	var joy = new JoyStick('joyDiv');
 </script>
 
 
