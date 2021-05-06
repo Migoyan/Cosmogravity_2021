@@ -770,11 +770,9 @@ function trajectoire(compteur,mobile) {
 
     // Gestion des bouttons Zoom moins
     document.getElementById('moinszoom').addEventListener('click', function() {
-        mobilefactor[compteur] /= 1.2;
-        mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-        mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-        mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);  
+        var rourt=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur); 
+        mobile=retour[0];
+        mobilefactor=retour[1];  
         majFondFixe44(mobile);      
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
       
@@ -783,11 +781,9 @@ function trajectoire(compteur,mobile) {
 
 
     document.getElementById('pluszoom').addEventListener('click', function() {       
-          mobilefactor[compteur] *= 1.2;
-          mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-          mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-          mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-          mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+		var rourt=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
+    	mobile=retour[0];
+    	mobilefactor=retour[1];  
         majFondFixe44(mobile); 
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
