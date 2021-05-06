@@ -704,66 +704,17 @@ function trajectoire(compteur,mobile) {
     	pausee(compteur,mobile,mobilefactor);
     }, false);
 
-    //joystick
-    //sert a simuler une poussee au lieu d'etre seulement ds le cas ballistique(sans pousse) du mobile
-    //cela marchait pour 1 mobile, pour N mobiles comment faire? 
-    //creer N joysticks chacun controllant le N-ieme mobile?
-    //ou plus simplement 1 joystick pr N mobiles
-    //ou activer seulement si il n'y as qu'1 mobile
-    /*
-	setInterval(function(){
-		if(joy.GetY()>0){
-			
-     
-	 Delta_L=(joy.GetY()/100)*0.01*L;  
-     L=L+Delta_L ;
-	 E=E+(1-rs/r_part)*L*Delta_L/E/Math.pow(r_part,2) ;
+ 
 
-			console.log("L+  E+",L,E,joy.GetY(),joy.GetX());
-			document.getElementById("E").innerHTML = E.toExponential(3);
-			document.getElementById("L").innerHTML = L.toExponential(3);
+//Gestion des bouttons accélerer et decélerer voir bouttons.js*
 
-
-
-		}
-		else if(joy.GetY()<0){
-		
-		Delta_L=(joy.GetY()/100)*0.01*L;  
-		L=L+Delta_L ;
-		E=E+(1-rs/r_part)*L*Delta_L/E/Math.pow(r_part,2) ;
-		
-		
-			console.log("L- E-",L,E,joy.GetY(),joy.GetX());
-			document.getElementById("E").innerHTML = E.toExponential(3);
-			document.getElementById("L").innerHTML = L.toExponential(3);
-
-			
-		} 
-	}, 50);
-    */
-    
-
-
-//Gestion des bouttons accélerer et decélerer
     document.getElementById('plusvite').addEventListener('click', function() {
 		mobile=bouttons.vitesse(mobile,true)
-		/*if (mobile.dtau >= mobile.Dtau1) {
-			mobile.dtau = mobile.Dtau1;
-		} 
-		else {
-			mobile.dtau += mobile.dtau;
-			clicks += 1;
-		}*/
     }, false);
 
     document.getElementById('moinsvite').addEventListener('click', function() {
 		mobile=bouttons.vitesse(mobile,false)
-		/*if (mobile.dtau <= mobile.Dtau2) {
-			mobile.dtau = mobile.Dtau2;
-		} 
-		else {
-			mobile.dtau /= 2;
-			clicks-=1; }*/
+		
     }, false);
 
 
@@ -789,7 +740,7 @@ function trajectoire(compteur,mobile) {
     // Gestion des bouttons Zoom moins
 
     document.getElementById('moinszoom').addEventListener('click',function(){
-      	var retour=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur); 
+      	var retour=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur);  /// voir dossier bouttons.js
     	mobile=retour[0];
     	mobilefactor=retour[1];   
 		majFondFixe44(mobile);      
@@ -800,7 +751,7 @@ function trajectoire(compteur,mobile) {
 
    
 	document.getElementById('pluszoom').addEventListener('click', function() {
-    	var retour=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
+    	var retour=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur);  /// voir dossier bouttons.js
    		mobile=retour[0];
     	mobilefactor=retour[1];
 		majFondFixe44(mobile); 
@@ -809,19 +760,9 @@ function trajectoire(compteur,mobile) {
 	}, false);
 
     document.getElementById('initialiser').addEventListener('click', function() {
-		for (key = 1; key <= nbredefusees; key += 1) {
-            mobilefactor[key] = Number(document.getElementById("scalefactor").value);  		
-		}
-        //console.log(nbredefusees,"nbredefusees after refresh");
-		for (key = 1; key <= nbredefusees; key += 1) {
-			if(key!=cle){
-                mobilefactor[key] = Number(document.getElementById("scalefactor").value)/(r0o2[cle]/r0o2[key]);
-			}
-		}
-        mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-        mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-        mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+		var retour=bouttons.initialiser(nbredefusees,mobilefactor,mobile,compteur,canvas); /// voir dossier bouttons.js
+		mobile=retour[0];
+		mobilefactor=retour[1];
         majFondFixe44(mobile); 
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);

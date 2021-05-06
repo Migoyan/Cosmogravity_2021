@@ -738,7 +738,8 @@ function trajectoire(compteur,mobile) {
     document.getElementById('plusvite').addEventListener('click', function() {
       if (mobile.dtau >= mobile.Dtau1) {
         mobile.dtau = mobile.Dtau1;
-      } else {
+      }
+	  else {
         mobile.dtau += mobile.dtau;
         clicks += 1;
       }
@@ -752,19 +753,20 @@ function trajectoire(compteur,mobile) {
 
 
     document.getElementById('enregistrer2').addEventListener('click', function() {
-        element2z=document.getElementById('traject_type2');
+		element2z=document.getElementById('traject_type2');
 		if (element2z.value != "mobile"){
-		context3.beginPath();
-		context3.fillStyle = COULEUR_BLEU;
-		context3.arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
-		context3.lineWidth = "1";
-		context3.fill();
-		}else{
-		context3.beginPath();
-		context3.fillStyle = COULEUR_BLEU;
-		context3.arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
-		context3.lineWidth = "1";
-        context3.fill();
+			context3.beginPath();
+			context3.fillStyle = COULEUR_BLEU;
+			context3.arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
+			context3.lineWidth = "1";
+			context3.fill();
+		}
+		else{
+			context3.beginPath();
+			context3.fillStyle = COULEUR_BLEU;
+			context3.arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
+			context3.lineWidth = "1";
+			context3.fill();
 		}
     }, false);
 
@@ -789,20 +791,9 @@ function trajectoire(compteur,mobile) {
     }, false);
 
     document.getElementById('initialiser').addEventListener('click', function() {
-		for (key = 1; key <= nbredefusees; key += 1) {
-            mobilefactor[key] = Number(document.getElementById("scalefactor").value);  			
-		}
-        //console.log(nbredefusees,"nbredefusees after refresh");
-		for (key = 1; key <= nbredefusees; key += 1) {
-			if(key!=cle){
-                mobilefactor[key] = Number(document.getElementById("scalefactor").value)/(r0o2[cle]/r0o2[key]);
-			}
-		}
-        mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-        mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-        mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-        majFondFixe44(mobile); 
+        var retour=bouttons.initialiser(nbredefusees,mobilefactor,mobile,compteur,canvas); /// voir dossier bouttons.js
+        mobile=retour[0];
+        mobilefactor=retour[1];
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
 
@@ -815,13 +806,6 @@ function trajectoire(compteur,mobile) {
 
     // Tracé du Rayon de Schwarzchild.
     creation_blocs(context,mobilefactor,rmaxjson,maximum,compteur);
-
-
-    //$(document.params.traj[0]).change(function() {
-      // Tracé du Rayon de Schwarzchild si on change en cours de simulation
-    //  creation_blocs(context);
-    //});
-
 	dr = mobile.rmax / 1000;
 	mobile["dr"]=dr;//mobile.dr;
 	
@@ -835,28 +819,29 @@ function trajectoire(compteur,mobile) {
     data2=[];
 
 	if (element2.value != "mobile"){	
-    for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-      V = Vr_obs(mobile.E,mobile.L,r);
-      data1.push({date: r,close: V});
-    }
+		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+			V = Vr_obs(mobile.E,mobile.L,r);
+			data1.push({date: r,close: V});
+    	}
 
-	V = Vr_obs(mobile.E,mobile.L,mobile.r0);
-    data2.push({date: mobile.r0,close: V});
-    mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+		V = Vr_obs(mobile.E,mobile.L,mobile.r0);
+		data2.push({date: mobile.r0,close: V});
+		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 	
-	}else{
-	if(rmini==rs){
-        rmini=rmini/2;
-    }		
+	}
+	else{
+		if(rmini==rs){
+			rmini=rmini/2;
+    	}		
 
-	for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-      V = Vr_mob(mobile.L,r);
-      data1.push({date: r,close: V});
-    }
-  
-	V = Vr_mob(mobile.L,mobile.r0);
-    data2.push({date: mobile.r0,close: V}); 
-    mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+			V = Vr_mob(mobile.L,r);
+			data1.push({date: r,close: V});
+		}
+	
+		V = Vr_mob(mobile.L,mobile.r0);
+		data2.push({date: mobile.r0,close: V}); 
+		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 	} 	
 
     window.addEventListener('resize', function() {

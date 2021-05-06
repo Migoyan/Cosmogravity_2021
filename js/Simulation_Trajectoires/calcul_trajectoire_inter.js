@@ -743,26 +743,27 @@ function trajectoire(compteur,mobile) {
     document.getElementById('enregistrer2').addEventListener('click', function() {
         element2z=document.getElementById('traject_type2');
 		if (element2z.value != "mobile"){
-		context3.beginPath();
-		context3.fillStyle = COULEUR_BLEU;
-		context3.arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
-		context3.lineWidth = "1";
-		context3.fill();
-		}else{
-		context3.beginPath();
-		context3.fillStyle = COULEUR_BLEU;
-		context3.arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
-		context3.lineWidth = "1";
-        context3.fill();
+			context3.beginPath();
+			context3.fillStyle = COULEUR_BLEU;
+			context3.arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
+			context3.lineWidth = "1";
+			context3.fill();
+		}
+		else{
+			context3.beginPath();
+			context3.fillStyle = COULEUR_BLEU;
+			context3.arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
+			context3.lineWidth = "1";
+			context3.fill();
 		}
     }, false);
 
 	
-    // Gestion des bouttons Zoom moins
+    // Gestion des bouttons Zoom voir boutton.js
     document.getElementById('moinszoom').addEventListener('click', function() {
-		var rourt=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur); 
-		mobile=retour[0];
-		mobilefactor=retour[1]; 
+        var retour=bouttons.zoom(false,mobile,canvas,mobilefactor,compteur); 
+        mobile=retour[0];
+        mobilefactor=retour[1]; 
         majFondFixe44(mobile);      
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
 		
@@ -770,9 +771,8 @@ function trajectoire(compteur,mobile) {
 
     }, false);
 
-
     document.getElementById('pluszoom').addEventListener('click', function() {       
-		var rourt=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
+		var retour=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
         mobile=retour[0];
         mobilefactor=retour[1];
         majFondFixe44(mobile); 
@@ -780,24 +780,14 @@ function trajectoire(compteur,mobile) {
     }, false);
 
     document.getElementById('initialiser').addEventListener('click', function() {
-		for (key = 1; key <= nbredefusees; key += 1) {
-            mobilefactor[key] = Number(document.getElementById("scalefactor").value);  			
-		}
-        //console.log(nbredefusees,"nbredefusees after refresh");
-		for (key = 1; key <= nbredefusees; key += 1) {
-			if(key!=cle){
-                mobilefactor[key] = Number(document.getElementById("scalefactor").value)/(r0o2[cle]/r0o2[key]);
-			}
-		}
-        mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-        mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-        mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+		var retour=bouttons.initialiser(nbredefusees,mobilefactor,mobile,compteur,canvas); 
+		mobile=retour[0];
+		mobilefactor=retour[1];
         majFondFixe44(mobile); 
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
 
-
+	///Fin bouttons lier au zoom
    document.getElementById("bloc_resultats").style.display= "block";
 
 	//Pour ouvrir le pop up qui nous si on veut afficher le graphe de potentiel ou pas
