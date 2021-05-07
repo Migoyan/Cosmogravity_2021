@@ -788,6 +788,7 @@ function trajectoire(compteur,mobile) {
     }, false);
 
 	///Fin bouttons lier au zoom
+	
    document.getElementById("bloc_resultats").style.display= "block";
 
 	//Pour ouvrir le pop up qui nous si on veut afficher le graphe de potentiel ou pas

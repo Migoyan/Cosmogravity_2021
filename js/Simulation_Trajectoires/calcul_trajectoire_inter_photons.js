@@ -743,7 +743,7 @@ function trajectoire(compteur,mobile) {
     }, false);
 
     document.getElementById('initialiser').addEventListener('click', function() {
-      	var retour=bouttons.initialiser(nbredefusees,mobilefactor,mobile,compteur,canvas); /// voir dossier bouttons.js
+      	var retour=bouttons.initialiser(nbredefusees,mobilefactor,mobile,compteur,canvas);
       	mobile=retour[0];
       	mobilefactor=retour[1];
         majFondFixe44(mobile); 

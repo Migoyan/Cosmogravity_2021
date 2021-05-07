@@ -26,9 +26,9 @@
   },
 
 "page_menu":{
-	"Ututo" : "Univers",
-	"Ttuto" : "Trajectoires",
-	"tuto" : "Tutoriel",
+    "Ututo" : "Univers",
+    "Ttuto" : "Trajectoires",
+    "tuto" : "Tutoriel",
     "accueil": "Accueil",
     "univers":"Univers",
     "theorie":"Théorie",
@@ -37,12 +37,12 @@
     "energiesombre":"Energie sombre",
     "trajectoire":"Trajectoires",
     "schwarzschild":"Schwarzschild",
-	"metmbaryonique":"Masse et mobile baryoniques",
-	"metpbaryonique":"Masse baryonique et photon",
-	"metmnonbaryonique":"Masse et/ou mobile non baryonique(s)",
-	"metpnonbaryonique":"Masse non baryonique et photon",
+    "metmbaryonique":"Masse et mobile baryoniques",
+    "metpbaryonique":"Masse baryonique et photon",
+    "metmnonbaryonique":"Masse et/ou mobile non baryonique(s)",
+    "metpnonbaryonique":"Masse non baryonique et photon",
     "part_massive":"Particule massive",
-	"part_massive_kerr":"Particule massive kerr",
+    "part_massive_kerr":"Particule massive kerr",
     "part_photon":"Photon",
     "kerr":"Kerr",
     "apropos":"A propos",
@@ -50,11 +50,11 @@
     "langue":"Langues",
     "langue_fr":"Français",
     "langue_en":"Anglais"
-	
+
   },
 
   "page_univers_general":{
-	"zoomtxt" : "Zoom si a &#8712; [0,1[ ",
+    "zoomtxt" : "Zoom si a &#8712; [0,1[ ",
     "bouton_tracer":"Tracer",
     "bouton_enregistrer":"Enregistrer",
     "bouton_constantes":"Constantes",
@@ -66,7 +66,7 @@
     "dureeUnivers":"Durée de l'univers",
     "simuavertissement":"Avertissement",
     "avertissement":"La simulation Univers avec ses calculs annexes permet de choisir les valeurs d'une dizaine de paramètres (en comptant celles des constantes fondamentales). Le code actuel n'est évidemment pas robuste sur tout le domaine accessible de cet espace à 10 dimensions.   Nous espérons que les résultats sont exacts dans un voisinage 'prudent' du modèle standard, des valeurs usuelles des observables (z, thêta) et des constantes fondamentales. Nous pensons qu'ils le sont encore pour des univers très différents du nôtre mais il est évident que le risque d'échec de la simulation (temps de calcul excessif sur le processeur de l'utilisateur) ou, pire, de résultat inexact augmente lorsque l'on s'aventure très loin du modèle standard. L'option 'mono-fluides', avec son formalisme analytique, permet d'aller plus fiablement explorer les extrêmes. Près des 'séparatrices' entre types d'univers différents (avec ou sans Big Bang, avec ou sans Big Crunch), un avertissement automatique est normalement affiché."
-  },
+    },
 
   "page_univers":{
     "titre": "&Eacute;volution de l'univers FL (ΛCDM)",
@@ -238,6 +238,7 @@
 	"trajectoire_complete":"Trajectoire complète",
     "trajectoire_simple":"Trajectoire simple",											 
     "temps_ecoule":"Temps propre mobile",
+	"v_total":"Vitesse",
 	"parametre":"Paramètre",
     "acceleration":"Gradient d'accélération &nbsp;<span id='DivClignotante'></span>",
     "titre_graphe":"Potentiel Effectif",

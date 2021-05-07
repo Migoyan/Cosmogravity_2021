@@ -299,18 +299,20 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 
 for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	  var newRow=document.getElementById('tableauresultatsimu').insertRow();
-	  // il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
-	  newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
-						<th class="tg-aicv">r(m)</th>
-						<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-						<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
-						<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-						<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-						<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
-						<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>`;
+	var newRow=document.getElementById('tableauresultatsimu').insertRow();
+	// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
+	newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
+					<th class="tg-aicv">r(m)</th>
+					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
+					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
+					<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`;
 
-	 var newRow2=document.getElementById('tableauresultatsimu').insertRow();
+					
+	var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
 	newRow2.innerHTML = `<tr id="tg2ggb`+countt.toString()+`">
 						<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
@@ -319,7 +321,8 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 						<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
 						<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
 						<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>`
+						<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>
+						<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`;
 
 }
 
@@ -401,7 +404,7 @@ function initialisation(compteur){
 	document.getElementById("m").innerHTML = rs.toExponential(3);
 
 	scale_factor = Number(document.getElementById("scalefactor").value);
-	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E  }; 
 
 	mobile["pointsvg"]="pointg"+compteur.toString();
 	mobile["graphesvg"]="#grsvg_"+compteur.toString();
@@ -413,11 +416,9 @@ function initialisation(compteur){
  /* Calcul de rmax */
   	if( (E>0.99999 & E<1.00001) && (L >= 2*rs || L <=-2*rs ) ){ 
 		rmax=1.1*r0;
-		//rmax= 1/(2*rs)*(Math.pow(L,2)+ L*Math.sqrt(Math.pow(L,2)-4*Math.pow(rs,2)));
-     	//if(rmax<r0) {rmax=2*r0;} 
    	} 	
-   else if (E==1 && L==0) {rmax=2*r0; } 
-   else {calcul_rmax(L,E,vr,r0,1) ;  if(rmax<r0) {rmax=r0 ;}   }   
+   	else if (E==1 && L==0) {rmax=2*r0; } 
+  	else {calcul_rmax(L,E,vr,r0,1) ;  if(rmax<r0) {rmax=r0 ;}}   
 
 	mobile["rmax"]=rmax; //mobile.rmax
 
@@ -439,7 +440,7 @@ function initialisation(compteur){
 
 
   //calcul de grav
-  g=(G*M)/(Math.pow(r_phy,2)*9.81);
+  	g=(G*M)/(Math.pow(r_phy,2)*9.81);
 
 
 	if(r_phy==0){
@@ -453,30 +454,29 @@ function initialisation(compteur){
 
 
 function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs ne sont pas donnée dans l'une des cases
-  
-  r_phy = document.getElementById("r_phy").value;
-  M = document.getElementById("M").value;
+	
+	r_phy = document.getElementById("r_phy").value;
+	M = document.getElementById("M").value;
 
-  var onebolean=false;
-  var twobolean=false;
-  var threebolean=false;
+	var onebolean=false;
+	var twobolean=false;
+	var threebolean=false;
 
-
-  var nbrdefuseesverifnbr = Number(document.getElementById("nombredefusees").value);
-  for (count = 1; count <= nbrdefuseesverifnbr; count += 1) {
-		var r0verifnbr = Number(document.getElementById("r0"+count.toString()+"").value); 
-		var vphiverifnbr = Number(document.getElementById("vphi"+count.toString()+"").value);
-		var vrverifnbr = Number(document.getElementById("vr"+count.toString()+"").value);
-		if(isNaN(r0verifnbr)){
-			onebolean=true;
-		}
-		if(isNaN(vphiverifnbr)){
-			twobolean=true;
-		}
-		if(isNaN(vrverifnbr)){
-			threebolean=true;
-		}
-  }
+	var nbrdefuseesverifnbr = Number(document.getElementById("nombredefusees").value);
+	for (count = 1; count <= nbrdefuseesverifnbr; count += 1) {
+			var r0verifnbr = Number(document.getElementById("r0"+count.toString()+"").value); 
+			var vphiverifnbr = Number(document.getElementById("vphi"+count.toString()+"").value);
+			var vrverifnbr = Number(document.getElementById("vr"+count.toString()+"").value);
+			if(isNaN(r0verifnbr)){
+				onebolean=true;
+			}
+			if(isNaN(vphiverifnbr)){
+				twobolean=true;
+			}
+			if(isNaN(vrverifnbr)){
+				threebolean=true;
+			}
+	}
 
 
 
@@ -519,10 +519,6 @@ function trajectoire(compteur,mobile) {
 
     //Pour rendre visible le paneau de zoom.
     document.getElementById("panneau_mobile2").style.visibility='visible';
-
-    //joystick
-	
-  	//document.getElementById("joyDiv").style.visibility='visible';
 	
     // pour savoir si on affiche l'information pour les touches claviers ou non
     estUnMobile();
@@ -933,6 +929,8 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
 			mobile["context22"].lineWidth = "1";
 			mobile["context22"].fill();
+			//var v_total=Math.sqrt(vr_1_obs*vr_1_obs/((1-rs/r_part_obs)*(1-rs/r_part_obs))+vp_1_obs*vp_1_obs/(1-rs/r_part_obs));
+
 
     	}
     }
@@ -1133,16 +1131,16 @@ if (element2.value != "mobile"){
 	
         
 	if (element2.value != "mobile"){
-		if(mobile.r_part_obs >= rs)   {
-			//vtotal=Math.sqrt(vr_1_obs*vr_1_obs+vp_1_obs*vp_1_obs); vr_1_obs=vtotal; 
+		if(mobile.r_part_obs >= rs){
 			mobile.temps_particule += mobile.dtau*(1-rs/mobile.r_part_obs)/mobile.E;
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
-           // if(mobile.onestarrete==0){
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
-		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);  //}
-
+		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
+			vtotal=Math.sqrt(vr_1_obs*vr_1_obs/((1-rs/mobile.r_part_obs)*(1-rs/mobile.r_part_obs))+vp_1_obs*vp_1_obs/(1-rs/mobile.r_part_obs));
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
+			
         }
 	}
 	else{
