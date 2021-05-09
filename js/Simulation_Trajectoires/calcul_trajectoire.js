@@ -124,7 +124,7 @@ function lancerDeFusees(fuseecompteur){
 }
 //supprHtml et genereHtml sont les fonctions qui generent le html de maniere dynamique
 function supprHtml(){
-var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
+	var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
     document.getElementById('tableauconstanteslers').innerHTML = ''; 
     document.getElementById('tableauresultatsimu').innerHTML = ''; 
 
@@ -135,8 +135,7 @@ var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
 
 	var elementcanvasasuppr = document.getElementById("myCanvas");
 	elementcanvasasuppr.parentNode.removeChild(elementcanvasasuppr);
-
-  var canvaswh = document.getElementById("canvaswidthheight").value;
+  	var canvaswh = document.getElementById("canvaswidthheight").value;
   
 
 for (count = 1; count <= nbrfuseesuppr; count += 1) {
@@ -243,25 +242,21 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		newlabel.innerHTML = "U<sub>r</sub> (m.s<sup>-1</sup>) =";
 		span.appendChild(newlabel);
 	}
-
-
 	var newinput = document.createElement("Input");
 	newinput.setAttribute("id","vr"+countt.toString()+"");
 	newinput.setAttribute("value","0");
-
 	newinput.setAttribute("maxlength","10");
-
 	newinput.setAttribute("type","text");
-
 	newinput.setAttribute("size","5");
-
 	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
 	span.appendChild(newinput);
 }
+	/*var newinput = document.createElement("Input");
+	newinput.setAttribute("id","phi"+countt.toString()+"");
+	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+	span.appendChild(newinput);*/
         
 	var newRow=document.getElementById('tableauconstanteslers').insertRow();
-
 	var jstring = '<tr id="tgggg1" >'
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		jstring += '<th class="tg-aicv">$L'+countt.toString()+'(m)$</th>';}
@@ -395,6 +390,8 @@ function initialisation(compteur){
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
 	vr = Number(document.getElementById("vr"+compteur.toString()).value);
+	//phi0 = Number(document.getElementById("phi0"+compteur.toString()).value);
+	
 	L = vphi * r0 / c;
 	E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0) * (1 + Math.pow(vphi/c, 2)));
 
@@ -503,39 +500,39 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 
 // première étape qui lance la partie calculatoire
 function trajectoire(compteur,mobile) {
-  texte = o_recupereJson();
-  if (mobile.pause || mobile.debut){
-    r0setcouleur = document.getElementById("r0"+compteur.toString());
-    //stackoverflow questions/9780632,reponse de jack on verifie si la couleur du trace du mobile est plus proche de noir ou blanc
-    //pour savoir si on ecrit le texte (color) en noir ou blanc sur la case r0 du mobile pour quon puisse voir le texte(initalement ecrit en noir ds la case)
-    Ycouleur = 0.2126*mobile.red + 0.7152*mobile.green + 0.0722*mobile.blue
-    if(Ycouleur<128){r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:white");}
-    else{r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:black");}
+  	texte = o_recupereJson();
+  	if (mobile.pause || mobile.debut){
+		r0setcouleur = document.getElementById("r0"+compteur.toString());
+		//stackoverflow questions/9780632,reponse de jack on verifie si la couleur du trace du mobile est plus proche de noir ou blanc
+		//pour savoir si on ecrit le texte (color) en noir ou blanc sur la case r0 du mobile pour quon puisse voir le texte(initalement ecrit en noir ds la case)
+		Ycouleur = 0.2126*mobile.red + 0.7152*mobile.green + 0.0722*mobile.blue
+		if(Ycouleur<128){r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:white");}
+    	else{r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:black");}
 
-    document.getElementById("tg2").style.display = "table";
-    document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
-    // pour rendre visible le panneau de contrôle pause et vitesse de la simu
-    document.getElementById("panneau_mobile").style.visibility='visible';
+		document.getElementById("tg2").style.display = "table";
+		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
+		// pour rendre visible le panneau de contrôle pause et vitesse de la simu
+		document.getElementById("panneau_mobile").style.visibility='visible';
 
-    //Pour rendre visible le paneau de zoom.
-    document.getElementById("panneau_mobile2").style.visibility='visible';
-	
-    // pour savoir si on affiche l'information pour les touches claviers ou non
-    estUnMobile();
+		//Pour rendre visible le paneau de zoom.
+		document.getElementById("panneau_mobile2").style.visibility='visible';
+		
+		// pour savoir si on affiche l'information pour les touches claviers ou non
+		estUnMobile();
 
-    // permet de griser les cases de saisie pour éviter de changer les valeurs pendant la simulation
-    // conseillé car toutes les exceptions ne sont pas gérées
-    document.getElementById('M').disabled = true;
-    document.getElementById('r_phy').disabled = true;
-    document.getElementById('nombredefusees').disabled = true;
+		// permet de griser les cases de saisie pour éviter de changer les valeurs pendant la simulation
+		// conseillé car toutes les exceptions ne sont pas gérées
+		document.getElementById('M').disabled = true;
+		document.getElementById('r_phy').disabled = true;
+		document.getElementById('nombredefusees').disabled = true;
 
-	var blyo = Number(document.getElementById("nombredefusees").value);
+		var blyo = Number(document.getElementById("nombredefusees").value);
 
 
-	for (countt = 1; countt <= blyo; countt += 1) {
-		document.getElementById('r0'+countt.toString()+'').disabled = true;
-		document.getElementById('vphi'+countt.toString()+'').disabled = true;
-		document.getElementById('vr'+countt.toString()+'').disabled = true;
+		for (countt = 1; countt <= blyo; countt += 1) {
+			document.getElementById('r0'+countt.toString()+'').disabled = true;
+			document.getElementById('vphi'+countt.toString()+'').disabled = true;
+			document.getElementById('vr'+countt.toString()+'').disabled = true;
     }
 
     //empecher de passer d'observateur a mobile ou inversement pendant la simulation
@@ -648,7 +645,6 @@ function trajectoire(compteur,mobile) {
       alert(texte.pages_trajectoire.impossible_context);
       return;
     } 
-
     //un canvas est creer pour chaque boule bleue dans le html,myCanvasBoule1,myCanvasBoule2 etc
     //tout nos canvas sont superposes
     //ceci est une mauvaise technique qui ralentit l'animation
@@ -786,7 +782,7 @@ function trajectoire(compteur,mobile) {
 
     //Ici le bout de code pour le bouton Reset, quand on clique dessus, la fonction appelé efface le canvas en entier.
     document.getElementById('clear').addEventListener('click', function() {
-      rafraichir();
+      	rafraichir();
     }, false);
 
     // Tracé du Rayon de Schwarzchild.
@@ -929,7 +925,7 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
 			mobile["context22"].lineWidth = "1";
 			mobile["context22"].fill();
-			//var v_total=Math.sqrt(vr_1_obs*vr_1_obs/((1-rs/r_part_obs)*(1-rs/r_part_obs))+vp_1_obs*vp_1_obs/(1-rs/r_part_obs));
+			
 
 
     	}
@@ -1138,7 +1134,7 @@ if (element2.value != "mobile"){
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
-			vtotal=Math.sqrt(vr_1_obs*vr_1_obs/((1-rs/mobile.r_part_obs)*(1-rs/mobile.r_part_obs))+vp_1_obs*vp_1_obs/(1-rs/mobile.r_part_obs));
+			vtotal=calculs.vitess(mobile,rs,true,vr_1_obs,vp_1_obs);
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 			
         }

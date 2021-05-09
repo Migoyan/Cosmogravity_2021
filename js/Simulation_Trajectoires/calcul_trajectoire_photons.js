@@ -99,13 +99,12 @@ var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
     document.getElementById('tableauresultatsimu').innerHTML = ''; 
 
 
-   if (sessionStorage.getItem("nombredefusees")){
+   	if (sessionStorage.getItem("nombredefusees")){
        var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
-   }
+   	}
 	var elementcanvasasuppr = document.getElementById("myCanvas");
 	elementcanvasasuppr.parentNode.removeChild(elementcanvasasuppr);
-
-  var canvaswh = document.getElementById("canvaswidthheight").value;
+  	var canvaswh = document.getElementById("canvaswidthheight").value;
   
 
 for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
@@ -115,12 +114,9 @@ for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
 	elementvpasuppr.parentNode.removeChild(elementvpasuppr);
 	var elementvrasuppr = document.getElementById("vitesser"+countt.toString()+"");
 	elementvrasuppr.parentNode.removeChild(elementvrasuppr);
-
 	var elementcanvasbouleasuppr = document.getElementById("myCanvasBoule"+countt.toString()+"");
 	elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
-
     if(canvaswh=="750"){
-
 		var elementgrapheasuppr = document.getElementById("grsvg_"+countt.toString()+"");
 		elementgrapheasuppr.parentNode.removeChild(elementgrapheasuppr);
     }
@@ -140,43 +136,33 @@ function htmlDecode(input) {
 }
 
 function genereHtml(){
-var nbredefuseesgenere = Number(document.getElementById("nombredefusees").value);
+	nbredefuseesgenere = Number(document.getElementById("nombredefusees").value);
+	lenbdefusees = nbredefuseesgenere;
 
-
-lenbdefusees = nbredefuseesgenere;
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","rayon"+countt.toString()+"");
-
-	var divchampsr = document.getElementById('champs_a_remplir');
-
-
-	divchampsr.appendChild(span);
-    if(countt==1){
-	var newlabel = document.createElement("Label");
-//	newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
-	newlabel.setAttribute("id","ctreastre");
-    newlabel.setAttribute("title","");											 
-	newlabel.setAttribute("for","r01");
-	newlabel.innerHTML = "r<sub>0</sub> (m) =";
-	span.appendChild(newlabel);}
-
-
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","r0"+countt.toString()+"");
-	newinput.setAttribute("value","14455");
-	newinput.setAttribute("align","left");
-
-	newinput.setAttribute("maxlength","10");
-
-	newinput.setAttribute("type","text");
-
-	newinput.setAttribute("size","10");
-
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
-	span.appendChild(newinput);
-}
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","rayon"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+		//	newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
+			newlabel.setAttribute("id","ctreastre");
+			newlabel.setAttribute("title","");											 
+			newlabel.setAttribute("for","r01");
+			newlabel.innerHTML = "r<sub>0</sub> (m) =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","r0"+countt.toString()+"");
+		newinput.setAttribute("value","14455");
+		newinput.setAttribute("align","left");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","10");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
+	}
 
 
 
@@ -186,30 +172,22 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	var span = document.createElement("span");
     span.setAttribute("id","vitessep"+countt.toString()+"");
 	var divchampsr = document.getElementById('champs_a_remplir');
-
-
 	divchampsr.appendChild(span);
     if(countt==1){
-	var newlabel = document.createElement("Label");
-    newlabel.setAttribute("id","vitesseuphilabel");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","vphi1");
-    newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
-	span.appendChild(newlabel);}
-
-
+		var newlabel = document.createElement("Label");
+		newlabel.setAttribute("id","vitesseuphilabel");
+		newlabel.setAttribute("title","");
+		newlabel.setAttribute("for","vphi1");
+		newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
+		span.appendChild(newlabel);
+	}
 	var newinput = document.createElement("Input");
 	newinput.setAttribute("id","vphi"+countt.toString()+"");
 	newinput.setAttribute("value","-3e8");
-
 	newinput.setAttribute("maxlength","10");
-
 	newinput.setAttribute("type","text");
-
 	newinput.setAttribute("size","10");
-
 	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
 	span.appendChild(newinput);
 }
 
@@ -301,7 +279,8 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 				<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
 				<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
 				<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>`;
+				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
+				<th id="t_total`+countt.toString()+`" class="tg-aicv"></th>`;
 
 	 var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
@@ -311,7 +290,8 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 				<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
 				<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
 				<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>`
+				<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`;
 
 }
 
@@ -380,71 +360,55 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 
 function initialisation(compteur){
-  c = 299792458;
-  G = 6.6742 * Math.pow(10, -11);
-  M = Number(document.getElementById("M").value);
-  r_phy = Number(document.getElementById("r_phy").value);
-  m = G * M / Math.pow(c, 2); 
-  rs=2*m;
+	c = 299792458;
+	G = 6.6742 * Math.pow(10, -11);
+	M = Number(document.getElementById("M").value);
+	r_phy = Number(document.getElementById("r_phy").value);
+	m = G * M / Math.pow(c, 2); 
+	rs=2*m;
+	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
+	vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
+	vr = Number(document.getElementById("vr"+compteur.toString()).value);
+	L = vphi * r0 / c;
+	E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0)* Math.pow(L / r0, 2));
 
+	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
+	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
+	document.getElementById("m").innerHTML = rs.toExponential(3);
+
+	scale_factor = Number(document.getElementById("scalefactor").value);
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
+	mobile["pointsvg"]="pointg"+compteur.toString();
+	mobile["graphesvg"]="#grsvg_"+compteur.toString();
+	mobile["onestarrete"]=0;
+	mobile["peuxonrelancer"]=true;
+
+
+	/* Calcul de rmax */
+	calcul_rmax(L,E,vr,r0,1) 
+
+	mobile["rmax"]=rmax; //mobile.rmax
+	mobile["blups"]=0;
+	rmaxjson[compteur]=rmax;
+	mobilefactor[compteur]=scale_factor;
+	r0o2[compteur] = r0;
+	mobile["pause"]=true; //mobile.pause
+	mobile["debut"]=true; //mobile.debut
+	couleurs = generateurCouleur();
+	mobile["couleur"]="rgb("+couleurs[0]+", "+couleurs[1]+", "+couleurs[2]+")";//mobile.couleur
+	mobile["red"]=couleurs[0];
+	mobile["green"]=couleurs[1];
+	mobile["blue"]=couleurs[2];
+	//calcul de grav
+	g=(G*M)/(Math.pow(r_phy,2)*9.81);
+	if(r_phy==0){
+		document.getElementById("g").innerHTML=" ";
+	}
+	else{
+		document.getElementById("g").innerHTML=g.toExponential(2);
+	}
   
-  r0 = Number(document.getElementById("r0"+compteur.toString()).value);
-  vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
-  vr = Number(document.getElementById("vr"+compteur.toString()).value);
-  L = vphi * r0 / c;
-  E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0)* Math.pow(L / r0, 2));
-
-  document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
-  document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
-  
-  document.getElementById("m").innerHTML = rs.toExponential(3);
-
-  scale_factor = Number(document.getElementById("scalefactor").value);
-  mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
-
-  mobile["pointsvg"]="pointg"+compteur.toString();
-  mobile["graphesvg"]="#grsvg_"+compteur.toString();
-
-  mobile["onestarrete"]=0;
-  mobile["peuxonrelancer"]=true;
-
-
- /* Calcul de rmax */
-  calcul_rmax(L,E,vr,r0,1) 
-
-  mobile["rmax"]=rmax; //mobile.rmax
-
-  mobile["blups"]=0;
-
-
-  rmaxjson[compteur]=rmax;
-
-  mobilefactor[compteur]=scale_factor;
-  r0o2[compteur] = r0;
-
-  mobile["pause"]=true; //mobile.pause
-  mobile["debut"]=true; //mobile.debut
-  
-  couleurs = generateurCouleur();
-  mobile["couleur"]="rgb("+couleurs[0]+", "+couleurs[1]+", "+couleurs[2]+")";//mobile.couleur
-  mobile["red"]=couleurs[0];
-  mobile["green"]=couleurs[1];
-  mobile["blue"]=couleurs[2];
-
-
-  //calcul de grav
-  g=(G*M)/(Math.pow(r_phy,2)*9.81);
-
-
-  if(r_phy==0){
-
-    document.getElementById("g").innerHTML=" ";
-  }else{
-
-  document.getElementById("g").innerHTML=g.toExponential(2);
-  }
-  
-  return mobile;
+  	return mobile;
 }  // fin fonction initialisation
 
 
@@ -452,97 +416,92 @@ function initialisation(compteur){
 
 function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs ne sont pas donnée dans l'une des cases
   
-  r_phy = document.getElementById("r_phy").value;
-  M = document.getElementById("M").value;
-
-  var onebolean=false;
-  var twobolean=false;
-  var threebolean=false;
-
-
-  var sddsdsddss = Number(document.getElementById("nombredefusees").value);
-  for (countetttt = 1; countetttt <= sddsdsddss; countetttt += 1) {
-         var r0verifnbr = Number(document.getElementById("r0"+countetttt.toString()+"").value); 
-		 var vphiverifnbr = Number(document.getElementById("vphi"+countetttt.toString()+"").value);
-		 var vrverifnbr = Number(document.getElementById("vr"+countetttt.toString()+"").value);
-         if(isNaN(r0verifnbr)){
-             onebolean=true;
-         }
-         if(isNaN(vphiverifnbr)){
-             twobolean=true;
-         }
-         if(isNaN(vrverifnbr)){
-             threebolean=true;
-         }
-  }
+	r_phy = document.getElementById("r_phy").value;
+	M = document.getElementById("M").value;
+	var onebolean=false;
+	var twobolean=false;
+	var threebolean=false;
 
 
+	var sddsdsddss = Number(document.getElementById("nombredefusees").value);
+	for (countetttt = 1; countetttt <= sddsdsddss; countetttt += 1) {
+			var r0verifnbr = Number(document.getElementById("r0"+countetttt.toString()+"").value); 
+			var vphiverifnbr = Number(document.getElementById("vphi"+countetttt.toString()+"").value);
+			var vrverifnbr = Number(document.getElementById("vr"+countetttt.toString()+"").value);
+			if(isNaN(r0verifnbr)){
+				onebolean=true;
+			}
+			if(isNaN(vphiverifnbr)){
+				twobolean=true;
+			}
+			if(isNaN(vrverifnbr)){
+				threebolean=true;
+			}
+	}
 
-  if (onebolean){
-    alert ("Veuillez vérifier vos saisie en r0");}
+	if (onebolean){
+		alert ("Veuillez vérifier vos saisie en r0");}
 
-  if (twobolean){
-    alert ("Veuillez vérifier vos saisie en Vphi");
-  }
-  if (threebolean){
-    alert ("Veuillez vérifier vos saisie en Vr");
-  }
-   if (isNaN(r_phy)){
-    alert ("Veuillez vérifier vos saisie en r physique");
-  }
-  if (isNaN(M)){
-    alert ("Veuillez vérifier vos saisie en M");
-																
-  }
+	if (twobolean){
+		alert ("Veuillez vérifier vos saisie en Vphi");
+	}
+	if (threebolean){
+		alert ("Veuillez vérifier vos saisie en Vr");
+	}
+	if (isNaN(r_phy)){
+		alert ("Veuillez vérifier vos saisie en r physique");
+	}
+	if (isNaN(M)){
+		alert ("Veuillez vérifier vos saisie en M");																
+	}
   
 }
 
 //pas sur qu'il y ait besoin que ceci soit ici, je l'ai mis car il y avait changerBouttonObs avant ici
 // actualisation bouton observateur quand pression
 function pressionBouttonObservateur() {
-  if (document.getElementById("r3").className == "myButton2") {
-    document.getElementById("r3").className = "myButton";
-    document.getElementById("r4").className = "myButton2";
-  }
+	if (document.getElementById("r3").className == "myButton2") {
+		document.getElementById("r3").className = "myButton";
+		document.getElementById("r4").className = "myButton2";
+ 	}	
 }
 
 // actualisation bouton mobile quand pression
 function pressionBouttonMobile() {
-  if (document.getElementById("r4").className == "myButton2") {
-    document.getElementById("r4").className = "myButton";
-    document.getElementById("r3").className = "myButton2";
-  }
+	if (document.getElementById("r4").className == "myButton2") {
+		document.getElementById("r4").className = "myButton";
+		document.getElementById("r3").className = "myButton2";
+	}
 }
 
 function trajectoire(compteur,mobile) {
-  texte = o_recupereJson();
-  if (mobile.pause || mobile.debut) {
-       r0setcouleur = document.getElementById("r0"+compteur.toString());
-    Ycouleur = 0.2126*mobile.red + 0.7152*mobile.green + 0.0722*mobile.blue
-    if(Ycouleur<128){r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:white");}
-    else{r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:black");}
+	texte = o_recupereJson();
+	if (mobile.pause || mobile.debut) {
+		r0setcouleur = document.getElementById("r0"+compteur.toString());
+		Ycouleur = 0.2126*mobile.red + 0.7152*mobile.green + 0.0722*mobile.blue
+		if(Ycouleur<128){r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:white");}
+		else{r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:black");}
  
-	document.getElementById("tg2").style.display = "table";													   
-    document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
-    // pour rendre visible le panneau de contrôle pause et vitesse de la simu
-    document.getElementById("panneau_mobile").style.visibility='visible';
-  //Pour rendre visible le paneau de zoom.
-    document.getElementById("panneau_mobile2").style.visibility='visible';
-    estUnMobile();
-    // permet de griser les cases de saisie pour éviter de changer les valeurs pendant la simulation
-    // conseillé car toutes les exceptions ne sont pas gérées
-    document.getElementById('M').disabled = true;
-    document.getElementById('r_phy').disabled = true;
-    document.getElementById('nombredefusees').disabled = true;
+		document.getElementById("tg2").style.display = "table";													   
+		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
+		// pour rendre visible le panneau de contrôle pause et vitesse de la simu
+		document.getElementById("panneau_mobile").style.visibility='visible';
+	//Pour rendre visible le paneau de zoom.
+		document.getElementById("panneau_mobile2").style.visibility='visible';
+		estUnMobile();
+		// permet de griser les cases de saisie pour éviter de changer les valeurs pendant la simulation
+		// conseillé car toutes les exceptions ne sont pas gérées
+		document.getElementById('M').disabled = true;
+		document.getElementById('r_phy').disabled = true;
+		document.getElementById('nombredefusees').disabled = true;
 
-	var blyo = Number(document.getElementById("nombredefusees").value);
+		var blyo = Number(document.getElementById("nombredefusees").value);
 
-
-	for (countt = 1; countt <= blyo; countt += 1) {
-		document.getElementById('r0'+countt.toString()+'').disabled = true;
-		document.getElementById('vphi'+countt.toString()+'').disabled = true;
-		document.getElementById('vr'+countt.toString()+'').disabled = true;
-    }
+		for (countt = 1; countt <= blyo; countt += 1) {
+			document.getElementById('r0'+countt.toString()+'').disabled = true;
+			document.getElementById('vphi'+countt.toString()+'').disabled = true;
+			document.getElementById('vr'+countt.toString()+'').disabled = true;
+		}
 
 
 
@@ -554,32 +513,24 @@ function trajectoire(compteur,mobile) {
     document.getElementById('trace_present').value="1";
     mobile.pause = false;
     mobile.debut = false;
-
     //--------------------------------------------------------------------------------------//
     //Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre, et aussi dans celui de l'observateur//
-
-
-    phi = 0.0;
-    mobile["phi"]=phi;//mobile.phi
+	phi = 0.0;
+	mobile["phi"]=phi;//mobile.phi
 	phi_obs=0;
-    mobile["phi_obs"]=phi_obs;//mobile.phi_obs
-
-
-    temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
+	mobile["phi_obs"]=phi_obs;//mobile.phi_obs
+	temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
 	mobile["temps_chute_libre"]=temps_chute_libre;//mobile.temps_chute_libre
-
-   
-
-    A_init = mobile.vr;
-    r_init = mobile.r0;  
-
-   var nbredefusees = Number(document.getElementById("nombredefusees").value);
-   if (nbredefusees==1) {
-   if(ifUneFois2){
-   maximum=r0o2[1];
-   cle = 1;
-   ifUneFois2=false;
-   }}
+	A_init = mobile.vr;
+	r_init = mobile.r0;  
+	var nbredefusees = Number(document.getElementById("nombredefusees").value);
+	if (nbredefusees==1) {
+		if(ifUneFois2){
+			maximum=r0o2[1];
+			cle = 1;
+			ifUneFois2=false;
+		}
+	}
    
    
    if (nbredefusees>=2) {
@@ -613,17 +564,14 @@ function trajectoire(compteur,mobile) {
 	A_init_obs = mobile.vr*(1-rs/mobile.r0)/mobile.E; 
     A_part_obs=A_init_obs; 
 	mobile["A_part_obs"]=A_part_obs; //mobile.A_part_obs
-	vrobs=A_init_obs; vphiobs=mobile.vphi*(1-rs/mobile.r0)/mobile.E;
-	 
+	vrobs=A_init_obs; 
+	vphiobs=mobile.vphi*(1-rs/mobile.r0)/mobile.E;
     r_init_obs = mobile.r0; 
     r_part_obs=r_init_obs;
     mobile["r_part_obs"]=r_part_obs; //mobile.r_part_obs
 	
-	
     data1 = [];
     data2 = [];
-
-
 
     temps_particule = 0;
     mobile["temps_particule"]=temps_particule;
@@ -632,25 +580,23 @@ function trajectoire(compteur,mobile) {
 
     // permet de gérer les touches du clavier pour certaines actions
     clavierEvenement();
-	 element2=document.getElementById('traject_type2');
-	 
+	element2=document.getElementById('traject_type2');
 
-		if (element2.value != "mobile"){
-	dtau=mobile.r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
-    mobile["dtau"]=dtau;//mobile.dtau
-     if(mobile.dtau>mobile.temps_chute_libre/500.){mobile.dtau= mobile.temps_chute_libre/500.;} 
-	}else{ //dtau=r0/(Math.sqrt(vr*vr+vphi*vphi)+1e-20)/1000;
-     dtau= 1e-3*mobile.r0/ (Math.abs(mobile.vr)+Math.abs(mobile.vphi)+1) ;
-     mobile["dtau"]=dtau;}
-	//}
-	
+	if (element2.value != "mobile"){
+		dtau=mobile.r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
+		mobile["dtau"]=dtau;//mobile.dtau
+    	if(mobile.dtau>mobile.temps_chute_libre/500.){mobile.dtau= mobile.temps_chute_libre/500.;} 
+	}
+	else{
+		dtau= 1e-3*mobile.r0/ (Math.abs(mobile.vr)+Math.abs(mobile.vphi)+1) ;
+		mobile["dtau"]=dtau;
+	}
 
     x1part = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi) / mobile.rmax;
     y1part = mobilefactor[compteur] * mobile.r0 * Math.sin(mobile.phi) / mobile.rmax;
     x1obs = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi_obs) / mobile.rmax;
     y1obs = mobilefactor[compteur] * mobile.r0 * Math.sin(mobile.phi_obs) / mobile.rmax;
 
- 
     canvas = document.getElementById("myCanvas");
     if (!canvas) {
       alert(texte.pages_trajectoire.impossible_canvas);
@@ -663,28 +609,22 @@ function trajectoire(compteur,mobile) {
       return;
     }
 
-
-
     mobile["canvas22"]= document.getElementById("myCanvasBoule"+compteur.toString());
-
-
     mobile["context22"]=mobile["canvas22"].getContext("2d");
-
 
     //pr majFondFixe
 	vphiblab = Number(document.getElementById("vphi1").value);
     vrblab = Number(document.getElementById("vr1").value);
 
     if (nbredefusees>=2) {
-    vphi2i = Number(document.getElementById("vphi2").value);
-    vr2i = Number(document.getElementById("vr2").value);}
+		vphi2i = Number(document.getElementById("vphi2").value);
+		vr2i = Number(document.getElementById("vr2").value);
+	}
 
     majFondFixe();	
 	majFondFixe44(mobile);	
     diametre_particule = DIAMETRE_PART;
-
     document.getElementById("bloc_resultats").style.display= "block";
-
 	//Pour ouvrir le pop up qui nous si on veut afficher le graphe de potentiel ou pas
 	function CentrerPopPotentiel() {
 	document.getElementById("bloc_resultats").style.display= "block";
@@ -692,17 +632,16 @@ function trajectoire(compteur,mobile) {
 			var node = document.getElementById("grsvg_"+countt.toString()+"");
 			console.log("Le film Hackers de 1995 est vraiment bien",countt.toString());
             if(node){
-			if (node.parentNode){
-			node.parentNode.removeChild(node);
-				}} 		
+				if (node.parentNode){
+					node.parentNode.removeChild(node);
+				}
+			}
 		}
-    
 	}
 
 	if (document.getElementById("toggle").checked==false) {
 	CentrerPopPotentiel();
 	}
-
 
     // La position de départ est le milieu de la fenêtre d'affichage auquel on ajoute la position initiale de la particule.
     posX1 = (canvas.width / 2.0) + x1part;
@@ -731,26 +670,17 @@ function trajectoire(compteur,mobile) {
     mobile["Dtau2"]=Dtau2;//mobile.Dtau2
 
     document.getElementById('bouton_pause').addEventListener('click', function() {
-      pausee(compteur,mobile,mobilefactor);
+    	pausee(compteur,mobile,mobilefactor);
     }, false);
 
 
     document.getElementById('plusvite').addEventListener('click', function() {
-      if (mobile.dtau >= mobile.Dtau1) {
-        mobile.dtau = mobile.Dtau1;
-      }
-	  else {
-        mobile.dtau += mobile.dtau;
-        clicks += 1;
-      }
+		mobile=bouttons.vitesse(mobile,true);
     }, false);
 
     document.getElementById('moinsvite').addEventListener('click', function() {
-        mobile.dtau /= 2;
-        clicks -= 1;
+		mobile=bouttons.vitess(mobile,false)
     }, false);
-
-
 
     document.getElementById('enregistrer2').addEventListener('click', function() {
 		element2z=document.getElementById('traject_type2');
@@ -845,131 +775,118 @@ function trajectoire(compteur,mobile) {
 	} 	
 
     window.addEventListener('resize', function() {
-           //console.log(compteur,"on a resize hay");
-        $('#grsvg_'+compteur.toString()).empty();
-	    data1=[];
+		//console.log(compteur,"on a resize hay");
+		$('#grsvg_'+compteur.toString()).empty();
+		data1=[];
 		data2=[];
 
 
 		if (element2.value != "mobile"){	
-		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-		  V = Vr_obs(mobile.E,mobile.L,r);
-		  data1.push({date: r,close: V});
-		}
+			for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+				V = Vr_obs(mobile.E,mobile.L,r);
+				data1.push({date: r,close: V});
+			}	
 
-		V = Vr_obs(mobile.E,mobile.L,mobile.r0);
-		data2.push({date: mobile.r0,close: V});
-		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
-		
-		}else{
-		if(rmini==rs){
-			rmini=rmini/2;
-		}		
-
-		for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
-		  V = Vr_mob(mobile.L,r);
-		  data1.push({date: r,close: V});
+			V = Vr_obs(mobile.E,mobile.L,mobile.r0);
+			data2.push({date: mobile.r0,close: V});
+			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+			
 		}
-	  
-		V = Vr_mob(mobile.L,mobile.r0);
-		data2.push({date: mobile.r0,close: V}); 
-		mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
+		else{
+			if(rmini==rs){
+				rmini=rmini/2;
+			}			
+			for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
+				V = Vr_mob(mobile.L,r);
+				data1.push({date: r,close: V});
+			}
+			V = Vr_mob(mobile.L,mobile.r0);
+			data2.push({date: mobile.r0,close: V}); 
+			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 		} 
-        
-   
     }, false);
 
 											  
-  } else {
-    //myInterval = setInterval(animate, 10 / 6);
-    mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10 / 6);
-  }   //  fin du if(pause ....
+  	} 
+	else {
+		//myInterval = setInterval(animate, 10 / 6);
+		mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10 / 6);
+	}   //  fin du if(pause ....
 
-  document.getElementById('start').addEventListener('click', function() {
-    rafraichir(); }, false);
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_stop;
+	document.getElementById('start').addEventListener('click', function() {rafraichir(); }, false);
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_stop;
 }    // fin fonction trajectoire
 
 // tracé de la particule
 
 
 function animate(compteur,mobile,mobilefactor) {
- mobile.onestarrete=0;
- estUnMobile();
-  element = document.getElementById('traject_type');
-  choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,maximum);
-  var isrebond = document.getElementById("boutton_ammorti").value;
-
-    element2=document.getElementById('traject_type2');													 
+	mobile.onestarrete=0;
+	estUnMobile();
+	element = document.getElementById('traject_type');
+	choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,maximum);
+	var isrebond = document.getElementById("boutton_ammorti").value;
+	element2=document.getElementById('traject_type2');													 
 
   if (mobile.r0 != 0.0) {
 
-  mobile.phi = mobile.phi + c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-  varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
-  mobile.phi_obs=mobile.phi_obs+varphi_obs;							 
+	mobile.phi = mobile.phi + c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+	varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+	mobile.phi_obs=mobile.phi_obs+varphi_obs;							 
 
 	if (element2.value == "mobile"){
-	
-	val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
-    mobile.r_part = val[0];
-    mobile.A_part = val[1];
-	
-	vr_2=mobile.A_part;
-	vp_2=c*mobile.L/mobile.r_part;
+		val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
+		mobile.r_part = val[0];
+		mobile.A_part = val[1];
+		vr_2=mobile.A_part;
+		vp_2=c*mobile.L/mobile.r_part;
 
-	}else{
-		
-	val_obs = rungekutta_obs(mobile.E,mobile.L,mobile.dtau, mobile.r_part_obs, mobile.A_part_obs);
-    mobile.r_part_obs = val_obs[0];
-	mobile.A_part_obs = val_obs[1];
-	if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
-    vr_2_obs=mobile.A_part_obs;
-	vp_2_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
+	}
+	else{
+		val_obs = rungekutta_obs(mobile.E,mobile.L,mobile.dtau, mobile.r_part_obs, mobile.A_part_obs);
+		mobile.r_part_obs = val_obs[0];
+		mobile.A_part_obs = val_obs[1];
+		if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
+		vr_2_obs=mobile.A_part_obs;
+		vp_2_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
 	}
 
 
     //On ne devrait pas mettre a jour les positions x et y ici? au lieu de plus loin
     //Tracé de la particule
 
-
     if (element2.value != "mobile"){
-      if (mobile.r_part_obs >= rs){
-    context.beginPath();
-    context.fillStyle = mobile.couleur;
-    context.rect(mobile.position.posX2, mobile.position.posY2, 1, 1);
-    context.lineWidth = "1";
-    context.fill();
-
-    majFondFixe44(mobile);
-    mobile["context22"].beginPath();
-    mobile["context22"].fillStyle = COULEUR_BLEU;
-    mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
-    mobile["context22"].lineWidth = "1";
-    mobile["context22"].fill();
+		if (mobile.r_part_obs >= rs){
+			context.beginPath();
+			context.fillStyle = mobile.couleur;
+			context.rect(mobile.position.posX2, mobile.position.posY2, 1, 1);
+			context.lineWidth = "1";
+			context.fill();
+			majFondFixe44(mobile);
+			mobile["context22"].beginPath();
+			mobile["context22"].fillStyle = COULEUR_BLEU;
+			mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
+			mobile["context22"].lineWidth = "1";
+			mobile["context22"].fill();
+    	}
     }
-    }else{
-    context.beginPath();
-    context.fillStyle = mobile.couleur;
-    context.rect(mobile.positionspatio.posX1, mobile.positionspatio.posY1, 1, 1);
-    context.lineWidth = "1";
-    context.fill();
-
-    majFondFixe44(mobile);
-    mobile["context22"].beginPath();
-    mobile["context22"].fillStyle = COULEUR_BLEU;
-    mobile["context22"].arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
-    mobile["context22"].lineWidth = "1";
-    mobile["context22"].fill();
+	else{
+		context.beginPath();
+		context.fillStyle = mobile.couleur;
+		context.rect(mobile.positionspatio.posX1, mobile.positionspatio.posY1, 1, 1);
+		context.lineWidth = "1";
+		context.fill();
+		majFondFixe44(mobile);
+		mobile["context22"].beginPath();
+		mobile["context22"].fillStyle = COULEUR_BLEU;
+		mobile["context22"].arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
+		mobile["context22"].lineWidth = "1";
+		mobile["context22"].fill();
 
     }
 
 
-
-
-
-
-
-    // conditions pour le rebond
+// conditions pour le rebond
 
 if(element2.value != "mobile"){
     if (mobile.r_part_obs <= r_phy ) {
@@ -987,46 +904,37 @@ if(element2.value != "mobile"){
 	}
 	
 }else{	
-	    if (mobile.r_part <= r_phy || mobile.r_part==0) {
-      if (isrebond == 1 && r_phy > 0) {
-   
-        mobile.A_part = -mobile.A_part ;
-  
-        }	
-
-	if(isrebond == 0 && r_phy!=0 && mobile.r_part <= r_phy){
-      //alert(texte.pages_trajectoire.particule_ecrasee);
-      mobile.onestarrete=1;
-      arret(mobile);
-      mobile.peuxonrelancer=false;
-	}	
-	      
+	if (mobile.r_part <= r_phy || mobile.r_part==0) {
+		if (isrebond == 1 && r_phy > 0) {
+			mobile.A_part = -mobile.A_part ;
+		}	
+		if(isrebond == 0 && r_phy!=0 && mobile.r_part <= r_phy){
+			//alert(texte.pages_trajectoire.particule_ecrasee);
+			mobile.onestarrete=1;
+			arret(mobile);
+			mobile.peuxonrelancer=false;
+		}	     
     }
 }	
-	
-
 	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
     mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
 	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
     mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);	
 	if (element2.value != "mobile"){	
-	V = Vr_obs(mobile.E,mobile.L,mobile.r_part_obs);
-    
-    data2 = [];
-    data2.push({date: mobile.r_part_obs, close: V });
-    if(mobile.point !== undefined){
-		update_graphique_2(mobile.point,data2,mobile);
+		V = Vr_obs(mobile.E,mobile.L,mobile.r_part_obs);
+		data2 = [];
+		data2.push({date: mobile.r_part_obs, close: V });
+		if(mobile.point !== undefined){
+			update_graphique_2(mobile.point,data2,mobile);
+		}
+
 	}
-
-	}else{
-	V = Vr_mob(mobile.L,mobile.r_part);
-
-    data2 = [];
-    data2.push({date: mobile.r_part, close: V });
-    if(mobile.point !== undefined){update_graphique_2(mobile.point,data2,mobile);}	
-	}	
-
-	
+	else{
+		V = Vr_mob(mobile.L,mobile.r_part);
+		data2 = [];
+		data2.push({date: mobile.r_part, close: V });
+		if(mobile.point !== undefined){update_graphique_2(mobile.point,data2,mobile);}	
+	}
 	if (element2.value != "mobile"){
 		gm = derivee_seconde_Schwarzchild_photon_obs(mobile.E,mobile.L,mobile.r_part_obs);
 		gmp = derivee_seconde_Schwarzchild_photon_obs(mobile.E,mobile.L,mobile.r_part_obs + 1);
@@ -1040,86 +948,55 @@ if(element2.value != "mobile"){
     if(mobile.r_part<0){
       mobile.r_part=0;
     }
-
     function testvaleur(x) {
-      if (isNaN(x)) {
-        return 'Not a Number!';
-      }
-      return x ;
-    }
-
-    
+		if (isNaN(x)) {
+			return 'Not a Number!';
+		}
+		return x ;
+	} 
  //  Les différents "temps" et autres valeurs à afficher
 	if (element2.value != "mobile"){
-		if(mobile.r_part_obs >= rs)   {
+		if(mobile.r_part_obs >= rs){
 			mobile.temps_particule =0;
 			document.getElementById("ga"+compteur.toString()).innerHTML = '';
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
-			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2_obs.toExponential(3); 
-      if(mobile.r_part_obs.toExponential(3)!=rs.toExponential(3)){
-        document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); }
-      else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);} 
-	  }  																										  
-		
-		}else{
-			
+			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2_obs.toExponential(3);
+			if(mobile.r_part_obs.toExponential(3)!=rs.toExponential(3)){
+					document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); 
+			}
+			else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);} 
+	 	}  																										  
+	}
+	else{	
 		if (mobile.r_part>0){
 			mobile.temps_particule+=0;
 			document.getElementById("ga"+compteur.toString()).innerHTML = '';
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_2.toExponential(3);
             document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2.toExponential(3);
+			vtotal=calculs.vitess(mobile,rs,true,vr_2,vp_2);
+			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 		    document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 		  
-			} else {
-				mobile.r_part=0;
-				document.getElementById("ga"+compteur.toString()).innerHTML = '';
-				document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-				
-				if(mobile.L!=0) { document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = 1/0;
-								  document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=1/0;  }				
-				 
-			
-    /*  if(mobile.vphi!=0){
-        if(document.getElementById("to"+compteur.toString()).innerHTML!=1/0){
-          
-          document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_2.toExponential(3);
-          document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2.toExponential(3);
-        }
-        else{
-          document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = 1/0;
-          document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = 1/0;}
-      document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
-      document.getElementById("ga"+compteur.toString()).innerHTML = '';
-      document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-      }
-      else if(mobile.vphi==0){
-        document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
-        document.getElementById("ga"+compteur.toString()).innerHTML = '';
-        document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-        document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =  vr_2.toExponential(3);
-        if(document.getElementById("to"+compteur.toString()).innerHTML!=1/0){
-          
-         
-          document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2.toExponential(3);
-        }
-        else{
-          
-          document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = 0;}
-      } */
-
-			
-      }  
-		}
+		} 
+		else {
+			mobile.r_part=0;
+			document.getElementById("ga"+compteur.toString()).innerHTML = '';
+			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
+			if(mobile.L!=0) { 
+				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = 1/0;
+				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=1/0;  
+			}				
+      	}  
+	}
 	
-
 	if (element2.value != "mobile"){
 		mobile.temps_observateur += mobile.dtau;
-    
 		document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);	
     
-	}else{
+	}
+	else{
 		if(mobile.r_part > rs*1.0001) {
 			mobile.temps_observateur+=mobile.E/(1-rs/mobile.r_part)*mobile.dtau; 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
@@ -1129,9 +1006,7 @@ if(element2.value != "mobile"){
 		}
 		
 	}
-	
-
-  }  //fin r0!=0
+  	}  //fin r0!=0
 }  // fin fonction animate
 
 // Expression du potentiel divisé par c^2

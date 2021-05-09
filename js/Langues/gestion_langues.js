@@ -522,82 +522,81 @@ function texteUniversMonofluides() {
 }
 
 function texteUniversMonofluidesNoire() {
-  var texte = o_recupereJson();
-  document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
-  document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
-  document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
-  document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
-  document.getElementById("txt_titre").innerHTML = texte.page_univers_monofluides_noire.titre;
-  document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
-  document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
-  document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
-  document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
-  document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
-  document.getElementById("txt_choix").innerHTML = texte.page_univers_monofluides_noire.mod_choix;
-  document.getElementById("txt_einstein").innerHTML = texte.page_univers_monofluides_noire.mod_einstein;
-  document.getElementById("txt_weinberg").innerHTML = texte.page_univers_monofluides_noire.mod_weinberg;
-  document.getElementById("txt_sitter").innerHTML = texte.page_univers_monofluides_noire.mod_sitter;
-  document.getElementById("txt_courbure").innerHTML = texte.page_univers_monofluides_noire.mod_courbure;
-  document.getElementById("retour").value = texte.page_univers_monofluides_noire.bouton_retour;
-}
+	var texte = o_recupereJson();
+	document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
+	document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
+	document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
+	document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
+	document.getElementById("txt_titre").innerHTML = texte.page_univers_monofluides_noire.titre;
+	document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
+	document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
+	document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
+	document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
+	document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
+	document.getElementById("txt_choix").innerHTML = texte.page_univers_monofluides_noire.mod_choix;
+	document.getElementById("txt_einstein").innerHTML = texte.page_univers_monofluides_noire.mod_einstein;
+	document.getElementById("txt_weinberg").innerHTML = texte.page_univers_monofluides_noire.mod_weinberg;
+	document.getElementById("txt_sitter").innerHTML = texte.page_univers_monofluides_noire.mod_sitter;
+	document.getElementById("txt_courbure").innerHTML = texte.page_univers_monofluides_noire.mod_courbure;
+	document.getElementById("retour").value = texte.page_univers_monofluides_noire.bouton_retour;
+	}
 
 function texteTrajectoireMassive(nbrderockets) {
-  var texte = o_recupereJson();
-  
+	var texte = o_recupereJson();
 	//document.getElementById("txt_explosion").title = texte.pages_trajectoire.txt_explosion;
-  
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive.titre;
-  document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_massive.rayon_physique;																				   
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("rebondd").innerHTML = texte.page_trajectoire_massive.rebond;
-
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-  document.getElementById("amortissement").innerHTML = texte.page_trajectoire_massive.amortissement;
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive.titre;
+	document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_massive.rayon_physique;																				   
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("rebondd").innerHTML = texte.page_trajectoire_massive.rebond;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	document.getElementById("amortissement").innerHTML = texte.page_trajectoire_massive.amortissement;
 	for (count = 1; count <= nbrderockets; count += 1) {
 		document.getElementById("temps_ecoule"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_ecoule;
-        document.getElementById("acceleration"+count.toString()+"").innerHTML = "Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
+		document.getElementById("acceleration"+count.toString()+"").innerHTML = "Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
 		document.getElementById("temps_obs"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_obs;
-        document.getElementById("decal_spect"+count.toString()+"").innerHTML = texte.pages_trajectoire.decal_spect;
+		document.getElementById("decal_spect"+count.toString()+"").innerHTML = texte.pages_trajectoire.decal_spect;
+		document.getElementById("v_total"+count.toString()+"").innerHTML = texte.pages_trajectoire.v_total;
+
 	}
-  var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
-  if(canvaswidthheightt=="750"){
-  document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
-  
+	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
+	if(canvaswidthheightt=="750"){
+		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
+	
 }
   
 
 
 
 function texteTrajectoireMassiveEnGrand() {  // ne sert pas!!!!!!!!!!!!!
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive.titre;
-  document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_massive.rayon_physique;																			   
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("rebondd").innerHTML = texte.page_trajectoire_massive.rebond;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
-  //document.getElementById("amortissement").innerHTML = texte.page_trajectoire_massive.amortissement;
-  document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
-  document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-  document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
-  document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive.titre;
+	document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_massive.rayon_physique;																			   
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("rebondd").innerHTML = texte.page_trajectoire_massive.rebond;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
+	//document.getElementById("amortissement").innerHTML = texte.page_trajectoire_massive.amortissement;
+	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
+	document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
+  	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
 }
 
 
@@ -647,12 +646,13 @@ function texteTrajectoireMassiveNonBar(nbrderockets) {
  
 	for (count = 1; count <= nbrderockets; count += 1) {
 		document.getElementById("temps_ecoule"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_ecoule;
-        document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
+		document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
 		document.getElementById("temps_obs"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_obs;
-     document.getElementById("decal_spect"+count.toString()+"").innerHTML = texte.pages_trajectoire.decal_spect;
+		document.getElementById("decal_spect"+count.toString()+"").innerHTML = texte.pages_trajectoire.decal_spect;
+		document.getElementById("v_total"+count.toString()+"").innerHTML = texte.pages_trajectoire.v_total;
 
 	}
-  var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
+	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
   if(canvaswidthheightt=="750"){
   document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
 
@@ -689,84 +689,84 @@ function texteTrajectoirePhotonNonBar(nbrderockets) {
 
 
 function texteTrajectoireMassiveKerr() {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive_kerr.titre;
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
-  document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
-  document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
-  document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-  document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
-  document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive_kerr.titre;
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
+	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
+	document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
+	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
+	document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 }
 
 
 
 function texteTrajectoireMassiveKerrGrand() {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive_kerr.titre;
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
-  document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
-  document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
-  document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-  document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive_kerr.titre;
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
+	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
+	document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
+	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
 }
 function texteTrajectoirePhotonKerr() {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon_kerr.titre;
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon;
-  document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
-  document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
-  document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-  document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon_kerr.titre;
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon;
+	document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
+	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
+	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
   
 }
 
 function texteTrajectoirePhotonKerrGrand() {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon_kerr.titre;
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon;
-  document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
-  document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
-  document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon_kerr.titre;
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon;
+	document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
+	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
+	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
   
 }
