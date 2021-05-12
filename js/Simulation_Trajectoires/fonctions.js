@@ -3,15 +3,28 @@
 
 
 var calculs = calculs || (function() {
-    const g= 6.6742*10**(-11);
     const c=299792458;
     return {
-        vitess : function (mobile,rs,photon,vr,vp) {
+        ///Calcule la vitess réel en m/s pour la métrique de Schwarzchild
+        vitessSc : function (E,r,rs,vr,vphi,ref) {
             var vtot=0;
-            vtot=(1-(rs/mobile.r_part))**2;
-            vtot=1/vtot;
-            vtot*=(vr**2+(1-(rs/mobile.r_part))*Math.pow(mobile.r_part*vp,2));
-            if(photon != true){
+            if(ref){ // calcule dans le référentiel du spationnaute 
+                grr=1/(1-(rs/r)); // élement de métrique liée a dr
+                gtt=(c**2)*(1-(rs/r)); //élement de métrique liée a dt
+                dt=E/(1-(rs/r)); //dt/dtau ou dt/dlambda pour photon
+                gamma=gtt*(dt)**2/(c**2); 
+                v_r=grr*(vr**2)/gamma;
+                v_p=(r**2)*(vphi**2)/gamma;
+                vtot=v_r+v_p;
+            }
+            else{ // calcule dans le référentiel distant 
+                grr=1/(1-(rs/r));
+                gtt=(c**2)*(1-(rs/r));
+                dt=E/(1-(rs/r));
+                gamma=gtt*(dt)**2/(c**2);
+                v_r=grr*((vr*dt)**2)/gamma;
+                v_p=(r**2)*((vphi*dt)**2)/gamma;
+                vtot=v_r+v_p; 
             }
             return Math.sqrt(vtot);
         }

@@ -84,7 +84,7 @@ greenn=Math.floor(Math.random() * 255);
 bluee=Math.floor(Math.random() * 255); 
 
 if (0.3*redd+0.59*greenn+0.11*bluee>=100){ //teste pour mettre que des couleurs foncer
-	console.log("clair",redd,greenn,bluee,0.3*redd+0.59*greenn+0.11*bluee)
+	//console.log("clair",redd,greenn,bluee,0.3*redd+0.59*greenn+0.11*bluee)
 	cool=generateurCouleur()
 	redd=cool[0]
 	greenn=cool[1]
@@ -766,7 +766,7 @@ function trajectoire(compteur,mobile) {
 	document.getElementById("bloc_resultats").style.display= "block";
 		for (countt = 1; countt <= nbredefusees; countt += 1) {
 			var node = document.getElementById("grsvg_"+countt.toString()+"");
-			console.log("Le film Hackers de 1995 est vraiment bien",countt.toString());
+			//console.log(countt.toString());
             if(node){
 				if (node.parentNode){
 					node.parentNode.removeChild(node);
@@ -887,14 +887,14 @@ function animate(compteur,mobile,mobilefactor) {
 		mobile.r_part = val[0];
 		mobile.A_part = val[1];
 		vr_1=mobile.A_part;
-		vp_1=c*mobile.L/mobile.r_part;
+		vp_1=c*mobile.L/(mobile.r_part**2);
 		val_obs = rungekutta_obs(mobile.E,mobile.L,mobile.dtau, mobile.r_part_obs, mobile.A_part_obs);
 		mobile.r_part_obs = val_obs[0];
 		if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
 		mobile.A_part_obs = val_obs[1];
 		vr_1_obs=mobile.A_part_obs;
 		if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
-		vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
+		vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/((mobile.r_part_obs**2)*mobile.E); 
 		if(mobile.r_part_obs<rs*1.0001) { vp_1_obs=0;}
 		mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
 		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
@@ -1002,7 +1002,7 @@ if(element2.value != "mobile"){
         // FAIRE BOUM
 		if (r_phy == 0) {
 		//alert(texte.pages_trajectoire.singulartie_atteinte);
-		console.log("ceci ne fait rien, il faudrait peux etre faire qqchose ici");
+		//console.log("ceci ne fait rien, il faudrait peux etre faire qqchose ici");
 		} 
 		else {
 			//alert(texte.pages_trajectoire.particule_ecrasee);
@@ -1066,7 +1066,7 @@ else{
           // FAIRE BOUM
           if (r_phy == 0) {
             //alert(texte.pages_trajectoire.singulartie_atteinte);
-            console.log("ceci ne fait rien, il faudrait peux etre faire qqchose ici");
+            ///console.log("ceci ne fait rien, il faudrait peux etre faire qqchose ici");
 		     } else {
             //alert(texte.pages_trajectoire.particule_ecrasee); 
             mobile.onestarrete=0;
@@ -1089,17 +1089,14 @@ else{
 	}
 
 	}else{
-	V = Vr_mob(mobile.L,mobile.r_part);
-
-    data2 = [];
-    data2.push({date: mobile.r_part, close: V });
-    if(mobile.point !== undefined){update_graphique_2(mobile.point,data2,mobile);}	
-	}		
+		V = Vr_mob(mobile.L,mobile.r_part);
+		data2 = [];
+		data2.push({date: mobile.r_part, close: V });
+		if(mobile.point !== undefined){update_graphique_2(mobile.point,data2,mobile);}	
+		}		
 
 
     if(mobile.r_part<=0){mobile.r_part=0;}	
-
-
 
     // gradient d'accélération
 
@@ -1112,7 +1109,7 @@ else{
 		gm = derivee_seconde_Schwarzchild_massif(mobile.L,mobile.r_part);
 		gmp = derivee_seconde_Schwarzchild_massif(mobile.L,mobile.r_part + 1);
 		fm = Math.abs(gm - gmp);
-		console.log("ligne 1259 gm gmp fm vp_1 vr_1",gm,gmp,fm,vp_1,vr_1);		
+		//console.log("gm gmp fm vp_1 vr_1",gm,gmp,fm,vp_1,vr_1);		
 	}
 
 //decalage spectrale
@@ -1134,7 +1131,7 @@ if (element2.value != "mobile"){
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
-			vtotal=calculs.vitess(mobile,rs,true,vr_1_obs,vp_1_obs);
+			vtotal=calculs.vitessSc(mobile.E,mobile.r_part_obs,rs,vr_1_obs,vp_1_obs,false);
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 			
         }
@@ -1148,6 +1145,8 @@ if (element2.value != "mobile"){
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);  //}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
+			vtotal=calculs.vitessSc(mobile.E,mobile.r_part,rs,vr_1,vp_1,true);
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		} 
 		else {
 			mobile.r_part=0;

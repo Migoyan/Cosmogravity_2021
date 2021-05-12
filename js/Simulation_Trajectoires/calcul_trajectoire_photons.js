@@ -250,17 +250,14 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		var newRow2=document.getElementById('tableauconstanteslers').insertRow();
 
         var jstring = '<tr id="tgggg2" >'
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';}
+		for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+			jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';}
 
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';}
-
-
-
-             jstring +='<td class="tg-3ozo" id="m">0</td>';
-             jstring +='<td class="tg-3ozo" id="g">0</td>';
-          jstring +='</tr>';
+		for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+			jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';}
+			jstring +='<td class="tg-3ozo" id="m">0</td>';
+			jstring +='<td class="tg-3ozo" id="g">0</td>';
+			jstring +='</tr>';
 
         newRow2.innerHTML = jstring;
 
@@ -839,7 +836,7 @@ function animate(compteur,mobile,mobilefactor) {
 		mobile.r_part = val[0];
 		mobile.A_part = val[1];
 		vr_2=mobile.A_part;
-		vp_2=c*mobile.L/mobile.r_part;
+		vp_2=c*mobile.L/mobile.r_part**2;
 
 	}
 	else{
@@ -848,7 +845,7 @@ function animate(compteur,mobile,mobilefactor) {
 		mobile.A_part_obs = val_obs[1];
 		if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
 		vr_2_obs=mobile.A_part_obs;
-		vp_2_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
+		vp_2_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/((mobile.r_part_obs**2)*mobile.E); 
 	}
 
 
@@ -963,9 +960,11 @@ if(element2.value != "mobile"){
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2_obs.toExponential(3);
 			if(mobile.r_part_obs.toExponential(3)!=rs.toExponential(3)){
-					document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); 
+				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); 
 			}
-			else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);} 
+			else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);}
+			vtotal=calculs.vitessSc(mobile.E,mobile.r_part_obs,rs,vr_2_obs,vp_2_obs,false);/// voir fichier fonctions.j fonction vitessSc
+			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 	 	}  																										  
 	}
 	else{	
@@ -975,7 +974,7 @@ if(element2.value != "mobile"){
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_2.toExponential(3);
             document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2.toExponential(3);
-			vtotal=calculs.vitess(mobile,rs,true,vr_2,vp_2);
+			vtotal=calculs.vitessSc(mobile.E,mobile.r_part,rs,vr_2,vp_2,true);/// voir fichier fonctions.j fonction vitessSc
 			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 		    document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 		  
