@@ -225,7 +225,6 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
 <!-- Table Resultats -->
     <div id="tab_resultats">
-
       <div id="ct_tg">
         <table class="tg" id="tg">
           <tbody id="tableauconstanteslers"></tbody>
@@ -250,7 +249,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
   
   <!-- Panneau mobile zoom -->
-   <div id="panneau_mobile2" >
+<div id="panneau_mobile2" >
      <span id="moinszoom">
             <img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
      </span>
@@ -260,15 +259,14 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
      <span id="pluszoom">
                <img id="plusvi1" src="Images/plus.png" class="bouton_mobile" title="Zoom (+)">
      </span>
-   </div>
+</div>
 
   <!-- Panneau mobile qui apparait lorsque tracé -->
 
-   <div id="panneau_mobile" >
-   
-
+<div id="panneau_mobile" >
+  
     <span id="moinsvite">
-              <img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
+            <img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
     </span>
     <span id="bouton_pause">
         <!--<button id="bouton_pause" style="background-color:white;border:none;">-->
@@ -280,41 +278,37 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
     </span>
 
     
-  </div>
-
+</div>
 
 <!-- <div id="cccccccc">
 <div id="joyDiv" style="width:130px;height:130px" ></div></div> ->
 
-
-
-
   <!-- Scripts pour resize et tracer du graphique au chargement + chargement du menu-->
-  <script src="js/Graphisme/Menu/nav.jquery.min.js"></script>
+<script src="js/Graphisme/Menu/nav.jquery.min.js"></script>
 
-  <script>
-    init_rebond();
-    genereHtml();
-    initialisationGenerale(1);
-    function updatenbredefusees(){
-        var nbredefuseesupdatenbr = Number(document.getElementById("nombredefusees").value);	
-        lenbdefusees = nbredefuseesupdatenbr;
+<script>
+	init_rebond();
+	genereHtml();
+	initialisationGenerale(1);
+	function updatenbredefusees(){
+		var nbredefuseesupdatenbr = Number(document.getElementById("nombredefusees").value);	
+		lenbdefusees = nbredefuseesupdatenbr;
 		initialisationGenerale(nbredefuseesupdatenbr);
-    }
+	}
 
-    var lenbdefusees;
- 
-    $(function() {
-      $("#nav-ici").load("Menu.html");
-    });
-    traceEstAbsent();
+	var lenbdefusees;
+
+	$(function() {
+		$("#nav-ici").load("Menu.html");
+	});
+	traceEstAbsent();
 	textesimutraj();
 
-    document.getElementById('traject_type2').value="observateur";
-    document.getElementById('traject_type').value="complete";
+	document.getElementById('traject_type2').value="observateur";
+	document.getElementById('traject_type').value="complete";
 
-    save_nbfusees();
-  </script>
+	save_nbfusees();
+</script>
 
 
 

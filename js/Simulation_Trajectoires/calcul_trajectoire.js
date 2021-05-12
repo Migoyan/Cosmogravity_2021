@@ -894,7 +894,7 @@ function animate(compteur,mobile,mobilefactor) {
 		mobile.A_part_obs = val_obs[1];
 		vr_1_obs=mobile.A_part_obs;
 		if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
-		vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/((mobile.r_part_obs**2)*mobile.E); 
+		vp_1_obs=c*mobile.L*(1-(rs/mobile.r_part_obs))/((mobile.r_part_obs)*mobile.E); 
 		if(mobile.r_part_obs<rs*1.0001) { vp_1_obs=0;}
 		mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
 		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
@@ -1131,7 +1131,7 @@ if (element2.value != "mobile"){
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.r_part_obs,rs,vr_1_obs,vp_1_obs,false);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false);
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 			
         }
@@ -1145,7 +1145,7 @@ if (element2.value != "mobile"){
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);  //}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.r_part,rs,vr_1,vp_1,true);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true);
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		} 
 		else {
