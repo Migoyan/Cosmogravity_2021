@@ -57,6 +57,10 @@ expl5.src='./Images/explose/expl5.png';
 expl6.src='./Images/explose/expl6.png';
 
 
+///varible global pour les calcules
+var c = 299792458;
+var G = 6.6742 * Math.pow(10, -11);
+
 //Fonction pour arrondir l'échelle:
 function testnum(a){
 for (var i = -30; i < 30; i++) {
@@ -66,12 +70,12 @@ if (resu >1 && resu <10){
   }}}
 
   // Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.
-      function testvaleur(x) {
-        if (isNaN(x)) {
-          return 'Not a Number!';
-        }
-        return x ;
-      }
+function testvaleur(x) {
+if (isNaN(x)) {
+	return 'Not a Number!';
+}
+return x ;
+}
 
 //genere couleur aleatoirement pour le trace du mobile
 //il faudrait verifier que blanc ou des couleurs trop proches de blanc ne soient pas generes (a definir ce qui est trop proche de blanc)
@@ -96,8 +100,6 @@ return [redd,greenn,bluee];
 }
 
 function initialisationGenerale(fuseecompteur){
-    c = 299792458;
-    G = 6.6742 * Math.pow(10, -11);
     M = Number(document.getElementById("M").value);
     r_phy = Number(document.getElementById("r_phy").value);
     m = G * M / Math.pow(c, 2); 
@@ -110,8 +112,6 @@ function initialisationGenerale(fuseecompteur){
 }
 
 function lancerDeFusees(fuseecompteur){
-    c = 299792458;
-    G = 6.6742 * Math.pow(10, -11);
     M = Number(document.getElementById("M").value);
     r_phy = Number(document.getElementById("r_phy").value);
     m = G * M / Math.pow(c, 2); 
@@ -168,93 +168,104 @@ function htmlDecode(input) {
 }
 
 function genereHtml(){
-var nbredefuseesgenere = Number(document.getElementById("nombredefusees").value);
-lenbdefusees = nbredefuseesgenere;
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","rayon"+countt.toString()+"");
-	var divchampsr = document.getElementById('champs_a_remplir');
-	divchampsr.appendChild(span);
-    if(countt==1){
-		var newlabel = document.createElement("Label");
-		//newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
-		newlabel.setAttribute("id","ctreastre");
-		newlabel.setAttribute("title","");
-		newlabel.setAttribute("for","r01");
-		newlabel.innerHTML = "r<sub>0</sub> (m) =";
-		span.appendChild(newlabel);
+	var nbredefuseesgenere = Number(document.getElementById("nombredefusees").value);
+	lenbdefusees = nbredefuseesgenere;
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","rayon"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			//newlabel.setAttribute("title","Distance initiale du projectile au centre de l'astre");
+			newlabel.setAttribute("id","ctreastre");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","r01");
+			newlabel.innerHTML = "r<sub>0</sub> (m) =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","r0"+countt.toString()+"");
+		newinput.setAttribute("value","1.5e11");
+		newinput.setAttribute("align","left");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","5");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
 	}
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","r0"+countt.toString()+"");
-	newinput.setAttribute("value","5e4");
-	newinput.setAttribute("align","left");
-	newinput.setAttribute("maxlength","10");
-	newinput.setAttribute("type","text");
-	newinput.setAttribute("size","5");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);
-}
 
 
-
-
-
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitessep"+countt.toString()+"");
-	var divchampsr = document.getElementById('champs_a_remplir');
-
-
-	divchampsr.appendChild(span);
-    if(countt==1){
-		var newlabel = document.createElement("Label");
-		newlabel.setAttribute("id","vitesseuphilabel");
-		newlabel.setAttribute("title","");
-		newlabel.setAttribute("for","vphi1");
-		newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
-		span.appendChild(newlabel);
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","vitessep"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			newlabel.setAttribute("id","vitesseuphilabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","v01");
+			newlabel.innerHTML = "v<sub>0</sub> (m/s) =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","v0"+countt.toString()+"");
+		newinput.setAttribute("value","2.8e4");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","5");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
 	}
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","vphi"+countt.toString()+"");
-	newinput.setAttribute("value","5.1e7");
-	newinput.setAttribute("maxlength","10");
-	newinput.setAttribute("type","text");
-	newinput.setAttribute("size","5");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);
-}
 
 
 
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitesser"+countt.toString()+"");
-
-	var divchampsr = document.getElementById('champs_a_remplir');
-
-
-	divchampsr.appendChild(span);
-    if(countt==1){
-		var newlabel = document.createElement("Label");
-		newlabel.setAttribute("id","vitesseurlabel");
-		newlabel.setAttribute("title","");
-		newlabel.setAttribute("for","vr1");
-		newlabel.innerHTML = "U<sub>r</sub> (m.s<sup>-1</sup>) =";
-		span.appendChild(newlabel);
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","vitesser"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			newlabel.setAttribute("id","vitesseurlabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","phi01");
+			newlabel.innerHTML =htmlDecode("&phi;")+"<sub>en degré</sub> =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","phi0"+countt.toString()+"");
+		newinput.setAttribute("value","0");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","5");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
 	}
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","vr"+countt.toString()+"");
-	newinput.setAttribute("value","0");
-	newinput.setAttribute("maxlength","10");
-	newinput.setAttribute("type","text");
-	newinput.setAttribute("size","5");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);
-}
-	/*var newinput = document.createElement("Input");
-	newinput.setAttribute("id","phi"+countt.toString()+"");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);*/
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","vitesser"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			newlabel.setAttribute("id","vitesseurlabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","teta1");
+			newlabel.innerHTML = htmlDecode("&theta;")+"<sub>en degré</sub> =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","teta"+countt.toString()+"");
+		newinput.setAttribute("value","90");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","5");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
+	}
+	
         
 	var newRow=document.getElementById('tableauconstanteslers').insertRow();
 	var jstring = '<tr id="tgggg1" >'
@@ -264,6 +275,8 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		jstring += '<th class="tg-aicv">$E'+countt.toString()+'$</th>';
 	}
+	
+
 
 
 	//pour katex il faux mettre un antislash devant le antislash
@@ -286,6 +299,8 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';
 	}
+	
+
 	jstring +='<td class="tg-3ozo" id="m">0</td>';
 	jstring +='<td class="tg-3ozo" id="g">0</td>';
 	jstring +='</tr>';
@@ -293,64 +308,64 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 
 
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var newRow=document.getElementById('tableauresultatsimu').insertRow();
-	// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
-	newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
-					<th class="tg-aicv">r(m)</th>
-					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-					<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
-					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
-					<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
-					<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`;
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var newRow=document.getElementById('tableauresultatsimu').insertRow();
+		// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
+		newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
+						<th class="tg-aicv">r(m)</th>
+						<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
+						<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
+						<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+						<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+						<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
+						<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
+						<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`;
 
-					
-	var newRow2=document.getElementById('tableauresultatsimu').insertRow();
+						
+		var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
-	newRow2.innerHTML = `<tr id="tg2ggb`+countt.toString()+`">
-						<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>
-						<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`;
+		newRow2.innerHTML = `<tr id="tg2ggb`+countt.toString()+`">
+							<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
+							<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
+							<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
+							<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
+							<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
+							<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
+							<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>
+							<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`;
 
-}
+	}
 
-  	var canvaswidthheight = document.getElementById("canvaswidthheight").value;
-	var canvasgenere = document.createElement("canvas");
-    canvasgenere.setAttribute("id","myCanvas");
-    canvasgenere.setAttribute("width",canvaswidthheight);
-    canvasgenere.setAttribute("height",canvaswidthheight);
-    canvasgenere.setAttribute("class","canvaslaclasse");
-    if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
-    else{var wrappergenere = document.getElementById('wrapperengrand');}
-	wrappergenere.appendChild(canvasgenere);
+		var canvaswidthheight = document.getElementById("canvaswidthheight").value;
+		var canvasgenere = document.createElement("canvas");
+		canvasgenere.setAttribute("id","myCanvas");
+		canvasgenere.setAttribute("width",canvaswidthheight);
+		canvasgenere.setAttribute("height",canvaswidthheight);
+		canvasgenere.setAttribute("class","canvaslaclasse");
+		if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
+		else{var wrappergenere = document.getElementById('wrapperengrand');}
+		wrappergenere.appendChild(canvasgenere);
 
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var canvasboulegenere = document.createElement("canvas");
-    canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
-    canvasboulegenere.setAttribute("width",canvaswidthheight);
-    canvasboulegenere.setAttribute("height",canvaswidthheight);
-    canvasboulegenere.setAttribute("class","canvaslaclasse");
-    if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
-    else{var wrappergenere = document.getElementById('wrapperengrand');}
-	wrappergenere.appendChild(canvasboulegenere);
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var canvasboulegenere = document.createElement("canvas");
+		canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
+		canvasboulegenere.setAttribute("width",canvaswidthheight);
+		canvasboulegenere.setAttribute("height",canvaswidthheight);
+		canvasboulegenere.setAttribute("class","canvaslaclasse");
+		if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
+		else{var wrappergenere = document.getElementById('wrapperengrand');}
+		wrappergenere.appendChild(canvasboulegenere);
 
-}
+	}
 
 	var canvas3genere = document.createElement("canvas");
-    canvas3genere.setAttribute("id","myCanvas3three");
-    canvas3genere.setAttribute("width",canvaswidthheight);
-    canvas3genere.setAttribute("height",canvaswidthheight);
-   
-    canvas3genere.setAttribute("class","canvaslaclasse");
-    if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
-    else{var wrappergenere = document.getElementById('wrapperengrand');}
+	canvas3genere.setAttribute("id","myCanvas3three");
+	canvas3genere.setAttribute("width",canvaswidthheight);
+	canvas3genere.setAttribute("height",canvaswidthheight);
+
+	canvas3genere.setAttribute("class","canvaslaclasse");
+	if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
+	else{var wrappergenere = document.getElementById('wrapperengrand');}
 	wrappergenere.appendChild(canvas3genere);
 
 	if(canvaswidthheight=="750"){
@@ -359,7 +374,7 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 			svg.setAttribute("id", "grsvg_"+countt.toString()+"");
 			document.getElementById("wrapper2").appendChild(svg);
 		}
-}
+	}	
 
 	texteTrajectoireMassive(nbredefuseesgenere);
 	notationvitesseree2();
@@ -371,7 +386,7 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 				delimiters:[
 				{left:"$",right:'$',display: false},
 				]
-			});
+	});
 	 
 }
 
@@ -380,28 +395,42 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 // calcul en temps réel des E, L,...
 //on crée un objet json(idée de Mme Mougenot) mobile pour chaque mobile, pour bien differencier/contenir les variables appartenant a chaque mobile de maniere distincte.
 function initialisation(compteur){
-	c = 299792458;
-	G = 6.6742 * Math.pow(10, -11);
+
 	M = Number(document.getElementById("M").value);
 	r_phy = Number(document.getElementById("r_phy").value);
 	m = G * M / Math.pow(c, 2); 
 	rs=2*m;
 
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
-	vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
-	vr = Number(document.getElementById("vr"+compteur.toString()).value);
-	//phi0 = Number(document.getElementById("phi0"+compteur.toString()).value);
+	v0= Number(document.getElementById("v0"+compteur.toString()).value);
+	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value);
+	teta = Number(document.getElementById("teta"+compteur.toString()).value);
+	phi0=(phi0*Math.PI)/180;
+	teta=(teta*Math.PI)/180;
+	vphi=Math.sin(teta)*v0
+	vr=Math.cos(teta)*v0
 	
+
+	if (compteur==1){
+		vphiblab=vphi;
+		vrblab=vr;
+	}
+	if(compteur==2){
+		vphi2i = vphi;
+		vr2i = vr;
+	}
+
+	//alert(teta);
+
 	L = vphi * r0 / c;
 	E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0) * (1 + Math.pow(vphi/c, 2)));
 
 	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
 	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
-	
 	document.getElementById("m").innerHTML = rs.toExponential(3);
 
 	scale_factor = Number(document.getElementById("scalefactor").value);
-	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E  }; 
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E , phi0:phi0 }; 
 
 	mobile["pointsvg"]="pointg"+compteur.toString();
 	mobile["graphesvg"]="#grsvg_"+compteur.toString();
@@ -415,7 +444,10 @@ function initialisation(compteur){
 		rmax=1.1*r0;
    	} 	
    	else if (E==1 && L==0) {rmax=2*r0; } 
-  	else {calcul_rmax(L,E,vr,r0,1) ;  if(rmax<r0) {rmax=r0 ;}}   
+  	else {
+		rmax=calcul_rmax(L,E,vr,r0,1);  
+		if(rmax<r0) {rmax=r0 ;}
+	}   
 
 	mobile["rmax"]=rmax; //mobile.rmax
 
@@ -438,8 +470,6 @@ function initialisation(compteur){
 
   //calcul de grav
   	g=(G*M)/(Math.pow(r_phy,2)*9.81);
-
-
 	if(r_phy==0){
 		document.getElementById("g").innerHTML=" ";
 	}
@@ -462,8 +492,8 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 	var nbrdefuseesverifnbr = Number(document.getElementById("nombredefusees").value);
 	for (count = 1; count <= nbrdefuseesverifnbr; count += 1) {
 			var r0verifnbr = Number(document.getElementById("r0"+count.toString()+"").value); 
-			var vphiverifnbr = Number(document.getElementById("vphi"+count.toString()+"").value);
-			var vrverifnbr = Number(document.getElementById("vr"+count.toString()+"").value);
+			var vphiverifnbr = vphi;
+			var vrverifnbr =vr; 
 			if(isNaN(r0verifnbr)){
 				onebolean=true;
 			}
@@ -531,8 +561,8 @@ function trajectoire(compteur,mobile) {
 
 		for (countt = 1; countt <= blyo; countt += 1) {
 			document.getElementById('r0'+countt.toString()+'').disabled = true;
-			document.getElementById('vphi'+countt.toString()+'').disabled = true;
-			document.getElementById('vr'+countt.toString()+'').disabled = true;
+			document.getElementById('phi0'+countt.toString()+'').disabled = true;
+			document.getElementById('teta'+countt.toString()+'').disabled = true;
     }
 
     //empecher de passer d'observateur a mobile ou inversement pendant la simulation
@@ -550,9 +580,9 @@ function trajectoire(compteur,mobile) {
 	
     //--------------------------------------------------------------------------------------//
     //Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre, et aussi dans celui de l'observateur//
-    phi = 0.0;
+	phi=mobile.phi0;
     mobile["phi"]=phi;//mobile.phi
-	phi_obs=0;
+	phi_obs=phi;
     mobile["phi_obs"]=phi_obs;//mobile.phi_obs
 
    // n = 1; //Variable qui comptera le nombre de rebonds effectués par la particule
@@ -575,7 +605,7 @@ function trajectoire(compteur,mobile) {
 	}
    
    
-   if (nbredefusees>=2) {
+   	if (nbredefusees>=2) {
         if(ifUneFois){			
 			maximum=0;
             cle=0;
@@ -653,14 +683,8 @@ function trajectoire(compteur,mobile) {
     //faute de temps nous n'avons pas fais de maniere plus efficace
     mobile["canvas22"]= document.getElementById("myCanvasBoule"+compteur.toString());
     mobile["context22"]=mobile["canvas22"].getContext("2d");
-    //pr majFondFixe
-	vphiblab = Number(document.getElementById("vphi1").value);
-    vrblab = Number(document.getElementById("vr1").value);
-    if (nbredefusees>=2) {
-		vphi2i = Number(document.getElementById("vphi2").value);
-		vr2i = Number(document.getElementById("vr2").value);
-	}
-
+  
+	
 	majFondFixe();
 	majFondFixe44(mobile);			   
     diametre_particule = DIAMETRE_PART;
@@ -759,7 +783,7 @@ function trajectoire(compteur,mobile) {
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
 
-   document.getElementById("bloc_resultats").style.display= "block";
+   	document.getElementById("bloc_resultats").style.display= "block";
 
 	//Pour ouvrir le pop up qui nous si on veut afficher le graphe de potentiel ou pas
 	function CentrerPopPotentiel() {
@@ -855,15 +879,15 @@ function trajectoire(compteur,mobile) {
     }, false);
 
 	
-  } else {  
-    mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10 / 6);
-  }  //  fin du if(pause ....
+  	} 
+	else {  
+    	mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10 / 6);
+}  //  fin du if(pause ....
 
 
-  document.getElementById('start').addEventListener('click', function() {
-    rafraichir(); }, false);
-	
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_stop;
+document.getElementById('start').addEventListener('click', function() {
+rafraichir(); }, false);
+document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_stop;
   
 }  // fin fonction trajectoire
 
@@ -1131,7 +1155,7 @@ if (element2.value != "mobile"){
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 			
         }
@@ -1145,7 +1169,7 @@ if (element2.value != "mobile"){
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);  //}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); // voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		} 
 		else {
@@ -1290,7 +1314,7 @@ function calcul_rmax(L,E,vr,r0,rmax1ou2){
         rmax = r0;
       }
     }
-  //}
+	return rmax;
 }
 
 
@@ -1320,7 +1344,7 @@ function pausee(compteur,mobile,mobilefactor) {
 
 // permet de gérer les touches du clavier pour certaines actions
 function clavierEvenement() {
-  $(document).keyup(function(event) { // the event variable contains the key pressed
+  	$(document).keyup(function(event) { // the event variable contains the key pressed
     if (event.which == 65) { // touche a
       $('#r1').click();
     }
@@ -1356,8 +1380,8 @@ function clavierEvenement() {
 
 
 function rafraichir2(context,mobilefactor,rmaxjson,r0ou2,compteur) {
-majFondFixe();
-creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
+	majFondFixe();
+	creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
 }
 
 //ici  le rafraichir appeler avec reset element2 n'est pas defini donc il y a une erreur
@@ -1391,10 +1415,8 @@ function enregistrer(){
 }
 
 function traceEstAbsent(){
-  document.getElementById('trace_present').value="0";
+  	document.getElementById('trace_present').value="0";
 }
-
-
 
 function choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,r0ou2) {
 	if (element.value == 'simple') {
@@ -1411,13 +1433,13 @@ function choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,r0ou2) {
 
 
 function estUnMobile(){
-  var x = window.matchMedia("(max-width: 960px)")
-  if(x.matches){
-	document.getElementById("bouton_info").style.visibility='hidden';
-  }
-  else{
-    document.getElementById("bouton_info").style.visibility='visible';
-  }
+	var x = window.matchMedia("(max-width: 960px)")
+	if(x.matches){
+			document.getElementById("bouton_info").style.visibility='hidden';
+	}
+	else{
+			document.getElementById("bouton_info").style.visibility='visible';
+	}
 }
 
 function commandes(){
@@ -1463,65 +1485,65 @@ function majFondFixe(){
 
 
 function majFondFixe44(mobile){
-  mobile["context22"].clearRect(0, 0, canvas.width, canvas.height);
+  	mobile["context22"].clearRect(0, 0, canvas.width, canvas.height);
   //console.log(canvas.width, canvas.height);
 }
 
 
 function majFondFixe22(){
-  context22.clearRect(0, 0, canvas.width, canvas.height);
+  	context22.clearRect(0, 0, canvas.width, canvas.height);
   //console.log(canvas.width, canvas.height);
 }
 
 function majFondFixe3(){
-  context3.clearRect(0, 0, canvas.width, canvas.height);
+  	context3.clearRect(0, 0, canvas.width, canvas.height);
   //console.log(canvas.width, canvas.height);
 }
 
 // Empeche le lancer si on part de l'interieur de l'horizon
 function test_inte() {
   
-  c = 299792458;
-  G = 6.6742 * Math.pow(10, -11);
-  M = Number(document.getElementById("M").value);
-  r_phy = Number(document.getElementById("r_phy").value);
-  m = G * M / Math.pow(c, 2); 
-  rs=2*m;
- 
-  var onebol=false;
-  var twobol=false;
-  var threebol=false;
+	c = 299792458;
+	G = 6.6742 * Math.pow(10, -11);
+	M = Number(document.getElementById("M").value);
+	r_phy = Number(document.getElementById("r_phy").value);
+	m = G * M / Math.pow(c, 2); 
+	rs=2*m;
+	
+	var onebol=false;
+	var twobol=false;
+	var threebol=false;
 
 
-  var nbrdefuseestestinte = Number(document.getElementById("nombredefusees").value);
-  for (count = 1; count <= nbrdefuseestestinte; count += 1) {
-         var r0testinte = Number(document.getElementById("r0"+count.toString()+"").value); 
-         if(r0testinte<0){
-             onebol=true;
+	var nbrdefuseestestinte = Number(document.getElementById("nombredefusees").value);
+	for (count = 1; count <= nbrdefuseestestinte; count += 1) {
+		var r0testinte = Number(document.getElementById("r0"+count.toString()+"").value); 
+		if(r0testinte<0){
+			onebol=true;
+		}
+		if(r0testinte<=rs){
+			twobol=true;
+		}
+		if(r0testinte<r_phy){
+			threebol=true;
          }
-         if(r0testinte<=rs){
-             twobol=true;
-         }
-         if(r0testinte<r_phy){
-             threebol=true;
-         }
-  }
+  	}
 
   //le arret ici va etre appeler sans l'argument mobile et donc va crasher mais ce n'est pas grave, on ne veux pas lancer la simulation. 
-  var texte = o_recupereJson();
-  if (r_phy < 0 || onebol) {
-    alert(texte.pages_trajectoire.rayon_neg);
-    arret();
-  } else if (r_phy <= rs && r_phy!=0)   {
-    alert(texte.pages_trajectoire.rayonPhyInfHorz);
-    arret();
-  } else if (twobol) {
-    alert(texte.pages_trajectoire.rayonHorzInfRayonSchw);
-    arret();
-  } else if(threebol){
-    alert(texte.pages_trajectoire.lancerInterdit);
-    arret();
-  }
+	var texte = o_recupereJson();
+	if (r_phy < 0 || onebol) {
+		alert(texte.pages_trajectoire.rayon_neg);
+		arret();
+	} else if (r_phy <= rs && r_phy!=0)   {
+		alert(texte.pages_trajectoire.rayonPhyInfHorz);
+		arret();
+	} else if (twobol) {
+		alert(texte.pages_trajectoire.rayonHorzInfRayonSchw);
+		arret();
+	} else if(threebol){
+		alert(texte.pages_trajectoire.lancerInterdit);
+		arret();
+	}
   
 }
 
@@ -1532,46 +1554,47 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
 	r1bis=Math.round((80*r0ou2)/(mobilefactor[cle]*10**testnum(r2bis)));
 	ech=r1bis*10**testnum(r2bis);
 
-  context.lineWidth = "1";
-  context.fillStyle = COULEUR_NOIR;
-  if ((mobilefactor[cle] * m / rmaxjson[cle]) < 3) {
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.moveTo(posX3 - 10, posY3);
-    context.lineTo(posX3 - 3, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3 + 3, posY3);
-    context.lineTo(posX3 + 10, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 - 10);
-    context.lineTo(posX3, posY3 - 3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 + 3);
-    context.lineTo(posX3, posY3 + 10);
-    context.stroke();
-  } else {
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2);
-    context.stroke();
-  }
-  if (m < r_phy) {
-    context.beginPath();
-    context.fillStyle = COULEUR_RPHY;
-    context.setLineDash([]);
-    context.arc(posX3, posY3, (mobilefactor[cle] * r_phy / rmaxjson[cle]), 0, Math.PI * 2);
-    context.fill();
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2); 
-    context.stroke();
-  }
-  context.fillStyle = 'white';
+	context.lineWidth = "1";
+	context.fillStyle = COULEUR_NOIR;
+	if ((mobilefactor[cle] * m / rmaxjson[cle]) < 3) {
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.moveTo(posX3 - 10, posY3);
+		context.lineTo(posX3 - 3, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3 + 3, posY3);
+		context.lineTo(posX3 + 10, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 - 10);
+		context.lineTo(posX3, posY3 - 3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 + 3);
+		context.lineTo(posX3, posY3 + 10);
+		context.stroke();
+  	} 
+	else {
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2);
+		context.stroke();
+  	}
+	if (m < r_phy) {
+		context.beginPath();
+		context.fillStyle = COULEUR_RPHY;
+		context.setLineDash([]);
+		context.arc(posX3, posY3, (mobilefactor[cle] * r_phy / rmaxjson[cle]), 0, Math.PI * 2);
+		context.fill();
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2); 
+		context.stroke();
+	}
+  	context.fillStyle = 'white';
 
 
 // Ajout d'un fond blanc pour l'exportation
@@ -1584,7 +1607,7 @@ context.font = "11pt normal";
 context.fillStyle = COULEUR_RS;
 context.fillText(ech.toExponential()+" m",605,90);
 context.stroke();
-context.beginPath();      // Début du chemin
+context.beginPath(); // Début du chemin
 context.strokeStyle = COULEUR_RS;
 
 //context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1

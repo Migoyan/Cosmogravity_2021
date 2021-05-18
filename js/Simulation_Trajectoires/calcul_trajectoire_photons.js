@@ -131,8 +131,8 @@ for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
 
 //Fonction htmlDecode écrite par Comrade Programmer#7608, ce qui résout le problème d'affichage. 
 function htmlDecode(input) {
-  var doc = new DOMParser().parseFromString(input, "text/html");
-  return doc.documentElement.textContent;
+	var doc = new DOMParser().parseFromString(input, "text/html");
+	return doc.documentElement.textContent;
 }
 
 function genereHtml(){
@@ -164,32 +164,28 @@ function genereHtml(){
 		span.appendChild(newinput);
 	}
 
-
-
-
-
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitessep"+countt.toString()+"");
-	var divchampsr = document.getElementById('champs_a_remplir');
-	divchampsr.appendChild(span);
-    if(countt==1){
-		var newlabel = document.createElement("Label");
-		newlabel.setAttribute("id","vitesseuphilabel");
-		newlabel.setAttribute("title","");
-		newlabel.setAttribute("for","vphi1");
-		newlabel.innerHTML = "U<sub>"+htmlDecode("&phi;")+"</sub>(m.s<sup>-1</sup>) =";
-		span.appendChild(newlabel);
-	}
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","vphi"+countt.toString()+"");
-	newinput.setAttribute("value","-3e8");
-	newinput.setAttribute("maxlength","10");
-	newinput.setAttribute("type","text");
-	newinput.setAttribute("size","10");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);
-}
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","vitessep"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			newlabel.setAttribute("id","vitesseuphilabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","phi01");
+			newlabel.innerHTML = htmlDecode("&phi;")+"</sub>en degrés</sup>) =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","phi0"+countt.toString()+"");
+		newinput.setAttribute("value","0");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","10");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
+	}	
 
 
 
@@ -205,14 +201,14 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	var newlabel = document.createElement("Label"); 
     newlabel.setAttribute("id","vitesseurlabel");
     newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","vr1");
-	newlabel.innerHTML = "U<sub>r</sub> (m.s<sup>-1</sup>) =";
+	newlabel.setAttribute("for","teta1");
+	newlabel.innerHTML = htmlDecode("&theta;")+"</sub>en degrés</sup>) =";
 	span.appendChild(newlabel);}
 
 
 	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","vr"+countt.toString()+"");
-	newinput.setAttribute("value","1e8");
+	newinput.setAttribute("id","teta"+countt.toString()+"");
+	newinput.setAttribute("value","135");
 
 	newinput.setAttribute("maxlength","10");
 
@@ -268,18 +264,18 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 
 for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	  var newRow=document.getElementById('tableauresultatsimu').insertRow();
+	var newRow=document.getElementById('tableauresultatsimu').insertRow();
 	  // il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
-	  newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
+	newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
 				<th class="tg-aicv">r(m)</th>
 				<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
 				<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
 				<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
 				<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
-				<th id="t_total`+countt.toString()+`" class="tg-aicv"></th>`;
+				<th id="v_total`+countt.toString()+`" class="tg-aicv"></th>`;
 
-	 var newRow2=document.getElementById('tableauresultatsimu').insertRow();
+	var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
 		newRow2.innerHTML =       `<tr id="tg2ggb`+countt.toString()+`">
 				<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
@@ -309,9 +305,9 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	var canvasboulegenere = document.createElement("canvas");
-  canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
-  canvasboulegenere.setAttribute("width",canvaswidthheight);
-  canvasboulegenere.setAttribute("height",canvaswidthheight);
+	canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
+	canvasboulegenere.setAttribute("width",canvaswidthheight);
+	canvasboulegenere.setAttribute("height",canvaswidthheight);
 
     canvasboulegenere.setAttribute("class","canvaslaclasse");
     if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
@@ -333,17 +329,16 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
     wrappergenere.appendChild(canvas3genere);
 
 if(canvaswidthheight=="750"){
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-
-  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-   svg.setAttribute("id", "grsvg_"+countt.toString()+""); 
-  document.getElementById("wrapper2").appendChild(svg);
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	svg.setAttribute("id", "grsvg_"+countt.toString()+""); 
+	document.getElementById("wrapper2").appendChild(svg);
+	}
 }
-}
 
-  texteTrajectoirePhoton(nbredefuseesgenere);
-  notationvitesseree1();
-  infobulleobservateurdistant();
+	texteTrajectoirePhoton(nbredefuseesgenere);
+	notationvitesseree1();
+	infobulleobservateurdistant();
 	textegravetetc();						
     //pour le bon affichage du katex
 	renderMathInElement(document.body, {
@@ -364,8 +359,22 @@ function initialisation(compteur){
 	m = G * M / Math.pow(c, 2); 
 	rs=2*m;
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
-	vphi = Number(document.getElementById("vphi"+compteur.toString()).value);
-	vr = Number(document.getElementById("vr"+compteur.toString()).value);
+	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value);
+	teta = Number(document.getElementById("teta"+compteur.toString()).value);
+	phi0=(phi0*Math.PI)/180;
+	teta=(teta*Math.PI)/180;
+	vphi=Math.sin(teta)*c
+	vr=Math.cos(teta)*c
+
+	if (compteur==1){
+		vphiblab=vphi;
+		vrblab=vr;
+	}
+	if(compteur==2){
+		vphi2i = vphi;
+		vr2i = vr;
+	}
+
 	L = vphi * r0 / c;
 	E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0)* Math.pow(L / r0, 2));
 
@@ -374,7 +383,7 @@ function initialisation(compteur){
 	document.getElementById("m").innerHTML = rs.toExponential(3);
 
 	scale_factor = Number(document.getElementById("scalefactor").value);
-	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E, phi0:phi0 }; 
 	mobile["pointsvg"]="pointg"+compteur.toString();
 	mobile["graphesvg"]="#grsvg_"+compteur.toString();
 	mobile["onestarrete"]=0;
@@ -423,8 +432,8 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 	var sddsdsddss = Number(document.getElementById("nombredefusees").value);
 	for (countetttt = 1; countetttt <= sddsdsddss; countetttt += 1) {
 			var r0verifnbr = Number(document.getElementById("r0"+countetttt.toString()+"").value); 
-			var vphiverifnbr = Number(document.getElementById("vphi"+countetttt.toString()+"").value);
-			var vrverifnbr = Number(document.getElementById("vr"+countetttt.toString()+"").value);
+			var vphiverifnbr = vphi;
+			var vrverifnbr = vr;
 			if(isNaN(r0verifnbr)){
 				onebolean=true;
 			}
@@ -496,8 +505,8 @@ function trajectoire(compteur,mobile) {
 
 		for (countt = 1; countt <= blyo; countt += 1) {
 			document.getElementById('r0'+countt.toString()+'').disabled = true;
-			document.getElementById('vphi'+countt.toString()+'').disabled = true;
-			document.getElementById('vr'+countt.toString()+'').disabled = true;
+			document.getElementById('phi0'+countt.toString()+'').disabled = true;
+			document.getElementById('teta'+countt.toString()+'').disabled = true;
 		}
 
 
@@ -596,27 +605,21 @@ function trajectoire(compteur,mobile) {
 
     canvas = document.getElementById("myCanvas");
     if (!canvas) {
-      alert(texte.pages_trajectoire.impossible_canvas);
-      return;
+		alert(texte.pages_trajectoire.impossible_canvas);
+		return;
     }
 
     context = canvas.getContext("2d");
     if (!context) {
-      alert(texte.pages_trajectoire.impossible_context);
-      return;
+		alert(texte.pages_trajectoire.impossible_context);
+		return;
     }
 
     mobile["canvas22"]= document.getElementById("myCanvasBoule"+compteur.toString());
     mobile["context22"]=mobile["canvas22"].getContext("2d");
 
     //pr majFondFixe
-	vphiblab = Number(document.getElementById("vphi1").value);
-    vrblab = Number(document.getElementById("vr1").value);
 
-    if (nbredefusees>=2) {
-		vphi2i = Number(document.getElementById("vphi2").value);
-		vr2i = Number(document.getElementById("vr2").value);
-	}
 
     majFondFixe();	
 	majFondFixe44(mobile);	
@@ -963,8 +966,8 @@ if(element2.value != "mobile"){
 				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); 
 			}
 			else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);}
-			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_2_obs,false);/// voir fichier fonctions.j fonction vitessSc
-			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(9);
+				vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_2_obs,false);/// voir fichier fonctions.j fonction vitessSc
+				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(9);
 	 	}  																										  
 	}
 	else{	
@@ -1314,60 +1317,59 @@ function majFondFixe3(){
 
 // Empeche le lancer si on part de l'interieur de l'horizon et si le rayon est négatif
 function test_inte() {
-  var texte = o_recupereJson();
-  
-  c = 299792458;
-  G = 6.6742 * Math.pow(10, -11);
-  M = Number(document.getElementById("M").value);
-  r_phy = Number(document.getElementById("r_phy").value);
-  m = G * M / Math.pow(c, 2); 
-  rs=2*m;
- 
-  var onebol=false;
-  var twobol=false;
-  var threebol=false;
-  var fourbol=false;
+	var texte = o_recupereJson();
+	
+	c = 299792458;
+	G = 6.6742 * Math.pow(10, -11);
+	M = Number(document.getElementById("M").value);
+	r_phy = Number(document.getElementById("r_phy").value);
+	m = G * M / Math.pow(c, 2); 
+	rs=2*m;
+	
+	var onebol=false;
+	var twobol=false;
+	var threebol=false;
+	var fourbol=false;
 
 
-  var nbrdefuseestestinte = Number(document.getElementById("nombredefusees").value);
-  for (countetttt = 1; countetttt <= nbrdefuseestestinte; countetttt += 1) {
-         var r0testinte = Number(document.getElementById("r0"+countetttt.toString()+"").value); 
-		 var vrtestinte = Number(document.getElementById("vr"+countetttt.toString()+"").value); 
-		 var vphitestinte = Number(document.getElementById("vphi"+countetttt.toString()+"").value); 
-         if(r0testinte<0){
-             onebol=true;
-         }
-         if(r0testinte<=rs){
-             twobol=true;
-         }
-         if(r0testinte<r_phy){
-             threebol=true;
-         }
-         if(vrtestinte==0 && vphitestinte==0){
-             fourbol=true;
-         }
+	var nbrdefuseestestinte = Number(document.getElementById("nombredefusees").value);
+	for (countetttt = 1; countetttt <= nbrdefuseestestinte; countetttt += 1) {
+		var r0testinte = Number(document.getElementById("r0"+countetttt.toString()+"").value); 
+		var vrtestinte = vphi; 
+		var vphitestinte = vr; 
+		if(r0testinte<0){
+			onebol=true;
+		}
+		if(r0testinte<=rs){
+			twobol=true;
+		}
+		if(r0testinte<r_phy){
+			threebol=true;
+		}
+		if(vrtestinte==0 && vphitestinte==0){
+			fourbol=true;
+		}
   }
 
-  //le arret ici va etre appeler sans l'argument mobile et donc va crasher mais ce n'est pas grave, on ne veux pas lancer la simulation. 
-  var texte = o_recupereJson();
-  if (r_phy < 0 || onebol) {
-    alert(texte.pages_trajectoire.rayon_neg);
-    arret();
-  } else if (r_phy <= rs && r_phy!=0)   {
-    alert(texte.pages_trajectoire.rayonPhyInfHorz);
-    arret();
-  } else if (twobol) {
-    alert(texte.pages_trajectoire.rayonHorzInfRayonSchw);
-    arret();
-  } else if(threebol){
-    alert(texte.pages_trajectoire.lancerInterdit);
-    arret();
-  }
-
- if(fourbol) {
-    alert(texte.pages_trajectoire.vitesses_initiales_nulles);
-    arret();
-  }
+	//le arret ici va etre appeler sans l'argument mobile et donc va crasher mais ce n'est pas grave, on ne veux pas lancer la simulation. 
+	var texte = o_recupereJson();
+	if (r_phy < 0 || onebol) {
+		alert(texte.pages_trajectoire.rayon_neg);
+		arret();
+	} else if (r_phy <= rs && r_phy!=0)   {
+		alert(texte.pages_trajectoire.rayonPhyInfHorz);
+		arret();
+	} else if (twobol) {
+		alert(texte.pages_trajectoire.rayonHorzInfRayonSchw);
+		arret();
+	} else if(threebol){
+		alert(texte.pages_trajectoire.lancerInterdit);
+		arret();
+	}
+	if(fourbol) {
+		alert(texte.pages_trajectoire.vitesses_initiales_nulles);
+		arret();
+	}
   
 }
 
@@ -1380,46 +1382,47 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
 	r1bis=Math.round((80*r0ou2)/(mobilefactor[cle]*10**testnum(r2bis)));
 	ech=r1bis*10**testnum(r2bis);
 
-  context.lineWidth = "1";
-  context.fillStyle = COULEUR_NOIR;
-  if ((mobilefactor[cle] * m / rmaxjson[cle]) < 3) {
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.moveTo(posX3 - 10, posY3);
-    context.lineTo(posX3 - 3, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3 + 3, posY3);
-    context.lineTo(posX3 + 10, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 - 10);
-    context.lineTo(posX3, posY3 - 3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 + 3);
-    context.lineTo(posX3, posY3 + 10);
-    context.stroke();
-  } else {
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2);
-    context.stroke();
-  }
-  if (m < r_phy) {
-    context.beginPath();
-    context.fillStyle = COULEUR_RPHY;
-    context.setLineDash([]);
-    context.arc(posX3, posY3, (mobilefactor[cle] * r_phy / rmaxjson[cle]), 0, Math.PI * 2);
-    context.fill();
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2); 
-    context.stroke();
-  }
-  context.fillStyle = 'white';
+	context.lineWidth = "1";
+	context.fillStyle = COULEUR_NOIR;
+	if ((mobilefactor[cle] * m / rmaxjson[cle]) < 3) {
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.moveTo(posX3 - 10, posY3);
+		context.lineTo(posX3 - 3, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3 + 3, posY3);
+		context.lineTo(posX3 + 10, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 - 10);
+		context.lineTo(posX3, posY3 - 3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 + 3);
+		context.lineTo(posX3, posY3 + 10);
+		context.stroke();
+	} 
+	else {
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2);
+		context.stroke();
+	}
+	if (m < r_phy) {
+		context.beginPath();
+		context.fillStyle = COULEUR_RPHY;
+		context.setLineDash([]);
+		context.arc(posX3, posY3, (mobilefactor[cle] * r_phy / rmaxjson[cle]), 0, Math.PI * 2);
+		context.fill();
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2); 
+		context.stroke();
+	}
+	context.fillStyle = 'white';
 
 /*
 // Ajout d'un fond blanc pour l'exportation

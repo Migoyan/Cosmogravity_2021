@@ -601,47 +601,50 @@ function texteTrajectoireMassiveEnGrand() {  // ne sert pas!!!!!!!!!!!!!
 
 
 function texteTrajectoirePhoton(nbrderockets) {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon.titre;
-  document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_photon.rayon_physique;
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon; 
-  document.getElementById("rebondd").innerHTML = texte.page_trajectoire_massive.rebond;
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon.titre;
+	document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_photon.rayon_physique;
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon; 
+	document.getElementById("rebondd").innerHTML = texte.page_trajectoire_massive.rebond;
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
 
 	for (count = 1; count <= nbrderockets; count += 1) {
 		document.getElementById("temps_ecoule"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_ecoule;
         document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
 		document.getElementById("temps_obs"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_obs;
+		document.getElementById("v_total"+count.toString()+"").innerHTML = texte.pages_trajectoire.v_total;
+
 	}
-  var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
-  if(canvaswidthheightt=="750"){
-  document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
- 
+	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
+	if(canvaswidthheightt=="750"){
+		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	}
+	
 }
 function texteTrajectoireMassiveNonBar(nbrderockets) {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive_nonBar.titre;
-  document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_massive.rayon_physique;
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive_nonBar.titre;
+	document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_massive.rayon_physique;
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
 
  
 	for (count = 1; count <= nbrderockets; count += 1) {
@@ -653,37 +656,40 @@ function texteTrajectoireMassiveNonBar(nbrderockets) {
 
 	}
 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
-  if(canvaswidthheightt=="750"){
-  document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
+	if(canvaswidthheightt=="750"){
+		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	}
 
 
 }
 
 function texteTrajectoirePhotonNonBar(nbrderockets) {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon_nonBar.titre;
-  document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_photon.rayon_physique;
-  document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
-  document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
-  document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
-  document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
-  document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-  document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
-  document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
-  document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
-  document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-  document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon; 
-  document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-  
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon_nonBar.titre;
+	document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_photon.rayon_physique;
+	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
+	document.getElementById("plusvi").title = texte.pages_trajectoire.bouton_plus;
+	document.getElementById("boutton_enregis").innerHTML = texte.pages_trajectoire.bouton_enregistrer;
+	document.getElementById("clear").innerHTML = texte.pages_trajectoire.bouton_reset;
+	document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+	document.getElementById("start").innerHTML = texte.pages_trajectoire.bouton_start;
+	document.getElementById("r1").innerHTML = texte.pages_trajectoire.trajectoire_complete;
+	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
+	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.photon; 
+	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
+	
 	for (count = 1; count <= nbrderockets; count += 1) {
 		document.getElementById("temps_ecoule"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_ecoule;
         document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
 		document.getElementById("temps_obs"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_obs;
+		document.getElementById("v_total"+count.toString()+"").innerHTML = texte.pages_trajectoire.v_total;
 
 	}
-  var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
-  if(canvaswidthheightt=="750"){
-  document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
+	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
+	if(canvaswidthheightt=="750"){
+		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	}
 
 }
 

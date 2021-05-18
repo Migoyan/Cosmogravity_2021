@@ -63,21 +63,21 @@ var bouttons = bouttons || (function(){
 			}
 			return mobile;
 		},
-	// reinitialise le zoom
-	initialiser : function (nbrfusse,mobilefactor,mobile,compteur,canvas){
-		for (key = 1; key <= nbrfusse; key += 1) {
-            mobilefactor[key] = Number(document.getElementById("scalefactor").value);  		
-		}
-		for (key = 1; key <= nbrfusse; key += 1) {
-			if(key!=cle){
-                mobilefactor[key] = Number(document.getElementById("scalefactor").value)/(r0o2[cle]/r0o2[key]);
+		// reinitialise le zoom
+		initialiser : function (nbrfusse,mobilefactor,mobile,compteur,canvas){
+			for (key = 1; key <= nbrfusse; key += 1) {
+				mobilefactor[key] = Number(document.getElementById("scalefactor").value);  		
 			}
-		}
-        mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
-        mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
-        mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
-        mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
-		return [mobile,mobilefactor];
+			for (key = 1; key <= nbrfusse; key += 1) {
+				if(key!=cle){
+					mobilefactor[key] = Number(document.getElementById("scalefactor").value)/(r0o2[cle]/r0o2[key]);
+				}
+			}
+			mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2);
+			mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2);
+			mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2);
+			mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2);
+			return [mobile,mobilefactor];
 	}
 
 	}

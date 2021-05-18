@@ -286,18 +286,19 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 
 for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	  var newRow=document.getElementById('tableauresultatsimu').insertRow();
-	  // il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
-	  newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
+	var newRow=document.getElementById('tableauresultatsimu').insertRow();
+	// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
+	newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
 				<th class="tg-aicv">r(m)</th>
 				<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
 				<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
 				<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
 				<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
-        <th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>`;
+        		<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
+				<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`
 
-	 var newRow2=document.getElementById('tableauresultatsimu').insertRow();
+	var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
 		newRow2.innerHTML =       `<tr id="tg2ggb`+countt.toString()+`">
 				<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
@@ -306,22 +307,22 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 				<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
 				<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
 				<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
-        <td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>`
+        		<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`
+				
 
 }
 
-  var canvaswidthheight = document.getElementById("canvaswidthheight").value;
+	var canvaswidthheight = document.getElementById("canvaswidthheight").value;
 
 	var canvasgenere = document.createElement("canvas");
-    canvasgenere.setAttribute("id","myCanvas");
-    canvasgenere.setAttribute("width",canvaswidthheight);
-    canvasgenere.setAttribute("height",canvaswidthheight);
-    canvasgenere.setAttribute("class","canvaslaclasse");
-    if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
-    else{var wrappergenere = document.getElementById('wrapperengrand');}
-	
-    
-    wrappergenere.appendChild(canvasgenere);
+	canvasgenere.setAttribute("id","myCanvas");
+	canvasgenere.setAttribute("width",canvaswidthheight);
+	canvasgenere.setAttribute("height",canvaswidthheight);
+	canvasgenere.setAttribute("class","canvaslaclasse");
+	if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
+	else{var wrappergenere = document.getElementById('wrapperengrand');}
+	wrappergenere.appendChild(canvasgenere);
 
 
 
@@ -1070,24 +1071,16 @@ if(element2.value == "mobile"){
     //decalage spectrale
 
 if (element2.value != "mobile"){
-if(mobile.r_part_obs >= r_phy) {
-z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
-document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
-} else {
-z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
-document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+	if(mobile.r_part_obs >= r_phy) {
+		z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
+		document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+	} 
+	else {
+		z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
+		document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+	}
 }
-}else{
-document.getElementById("decal"+compteur.toString()).innerHTML="";
-
-}
-
-
-
-
-
-
-
+else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 
 
 //  Les différents "temps" et autres valeurs à afficher
@@ -1102,6 +1095,8 @@ document.getElementById("decal"+compteur.toString()).innerHTML="";
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		}else{
 			mobile.temps_observateur+=mobile.dtau;
 			mobile.temps_particule += mobile.dtau*Math.pow(beta(mobile.r_part_obs),2)/mobile.E;
@@ -1111,6 +1106,8 @@ document.getElementById("decal"+compteur.toString()).innerHTML="";
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 			}	
 	}else{
 		if (mobile.r_part>= r_phy){
@@ -1121,7 +1118,9 @@ document.getElementById("decal"+compteur.toString()).innerHTML="";
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);				
+			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 				
 		}else{
 			mobile.temps_particule+=mobile.dtau;
 			mobile.temps_observateur+=mobile.dtau*mobile.E/Math.pow(beta(mobile.r_part),2);
@@ -1130,7 +1129,9 @@ document.getElementById("decal"+compteur.toString()).innerHTML="";
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);			
+			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
 			}
 	}
 

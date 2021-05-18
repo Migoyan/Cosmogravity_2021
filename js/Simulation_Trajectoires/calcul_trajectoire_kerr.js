@@ -284,7 +284,7 @@ function trajectoire() {
       scale_factor =280 ;
       posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2);
       posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2);
-	  posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
+      posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2);
       posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2);	
       majFondFixe22();																			   
       rafraichir2();
@@ -468,8 +468,9 @@ function animate() {
 				document.getElementById("ga").innerHTML = fm.toExponential(3);
 				document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 				document.getElementById("vrk").innerHTML = vr_3_obs.toExponential(3);
-			// if(onestarrete==0){
-				document.getElementById("vpk").innerHTML = vp_3_obs.toExponential(3); //}
+				document.getElementById("vpk").innerHTML = vp_3_obs.toExponential(3);
+				vtotal=calculs.vitessKer(E,L,a,r_part_obs,rs,vr_3_obs,false);
+				document.getElementById("v_total").innerHTML = vtotal.toExponential(3);
 				}
 
 		}
@@ -480,21 +481,24 @@ function animate() {
 				document.getElementById("ga").innerHTML = fm.toExponential(3);
 				document.getElementById("r_par").innerHTML = r_part.toExponential(3);
 				document.getElementById("vrk").innerHTML = vr_3.toExponential(3);
-				//if(onestarrete==0){
-					if(J==0) {vp_3= c*L/r_part;}
-					if(r_part<=rhp && J!=0) {vp_3=1/0;}
-				document.getElementById("vpk").innerHTML = vp_3.toExponential(3);  //}
-				console.log("ligne 609 vp_3",vp_3);
+				if(J==0) {vp_3= c*L/r_part;}
+				if(r_part<=rhp && J!=0) {vp_3=1/0;}
+				document.getElementById("vpk").innerHTML = vp_3.toExponential(3);
+				vtotal=calculs.vitessKer(E,L,a,r_part,rs,vr_3,true);
+				document.getElementById("v_total").innerHTML = vtotal.toExponential(3);
+				//console.log("ligne 609 vp_3",vp_3);
 			}
 		}
 		
 		if (element2.value != "mobile"){
 			temps_observateur += dtau;
 			document.getElementById("to").innerHTML = temps_observateur.toExponential(3);
-		}else{
+		}
+		else{
 			if(r_part > rhp) {
 				temps_observateur+=dtau*( (Math.pow(r_part,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part)*E - rs*a*L/r_part )/delta(r_part);
-				}else{
+			}
+			else{
 				temps_observateur=1/0;   //  infini
 			}
 			document.getElementById("to").innerHTML = temps_observateur.toExponential(3);
@@ -540,41 +544,39 @@ function Vr_mob(r) {
 function Vr_obs(r) {
 	denom=(Math.pow(r,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r)*E-rs*a*L/r;
 	dtausurdtaucarre = Math.pow(delta(r)/denom,2);
-  return Math.pow(E,2)-( Math.pow(E,2)-potentiel_Kerr_massif(r) )*dtausurdtaucarre  ;
+	return Math.pow(E,2)-( Math.pow(E,2)-potentiel_Kerr_massif(r) )*dtausurdtaucarre  ;
 }
 
 
 function potentiel_Kerr_massif(r) {
-  return 1 - rs / r - (a * a * (E * E - 1) - L * L) / (r * r) - rs / Math.pow(r, 3) * Math.pow(L - a * E, 2);
+	return 1 - rs / r - (a * a * (E * E - 1) - L * L) / (r * r) - rs / Math.pow(r, 3) * Math.pow(L - a * E, 2);
 }
 
 
 function derivee_seconde_Kerr_massif(r) {
-  return -c * c / (2 * Math.pow(r, 4)) * (rs * r * r + 2 * r * (a * a * (E * E - 1) - L * L) + 3 * rs * Math.pow(L - a * E, 2));
+	return -c * c / (2 * Math.pow(r, 4)) * (rs * r * r + 2 * r * (a * a * (E * E - 1) - L * L) + 3 * rs * Math.pow(L - a * E, 2));
 }
 
 function rungekutta(h, r, A) {
-      k = [0, 0, 0, 0];
-      k[0] = derivee_seconde_Kerr_massif(r);
-      k[1] = derivee_seconde_Kerr_massif(r + 0.5 * h * A);
-      k[2] = derivee_seconde_Kerr_massif(r + 0.5 * h * A + 0.25 * h * h * k[0]);
-      k[3] = derivee_seconde_Kerr_massif(r + h * A + 0.5 * h * h * k[1]);
-      r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-      A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-      return [r, A];
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_Kerr_massif(r);
+	k[1] = derivee_seconde_Kerr_massif(r + 0.5 * h * A);
+	k[2] = derivee_seconde_Kerr_massif(r + 0.5 * h * A + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Kerr_massif(r + h * A + 0.5 * h * h * k[1]);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
     }
 
 
 function delta(r) {
-  return r * r - rs * r + a * a;
+	return r * r - rs * r + a * a;
 }
 
 function derivee_seconde_Kerr_massif_obs(r) {
-	
 	EaL2_a2=Math.pow(E*a,2)-Math.pow(L,2)- Math.pow(a,2);  
 	Ea_L2=Math.pow(L-a*E,2) ;  
 	denom=(Math.pow(r,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r)*E-rs*a*L/r ;
-	
     return   0.5*Math.pow(c,2)*delta(r)/Math.pow(denom,2)*( 
 
              ( -rs/Math.pow(r,2)-2*(EaL2_a2)/Math.pow(r,3)-3*rs*Ea_L2/Math.pow(r,4) )*delta(r)
@@ -585,30 +587,20 @@ function derivee_seconde_Kerr_massif_obs(r) {
 }
 
 function rungekutta_obs(h, r, A) {
-      k = [0, 0, 0, 0];
-      k[0] = derivee_seconde_Kerr_massif_obs(r);
-      k[1] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * A);
-      k[2] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * A + 0.25 * h * h * k[0]);
-      k[3] = derivee_seconde_Kerr_massif_obs(r + h * A + 0.5 * h * h * k[1]);
-      r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-      A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-      return [r, A];
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_Kerr_massif_obs(r);
+	k[1] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * A);
+	k[2] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * A + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Kerr_massif_obs(r + h * A + 0.5 * h * h * k[1]);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
     }
 
 
 function calcul_rmax(){
-  // Vr diffrent de 0
-/*  rmax = eq3d(L, m, E);
-  vlib = Math.sqrt(rh / r0) * c;
-
-  if (Math.pow(vr, 2) + Math.pow(vphi, 2) >= Math.pow(vlib, 2)) {
-    rmax = 2 * r0;
-  }
-  // Vr=0
-  if (vr == 0) {*/
     r1 = (L * (L - Math.sqrt(Math.pow(L, 2) - 3 * Math.pow(rh, 2))) / (rh));
     r2 = (L * (L + Math.sqrt(Math.pow(L, 2) - 4 * Math.pow(rh, 2))) / (2 * rh));
-
     ra = rh * Math.pow(L, 2);
     rb = ((rh / r0) - 1) * Math.pow(L, 2);
     X0 = 1 / r0;
@@ -724,21 +716,21 @@ function siTrajectoireSimple() {
 function enregistrer(){
   // ces 2 fonctions sont issues des biblios saveSvgAsPng.js et canvas-to-image.js
   
-  if(document.getElementById('trace_present').value=="1"){
-    canvas3 = document.getElementById("myCanvas3");
-    context3 = canvas3.getContext("2d");
-    context3.drawImage(canvas, 0,0);
+	if(document.getElementById('trace_present').value=="1"){
+		canvas3 = document.getElementById("myCanvas3");
+		context3 = canvas3.getContext("2d");
+		context3.drawImage(canvas, 0,0);
 
     if (element2.value != "mobile"){
-    context3.beginPath();
-    context3.fillStyle = COULEUR_BLEU;
-    context3.arc(posX2, posY2 , 5, 0, Math.PI * 2);
-    context3.lineWidth = "1";
-    context3.fill();
-		canvasToImage(canvas3, {
-		  name: 'Trajectoire_massive_Kerr',
-		  type: 'png'
-		});
+		context3.beginPath();
+		context3.fillStyle = COULEUR_BLEU;
+		context3.arc(posX2, posY2 , 5, 0, Math.PI * 2);
+		context3.lineWidth = "1";
+		context3.fill();
+			canvasToImage(canvas3, {
+			name: 'Trajectoire_massive_Kerr',
+			type: 'png'
+			});
     majFondFixe3();
     }else{
     context3.beginPath();
@@ -794,167 +786,168 @@ function commandes(){
 
 // utile pour l'exportation d'images
 function majFondFixe(){
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  // Ajout d'un fond blanc pour l'exportation
-  context.fillStyle = 'white';
-  context.fillRect(0, 0, canvas.width, canvas.height);
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	// Ajout d'un fond blanc pour l'exportation
+	context.fillStyle = 'white';
+	context.fillRect(0, 0, canvas.width, canvas.height);
 
-  context.font = "15pt bold";
-  context.fillStyle = "black";
-  context.fillText(texte.page_trajectoire_massive_kerr.titre,5,40);
-  context.font = "13pt bold";
-  context.fillText(texte.pages_trajectoire.entrees,5,70);
-  context.font = "11pt normal";
-  context.fillText("M = "+M.toExponential(3)+" kg",5,90);
-    context.fillText("r\u2080 = "+r0.toExponential(3)+" m",5,110);
-  context.fillText("a = "+a.toExponential(3)+" m",5,130);
-   context.fillText("U\u1D69(r\u2080) = "+vphi.toExponential(3)+" m.s\u207B\u00B9",5,150);
-  context.fillText("U\u1D63(r\u2080) = "+vr.toExponential(3)+" m.s\u207B\u00B9",5,170);
-   if(document.getElementById('traject_type2').value=="observateur"){
-  context.fillText(texte.pages_trajectoire.observateur,5,190);
-  } else { context.fillText(texte.pages_trajectoire.mobile,5,190); }
+	context.font = "15pt bold";
+	context.fillStyle = "black";
+	context.fillText(texte.page_trajectoire_massive_kerr.titre,5,40);
+	context.font = "13pt bold";
+	context.fillText(texte.pages_trajectoire.entrees,5,70);
+	context.font = "11pt normal";
+	context.fillText("M = "+M.toExponential(3)+" kg",5,90);
+	context.fillText("r\u2080 = "+r0.toExponential(3)+" m",5,110);
+	context.fillText("a = "+a.toExponential(3)+" m",5,130);
+	context.fillText("U\u1D69(r\u2080) = "+vphi.toExponential(3)+" m.s\u207B\u00B9",5,150);
+	context.fillText("U\u1D63(r\u2080) = "+vr.toExponential(3)+" m.s\u207B\u00B9",5,170);
+	if(document.getElementById('traject_type2').value=="observateur"){
+		context.fillText(texte.pages_trajectoire.observateur,5,190);
+	} 
+	else { context.fillText(texte.pages_trajectoire.mobile,5,190); }
   
 }
 
 function majFondFixe22(){
-  context22.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context22.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 function majFondFixe3(){
-  context3.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context3.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 function test_Jmax() { //teste si la valeur de J est supérieure à sa valeur maximale
-  var texte = o_recupereJson();
-  initialisation();
-  if (Math.abs(J) > G * Math.pow(M, 2) / c) {
-    alert(texte.page_trajectoire_massive_kerr.moment_angulaire + "(" + G * Math.pow(M, 2) / c + ")");
-    return false;
-  }
-  else{
-    return true;
-  }
+	var texte = o_recupereJson();
+	initialisation();
+	if (Math.abs(J) > G * Math.pow(M, 2) / c) {
+		alert(texte.page_trajectoire_massive_kerr.moment_angulaire + "(" + G * Math.pow(M, 2) / c + ")");
+		return false;
+	}
+	else{
+		return true;
+	}
 }
 
 function test_r0(){
-  var texte = o_recupereJson();
-  initialisation();
-  if(r0<=rhp){
-    alert(texte.pages_trajectoire.rayonHorzInfRayon);
-    return false;
-  }
-  else if(isNaN(E) || isNaN(L)){
-    alert(texte.pages_trajectoire.EouLisNaN);
-    return false;
-  }
-  else{
-    return true;
-						
-  }
+	var texte = o_recupereJson();
+	initialisation();
+	if(r0<=rhp){
+		alert(texte.pages_trajectoire.rayonHorzInfRayon);
+		return false;
+	}
+	else if(isNaN(E) || isNaN(L)){
+		alert(texte.pages_trajectoire.EouLisNaN);
+		return false;
+	}
+	else{
+		return true;
+							
+	}
 }
 
 // teste si r0 et J0 sont valides pour la simulation
 function tests_lancement(){
-  var val_test=test_Jmax()&&test_r0();
-  if(val_test==true){
-    save_kerr_massif();
-    trajectoire();
-
-        //  Le cas où les valeurs de E et L ne sont pas calculables(Test)
-            if (isNaN(E) || isNaN(L)){
-              document.getElementById("L").innerHTML = "Non calculable" ;
-				      document.getElementById("E").innerHTML = "Non calculable";
-            }
-  }
+	var val_test=test_Jmax()&&test_r0();
+	if(val_test==true){
+		save_kerr_massif();
+		trajectoire();
+		//  Le cas où les valeurs de E et L ne sont pas calculables(Test)
+		if (isNaN(E) || isNaN(L)){
+			document.getElementById("L").innerHTML = "Non calculable" ;
+			document.getElementById("E").innerHTML = "Non calculable";
+		}
+	}
 }
 
 // crée les différentes couches visuelles
 function creation_blocs(context){
-  context.lineWidth = "1";
-  if (((scale_factor * rs / rmax)) < 6) {
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.moveTo(posX3 - 10, posY3);
-    context.lineTo(posX3 - 3, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3 + 3, posY3);
-    context.lineTo(posX3 + 10, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 - 10);
-    context.lineTo(posX3, posY3 - 3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 + 3);
-    context.lineTo(posX3, posY3 + 10);
-    context.stroke();
-  } else {
-    context.beginPath();
-    context.setLineDash([]);
-    context.fillStyle = COULEUR_ERGOS;
-    context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rs / rmax)), 0, Math.PI * 2);
-    context.fill();
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
-    context.fillStyle = 'white';
-    context.fill();
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
-    context.strokeStyle = COULEUR_RS;
-    context.stroke();
-    // tracé de RH- en bleue
-    context.strokeStyle = 'blue';
-    context.beginPath()
-    var posX3 = (canvas.width / 2.0);
-    var posY3 = (canvas.height / 2.0);
-    context.setLineDash([5, 5]);
+	context.lineWidth = "1";
+	if (((scale_factor * rs / rmax)) < 6) {
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.moveTo(posX3 - 10, posY3);
+		context.lineTo(posX3 - 3, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3 + 3, posY3);
+		context.lineTo(posX3 + 10, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 - 10);
+		context.lineTo(posX3, posY3 - 3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 + 3);
+		context.lineTo(posX3, posY3 + 10);
+		context.stroke();
+	} 
+	else {
+		context.beginPath();
+		context.setLineDash([]);
+		context.fillStyle = COULEUR_ERGOS;
+		context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rs / rmax)), 0, Math.PI * 2);
+		context.fill();
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
+		context.fillStyle = 'white';
+		context.fill();
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
+		context.strokeStyle = COULEUR_RS;
+		context.stroke();
+		// tracé de RH- en bleue
+		context.strokeStyle = 'blue';
+		context.beginPath()
+		var posX3 = (canvas.width / 2.0);
+		var posY3 = (canvas.height / 2.0);
+		context.setLineDash([5, 5]);
 
-    context.arc(posX3, posY3, (rhm * scale_factor)/rmax, 0, 2 * Math.PI);
-    context.stroke();
-     // tracé de RH+ en rouge
-    context.strokeStyle = 'red';
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, (rhp * scale_factor)/rmax, 0, 2 * Math.PI);
-    context.stroke();
-    context.closePath();
-    context.closePath();
-    context.strokeStyle = COULEUR_RS;
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, (rs * scale_factor)/rmax, 0, 2 * Math.PI);
-    context.stroke();
-    context.closePath();
-    context.closePath();
+		context.arc(posX3, posY3, (rhm * scale_factor)/rmax, 0, 2 * Math.PI);
+		context.stroke();
+			// tracé de RH+ en rouge
+		context.strokeStyle = 'red';
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, (rhp * scale_factor)/rmax, 0, 2 * Math.PI);
+		context.stroke();
+		context.closePath();
+		context.closePath();
+		context.strokeStyle = COULEUR_RS;
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, (rs * scale_factor)/rmax, 0, 2 * Math.PI);
+		context.stroke();
+		context.closePath();
+		context.closePath();
 
-  }
-  context.fillStyle = 'white';
-  
-  r2bis=(80*r0)/(scale_factor);
-  r1bis=Math.round((80*r0)/(scale_factor*10**testnum(r2bis)));
-  ech=r1bis*10**testnum(r2bis);
-  xe=((r1bis*10**testnum(r2bis))*scale_factor)/r0;
+	}
+context.fillStyle = 'white';
 
-  context.fillStyle = COULEUR_RS;
-  context.fillText(ech.toExponential()+" m",605,90);
-  context.stroke();
-  context.beginPath();      // Début du chemin
-  context.strokeStyle = COULEUR_RS;
+r2bis=(80*r0)/(scale_factor);
+r1bis=Math.round((80*r0)/(scale_factor*10**testnum(r2bis)));
+ech=r1bis*10**testnum(r2bis);
+xe=((r1bis*10**testnum(r2bis))*scale_factor)/r0;
 
-  //context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
-  //context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
-  context.moveTo(600,110);
-  context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,110);
-  context.moveTo(600,105);
-  context.lineTo(600,115);
-  context.moveTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,105);
-  context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,115);
-  // Fermeture du chemin (facultative)
-  context.stroke();
+context.fillStyle = COULEUR_RS;
+context.fillText(ech.toExponential()+" m",605,90);
+context.stroke();
+context.beginPath();      // Début du chemin
+context.strokeStyle = COULEUR_RS;
+
+//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
+//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
+context.moveTo(600,110);
+context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,110);
+context.moveTo(600,105);
+context.lineTo(600,115);
+context.moveTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,105);
+context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,115);
+// Fermeture du chemin (facultative)
+context.stroke();
 
   }

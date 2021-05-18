@@ -277,7 +277,8 @@ function genereHtml(){
 					<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
 					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
 					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>`;
+					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`;
 
 		var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
@@ -287,7 +288,8 @@ function genereHtml(){
 					<td class="tg-3ozo" id="ga`+countt.toString()+`"></td>
 					<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
 					<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
-					<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>`
+					<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`;
 
 	}
 
@@ -1029,6 +1031,8 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		}
 		else{
 			mobile.temps_observateur+=mobile.dtau;
@@ -1038,6 +1042,8 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 		}	
 	}
 	else{
@@ -1048,7 +1054,9 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);				
+			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 			
 		}else{
 			mobile.temps_particule+=0;
 			mobile.temps_observateur+=mobile.dtau*mobile.E/Math.pow(beta(mobile.r_part),2);
@@ -1056,7 +1064,9 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);			
+			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
 			}
 	}
 

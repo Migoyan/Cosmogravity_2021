@@ -192,27 +192,21 @@
 	"depart":"Distance anglaise",
 	"labelnumberfusees":"Number of projectiles",
 	"labelgp":"Show the potential's graph",
-
 	"vrarret":"0",
 	"vphiarret":"0",
-
 	"vphikerrarret":"Infinity",
-
 	"vitesseurlabelt":"Initial dr/dt",
 	"vitesseuphilabelt":"Initial  r.(d&phi;/dt)", 
 	"vitesseurt":"dr/dt",
 	"vitesseuphit":"r.(d&phi;/dt)",
-
 	"vitesseurlabeltau":"Initial  dr/d&tau;",
 	"vitesseuphilabeltau":"Initial r.(d&phi;/d&tau;)",
 	"vitesseurtau":"dr/d&tau;",
 	"vitesseuphitau":"r.(d&phi;/d&tau;)",
-
 	"vitesseurlabellambda":"Initial dr/d&lambda;",
 	"vitesseuphilabellambda":"Initial r.(d&phi;/d&lambda;)",
 	"vitesseurlambda":"dr/d&lambda;",
 	"vitesseuphilambda":"r.(d&phi;/d&lambda;)",
-
 	"calcul_termine":"<b>Calculation finished</b>",
 	"calcul_encours":"<b>Calculation in progress</b>",
 	"calcul_enpause":"<b>Calculation on break</b>",
@@ -255,7 +249,7 @@
 	"mobile":"Space Walker",
 	"temps_obs":"Distant observer time",
 	"decal_spect": "spectral shift",
-	"v_total" :"Speed",
+	"v_total" :"Speed(m/s)",
 	"r0egale0": "r0 is positif",
 	"commandes_horsSchwarMassif":"Keyboard : \n\n- Complete trajectory : key a \n- Simple trajectory : key z\n- Stop the calculate : key q \n- Reset : key s \n- Save : key d \n- Last values : key f \n- Slow down : key w \n- Pause / Read : key x \n- Speed up : key c"
 },

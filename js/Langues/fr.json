@@ -181,7 +181,7 @@
   },
 
 "pages_trajectoire":{
-	"v_total" : "Vitess",
+	"v_total" : "Vitesse(m/s)",
 	"photon": "Photon",
 	"txt_explosion" : " Le rebond est limité à une vitesse d'impact de",
 	"txt_vlimite" : "Si la vitessse est supérieure à",
