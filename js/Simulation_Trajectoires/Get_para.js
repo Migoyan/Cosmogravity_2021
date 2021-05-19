@@ -31,12 +31,11 @@ function save_schwarshild_massif(nbrderockets) {
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
 		v0 = document.getElementById("v0"+count.toString()+"").value;
-		phi0 = document.getElementById("phi0"+count.toString()+"").value;
+		v0= document.getElementById("v0"+count.toString()+"").value;
 		teta = document.getElementById("teta"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
-		sessionStorage.setItem("v0"+count.toString()+"", vr);
-		sessionStorage.setItem("phi0"+count.toString()+"", vphi);
-		sessionStorage.setItem("teta"+count.toString()+"", vphi);
+		sessionStorage.setItem("teta"+count.toString()+"", teta);
+		sessionStorage.setItem("v0"+count.toString()+"", v0);
 		
 	}
 
@@ -67,7 +66,7 @@ function load_schwarshild_massif() {
 	if (sessionStorage.getItem("r01")) {
 		for (count = 1; count <= nbrderockets; count += 1) {
 			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
-			document.getElementById("phi0"+count.toString()+"").value=sessionStorage.getItem("phi0"+count.toString()+"");
+			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
 			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
 			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
 		}
@@ -127,11 +126,11 @@ function save_schwarshild_massif_nonBar(nbrderockets) {
 
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
-		vphi = document.getElementById("vphi"+count.toString()+"").value;
-		vr = document.getElementById("vr"+count.toString()+"").value;
+		v0= document.getElementById("v0"+count.toString()+"").value;
+		teta = document.getElementById("teta"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
-		sessionStorage.setItem("vphi"+count.toString()+"", vphi);
-		sessionStorage.setItem("vr"+count.toString()+"", vr);
+		sessionStorage.setItem("v0"+count.toString()+"", v0 );
+		sessionStorage.setItem("teta"+count.toString()+"", teta);
 	}
 
 	// Stockage des valeurs
@@ -156,11 +155,11 @@ function save_schwarshild_photon_nonBar(nbrderockets) {
 	}
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
-		vphi = document.getElementById("vphi"+count.toString()+"").value;
-		vr = document.getElementById("vr"+count.toString()+"").value;
+		v0= document.getElementById("v0"+count.toString()+"").value;
+		teta = document.getElementById("teta"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
-		sessionStorage.setItem("vphi"+count.toString()+"", vphi);
-		sessionStorage.setItem("vr"+count.toString()+"", vr);
+		sessionStorage.setItem("v0"+count.toString()+"", v);
+		sessionStorage.setItem("teta"+count.toString()+"", teta);
 	}
 	// Stockage des valeurs
 	sessionStorage.setItem("r_phy", r_phy);
@@ -184,10 +183,8 @@ function save_schwarshild_photon(nbrderockets) {
 	}
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
-		vphi = document.getElementById("phi0"+count.toString()+"").value;
-		vr = document.getElementById("teta"+count.toString()+"").value;
+		teta = document.getElementById("teta"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
-		sessionStorage.setItem("phi0"+count.toString()+"", phi0);
 		sessionStorage.setItem("teta"+count.toString()+"", teta);
 	}
 	// Stockage des valeurs
@@ -204,12 +201,12 @@ function save_schwarshild_photon(nbrderockets) {
 
 function load_schwarshild_massif_nonBar() {
 
-   if (sessionStorage.getItem("nombredefuseesrecupvaleurs")){
-     var nbfuseesrecupvaldesession = sessionStorage.getItem("nombredefuseesrecupvaleurs");
-     nbrderockets= nbfuseesrecupvaldesession;
-     //console.log(nbfuseesrecupvaldesession,"nombre de fusees recuperees valeur session");
-    document.getElementById("nombredefusees").value = sessionStorage.getItem("nombredefuseesrecupvaleurs");
-   }
+	if (sessionStorage.getItem("nombredefuseesrecupvaleurs")){
+		var nbfuseesrecupvaldesession = sessionStorage.getItem("nombredefuseesrecupvaleurs");
+		nbrderockets= nbfuseesrecupvaldesession;
+		//console.log(nbfuseesrecupvaldesession,"nombre de fusees recuperees valeur session");
+		document.getElementById("nombredefusees").value = sessionStorage.getItem("nombredefuseesrecupvaleurs");
+	}
 
 	supprHtml();
 	genereHtml();
@@ -217,35 +214,36 @@ function load_schwarshild_massif_nonBar() {
 	updatenbredefusees();
 
 
-  if (sessionStorage.getItem("r01")) {
-	for (count = 1; count <= nbrderockets; count += 1) {
-		document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
-		document.getElementById("vphi"+count.toString()+"").value=sessionStorage.getItem("vphi"+count.toString()+"");
-		document.getElementById("vr"+count.toString()+"").value=sessionStorage.getItem("vr"+count.toString()+"");
-	}
+  	if (sessionStorage.getItem("r01")) {
+		for (count = 1; count <= nbrderockets; count += 1) {
+			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
+			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
+			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
+		}
 
-    document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
-    document.getElementById("M").value = sessionStorage.getItem("M");
-    document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
-    document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
-    var graph_check = sessionStorage.getItem("graph_check");
-    if (graph_check == "false") {
-      document.getElementById("toggle").checked = false;
-    }
+		document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
+		document.getElementById("M").value = sessionStorage.getItem("M");
+		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
+		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
+		var graph_check = sessionStorage.getItem("graph_check");
+		if (graph_check == "false") {
+			document.getElementById("toggle").checked = false;
+		}
 
-    if (document.getElementById("traject_type").value == "simple") {
-      pressionBouttonTrajectoireSimple();
-    } else if (document.getElementById("traject_type").value == "complete") {
-      pressionBouttonTrajectoireComplete();
-    }
+		if (document.getElementById("traject_type").value == "simple") {
+			pressionBouttonTrajectoireSimple();
+    	} 
+		else if (document.getElementById("traject_type").value == "complete") {
+			pressionBouttonTrajectoireComplete();
+		}
+		if (document.getElementById("traject_type2").value == "observateur") {
+			pressionBouttonObservateur();
+		} 
+		else if (document.getElementById("traject_type2").value == "mobile") {
+			pressionBouttonMobile();
 
-    if (document.getElementById("traject_type2").value == "observateur") {
-      pressionBouttonObservateur();
-    } else if (document.getElementById("traject_type2").value == "mobile") {
-      pressionBouttonMobile();
-
-    }
-  }
+		}
+  	}
 }
 
 
@@ -253,54 +251,54 @@ function load_schwarshild_massif_nonBar() {
 function load_schwarshild_photon() {
  
    if (sessionStorage.getItem("nombredefuseesrecupvaleurs")){
-     var nbfuseesrecupvaldesession = sessionStorage.getItem("nombredefuseesrecupvaleurs");
-     nbrderockets= nbfuseesrecupvaldesession;
-     //console.log(nbfuseesrecupvaldesession,"nombre de fusees recuperees valeur session");
-    document.getElementById("nombredefusees").value = sessionStorage.getItem("nombredefuseesrecupvaleurs");
-   }
-
-	 supprHtml();
-	 genereHtml();
-	 save_nbfusees();
-	 updatenbredefusees();
-
-  if (sessionStorage.getItem("r01")) {
-	for (count = 1; count <= nbrderockets; count += 1) {
-		document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
-		document.getElementById("vphi"+count.toString()+"").value=sessionStorage.getItem("vphi"+count.toString()+"");
-		document.getElementById("vr"+count.toString()+"").value=sessionStorage.getItem("vr"+count.toString()+"");
+		var nbfuseesrecupvaldesession = sessionStorage.getItem("nombredefuseesrecupvaleurs");
+		nbrderockets= nbfuseesrecupvaldesession;
+		//console.log(nbfuseesrecupvaldesession,"nombre de fusees recuperees valeur session");
+		document.getElementById("nombredefusees").value = sessionStorage.getItem("nombredefuseesrecupvaleurs");
 	}
-    document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
-    document.getElementById("M").value = sessionStorage.getItem("M");
-    document.getElementById("boutton_ammorti").value = sessionStorage.getItem("boutton_ammorti");
-    document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
-    document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
-    var graph_check = sessionStorage.getItem("graph_check");
-    if (graph_check == "false") {
-      	document.getElementById("toggle").checked = false;
-    }
 
-    if (document.getElementById("traject_type").value == "simple") {
-      	pressionBouttonTrajectoireSimple();
-    } else if (document.getElementById("traject_type").value == "complete") {
-      	pressionBouttonTrajectoireComplete();
-    }
+	supprHtml();
+	genereHtml();
+	save_nbfusees();
+	updatenbredefusees();
 
-    if (document.getElementById("traject_type2").value == "observateur") {
-      	pressionBouttonObservateur();
-    } else if (document.getElementById("traject_type2").value == "mobile") {
-      	pressionBouttonMobile();
+	if (sessionStorage.getItem("r01")) {
+		for (count = 1; count <= nbrderockets; count += 1) {
+			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
+			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
+			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
+		}
+		document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
+		document.getElementById("M").value = sessionStorage.getItem("M");
+		document.getElementById("boutton_ammorti").value = sessionStorage.getItem("boutton_ammorti");
+		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
+		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
+		var graph_check = sessionStorage.getItem("graph_check");
+		if (graph_check == "false") {
+			document.getElementById("toggle").checked = false;
+		}
 
-    }
+		if (document.getElementById("traject_type").value == "simple") {
+			pressionBouttonTrajectoireSimple();
+		} else if (document.getElementById("traject_type").value == "complete") {
+			pressionBouttonTrajectoireComplete();
+		}
 
-    if (document.getElementById("boutton_ammorti").value == "1") {
-      	document.getElementById("rebondd").className = "myButton";
-    } 
-	else if (document.getElementById("boutton_ammorti").value == "0") {
-      	document.getElementById("rebondd").className = "myButton2";
-    }
+		if (document.getElementById("traject_type2").value == "observateur") {
+			pressionBouttonObservateur();
+		} else if (document.getElementById("traject_type2").value == "mobile") {
+			pressionBouttonMobile();
 
-  }
+		}
+
+		if (document.getElementById("boutton_ammorti").value == "1") {
+			document.getElementById("rebondd").className = "myButton";
+		} 
+		else if (document.getElementById("boutton_ammorti").value == "0") {
+			document.getElementById("rebondd").className = "myButton2";
+		}
+
+	}
 
 
 }
@@ -308,33 +306,33 @@ function load_schwarshild_photon() {
 
 
 function load_schwarshild_photon_nonBar() {
-   if (sessionStorage.getItem("nombredefuseesrecupvaleurs")){
-     var nbfuseesrecupvaldesession = sessionStorage.getItem("nombredefuseesrecupvaleurs");
-     nbrderockets= nbfuseesrecupvaldesession;
-     //console.log(nbfuseesrecupvaldesession,"nombre de fusees recuperees valeur session");
-    document.getElementById("nombredefusees").value = sessionStorage.getItem("nombredefuseesrecupvaleurs");
-   }
-
-	 supprHtml();
-	 genereHtml();
-	 save_nbfusees();
-	 updatenbredefusees();
-
-
-  if (sessionStorage.getItem("r01")) {
-	for (count = 1; count <= nbrderockets; count += 1) {
-		document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
-		document.getElementById("vphi"+count.toString()+"").value=sessionStorage.getItem("vphi"+count.toString()+"");
-		document.getElementById("vr"+count.toString()+"").value=sessionStorage.getItem("vr"+count.toString()+"");
+	if (sessionStorage.getItem("nombredefuseesrecupvaleurs")){
+		var nbfuseesrecupvaldesession = sessionStorage.getItem("nombredefuseesrecupvaleurs");
+		nbrderockets= nbfuseesrecupvaldesession;
+		//console.log(nbfuseesrecupvaldesession,"nombre de fusees recuperees valeur session");
+		document.getElementById("nombredefusees").value = sessionStorage.getItem("nombredefuseesrecupvaleurs");
 	}
 
-    document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
-    document.getElementById("M").value = sessionStorage.getItem("M");
-    document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
-    document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
-    var graph_check = sessionStorage.getItem("graph_check");
-    if (graph_check == "false") {
-      	document.getElementById("toggle").checked = false;
+	supprHtml();
+	genereHtml();
+	save_nbfusees();
+	updatenbredefusees();
+
+
+  	if (sessionStorage.getItem("r01")) {
+		for (count = 1; count <= nbrderockets; count += 1) {
+			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
+			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
+			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
+		}
+
+		document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
+		document.getElementById("M").value = sessionStorage.getItem("M");
+		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
+		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
+		var graph_check = sessionStorage.getItem("graph_check");
+		if (graph_check == "false") {
+			document.getElementById("toggle").checked = false;
     }
 
     if (document.getElementById("traject_type").value == "simple") {
@@ -359,8 +357,8 @@ function save_kerr_massif() {
 	r0 = document.getElementById("r0").value;
 	J = document.getElementById("J").value;
 	M = document.getElementById("M").value;
-	vphi = document.getElementById("vphi").value;
-	vr = document.getElementById("vr").value;
+	v0= document.getElementById("v0").value;
+	teta = document.getElementById("teta").value;
 	traject_type = document.getElementById("traject_type").value;
 	traject_type2 = document.getElementById("traject_type2").value;
 	var graph_check = true;
@@ -371,8 +369,8 @@ function save_kerr_massif() {
 	// Stockage des valeurs
 	sessionStorage.setItem("r0", r0);
 	sessionStorage.setItem("J", J);
-	sessionStorage.setItem("vphi", vphi);
-	sessionStorage.setItem("vr", vr);
+	sessionStorage.setItem("v0", v0);
+	sessionStorage.setItem("teta", teta);
 	sessionStorage.setItem("M", M);
 	sessionStorage.setItem("traject_type", traject_type);
 	sessionStorage.setItem("traject_type2", traject_type2)
@@ -385,8 +383,8 @@ function load_kerr_massif() {
 		document.getElementById("r0").value = sessionStorage.getItem("r0");
 		document.getElementById("J").value = sessionStorage.getItem("J");
 		document.getElementById("M").value = sessionStorage.getItem("M");
-		document.getElementById("vphi").value = sessionStorage.getItem("vphi");
-		document.getElementById("vr").value = sessionStorage.getItem("vr");
+		document.getElementById("v0").value = sessionStorage.getItem("v0");
+		document.getElementById("teta").value = sessionStorage.getItem("teta");
 		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
 		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
 		var graph_check = sessionStorage.getItem("graph_check");
@@ -414,8 +412,8 @@ function save_kerr_photon() {
     r0 = document.getElementById("r0").value;
     J = document.getElementById("J").value;
     M = document.getElementById("M").value;
-    vphi = document.getElementById("vphi").value;
-    vr = document.getElementById("vr").value;
+    v0= document.getElementById("v0").value;
+    teta = document.getElementById("teta").value;
     traject_type = document.getElementById("traject_type").value;
     traject_type2 = document.getElementById("traject_type2").value;
     var graph_check = true;
@@ -426,8 +424,8 @@ function save_kerr_photon() {
     // Stockage des valeurs
     sessionStorage.setItem("r0", r0);
     sessionStorage.setItem("J", J);
-    sessionStorage.setItem("vr", vr);
-    sessionStorage.setItem("vphi", vphi);
+    sessionStorage.setItem("teta", teta);
+    sessionStorage.setItem("v0", v0);
     sessionStorage.setItem("M", M);
     sessionStorage.setItem("traject_type", traject_type);
     sessionStorage.setItem("traject_type2", traject_type2)
@@ -435,29 +433,29 @@ function save_kerr_photon() {
 }
 
 function load_kerr_photon() {
-  if (sessionStorage.getItem("r0")) {
-    document.getElementById("r0").value = sessionStorage.getItem("r0");
-    document.getElementById("J").value = sessionStorage.getItem("J");
-    document.getElementById("M").value = sessionStorage.getItem("M");
-    document.getElementById("vr").value = sessionStorage.getItem("vr");
-    document.getElementById("vphi").value = sessionStorage.getItem("vphi");
-    document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
-    document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
-    var graph_check = sessionStorage.getItem("graph_check");
-    if (graph_check == "false") {
-      document.getElementById("toggle").checked = false;
-    }
-    if (document.getElementById("traject_type").value == "simple") {
-      pressionBouttonTrajectoireSimple();
-    } else if (document.getElementById("traject_type").value == "complete") {
-      pressionBouttonTrajectoireComplete();
-    }
+	if (sessionStorage.getItem("r0")) {
+		document.getElementById("r0").value = sessionStorage.getItem("r0");
+		document.getElementById("J").value = sessionStorage.getItem("J");
+		document.getElementById("M").value = sessionStorage.getItem("M");
+		document.getElementById("teta").value = sessionStorage.getItem("teta");
+		document.getElementById("v0").value = sessionStorage.getItem("v0");
+		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
+		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
+		var graph_check = sessionStorage.getItem("graph_check");
+		if (graph_check == "false") {
+			document.getElementById("toggle").checked = false;
+		}
+		if (document.getElementById("traject_type").value == "simple") {
+			pressionBouttonTrajectoireSimple();
+		} else if (document.getElementById("traject_type").value == "complete") {
+			pressionBouttonTrajectoireComplete();
+		}
 
-    if (document.getElementById("traject_type2").value == "observateur") {
-      pressionBouttonObservateur();
-    } else if (document.getElementById("traject_type2").value == "mobile") {
-      pressionBouttonMobile();
+		if (document.getElementById("traject_type2").value == "observateur") {
+			pressionBouttonObservateur();
+		} else if (document.getElementById("traject_type2").value == "mobile") {
+			pressionBouttonMobile();
 
-    }
-  }
+		}
+	}
 }

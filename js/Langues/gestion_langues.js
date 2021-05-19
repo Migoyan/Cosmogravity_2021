@@ -712,6 +712,7 @@ function texteTrajectoireMassiveKerr() {
 	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
 	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
 	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
+	document.getElementById("v_total").innerHTML = texte.pages_trajectoire.decal_spect;
 	document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 }
 

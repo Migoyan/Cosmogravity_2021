@@ -198,26 +198,21 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
 	divchampsr.appendChild(span);
     if(countt==1){
-	var newlabel = document.createElement("Label"); 
-    newlabel.setAttribute("id","vitesseurlabel");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","teta1");
-	newlabel.innerHTML = htmlDecode("&theta;")+"</sub>en degrés</sup>) =";
-	span.appendChild(newlabel);}
-
+		var newlabel = document.createElement("Label"); 
+		newlabel.setAttribute("id","vitesseurlabel");
+		newlabel.setAttribute("title","");
+		newlabel.setAttribute("for","teta1");
+		newlabel.innerHTML = htmlDecode("&theta;")+"</sub>en degrés</sup>) =";
+		span.appendChild(newlabel);
+	}
 
 	var newinput = document.createElement("Input");
 	newinput.setAttribute("id","teta"+countt.toString()+"");
 	newinput.setAttribute("value","135");
-
 	newinput.setAttribute("maxlength","10");
-
 	newinput.setAttribute("type","text");
-
 	newinput.setAttribute("size","5");
-
 	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
 	span.appendChild(newinput);
 }
 

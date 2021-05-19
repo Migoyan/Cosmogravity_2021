@@ -274,29 +274,29 @@
 	"commandes":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z \n- Avec ou sans rebond : touche e \n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c"
   },
 
-  "page_trajectoire_photon":{
-    "titre":"Trajectoire d'un photon en métrique de Schwarzchild",
+"page_trajectoire_photon":{
+	"titre":"Trajectoire d'un photon en métrique de Schwarzchild",
 	"titre3":"Masse baryonique et photon",
-    "rayon_physique":"r<sub>physique</sub> (m) =",
+	"rayon_physique":"r<sub>physique</sub> (m) =",
 	"non_baryonique_photon":"Masse non baryonique et photon",
 	"vitesses_initiales_nulles":"conditions initiales nulles",
 	"rebond":"Rebond"
-  },
+},
 
-  "page_trajectoire_massive_nonBar":{
+"page_trajectoire_massive_nonBar":{
     "titre":"Trajectoire d'un projectile en métrique de Schwarzchild <br/> (cas non baryonique)"
-  },
+},
 
-  "page_trajectoire_photon_nonBar":{
+"page_trajectoire_photon_nonBar":{
     "titre":"Trajectoire d'un photon en métrique de Schwarzchild <br/> (cas non baryonique)"
-  },
-  "page_trajectoire_massive_kerr":{
-    "titre":"Trajectoire d'une particule massive en métrique de Kerr",
-    "moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
-  },
+},
+"page_trajectoire_massive_kerr":{
+	"titre":"Trajectoire d'une particule massive en métrique de Kerr",
+	"moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
+ },
 
-  "page_trajectoire_photon_kerr":{
-    "titre":"Trajectoire d'un photon en métrique de Kerr",
+"page_trajectoire_photon_kerr":{
+	"titre":"Trajectoire d'un photon en métrique de Kerr",
     "moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
-  }
+}
 }

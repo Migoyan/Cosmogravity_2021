@@ -403,14 +403,14 @@ function initialisation(compteur){
 
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	v0= Number(document.getElementById("v0"+compteur.toString()).value);
-	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value);
-	teta = Number(document.getElementById("teta"+compteur.toString()).value);
+	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value); //angle de départ
+	teta = Number(document.getElementById("teta"+compteur.toString()).value); // angle de la vitesse
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
 	vphi=Math.sin(teta)*v0
 	vr=Math.cos(teta)*v0
 	
-
+	//pour l'affichage sur le graph avec les condition initiale
 	if (compteur==1){
 		vphiblab=vphi;
 		vrblab=vr;

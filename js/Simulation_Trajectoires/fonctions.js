@@ -44,21 +44,22 @@ var calculs = calculs || (function() {
         },
 
         vitessKer :function(E,l,a,r,rs,vr,ref){
-            deta=(r**2)-rs*r+a**2;
-            dt=((r**2+a**2+a*rs/r)*E-rs*a*l/r)/deta;
-            gtt=math.abs((c**2)*(1-(rs/r)));
+            deta=(r**2)-(rs*r)+(a**2); ///delta dans la metric de kerr
+            dt=((r**2+a**2+a*rs/r)*E-rs*a*l/r)/deta; // dt/dtau
+            gtt=math.abs((c**2)*(1-(rs/r))); 
             gtp=(-1)*(c*rs*a/r)
             dphi=(c/deta)*(rs*a*E/r+(1-rs/r)*l);
             gamma=(Math.sqrt(gtt)*dt+gtp*dphi/Math.sqrt(gtt))/c;
             gpp=r**2+(a**2)+rs*(a**2)/r;
             grr=(r**2)/deta;
             if(ref){
-                v_r=grr*(vr**2)/(gamma**2);
-                
+                v_r=grr*(vr**2)/(gamma**2);    
             }
             else{
-                v_r=grr*(vr*dt)**2/(gamma**2);    
+                dr=(c**2)*(E**2-1+(rs/r)+((a**2)*(E**2-1)-L)/(r**2)+rs*((L-a*E)**2)/(r**3));
+                v_r=grr*dr/(gamma**2);    
             }
+            
             v_p=(gpp*gtt-(gtp**2))*(dphi**2)/(gtt*(gamma**2));
             vtot=math.abs(v_r+v_p);
             vtot=Math.sqrt(vtot);
