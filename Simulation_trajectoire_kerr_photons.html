@@ -45,21 +45,22 @@ src="./katex/contrib/auto-render.min.js"></script>
 </script>
 
   <!-- Scripts pour calculs -->
-  <script src="./Lib/jquery-1.12.3.min.js"></script>
-  <script src="./Lib/math.min.js"></script>
-  <script src="./Lib/d3.js"></script>
-  <script src="./Lib/snap.svg.js"></script>
-  <script src="./js/Simulation_Trajectoires/calcul_trajectoire_kerr_photons.js"></script>
-  <script src="./js/Simulation_Trajectoires/equation3d.js"></script>
-  <script src="./js/Simulation_Trajectoires/bouttons.js"></script>
-  <script src="./js/Simulation_Trajectoires/stopper.js"></script>
-  <script src="./js/Simulation_Trajectoires/graphe_potentiel_kerr.js"></script>
-  <script src="./js/Langues/gestion_langues.js"></script>
-  <script src="./js/Simulation_Trajectoires/Get_para.js"></script>
-  <script type="text/javascript">
-    pause = true;
-    debut = true;
-  </script>
+	<script src="./Lib/jquery-1.12.3.min.js"></script>
+	<script src="./Lib/math.min.js"></script>
+	<script src="./Lib/d3.js"></script>
+	<script src="./Lib/snap.svg.js"></script>
+	<script src="./js/Simulation_Trajectoires/calcul_trajectoire_kerr_photons.js"></script>
+	<script src="./js/Simulation_Trajectoires/equation3d.js"></script>
+	<script src="./js/Simulation_Trajectoires/bouttons.js"></script>
+	<script src="./js/Simulation_Trajectoires/fonctions.js"></script>
+	<script src="./js/Simulation_Trajectoires/stopper.js"></script>
+	<script src="./js/Simulation_Trajectoires/graphe_potentiel_kerr.js"></script>
+	<script src="./js/Langues/gestion_langues.js"></script>
+	<script src="./js/Simulation_Trajectoires/Get_para.js"></script>
+	<script type="text/javascript">
+		pause = true;
+		debut = true;
+	</script>
   <!-- MENUS
 Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-using-pure-css/
 																								-->
@@ -233,47 +234,49 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
     <div id="tab_resultats">
       <!-- Table Resultats -->
-      <div id="ct_tg">
+    <div id="ct_tg">
         <table class="tg" id="tg">
-          <tr>
-            <th class="tg-aicv">$L(m)$</th>
-            <th class="tg-aicv">$E$</th>
-            <th class="tg-6l4m" id="rayonschwars" >$rs=\frac{2GM}{c^{2}}(m)$</th>
-            <th class="tg-aicv" id="spin" >$a=\frac{J}{cM}(m)$</th>
-            <th class="tg-aicv" id="horizon1" >$Rh+(m)$</th>
-            <th class="tg-aicv" id="horizon2" >$Rh-(m)$</th>
-          </tr>
-          <tr>
-            <td class="tg-3ozo" id="L">0</td>
-            <td class="tg-3ozo" id="E">0</td>
-            <td class="tg-3ozo" id="m">0</td>
-            <td class="tg-3ozo" id="a">0</td>
-            <td class="tg-3ozo" id="rhp">0</td>
-            <td class="tg-3ozo" id="rhm">0</td>
-          </tr>
+			<tr>
+				<th class="tg-aicv">$L(m)$</th>
+				<th class="tg-aicv">$E$</th>
+				<th class="tg-6l4m" id="rayonschwars" >$rs=\frac{2GM}{c^{2}}(m)$</th>
+				<th class="tg-aicv" id="spin" >$a=\frac{J}{cM}(m)$</th>
+				<th class="tg-aicv" id="horizon1" >$Rh+(m)$</th>
+				<th class="tg-aicv" id="horizon2" >$Rh-(m)$</th>
+			</tr>
+			<tr>
+				<td class="tg-3ozo" id="L">0</td>
+				<td class="tg-3ozo" id="E">0</td>
+				<td class="tg-3ozo" id="m">0</td>
+				<td class="tg-3ozo" id="a">0</td>
+				<td class="tg-3ozo" id="rhp">0</td>
+				<td class="tg-3ozo" id="rhm">0</td>
+          	</tr>
         </table>
-      </div>
+    </div>
 
-      <div id="ct_tg2">
-        <table class="tg2" id="tg2">
-          <tr>
-            <th class="tg-aicv">r(m)</th>
-			<th id="temps_ecoule" class="tg-aicv"></th>										   
-            <th id="acceleration" title="" class="tg-6l4m"></th>
-            <th id="vitesseur" title="" class="tg-aicv" >U<SUB>r</SUB>(m.s<sup>-1</sup>)</th>
-            <th id="vitesseuphi" title="" class="tg-aicv" >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-            <th id="temps_obs" class="tg-aicv"></th>
-          </tr>
-          <tr>
-            <td class="tg-3ozo" id="r_par">res</td>
-			<td class="tg-3ozo" id="tp">res</td>
-            <td class="tg-3ozo" id="ga">res</td>
-            <td class="tg-3ozo" id="vrkp">res</td>
-            <td class="tg-3ozo" id="vpkp">res</td>
-            <td class="tg-3ozo" id="to">res</td>
-          </tr>
-        </table>
-      </div>
+      	<div id="ct_tg2">
+        	<table class="tg2" id="tg2">
+			<tr>
+				<th class="tg-aicv">r(m)</th>
+				<th id="temps_ecoule" class="tg-aicv"></th>										   
+				<th id="acceleration" title="" class="tg-6l4m"></th>
+				<th id="vitesseur" title="" class="tg-aicv" >U<SUB>r</SUB>(m.s<sup>-1</sup>)</th>
+				<th id="vitesseuphi" title="" class="tg-aicv" >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+				<th id="temps_obs" class="tg-aicv"></th>
+				<th id="v_total" class="tg-aicv"></th>
+			</tr>
+			<tr>
+				<td class="tg-3ozo" id="r_par">res</td>
+				<td class="tg-3ozo" id="tp">res</td>
+				<td class="tg-3ozo" id="ga">res</td>
+				<td class="tg-3ozo" id="vrkp">res</td>
+				<td class="tg-3ozo" id="vpkp">res</td>
+				<td class="tg-3ozo" id="to">res</td>
+				<td class="tg-3ozo" id="v_tot">res</td>
+			</tr>
+        	</table>
+      	</div>
     </div>
     <span id="indic_calculs"></span>
 
@@ -290,34 +293,31 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
     </div>
 
 
-  </div>
-
-
-    
+  	</div>
 	<div id="panneau_mobile2">
-	  <span id="moinszoom">
-				<img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
-	  </span>
-	  <span id="initialiser">
-		  <img id="pau1" src="Images/reset.png" class="bouton_mobile" title="Echelle par défault">
-	  </span>
-	  <span id="pluszoom">
-				<img id="plusvi1" src="Images/plus.png" class="bouton_mobile" title="Zoom (+)">
-	  </span>
+	  	<span id="moinszoom">
+			<img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
+	  	</span>
+	  	<span id="initialiser">
+		 	<img id="pau1" src="Images/reset.png" class="bouton_mobile" title="Echelle par défault">
+	  	</span>
+	  	<span id="pluszoom">
+			<img id="plusvi1" src="Images/plus.png" class="bouton_mobile" title="Zoom (+)">
+	 	 </span>
 	</div>
 
 
 
   <!-- Panneau mobile qui apparait lorsque tracé -->
-  <div id="panneau_mobile">
+  	<div id="panneau_mobile">
     <span id="moinsvite">
-              <img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
+        <img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
     </span>
     <span id="bouton_pause">
         <img id="pau" src="Images/pause.png" class="bouton_mobile" title="Pause">
     </span>
     <span id="plusvite">
-              <img id="plusvi" src="Images/rapide.png" class="bouton_mobile" title="Accélérer (attention, réduit la précision)">
+        <img id="plusvi" src="Images/rapide.png" class="bouton_mobile" title="Accélérer (attention, réduit la précision)">
     </span>
   </div>
 

@@ -116,57 +116,57 @@ function verifnbr() {
 
 
 function trajectoire() {
-  texte = o_recupereJson();
-  if (pause || debut) {
-    document.getElementById("tg2").style.display = "table";
-    $("#grsvg_2").empty();
-    document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
+	texte = o_recupereJson();
+	if (pause || debut) {
+		document.getElementById("tg2").style.display = "table";
+		$("#grsvg_2").empty();
+		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
 
-    // pour rendre visible le panneau de contrôle pause et vitesse de la simu
-    document.getElementById("panneau_mobile").style.visibility='visible';
+		// pour rendre visible le panneau de contrôle pause et vitesse de la simu
+		document.getElementById("panneau_mobile").style.visibility='visible';
 
-    //Pour rendre visible le paneau de zoom.
-    document.getElementById("panneau_mobile2").style.visibility='visible';
-    estUnMobile();
-    // permet de griser les cases de saisie pour éviter de changer les valeurs pendant la simulation
-    // conseillé car toutes les exceptions ne sont pas gérées
-    document.getElementById('M').disabled = true;
-    document.getElementById('r0').disabled = true;
-    document.getElementById('J').disabled = true;
-    document.getElementById('vphi').disabled = true;
-    document.getElementById('vr').disabled = true;   
+		//Pour rendre visible le paneau de zoom.
+		document.getElementById("panneau_mobile2").style.visibility='visible';
+		estUnMobile();
+		// permet de griser les cases de saisie pour éviter de changer les valeurs pendant la simulation
+		// conseillé car toutes les exceptions ne sont pas gérées
+		document.getElementById('M').disabled = true;
+		document.getElementById('r0').disabled = true;
+		document.getElementById('J').disabled = true;
+		document.getElementById('vphi').disabled = true;
+		document.getElementById('vr').disabled = true;   
 
-    //empecher de passer d'observateur a mobile ou inversement pendant la simulation
-    document.getElementById('r3').disabled = true;
-    document.getElementById('r4').disabled = true;
-    // permet de controler si il y a un tracé ou non pour l'enregistrement
-    document.getElementById('trace_present').value="1";
-    pause = false;
-    debut = false;
-    scale_factor = 280;
-    initialisation();
-    //--------------------------------------------------------------------------------------//
-    //Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre, et aussi dans celui de l'observateur//
+		//empecher de passer d'observateur a mobile ou inversement pendant la simulation
+		document.getElementById('r3').disabled = true;
+		document.getElementById('r4').disabled = true;
+		// permet de controler si il y a un tracé ou non pour l'enregistrement
+		document.getElementById('trace_present').value="1";
+		pause = false;
+		debut = false;
+		scale_factor = 280;
+		initialisation();
+		//--------------------------------------------------------------------------------------//
+		//Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre, et aussi dans celui de l'observateur//
 
-    phi = 0.0;
-    phi_obs = 0.0;
-    temps_chute_libre = (Math.PI * r0 * Math.sqrt(r0 / (2 * G * M)) / 2);
-    A_init = vr;
-    r_init = r0;
-	  A_part = A_init;
-    r_part = r_init;			 
-	  A_init_obs = vr*delta(r0)/( (Math.pow(r0,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r0)*E - rs*a*L/r0 );
-    A_part_obs=A_init_obs;												
-	  r_init_obs = r0; r_part_obs=r_init_obs;					 
-    vrobs=A_init_obs; vphiobs=vphi*(1-rs/r0)/E;
-    data1 = [];
-    data2 = [];
-    temps_particule = 0;
-    temps_observateur = 0;
-    bool = true;
-    confirme = false;
-    // permet de gérer les touches du clavier pour certaines actions
-    clavierEvenement();
+		phi = 0.0;
+		phi_obs = 0.0;
+		temps_chute_libre = (Math.PI * r0 * Math.sqrt(r0 / (2 * G * M)) / 2);
+		A_init = vr;
+		r_init = r0;
+		A_part = A_init;
+		r_part = r_init;			 
+		A_init_obs = vr*delta(r0)/( (Math.pow(r0,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r0)*E - rs*a*L/r0 );
+		A_part_obs=A_init_obs;												
+		r_init_obs = r0; r_part_obs=r_init_obs;					 
+		vrobs=A_init_obs; vphiobs=vphi*(1-rs/r0)/E;
+		data1 = [];
+		data2 = [];
+		temps_particule = 0;
+		temps_observateur = 0;
+		bool = true;
+		confirme = false;
+		// permet de gérer les touches du clavier pour certaines actions
+		clavierEvenement();
 
     /* ----- */
 
@@ -176,15 +176,14 @@ function trajectoire() {
 	 element2=document.getElementById('traject_type2');
 	 
 
-  if (element2.value != "mobile"){
-      dtau=r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
-      if(dtau>temps_chute_libre/500.){dtau= temps_chute_libre/500.;} 
+  	if (element2.value != "mobile"){
+		dtau=r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
+		if(dtau>temps_chute_libre/500.){dtau= temps_chute_libre/500.;} 
 	}
-  else{ 
-    //dtau=r0/(Math.sqrt(vr*vr+vphi*vphi)+1e-20)/1000;
-     dtau= 1e-3*r0/ (Math.abs(vr)+Math.abs(vphi)+1) ;}
-	//}
-	   /*
+  	else{ 
+     	dtau= 1e-3*r0/ (Math.abs(vr)+Math.abs(vphi)+1) ;
+	}
+	/*
     L'enjeu ici est donc de calculer pour chaque itérations les coordonnées de la particule x2_part y2_part, x2_obs y2_obs
     on a donc d'abord besoin de calculer r_part et r_obs par Runge-Kutta, puis d'en déduire le calucl de phi et phi2, le
     tout nous permettra donc de calculer x2 et y2 et les autres paramètres comme la force de marée en chaque point de la trajectoire
@@ -197,26 +196,27 @@ function trajectoire() {
 
     canvas = document.getElementById("myCanvas");
     if (!canvas) {
-      alert(texte.pages_trajectoire.impossible_canvas);
-      return;
+		alert(texte.pages_trajectoire.impossible_canvas);
+		return;
     }
 
     context = canvas.getContext("2d");
     if (!context) {
       alert(texte.pages_trajectoire.impossible_context);
-      return;
+	  return;
     }
 
     canvas22 = document.getElementById("myCanvas22");
     if (!canvas22) {
       alert(texte.pages_trajectoire.impossible_canvas);
-      return;
+	  return;
     }
 
     context22 = canvas22.getContext("2d");
     if (!context22) {
-      alert(texte.pages_trajectoire.impossible_context);
-      return;
+		alert(texte.pages_trajectoire.impossible_context);
+		return;
+
     }
 
     majFondFixe();
@@ -245,22 +245,22 @@ function trajectoire() {
     var Dtau2 = temps_chute_libre / 1e8;
 
     document.getElementById('bouton_pause').addEventListener('click', function() {
-        pausee();
+    	pausee();
     }, false);
 
     document.getElementById('plusvite').addEventListener('click', function() {
-      if (dtau >= Dtau1) {
-    	dtau = Dtau1;
-      } 
-	  else {
-        dtau += dtau;
-        clicks += 1 ;
-      }
+		if (dtau >= Dtau1) {
+			dtau = Dtau1;
+      	} 
+	 	else {
+			dtau += dtau;
+			clicks += 1 ;
+      	}
     }, false);
 
     document.getElementById('moinsvite').addEventListener('click', function() {
 	    if (dtau <= Dtau2) {
-          dtau = Dtau2;
+        	dtau = Dtau2;
         } 
         else {					   
           	dtau /= 2;
@@ -314,7 +314,7 @@ function trajectoire() {
 		}
 	}
 	if (document.getElementById("toggle").checked==false) {
-	CentrerPopPotentiel();
+		CentrerPopPotentiel();
 	}
     //Ici le bout de code pour le bouton Reset, quand on clique dessus, la fonction appelé efface le canvas en entier.
     document.getElementById('clear').addEventListener('click', function() {location.reload();}, false);
@@ -331,7 +331,7 @@ function trajectoire() {
 	dr = rmax / 1000;
 
 	
-element2=document.getElementById('traject_type2');												  
+	element2=document.getElementById('traject_type2');												  
 
 	if (element2.value != "mobile"){
     //ceci est le code pour verifier si il n'y as pas d'infinis, si il y en a un on commence a un point des absicce apres celui ci.
@@ -352,37 +352,36 @@ element2=document.getElementById('traject_type2');
             racinemax=arrayracinesreels[iiiii];
             //console.log("racinemax",racinemax);
         }
-    }
-    
-    if(racinemax==rhp){
-        rmini=rhp;
-    }
-    else{
-        rmini=racinemax*1.05;
+	}
+		
+		if(racinemax==rhp){
+			rmini=rhp;
+		}
+		else{
+			rmini=racinemax*1.05;
+		}
+		//Il faux surement ajouter une vérification ici et faire atention que racinemax*1.05 ne soit pas plus grand que rmax * 1.2, 
+		//le choix de 1.05 ici a été subjectif, a voir si ce choix peux etre mieux fait			   
+				for (r = rmini; r < rmax * 1.2; r += dr) {
+				V = Vr_obs(r);
+				data1.push({date: r, close: V });
+			}
 
-    }
-    //Il faux surement ajouter une vérification ici et faire atention que racinemax*1.05 ne soit pas plus grand que rmax * 1.2, 
-    //le choix de 1.05 ici a été subjectif, a voir si ce choix peux etre mieux fait			   
-    for (r = rmini; r < rmax * 1.2; r += dr) {
-      V = Vr_obs(r);
-      data1.push({date: r, close: V });
-    }
-
-    V = Vr_obs(r0);
-    data2.push({date: r0, close: V });
-    graphique_creation_pot();
-	 }else{  
-    for (r = rhp; r < rmax * 1.2; r += dr) {									   
-     V = Vr_mob(r);
-      data1.push({date: r, close: V });
-    }
-    V = Vr_mob(r0);
-    data2.push({date: r0, close: V });
-    graphique_creation_pot();
-	 }												
-
-
-   } 
+			V = Vr_obs(r0);
+			data2.push({date: r0, close: V });
+			graphique_creation_pot();
+		
+		}
+		else{  
+			for (r = rhp; r < rmax * 1.2; r += dr) {									   
+				V = Vr_mob(r);
+				data1.push({date: r, close: V });
+			}
+			V = Vr_mob(r0);
+			data2.push({date: r0, close: V });
+			graphique_creation_pot();
+		}												
+   	} 
     else {
         myInterval = setInterval(animate, 10 / 6);		  
     }  //  fin if(pause....
@@ -511,8 +510,9 @@ function animate() {
                 document.getElementById("ga").innerHTML = '';
                 document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
                 document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
-            // if(onestarrete==0){
-                document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);  // }
+                document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
+				vtot=calculs.vitessKer(E,L,a,r_part_obs,rs,vr_3_obs,false);
+				document.getElementById("v_tot").innerHTML = vtot.toExponential(5);
             }
         }
 		else{    
@@ -522,10 +522,11 @@ function animate() {
                 document.getElementById("ga").innerHTML = '';
                 document.getElementById("r_par").innerHTML = r_part.toExponential(3);
                 document.getElementById("vrkp").innerHTML = vr_3.toExponential(3);
-            // if(onestarrete==0){ 
                 if(J==0) {vp_3= c*L/r_part;}
                     if(r_part<=rhp && J!=0) {vp_3=1/0;}
-                document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);  //}					
+                document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);
+				vtot=calculs.vitessKer(E,L,a,r_part,rs,vr_3,true);
+				document.getElementById("v_tot").innerHTML = vtot.toExponential(5);				
                 }
         }
         if (element2.value != "mobile"){

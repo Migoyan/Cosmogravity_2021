@@ -410,20 +410,17 @@ function save_kerr_photon() {
     r0 = document.getElementById("r0").value;
     J = document.getElementById("J").value;
     M = document.getElementById("M").value;
-    v0= document.getElementById("v0").value;
-    teta = document.getElementById("teta").value;
+   
     traject_type = document.getElementById("traject_type").value;
     traject_type2 = document.getElementById("traject_type2").value;
     var graph_check = true;
     if (document.getElementById("toggle").checked == false) {
-      graph_check = false;
+		graph_check = false;
     }
 
     // Stockage des valeurs
     sessionStorage.setItem("r0", r0);
     sessionStorage.setItem("J", J);
-    sessionStorage.setItem("teta", teta);
-    sessionStorage.setItem("v0", v0);
     sessionStorage.setItem("M", M);
     sessionStorage.setItem("traject_type", traject_type);
     sessionStorage.setItem("traject_type2", traject_type2)
@@ -435,8 +432,6 @@ function load_kerr_photon() {
 		document.getElementById("r0").value = sessionStorage.getItem("r0");
 		document.getElementById("J").value = sessionStorage.getItem("J");
 		document.getElementById("M").value = sessionStorage.getItem("M");
-		document.getElementById("teta").value = sessionStorage.getItem("teta");
-		document.getElementById("v0").value = sessionStorage.getItem("v0");
 		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
 		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
 		var graph_check = sessionStorage.getItem("graph_check");

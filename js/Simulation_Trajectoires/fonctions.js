@@ -25,6 +25,18 @@ var calculs = calculs || (function() {
             }
             return Math.sqrt(vtot);
         },
+        /**
+         * 
+         * @param {*} E 
+         * @param {*} L 
+         * @param {*} r position de la particule en r
+         * @param {*} rs rayon de schwarschild
+         * @param {*} ra rayon de la masse central
+         * @param {*} vr dr/dt
+         * @param {*} ref choix du réferentiel
+         * @returns 
+         */
+        ///Calcule la vitess réel en m/s pour la métrique de Schwarzchild pour une intéraction non barionique à l'intérieur de l'astre
         vitessInterSc : function(E,L,r,rs,ra,vr,ref){
             ap=1-((r**2)*rs)/(ra**3);
             bt=(3/2)*Math.sqrt(1-rs/ra)-(1/2)*Math.sqrt(ap);
@@ -42,13 +54,24 @@ var calculs = calculs || (function() {
             vtot=v_r+v_p;
             return Math.sqrt(vtot);
         },
-
+        
+        /**
+         * Calcule de la vitess dans la métrique de Kerr
+         * @param {*} E constante
+         * @param {*} l constante
+         * @param {*} a constante 
+         * @param {*} r position de la particule en r
+         * @param {*} rs rayon de schwarschild
+         * @param {*} vr dr/dt ou dr/dtau selon le réferentiel
+         * @param {*} ref choix référentiel 
+         * @returns 
+         */
         vitessKer :function(E,l,a,r,rs,vr,ref){
             deta=(r**2)-(rs*r)+(a**2); ///delta dans la metric de kerr
             dt=((r**2+a**2+a*rs/r)*E-rs*a*l/r)/deta; // dt/dtau
             gtt=math.abs((c**2)*(1-(rs/r))); 
-            gtp=(-1)*(c*rs*a/r)
-            dphi=(c/deta)*(rs*a*E/r+(1-rs/r)*l);
+            gtp=(-1)*(c*rs*a/r);
+            dphi=(c/deta)*(rs*a*E/(r)+(1-rs/r)*l);
             gamma=(Math.sqrt(gtt)*dt+gtp*dphi/Math.sqrt(gtt))/c;
             gpp=r**2+(a**2)+rs*(a**2)/r;
             grr=(r**2)/deta;
@@ -56,8 +79,8 @@ var calculs = calculs || (function() {
                 v_r=grr*(vr**2)/(gamma**2);    
             }
             else{
-                dr=(c**2)*(E**2-1+(rs/r)+((a**2)*(E**2-1)-L)/(r**2)+rs*((L-a*E)**2)/(r**3));
-                v_r=grr*dr/(gamma**2);    
+                dr=(c**2)*(E**2+(rs/r)+((a**2)*(E**2-1)-L)/(r**2)+rs*((L-a*E)**2)/(r**3));
+                v_r=grr*dr/(gamma)**2;    
             }
             
             v_p=(gpp*gtt-(gtp**2))*(dphi**2)/(gtt*(gamma**2));
