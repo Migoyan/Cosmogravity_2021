@@ -155,10 +155,8 @@ function save_schwarshild_photon_nonBar(nbrderockets) {
 	}
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
-		v0= document.getElementById("v0"+count.toString()+"").value;
 		teta = document.getElementById("teta"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
-		sessionStorage.setItem("v0"+count.toString()+"", v);
 		sessionStorage.setItem("teta"+count.toString()+"", teta);
 	}
 	// Stockage des valeurs
