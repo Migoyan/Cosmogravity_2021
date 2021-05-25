@@ -85,7 +85,7 @@ var calculs = calculs || (function() {
                 v_r=grr*((vr*dt)**2)/(gamma**2);    
             }
             v_p=(gpp*gtt-(gtp**2))*(dphi**2)/(gtt*(gamma**2));
-            alert("gamma:"+gamma.toExponential(3).toString()+" dt :"+dt.toExponential(3).toString()+" gtt :"+gtt.toExponential(3).toString());
+            //alert("gamma:"+gamma.toExponential(3).toString()+" dt :"+dt.toExponential(3).toString()+" gtt :"+gtt.toExponential(3).toString());
             vtot=math.abs(v_r+v_p);
             vtot=Math.sqrt(vtot);
             //alert(vtot);

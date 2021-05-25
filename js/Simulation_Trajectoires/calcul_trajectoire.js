@@ -253,7 +253,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","vitesseurlabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta1");
-			newlabel.innerHTML = htmlDecode("&theta;")+"<sub>en degré</sub> =";
+			newlabel.innerHTML = htmlDecode("&alpha;")+"<sub>en degré</sub> =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");

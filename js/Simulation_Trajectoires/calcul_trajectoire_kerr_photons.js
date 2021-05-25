@@ -14,8 +14,8 @@ var title = "V(r)/c²";
 var pos1 = [];
 const DIAMETRE_PART = 1;
 var scale_factor=280;
-	var mini_obs=0;
-	var mini_mob=0;
+var mini_obs=0;
+var mini_mob=0;
 var obs=0;
 var z=0;
 var z_obs=0;
@@ -50,23 +50,24 @@ const COULEUR_ERGOS = COULEUR_JAUNE;
 
 
 function testnum(a){
+	for (var i = -30; i < 30; i++) {
+		resu=a/(10**i);
+		if (resu >1 && resu <10){   z=i; return z;  }
+	}
+}
 
-for (var i = -30; i < 30; i++) {
-resu=a/(10**i);
-if (resu >1 && resu <10){   z=i; return z;   }
-  }}
- 
-
-  
-  
-  
 function initialisation(){
-    c = 299792458;
+	c = 299792458;
     G = 6.6742 * Math.pow(10, -11);
     r0 = Number(document.getElementById("r0").value);
     M = Number(document.getElementById("M").value);
-    vphi = Number(document.getElementById("vphi").value); 
-    vr = Number(document.getElementById("vr").value);
+    //vphi = Number(document.getElementById("vphi").value); 
+    //vr = Number(document.getElementById("vr").value);
+	teta = Number(document.getElementById("teta").value);
+	phi0=Number(document.getElementById("phi0").value);
+	phi0=phi0*Math.PI/180;
+	vr=c*Math.cos(teta*Math.PI/180);
+	vphi=c*Math.sin(teta*Math.PI/180);
     J = Number(document.getElementById("J").value);
     a = J / (c * M);
     m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
@@ -74,7 +75,8 @@ function initialisation(){
     rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
     rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
     rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
-    E = Math.sqrt((vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2)));
+    E = (vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2));
+	E=Math.sqrt(Math.abs(E));
     L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
 
     textegravetetc_Kerr();				   
@@ -94,8 +96,8 @@ function initialisation(){
 function verifnbr() {
 
     r0 = document.getElementById("r0").value;
-    vphi = document.getElementById("vphi").value;
-    vr = document.getElementById("vr").value;
+    //vphi = document.getElementById("vphi").value;
+    //vr = document.getElementById("vr").value;
     M = document.getElementById("M").value;
     J = document.getElementById("J").value;
 
@@ -133,8 +135,10 @@ function trajectoire() {
 		document.getElementById('M').disabled = true;
 		document.getElementById('r0').disabled = true;
 		document.getElementById('J').disabled = true;
-		document.getElementById('vphi').disabled = true;
-		document.getElementById('vr').disabled = true;   
+		//document.getElementById('vphi').disabled = true;
+		//document.getElementById('vr').disabled = true;
+		document.getElementById('teta').disabled = true;
+		document.getElementById('phi0').disabled = true;   
 
 		//empecher de passer d'observateur a mobile ou inversement pendant la simulation
 		document.getElementById('r3').disabled = true;
@@ -450,20 +454,20 @@ function animate() {
 
 
         if (element2.value != "mobile"){
-        if (r_part_obs >= rhp){
-			context.beginPath();
-			context.fillStyle = COULEUR_NOIR;
-			context.rect(posX2, posY2, 1, 1);
-			context.lineWidth = "1";
-			context.fill();
-			majFondFixe22();
-			context22.beginPath();
-			context22.fillStyle = COULEUR_BLEU;
-			context22.arc(posX2, posY2 , 5, 0, Math.PI * 2);
-			context22.lineWidth = "1";
-			context22.fill();
+			if (r_part_obs >= rhp){
+				context.beginPath();
+				context.fillStyle = COULEUR_NOIR;
+				context.rect(posX2, posY2, 1, 1);
+				context.lineWidth = "1";
+				context.fill();
+				majFondFixe22();
+				context22.beginPath();
+				context22.fillStyle = COULEUR_BLEU;
+				context22.arc(posX2, posY2 , 5, 0, Math.PI * 2);
+				context22.lineWidth = "1";
+				context22.fill();
 
-        }
+			}
         }
 		else{
 			context.beginPath();
@@ -512,8 +516,8 @@ function animate() {
 				document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
 				document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
 				vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,vr_3_obs,false);/// voir fonctions.js
-				document.getElementById("v_tot").innerHTML = vtot.toExponential(5);
-			}
+				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);
+				}
         }
 		else{    
             if (r_part>=0){
@@ -526,7 +530,7 @@ function animate() {
                     if(r_part<=rhp && J!=0) {vp_3=1/0;}
                 document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);
 				vtot=calculs.MK_vitess(E,L,a,r_part,rs,vr_3,true);
-				document.getElementById("v_tot").innerHTML = vtot.toExponential(5);				
+				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);				
                 }
         }
         if (element2.value != "mobile"){

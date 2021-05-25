@@ -94,7 +94,7 @@ function lancerDeFusees(fuseecompteur){
 }
 
 function supprHtml(){
-var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
+	var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
     document.getElementById('tableauconstanteslers').innerHTML = ''; 
     document.getElementById('tableauresultatsimu').innerHTML = ''; 
 
@@ -107,21 +107,21 @@ var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
   	var canvaswh = document.getElementById("canvaswidthheight").value;
   
 
-for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
-	var elementrayonasuppr = document.getElementById("rayon"+countt.toString()+"");
-	elementrayonasuppr.parentNode.removeChild(elementrayonasuppr);
-	var elementvpasuppr = document.getElementById("vitessep"+countt.toString()+"");
-	elementvpasuppr.parentNode.removeChild(elementvpasuppr);
-	var elementvrasuppr = document.getElementById("vitesser"+countt.toString()+"");
-	elementvrasuppr.parentNode.removeChild(elementvrasuppr);
-	var elementcanvasbouleasuppr = document.getElementById("myCanvasBoule"+countt.toString()+"");
-	elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
-    if(canvaswh=="750"){
-		var elementgrapheasuppr = document.getElementById("grsvg_"+countt.toString()+"");
-		elementgrapheasuppr.parentNode.removeChild(elementgrapheasuppr);
-    }
+	for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
+		var elementrayonasuppr = document.getElementById("rayon"+countt.toString()+"");
+		elementrayonasuppr.parentNode.removeChild(elementrayonasuppr);
+		var elementvpasuppr = document.getElementById("vitessep"+countt.toString()+"");
+		elementvpasuppr.parentNode.removeChild(elementvpasuppr);
+		var elementvrasuppr = document.getElementById("vitesser"+countt.toString()+"");
+		elementvrasuppr.parentNode.removeChild(elementvrasuppr);
+		var elementcanvasbouleasuppr = document.getElementById("myCanvasBoule"+countt.toString()+"");
+		elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
+		if(canvaswh=="750"){
+			var elementgrapheasuppr = document.getElementById("grsvg_"+countt.toString()+"");
+			elementgrapheasuppr.parentNode.removeChild(elementgrapheasuppr);
+		}
 
-}
+	}
 
 	var elementcanvas3asuppr = document.getElementById("myCanvas3three");
 	elementcanvas3asuppr.parentNode.removeChild(elementcanvas3asuppr);
@@ -189,101 +189,102 @@ function genereHtml(){
 
 
 
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitesser"+countt.toString()+"");
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","vitesser"+countt.toString()+"");
 
-	var divchampsr = document.getElementById('champs_a_remplir');
+		var divchampsr = document.getElementById('champs_a_remplir');
 
 
-	divchampsr.appendChild(span);
-    if(countt==1){
-		var newlabel = document.createElement("Label"); 
-		newlabel.setAttribute("id","vitesseurlabel");
-		newlabel.setAttribute("title","");
-		newlabel.setAttribute("for","teta1");
-		newlabel.innerHTML = htmlDecode("&theta;")+"<sub>en degrés</sup> =";
-		span.appendChild(newlabel);
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label"); 
+			newlabel.setAttribute("id","vitesseurlabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","teta1");
+			newlabel.innerHTML = htmlDecode("&alpha;")+"<sub>en degrés</sup> =";
+			span.appendChild(newlabel);
+		}
+
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","teta"+countt.toString()+"");
+		newinput.setAttribute("value","135");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","5");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
 	}
 
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","teta"+countt.toString()+"");
-	newinput.setAttribute("value","135");
-	newinput.setAttribute("maxlength","10");
-	newinput.setAttribute("type","text");
-	newinput.setAttribute("size","5");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);
-}
+	var newRow=document.getElementById('tableauconstanteslers').insertRow();
 
-		var newRow=document.getElementById('tableauconstanteslers').insertRow();
+	var jstring = '<tr id="tgggg1" >'
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<th class="tg-aicv">$L'+countt.toString()+'(m)$</th>';}
 
-        var jstring = '<tr id="tgggg1" >'
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<th class="tg-aicv">$L'+countt.toString()+'(m)$</th>';}
-
-          for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-            jstring += '<th class="tg-aicv">$E'+countt.toString()+'$</th>';
-            }
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<th class="tg-aicv">$E'+countt.toString()+'$</th>';
+	}
 
  
-             //pour katex il faux mettre un antislash devant le antislash  
-             //jstring +='<th class="tg-6l4m" title="Rayon de Schwarzschild" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
-			jstring +='<th class="tg-6l4m" id="rayonschwars" title="" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';																											   
+    //pour katex il faux mettre un antislash devant le antislash  
+    	
+	jstring +='<th class="tg-6l4m" id="rayonschwars" title="" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
 
-          //   jstring +='<th class="tg-6l4m" title="grav en g">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';
-					jstring +='<th class="tg-6l4m" id="gravtxt" title="">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';																																	 
-          jstring +='</tr>';
+	jstring +='<th class="tg-6l4m" id="gravtxt" title="">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';																																	 
+    string +='</tr>';
 
           
-        newRow.innerHTML = jstring;
+	newRow.innerHTML = jstring;
 
-		var newRow2=document.getElementById('tableauconstanteslers').insertRow();
+	var newRow2=document.getElementById('tableauconstanteslers').insertRow();
 
-        var jstring = '<tr id="tgggg2" >'
-		for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-			jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';}
+	var jstring = '<tr id="tgggg2" >'
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<td class="tg-3ozo" id="L'+countt.toString()+'">0</td>';
+	}
 
-		for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-			jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';}
-			jstring +='<td class="tg-3ozo" id="m">0</td>';
-			jstring +='<td class="tg-3ozo" id="g">0</td>';
-			jstring +='</tr>';
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		jstring += '<td class="tg-3ozo" id="E'+countt.toString()+'">0</td>';
+	}
+	jstring +='<td class="tg-3ozo" id="m">0</td>';
+	jstring +='<td class="tg-3ozo" id="g">0</td>';
+	jstring +='</tr>';
 
-        newRow2.innerHTML = jstring;
-
-
-
-
+	newRow2.innerHTML = jstring;
 
 
 
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var newRow=document.getElementById('tableauresultatsimu').insertRow();
-	  // il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
-	newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
-				<th class="tg-aicv">r(m)</th>
-				<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-				<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
-				<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-				<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
-				<th id="v_total`+countt.toString()+`" class="tg-aicv"></th>`;
 
-	var newRow2=document.getElementById('tableauresultatsimu').insertRow();
+
+
+
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var newRow=document.getElementById('tableauresultatsimu').insertRow();
+		// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
+		newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
+					<th class="tg-aicv">r(m)</th>
+					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
+					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="v_total`+countt.toString()+`" class="tg-aicv"></th>`;
+
+		var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
 		newRow2.innerHTML =       `<tr id="tg2ggb`+countt.toString()+`">
-				<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
-				<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`;
+					<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
+					<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`;
 
-}
+	}
 
-  var canvaswidthheight = document.getElementById("canvaswidthheight").value;
+  	var canvaswidthheight = document.getElementById("canvaswidthheight").value;
 
 	var canvasgenere = document.createElement("canvas");
     canvasgenere.setAttribute("id","myCanvas");
@@ -295,21 +296,18 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 	
     wrappergenere.appendChild(canvasgenere);
 
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var canvasboulegenere = document.createElement("canvas");
+		canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
+		canvasboulegenere.setAttribute("width",canvaswidthheight);
+		canvasboulegenere.setAttribute("height",canvaswidthheight);
 
+		canvasboulegenere.setAttribute("class","canvaslaclasse");
+		if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
+		else{var wrappergenere = document.getElementById('wrapperengrand');}
+		wrappergenere.appendChild(canvasboulegenere);
 
-
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var canvasboulegenere = document.createElement("canvas");
-	canvasboulegenere.setAttribute("id","myCanvasBoule"+countt.toString()+"");
-	canvasboulegenere.setAttribute("width",canvaswidthheight);
-	canvasboulegenere.setAttribute("height",canvaswidthheight);
-
-    canvasboulegenere.setAttribute("class","canvaslaclasse");
-    if(canvaswidthheight=="750"){var wrappergenere = document.getElementById('wrapper');}
-    else{var wrappergenere = document.getElementById('wrapperengrand');}
-    wrappergenere.appendChild(canvasboulegenere);
-
-}
+	}
 
 
 
@@ -323,13 +321,13 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
     else{var wrappergenere = document.getElementById('wrapperengrand');}
     wrappergenere.appendChild(canvas3genere);
 
-if(canvaswidthheight=="750"){
-	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-	svg.setAttribute("id", "grsvg_"+countt.toString()+""); 
-	document.getElementById("wrapper2").appendChild(svg);
+	if(canvaswidthheight=="750"){
+		for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+			var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			svg.setAttribute("id", "grsvg_"+countt.toString()+""); 
+			document.getElementById("wrapper2").appendChild(svg);
+		}
 	}
-}
 
 	texteTrajectoirePhoton(nbredefuseesgenere);
 	notationvitesseree1();
