@@ -482,7 +482,7 @@ function animate() {
 			document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 			document.getElementById("vrk").innerHTML = vr_3_obs.toExponential(3);
 			document.getElementById("vpk").innerHTML = vp_3_obs.toExponential(3);
-			vtotal=calculs.vitessKer(E,L,a,r_part_obs,rs,vr_3_obs,false);
+			vtotal=calculs.MK_vitess(E,L,a,r_part_obs,rs,vr_3_obs,false);
 			document.getElementById("v_tot").innerHTML = vtotal.toExponential(3);
 		}
 
@@ -497,7 +497,7 @@ function animate() {
 			if(J==0) {vp_3= c*L/r_part;}
 			if(r_part<=rhp && J!=0) {vp_3=1/0;}
 			document.getElementById("vpk").innerHTML = vp_3.toExponential(3);
-			vtotal=calculs.vitessKer(E,L,a,r_part,rs,vr_3,true);
+			vtotal=calculs.MK_vitess(E,L,a,r_part,rs,vr_3,true);
 			document.getElementById("v_tot").innerHTML = vtotal.toExponential(3);
 			//console.log("ligne 609 vp_3",vp_3);
 		}
@@ -570,15 +570,15 @@ function derivee_seconde_Kerr_massif(r) {
 	return -c * c / (2 * Math.pow(r, 4)) * (rs * r * r + 2 * r * (a * a * (E * E - 1) - L * L) + 3 * rs * Math.pow(L - a * E, 2));
 }
 
-function rungekutta(h, r, A) {
+function rungekutta(h, r, Ax) {
 	k = [0, 0, 0, 0];
 	k[0] = derivee_seconde_Kerr_massif(r);
-	k[1] = derivee_seconde_Kerr_massif(r + 0.5 * h * A);
-	k[2] = derivee_seconde_Kerr_massif(r + 0.5 * h * A + 0.25 * h * h * k[0]);
-	k[3] = derivee_seconde_Kerr_massif(r + h * A + 0.5 * h * h * k[1]);
-	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-	return [r, A];
+	k[1] = derivee_seconde_Kerr_massif(r + 0.5 * h * Ax);
+	k[2] = derivee_seconde_Kerr_massif(r + 0.5 * h * Ax + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Kerr_massif(r + h * Ax + 0.5 * h * h * k[1]);
+	r = r + h * Ax + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	Ax = Ax + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, Ax];
 }
 
 
@@ -599,15 +599,15 @@ function derivee_seconde_Kerr_massif_obs(r) {
             -2*(Math.pow(E,2)-1+rs/r+(EaL2_a2)/Math.pow(r,2)+rs*Ea_L2/Math.pow(r,3))*delta(r)*((2*r-rs*Math.pow(a,2)/Math.pow(r,2))*E+rs*a*L/Math.pow(r,2))/denom )   ;
 }
 
-function rungekutta_obs(h, r, A) {
+function rungekutta_obs(h, r, Ax) {
 	k = [0, 0, 0, 0];
 	k[0] = derivee_seconde_Kerr_massif_obs(r);
-	k[1] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * A);
-	k[2] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * A + 0.25 * h * h * k[0]);
-	k[3] = derivee_seconde_Kerr_massif_obs(r + h * A + 0.5 * h * h * k[1]);
-	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-	return [r, A];
+	k[1] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * Ax);
+	k[2] = derivee_seconde_Kerr_massif_obs(r + 0.5 * h * Ax + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Kerr_massif_obs(r + h * Ax + 0.5 * h * h * k[1]);
+	r = r + h * Ax + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	Ax= Ax + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, Ax];
 }
 
 

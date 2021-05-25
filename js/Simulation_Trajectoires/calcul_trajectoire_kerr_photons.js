@@ -506,14 +506,14 @@ function animate() {
         if (element2.value != "mobile"){
             if(r_part_obs >= rhp){
                 temps_particule =0;
-                document.getElementById("tp").innerHTML = temps_particule.toExponential(3);
-                document.getElementById("ga").innerHTML = '';
-                document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
-                document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
-                document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
-				vtot=calculs.vitessKer(E,L,a,r_part_obs,rs,vr_3_obs,false);
+				document.getElementById("tp").innerHTML = temps_particule.toExponential(3);
+				document.getElementById("ga").innerHTML = '';
+				document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
+				document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
+				document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
+				vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,vr_3_obs,false);/// voir fonctions.js
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(5);
-            }
+			}
         }
 		else{    
             if (r_part>=0){
@@ -525,7 +525,7 @@ function animate() {
                 if(J==0) {vp_3= c*L/r_part;}
                     if(r_part<=rhp && J!=0) {vp_3=1/0;}
                 document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);
-				vtot=calculs.vitessKer(E,L,a,r_part,rs,vr_3,true);
+				vtot=calculs.MK_vitess(E,L,a,r_part,rs,vr_3,true);
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(5);				
                 }
         }

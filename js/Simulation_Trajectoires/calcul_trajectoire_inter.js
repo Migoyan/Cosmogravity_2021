@@ -220,7 +220,7 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		newlabel.setAttribute("id","vitesseurlabel");
 		newlabel.setAttribute("title","");
 		newlabel.setAttribute("for","phi01");
-		newlabel.innerHTML = htmlDecode("&phi;")+" =";
+		newlabel.innerHTML = htmlDecode("&phi; ")+" =";
 		span.appendChild(newlabel);
 	}
 	var newinput = document.createElement("Input");
@@ -1083,7 +1083,7 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		}else{
 			mobile.temps_observateur+=mobile.dtau;
@@ -1094,7 +1094,7 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
+			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 			}	
 	}else{
@@ -1107,7 +1107,7 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 				
 		}else{
 			mobile.temps_particule+=mobile.dtau;
@@ -1118,7 +1118,7 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
+			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
 			}
 	}
