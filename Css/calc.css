@@ -2,39 +2,39 @@
 /* CSS Document */
 
 body {
-  margin-left: 50px;
-  min-width: 600px;
+    margin-left: 50px;
+    min-width: 600px;
 }
 
 #tabs-1,#plot_en_Z {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 #calcul_E,#calcul_da,#calcul_dl,#valeurs_en_Z,#calcul_dm,#calcul_t{
-  /* margin-right: 40%; */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+	/* margin-right: 40%; */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
 }
 
 #calcul_E>div,#calcul_da>div,#calcul_dl>div,#calcul_dm>div,#calcul_t>div,#valeurs_en_Z>div{
-  width: 50%
+	  width: 50%
 }
 
 #graph_gen_box{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
 }
 
 #box1,#box2,#box3,#box4{
-  /* padding: 20px; */
-  width: 50%;
+	/* padding: 20px; */
+	width: 50%;
 }
 
 #photo_box{
@@ -42,39 +42,39 @@ body {
 }
 
 header {
-  display: block;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding-left: 10px;
-  background: #c62d1f;
-  color: white;
+	display: block;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding-left: 10px;
+	background: #c62d1f;
+	color: white;
 }
 
 input[type="text"] {
-  -webkit-appearance: none;
-  border-radius: 3px;
-  border: thin;
-  height: 15px;
-  width:100px;
-  -moz-box-shadow: 2px 2px 2px 1px #656565;
-  -webkit-box-shadow: 2px 2px 2px 1px #656565;
-  -o-box-shadow: 2px 2px 2px 1px #656565;
-  box-shadow: 2px 2px 2px 1px #656565;
-  filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=4);
+	-webkit-appearance: none;
+	border-radius: 3px;
+	border: thin;
+	height: 15px;
+	width:100px;
+	-moz-box-shadow: 2px 2px 2px 1px #656565;
+	-webkit-box-shadow: 2px 2px 2px 1px #656565;
+	-o-box-shadow: 2px 2px 2px 1px #656565;
+	box-shadow: 2px 2px 2px 1px #656565;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=4);
 }
 
 /* Mise en page Desktop */
 
 @media only screen and (min-width: 960px) {
-  /* Bloc paramètres et resultats */
-  #TOUT {
-    margin-top: 20px;
-    /* padding-left: 4%; */
-    width: 100%;
-    height: 100%;
-    float: left;
-  }
+	/* Bloc paramètres et resultats */
+	#TOUT {
+		margin-top: 20px;
+		/* padding-left: 4%; */
+		width: 100%;
+		height: 100%;
+		float: left;
+	}
 }
