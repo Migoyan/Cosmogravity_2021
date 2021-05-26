@@ -4,7 +4,7 @@ var z_obs=0;
 var title = "V(r)/c²";
 var clicks = 0;
 const DIAMETRE_PART = 1;
-
+const c = 299792458;
 // liste de couleurs en hexa
 const COULEUR_NOIR = '#2F2D2B';
 const COULEUR_BLEU = '#4080A4';
@@ -63,7 +63,6 @@ function generateurCouleur(){
 }
 
 function initialisationGenerale(fuseecompteur){
-    c = 299792458;
     G = 6.6742 * Math.pow(10, -11);
     M = Number(document.getElementById("M").value);
     r_phy = Number(document.getElementById("r_phy").value);
@@ -77,7 +76,6 @@ function initialisationGenerale(fuseecompteur){
 }
 
 function lancerDeFusees(fuseecompteur){
-    c = 299792458;
     G = 6.6742 * Math.pow(10, -11);
     M = Number(document.getElementById("M").value);
     r_phy = Number(document.getElementById("r_phy").value);
@@ -86,7 +84,6 @@ function lancerDeFusees(fuseecompteur){
 	for (compteur = 1; compteur <= fuseecompteur; compteur += 1) {
         trajectoire(compteur,listejsonfusees[compteur]);
 	}
-
 }
 
 
@@ -96,9 +93,9 @@ function supprHtml(){
     document.getElementById('tableauresultatsimu').innerHTML = ''; 
 
 
-   if (sessionStorage.getItem("nombredefusees")){
-       var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
-   }
+	if (sessionStorage.getItem("nombredefusees")){
+		var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
+	}
 	var elementcanvasasuppr = document.getElementById("myCanvas");
 	elementcanvasasuppr.parentNode.removeChild(elementcanvasasuppr);
   	var canvaswh = document.getElementById("canvaswidthheight").value;
@@ -212,12 +209,12 @@ function genereHtml(){
 			newlabel.setAttribute("id","vitesseurlabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta");
-			newlabel.innerHTML = htmlDecode("&theta;")+"(<sup>en degré</sup>) =";
+			newlabel.innerHTML = htmlDecode("&alpha;")+"(<sup>en degré</sup>) =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
 		newinput.setAttribute("id","teta"+countt.toString()+"");
-		newinput.setAttribute("value","45");
+		newinput.setAttribute("value","120");
 		newinput.setAttribute("maxlength","10");
 		newinput.setAttribute("type","text");
 		newinput.setAttribute("size","10");
@@ -339,7 +336,7 @@ function genereHtml(){
 
 
 function initialisation(compteur){
-	c = 299792458;
+
 	G = 6.6742 * Math.pow(10, -11);
 	M = Number(document.getElementById("M").value);
 	r_phy = Number(document.getElementById("r_phy").value);
@@ -348,11 +345,13 @@ function initialisation(compteur){
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value); //angle de départ
 	teta = Number(document.getElementById("teta"+compteur.toString()).value); // angle de la vitesse
+	
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
-	vphi=Math.sin(teta)*c
-	vr=Math.cos(teta)*c
-	 //pr majFondFixe
+	vphi=Math.sin(teta)*c;
+	vr=Math.cos(teta)*c;
+	 
+	//pr majFondFixe
 	if(compteur==1){
 		vphiblab = vphi;
 		vrblab = vr;
@@ -621,7 +620,7 @@ function trajectoire(compteur,mobile) {
 
     canvas = document.getElementById("myCanvas");
     if (!canvas) {
-      alert(texte.pages_trajectoire.impossible_canvas);
+		alert(texte.pages_trajectoire.impossible_canvas);
     }
 
     context = canvas.getContext("2d");
@@ -749,12 +748,6 @@ function trajectoire(compteur,mobile) {
     // Tracé du Rayon de Schwarzchild.				   
     creation_blocs(context,mobilefactor,rmaxjson,maximum,compteur);
 
-    //je ne pense pas que ceci soit utile maintenant
-    //$(document.params.traj[0]).change(function() {
-      // Tracé du Rayon de Schwarzchild si on change en cours de simulation
-    //  creation_blocs(context);
-    //});
-
 	dr = mobile.rmax / 1000;
 	mobile["dr"]=dr;//mobile.dr;				
 
@@ -860,7 +853,7 @@ function animate(compteur,mobile,mobilefactor) {
 				mobile.r_part = val[0];
 				mobile.A_part = val[1];
 				
-				varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+				varphi = c * mobile.L*mobile.dtau/ Math.pow(mobile.r_part, 2);
 				//todo posinterm mobile.phi=mobile.phi+Math.PI ici alors qu pr inter c mobile.phi=Math.PI normal?
 				if(mobile.r_part <= r_phy*5e-3 && varphi <= 1e-3) { 
 					if(mobile.posinterm > 0) {mobile.phi=mobile.phi+Math.PI;mobile.A_part=-mobile.A_part;}
@@ -915,7 +908,7 @@ function animate(compteur,mobile,mobilefactor) {
 
 							 
     if (element2.value != "mobile"){
-      if (mobile.r_part >= 0){
+		if (mobile.r_part >= 0){
     context.beginPath();
     context.fillStyle = mobile.couleur;
     context.rect(mobile.position.posX2, mobile.position.posY2, 1, 1);
@@ -978,7 +971,7 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		}
 		else{
@@ -989,7 +982,7 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
+			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 		}	
 	}
@@ -1002,9 +995,10 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessSc(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 			
-		}else{
+		}
+		else{
 			mobile.temps_particule+=0;
 			mobile.temps_observateur+=mobile.dtau*mobile.E/Math.pow(beta(mobile.r_part),2);
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
@@ -1012,29 +1006,25 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.vitessInterSc(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
+			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
-			}
+		}
 	}
-
-
-
-
-  }   // fin r0 #0
+	}   // fin r0 #0
 
 }  //fin fonction animate
 
 // Expression du potentiel divisée par c^2
 
 function Vr_mob(r,E,L) {
-	if(r > r_phy) { return potentiel_externe_photon(r,L);
-	}else{ return potentiel_interne_photon(r,E,L);}
+	if(r > r_phy) { return potentiel_externe_photon(r,L);}
+	else{ return potentiel_interne_photon(r,E,L);}
 }
 
 function Vr_obs(r,E,L) {
-	if(r > r_phy) { return Math.pow(E,2)-( 1-potentiel_externe_photon(r,L)/Math.pow(E,2) )*Math.pow(1-rs/r,2)  ;	
-  }else{ return Math.pow(E,2)- Math.pow(beta(r),4)*( 1-potentiel_interne_photon(r,E,L)/Math.pow(E,2) ); } 
-  }	
+	if(r > r_phy) { return Math.pow(E,2)-( 1-potentiel_externe_photon(r,L)/Math.pow(E,2) )*Math.pow(1-rs/r,2) ;}
+	else{ return Math.pow(E,2)- Math.pow(beta(r),4)*( 1-potentiel_interne_photon(r,E,L)/Math.pow(E,2) ); } 
+}	
 
 					
 function potentiel_interne_photon(r,E,L) {
@@ -1046,73 +1036,82 @@ function potentiel_externe_photon(r,L) {
 }
 
 function rungekutta_externe_photon(h, r, A, L) {
-  k = [0, 0, 0, 0];
-  k[0] = derivee_seconde_externe_photon(r,L);
-  k[1] = derivee_seconde_externe_photon(r + 0.5 * h * A,L);
-  k[2] = derivee_seconde_externe_photon(r + 0.5 * h * A + 0.25 * h * h * k[0],L);
-  k[3] = derivee_seconde_externe_photon(r + h * A + 0.5 * h * h * k[1],L);
-  r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-  A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-  return [r, A];
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_externe_photon(r,L);
+	k[1] = derivee_seconde_externe_photon(r + 0.5 * h * A,L);
+	k[2] = derivee_seconde_externe_photon(r + 0.5 * h * A + 0.25 * h * h * k[0],L);
+	k[3] = derivee_seconde_externe_photon(r + h * A + 0.5 * h * h * k[1],L);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
 }
 
 
 function rungekutta_interne_photon(h, r, A,E,L) {
-  k = [0, 0, 0, 0];
-  k[0] = derivee_seconde_interne_photon(r,E,L);
-  k[1] = derivee_seconde_interne_photon(r + 0.5 * h * A,E,L);
-  k[2] = derivee_seconde_interne_photon(r + 0.5 * h * A + 0.25 * h * h * k[0],E,L);
-  k[3] = derivee_seconde_interne_photon(r + h * A + 0.5 * h * h * k[1],E,L);
-  r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-  A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-  return [r, A];
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_interne_photon(r,E,L);
+	k[1] = derivee_seconde_interne_photon(r + 0.5 * h * A,E,L);
+	k[2] = derivee_seconde_interne_photon(r + 0.5 * h * A + 0.25 * h * h * k[0],E,L);
+	k[3] = derivee_seconde_interne_photon(r + h * A + 0.5 * h * h * k[1],E,L);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
 }
 
 function rungekutta_externe_photon_obs(h, r, A,E,L) {
-  k = [0, 0, 0, 0];
-  k[0] = derivee_seconde_externe_photon_obs(r,E,L);
-  k[1] = derivee_seconde_externe_photon_obs(r + 0.5 * h * A,E,L);
-  k[2] = derivee_seconde_externe_photon_obs(r + 0.5 * h * A + 0.25 * h * h * k[0],E,L);
-  k[3] = derivee_seconde_externe_photon_obs(r + h * A + 0.5 * h * h * k[1],E,L);
-  r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-  A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-  return [r, A];
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_externe_photon_obs(r,E,L);
+	k[1] = derivee_seconde_externe_photon_obs(r + 0.5 * h * A,E,L);
+	k[2] = derivee_seconde_externe_photon_obs(r + 0.5 * h * A + 0.25 * h * h * k[0],E,L);
+	k[3] = derivee_seconde_externe_photon_obs(r + h * A + 0.5 * h * h * k[1],E,L);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
 }
 
 function rungekutta_interne_photon_obs(h, r, A,E,L) {
-  k = [0, 0, 0, 0];
-  k[0] = derivee_seconde_interne_photon_obs(r,E,L);
-  k[1] = derivee_seconde_interne_photon_obs(r + 0.5 * h * A,E,L);
-  k[2] = derivee_seconde_interne_photon_obs(r + 0.5 * h * A + 0.25 * h * h * k[0],E,L);
-  k[3] = derivee_seconde_interne_photon_obs(r + h * A + 0.5 * h * h * k[1],E,L);
-  r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-  A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-  return [r, A];
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_interne_photon_obs(r,E,L);
+	k[1] = derivee_seconde_interne_photon_obs(r + 0.5 * h * A,E,L);
+	k[2] = derivee_seconde_interne_photon_obs(r + 0.5 * h * A + 0.25 * h * h * k[0],E,L);
+	k[3] = derivee_seconde_interne_photon_obs(r + h * A + 0.5 * h * h * k[1],E,L);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
 }
 
 function alpha(r){
-  return 1-(Math.pow(r, 2)*rs) / Math.pow(r_phy, 3);
-  }
+	return 1-(Math.pow(r, 2)*rs) / Math.pow(r_phy, 3);
+}
 
 
 function beta(r){
-  return 1.5 * Math.sqrt(1-(rs/r_phy)) - 0.5 *Math.sqrt(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
-  }
+	return 1.5 * Math.sqrt(1-(rs/r_phy)) - 0.5 *Math.sqrt(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
+}
 
 
 // fonctions utilisées pour Runge Kutta
 
 function derivee_seconde_interne_photon(r,E,L) {
-   return     -(Math.pow(c, 2)*r*rs) / Math.pow(r_phy, 3) *  (Math.pow(E,2)/Math.pow(beta(r), 2)- Math.pow(L, 2)/Math.pow(r, 2) )
+	let resulta=0;
+	/*-(Math.pow(c, 2)*r*rs) / Math.pow(r_phy, 3)*(Math.pow(E,2)/Math.pow(beta(r), 2)- Math.pow(L, 2)/Math.pow(r, 2) )
    +  Math.pow(c, 2)* alpha(r)/2 * ( 2* Math.pow(L, 2)/Math.pow(r, 3)-(Math.pow(E,2)*r*rs)/(Math.pow(beta(r), 3)*Math.sqrt(alpha(r))*Math.pow(r_phy, 3)));
+	*/
+	let g=-(c**2)*r*rs/(r_phy**3);
+	let El=(E**2)/(beta(r)**2)-(L**2)/(r**2);
+	let ca=(c**2)*alpha(r)/2;
+	let el2=-(E**2)*r*rs/((beta(r)**3)*Math.sqrt(alpha(r))*(r_phy)**3)+2*(L**2)/(r**3);
+	//console.log("al"+alpha(r));
+	result=g*El+ca*el2;
+	return resulta ;
 }
 
 function derivee_seconde_externe_photon(r,L) {
-   return     Math.pow(c, 2)/(2*Math.pow(r, 4)) * (Math.pow(L, 2)*(2*r-3*rs));
+	return Math.pow(c, 2)/(2*Math.pow(r, 4)) * (Math.pow(L, 2)*(2*r-3*rs));
 }
 
 function derivee_seconde_interne_photon_obs(r,E,L) {
-   return     - Math.pow(c, 2)*r*rs/Math.pow(E,2)/ Math.pow(r_phy, 3) * (Math.pow(E*beta(r),2)- Math.pow(L/r, 2)*Math.pow(beta(r),4) )
+   return - Math.pow(c, 2)*r*rs/Math.pow(E,2)/ Math.pow(r_phy, 3) * (Math.pow(E*beta(r),2)- Math.pow(L/r, 2)*Math.pow(beta(r),4) )
    +  0.5*Math.pow(c, 2)* alpha(r)/Math.pow(E,2) * ( 2* Math.pow(L, 2)*Math.pow(beta(r),4)/Math.pow(r, 3)- Math.pow(E,2)*r*rs*beta(r)/(Math.sqrt(alpha(r))*Math.pow(r_phy, 3)))
 	+Math.pow(c, 2)*Math.sqrt(alpha(r))/Math.pow(E,2)/ Math.pow(r_phy, 3)*(Math.pow(E,2)*beta(r)- Math.pow(L/r, 2)*Math.pow(beta(r),3) )*r*rs;
 }
@@ -1380,7 +1379,7 @@ function majFondFixe3(){
 
 // Empeche le lancer si on part de l'interieur de l'horizon
 function test_inte() {
-  c = 299792458;
+
   G = 6.6742 * Math.pow(10, -11);
   M = Number(document.getElementById("M").value);
   r_phy = Number(document.getElementById("r_phy").value);

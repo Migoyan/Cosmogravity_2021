@@ -720,31 +720,31 @@ function graphique_creation_d(){
   frame[0].data[0].y.ydlt = val_graph[4];
 
   var trace1 = {
-  x: frame[0].data[0].x,
-  y: frame[0].data[0].y.yda,
-  type: 'scatter',
-  name: '<b>d<sub>a</sub><b>'
+    x: frame[0].data[0].x,
+    y: frame[0].data[0].y.yda,
+    type: 'scatter',
+    name: '<b>d<sub>a</sub><b>'
   };
 
   var trace2 = {
     x: frame[0].data[0].x,
     y: frame[0].data[0].y.ydm,
-	type: 'scatter',
+	  type: 'scatter',
     name: '<b>d<sub>m</sub><b>'
   };
 
   var trace3 = {
-  x: frame[0].data[0].x,
-  y: frame[0].data[0].y.ydl,
-  type: 'scatter',
-  name: '<b>d<sub>L</sub><b>'
+    x: frame[0].data[0].x,
+    y: frame[0].data[0].y.ydl,
+    type: 'scatter',
+    name: '<b>d<sub>L</sub><b>'
   };
 
   var trace4 = {
-  x: frame[0].data[0].x,
-  y: frame[0].data[0].y.ydlt,
-  type: 'scatter',
-  name: '<b>d<sub>LT</sub><b>'
+    x: frame[0].data[0].x,
+    y: frame[0].data[0].y.ydlt,
+    type: 'scatter',
+    name: '<b>d<sub>LT</sub><b>'
   }
 
   var data = [trace1, trace2, trace3, trace4];
@@ -761,24 +761,24 @@ function graphique_creation_d(){
 
   Plotly.newPlot('graphique', data, {
     title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
-	titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+    titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 	
     xaxis: {
       	autorange: true,
       	title: 'z',
-	    titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+	      titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
       	showline: true
     },
 
     yaxis: {
       	rangemode: 'tozero',
       	autorange: true,
-	    title: 'al',
-	    titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+        title: 'al',
+        titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
       	showline: true
     },
     annotations: annots,
-    },
+  },
   {
     displaylogo: false
   }

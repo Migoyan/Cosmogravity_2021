@@ -58,62 +58,61 @@ function testnum(a){
 
 function initialisation(){
 	c = 299792458;
-    G = 6.6742 * Math.pow(10, -11);
-    r0 = Number(document.getElementById("r0").value);
-    M = Number(document.getElementById("M").value);
-    //vphi = Number(document.getElementById("vphi").value); 
-    //vr = Number(document.getElementById("vr").value);
+	G = 6.6742 * Math.pow(10, -11);
+	r0 = Number(document.getElementById("r0").value);
+	M = Number(document.getElementById("M").value);
+	//vphi = Number(document.getElementById("vphi").value); 
+	//vr = Number(document.getElementById("vr").value);
 	teta = Number(document.getElementById("teta").value);
 	phi0=Number(document.getElementById("phi0").value);
 	phi0=phi0*Math.PI/180;
 	vr=c*Math.cos(teta*Math.PI/180);
 	vphi=c*Math.sin(teta*Math.PI/180);
-    J = Number(document.getElementById("J").value);
-    a = J / (c * M);
-    m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
-    rs = 2 * G * M / Math.pow(c, 2);
-    rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
-    rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
-    rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
-    E = (vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2));
+	J = Number(document.getElementById("J").value);
+	a = J / (c * M);
+	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
+	rs = 2 * G * M / Math.pow(c, 2);
+	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
+	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
+	rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
+	E = (vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2));
 	E=Math.sqrt(Math.abs(E));
-    L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
+	L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
 
-    textegravetetc_Kerr();				   
-    document.getElementById("a").innerHTML = a.toExponential(3);
-    document.getElementById("m").innerHTML = rs.toExponential(3);
-    document.getElementById("L").innerHTML = L.toExponential(3);
-    document.getElementById("E").innerHTML = E.toExponential(3);
+	textegravetetc_Kerr();				   
+	document.getElementById("a").innerHTML = a.toExponential(3);
+	document.getElementById("m").innerHTML = rs.toExponential(3);
+	document.getElementById("L").innerHTML = L.toExponential(3);
+	document.getElementById("E").innerHTML = E.toExponential(3);
 
-    if (isNaN(rhp)){document.getElementById("rhp").innerHTML = 0;}
-    else {  document.getElementById("rhp").innerHTML = rhp.toExponential(3);}
+	if (isNaN(rhp)){document.getElementById("rhp").innerHTML = 0;}
+	else {  document.getElementById("rhp").innerHTML = rhp.toExponential(3);}
 
-    if (isNaN(rhm)){document.getElementById("rhm").innerHTML = 0;}
-    else { document.getElementById("rhm").innerHTML = rhm.toExponential(3);;}
+	if (isNaN(rhm)){document.getElementById("rhm").innerHTML = 0;}
+	else { document.getElementById("rhm").innerHTML = rhm.toExponential(3);;}
 
 }
 
 function verifnbr() {
+	r0 = document.getElementById("r0").value;
+	//vphi = document.getElementById("vphi").value;
+	//vr = document.getElementById("vr").value;
+	M = document.getElementById("M").value;
+	J = document.getElementById("J").value;
 
-    r0 = document.getElementById("r0").value;
-    //vphi = document.getElementById("vphi").value;
-    //vr = document.getElementById("vr").value;
-    M = document.getElementById("M").value;
-    J = document.getElementById("J").value;
-
-    if (isNaN(r0)){
-        alert ("Veuillez vérifier vos saisie en r0");}
-    if (isNaN(vr)){
-        alert ("Veuillez vérifier vos saisie en Vr"); }
-    if (isNaN(vphi)){
-        alert ("Veuillez vérifier vos saisie en Vphi");  
-    }
-    if (isNaN(M)){
-        alert ("Veuillez vérifier vos saisie en M");																						 							  																														  	  														   
-    }
-    if (isNaN(J)){
-        alert ("Veuillez vérifier vos saisie en J");
-    }						   
+	if (isNaN(r0)){
+		alert ("Veuillez vérifier vos saisie en r0");}
+	if (isNaN(vr)){
+		alert ("Veuillez vérifier vos saisie en Vr"); }
+	if (isNaN(vphi)){
+		alert ("Veuillez vérifier vos saisie en Vphi");  
+	}
+	if (isNaN(M)){
+		alert ("Veuillez vérifier vos saisie en M");																						 							  																														  	  														   
+	}
+	if (isNaN(J)){
+		alert ("Veuillez vérifier vos saisie en J");
+	}						   
 }
 
 
