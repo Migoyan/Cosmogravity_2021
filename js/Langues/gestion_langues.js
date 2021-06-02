@@ -39,8 +39,12 @@ function s_testLangueJson() {
 		} else {
 			return PATH_JSON_EN;
 		}
+<<<<<<< HEAD
 	} 
 	else {
+=======
+	} else {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		// recupere la langue du navigateur par defaut
 		var userLang = navigator.language || navigator.userLanguage;
 		if (userLang == "fr" || userLang == "fr-FR" || userLang == "fr-fr") {
@@ -50,17 +54,25 @@ function s_testLangueJson() {
 			userLang == "en"
 			return PATH_JSON_EN;
 		}
+<<<<<<< HEAD
     sessionStorage.setItem("LANGUE", userLang);
   	}
+=======
+		sessionStorage.setItem("LANGUE", userLang);
+	}
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
-
 
 // charge la page tutoriel en fonction du choix de langue
 function langageTutorielUnivers() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_UNIV_TUTO_FR, "_blank");
+<<<<<<< HEAD
 	} 
 	else if (s_testLangue() == "en") {
+=======
+	} else if (s_testLangue() == "en") {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		window.open(PATH_UNIV_TUTO_EN, "_blank");
 	}
 }
@@ -68,30 +80,35 @@ function langageTutorielUnivers() {
 function langageTutorielTrajectoires() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_TRAJ_TUTO_FR, "_blank");
+<<<<<<< HEAD
 	} 
 	else if (s_testLangue() == "en") {
+=======
+	} else if (s_testLangue() == "en") {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		window.open(PATH_TRAJ_TUTO_EN, "_blank");
 	}
 }
-
-
 
 // charge la page théorie univers en fonction du choix de langue
 function langageTheorieUnivers() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_UNIV_THEORIE_FR, "_blank");
+<<<<<<< HEAD
 	} 
 	else if (s_testLangue() == "en") {
+=======
+	} else if (s_testLangue() == "en") {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		window.open(PATH_UNIV_THEORIE_EN, "_blank");
 	}
 }
-
-
 
 // charge la page théorie trajectoire en fonction du choix de langue
 function langageTheorieTrajectoire() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_TRAJ_THEO_FR, "_blank");
+<<<<<<< HEAD
 	} 
 	else if (s_testLangue() == "en") {
 		window.open(PATH_TRAJ_THEO_EN, "_blank");
@@ -127,6 +144,12 @@ function testSiBonneLangueTrajectoireTheo() {
     window.open(PATH_TRAJ_THEO_FR, "_blank");
   }
 } */ 
+=======
+	} else if (s_testLangue() == "en") {
+		window.open(PATH_TRAJ_THEO_EN, "_blank");
+	}
+}
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 
 // similaire à s_testLangueJson() mais renvoi la valeur de la variable langue
 function s_testLangue() {
@@ -134,8 +157,12 @@ function s_testLangue() {
 	if (sessionStorage.getItem("LANGUE")) {
 		langue = sessionStorage.getItem("LANGUE");
 		return langue;
+<<<<<<< HEAD
 		} 
 	else {
+=======
+	} else {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		langue = navigator.language || navigator.userLanguage;
 		if (langue == "fr" || langue == "fr-FR" || langue == "fr-fr"){
 			langue="fr";
@@ -177,6 +204,7 @@ function texteIndex() {
 	document.getElementById("image3").src =texte.page_index.path_image3;
 	document.getElementById("image4").src =texte.page_index.path_image4;
 }
+
 function textesimutraj(){
 	var texte = o_recupereJson();
 	//document.getElementById("txt_trajectoire").innerHTML = "Avertissement"; 
@@ -195,9 +223,9 @@ function textesfinarret(){
 }
 
 function textesfinarret_kerr(){
-  var texte = o_recupereJson();
-  //document.getElementById("vrk").innerHTML = texte.pages_trajectoire.vrarret;
-  document.getElementById("vpk").innerHTML = texte.pages_trajectoire.vphikerrarret;
+	var texte = o_recupereJson();
+	//document.getElementById("vrk").innerHTML = texte.pages_trajectoire.vrarret;
+	document.getElementById("vpk").innerHTML = texte.pages_trajectoire.vphikerrarret;
 }
 
 function textesfinarret_kerrphoton(){
@@ -217,6 +245,7 @@ function notationvitesseree2(){
 	numberoftherockets = document.getElementById("nombredefusees").value;
 	if(document.getElementById('traject_type2').value=="observateur"){
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
+<<<<<<< HEAD
 		document.getElementById("tetalabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		for (count = 1; count <= numberoftherockets; count += 1) {
@@ -238,12 +267,28 @@ function notationvitesseree2(){
 	}
 
 
+=======
+		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		for (count = 1; count <= numberoftherockets; count += 1) {
+		document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
+		document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+		}
+	}else{
+		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
+		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		for (count = 1; count <= numberoftherockets; count += 1) {
+		document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurtau);
+		document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphitau);
+		}
+	}
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
 
 function zoom() {
 	var texte = o_recupereJson();
 	document.getElementById("zoomtxt").title = texte.page_univers_general.zoomtxt;
 }
+<<<<<<< HEAD
 	
  
 function textegravetetc_Kerr(){
@@ -263,8 +308,25 @@ function textegravetetc_Kerr(){
 	}																			 
 
 
+=======
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 
+function textegravetetc_Kerr(){
+	var texte = o_recupereJson();
+	document.getElementById("acceleration").title = texte.pages_trajectoire.diffderive;
+	document.getElementById("ctreastre").title = texte.pages_trajectoire.ctreastre;
+	document.getElementById("massetxt").title = texte.pages_trajectoire.massetxt;
+	document.getElementById("moment").title = texte.pages_trajectoire.moment;
+	document.getElementById("spin").title = texte.pages_trajectoire.spin;
+	document.getElementById("rayonschwars").title = texte.pages_trajectoire.rayonschwars;
+	
+	document.getElementById("horizon1").title = texte.pages_trajectoire.horizon1;
+	document.getElementById("horizon2").title = texte.pages_trajectoire.horizon2;
+ 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
+	if(canvaswidthheightt=="750"){
+	document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;}
 }
+<<<<<<< HEAD
 function textegravetetc(){
 	var texte = o_recupereJson();
 
@@ -284,44 +346,87 @@ function textegravetetc(){
 	var nbrfusetexte = Number(document.getElementById("nombredefusees").value);
 	for (countt = 1; countt <= nbrfusetexte; countt += 1) {
 	document.getElementById("acceleration"+countt.toString()).title = texte.pages_trajectoire.diffderive;}
+=======
 
+function textegravetetc(){
+	var texte = o_recupereJson();
+	
+	//document.getElementById("txt_explosion").title = texte.pages_trajectoire.txt_explosion;
+	
+	document.getElementById("gravtxt").title = texte.pages_trajectoire.gravtitle;
+	document.getElementById("ctreastre").title = texte.pages_trajectoire.ctreastre;
+	document.getElementById("rayonschwars").title = texte.pages_trajectoire.rayonschwars;
+	document.getElementById("massetxt").title = texte.pages_trajectoire.massetxt;
+	document.getElementById("txt_rphysique").title = texte.pages_trajectoire.txt_rphysique;
+	document.getElementById("labelnumberfusees").innerHTML = texte.pages_trajectoire.labelnumberfusees;
+	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
+	if(canvaswidthheightt=="750"){
+		document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;
+	}
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
+
+	var nbrfusetexte = Number(document.getElementById("nombredefusees").value);
+	for (countt = 1; countt <= nbrfusetexte; countt += 1) {
+		document.getElementById("acceleration"+countt.toString()).title = texte.pages_trajectoire.diffderive;
+	}
 }
-
 
 function notationvitesseree2kerr(){
 	var texte = o_recupereJson();
+<<<<<<< HEAD
 	if(document.getElementById('traject_type2').value=="observateur"){
+=======
+	if(document.getElementById('traject_type2').value=="observateur") {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+<<<<<<< HEAD
 	}
 	else{
+=======
+	} else {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurtau);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphitau);
 	}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
 
 function notationvitesseree1kerr(){
 	var texte = o_recupereJson();
+<<<<<<< HEAD
 	if(document.getElementById('traject_type2').value=="observateur"){
+=======
+	if(document.getElementById('traject_type2').value=="observateur") {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+<<<<<<< HEAD
 	}
 	else{
+=======
+	} else {
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurlambda);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
 	}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
 
 
@@ -329,6 +434,7 @@ function notationvitesseree1(){
 	var texte = o_recupereJson();
 	numberoftherockets = document.getElementById("nombredefusees").value;
 
+<<<<<<< HEAD
 	if(document.getElementById('traject_type2').value=="observateur"){
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
@@ -347,193 +453,213 @@ function notationvitesseree1(){
 	}
 
 
+=======
+	if(document.getElementById('traject_type2').value=="observateur") {
+		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
+		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
+		for (countet = 1; countet <= numberoftherockets; countet += 1) {
+		document.getElementById("vitesseur"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
+		document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+		}
+	} else {
+		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
+		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
+		for (countet = 1; countet <= numberoftherockets; countet += 1) {
+		document.getElementById("vitesseur"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurlambda);
+		document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
+		}
+	}
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
 
 function infobulleobservateurdistant(){
 	var texte = o_recupereJson();
+<<<<<<< HEAD
 	//document.getElementById("r3").title ="distance >> RS ... sans être cosmologique";
+=======
+>>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 	document.getElementById("r3").title =texte.pages_trajectoire.r3;
 }
 
 
 
 function texteApropos() {
-  var texte = o_recupereJson();
-  document.getElementById("txt_directeurs").innerHTML = texte.page_apropos.directeurs;																					  
-  document.getElementById("txt_encadrants").innerHTML = texte.page_apropos.encadrants;
-  document.getElementById("txt_participants").innerHTML = texte.page_apropos.participants;																						  
-  document.getElementById("txt_remerciements").innerHTML = texte.page_apropos.remerciements;
-  document.getElementById("txt_version").innerHTML = texte.page_apropos.version;
-  document.getElementById("txt_descriptif").innerHTML = texte.page_apropos.descriptif;
-  document.getElementById("txt_contact").innerHTML = texte.page_apropos.contact;
-  document.getElementById("bouton_envoyer").innerHTML = texte.page_apropos.envoyer;
-  document.getElementById("txt_version_2019").innerHTML = texte.page_apropos.version_2019;	
-  document.getElementById("txt_version_2020").innerHTML = texte.page_apropos.version_2020;  
+	var texte = o_recupereJson();
+	document.getElementById("txt_directeurs").innerHTML = texte.page_apropos.directeurs;																					  
+	document.getElementById("txt_encadrants").innerHTML = texte.page_apropos.encadrants;
+	document.getElementById("txt_participants").innerHTML = texte.page_apropos.participants;																						  
+	document.getElementById("txt_remerciements").innerHTML = texte.page_apropos.remerciements;
+	document.getElementById("txt_version").innerHTML = texte.page_apropos.version;
+	document.getElementById("txt_descriptif").innerHTML = texte.page_apropos.descriptif;
+	document.getElementById("txt_contact").innerHTML = texte.page_apropos.contact;
+	document.getElementById("bouton_envoyer").innerHTML = texte.page_apropos.envoyer;
+	document.getElementById("txt_version_2019").innerHTML = texte.page_apropos.version_2019;	
+	document.getElementById("txt_version_2020").innerHTML = texte.page_apropos.version_2020;  
 }
 
 function texteMenu() {
-  var texte = o_recupereJson();
-  document.getElementById("Univers_Tuto").innerHTML = texte.page_menu.Ututo;
-  document.getElementById("Trajectoires_Tuto").innerHTML = texte.page_menu.Ttuto;
-  document.getElementById("Tuto").innerHTML = texte.page_menu.tuto;
-  document.getElementById("Accueil").innerHTML = texte.page_menu.accueil;
-  document.getElementById("Univers").innerHTML = texte.page_menu.univers;
-  document.getElementById("Univers_theorie").innerHTML = texte.page_menu.theorie;
-  document.getElementById("Simulation_univers").innerHTML = texte.page_menu.simulation;
-  document.getElementById("Standard").innerHTML = texte.page_menu.standard;
-  document.getElementById("Energie_Sombre").innerHTML = texte.page_menu.energiesombre;
-  document.getElementById("Trajectoire").innerHTML = texte.page_menu.trajectoire;
-  document.getElementById("Trajectoire_theorie").innerHTML = texte.page_menu.theorie;
-  document.getElementById("Schwarzschild").innerHTML = texte.page_menu.schwarzschild;
-  document.getElementById("Metmbaryonique").innerHTML = texte.page_menu.metmbaryonique;
-  document.getElementById("Metpbaryonique").innerHTML = texte.page_menu.metpbaryonique;
-  document.getElementById("Metmnonbaryonique").innerHTML = texte.page_menu.metmnonbaryonique;
-  document.getElementById("Metpnonbaryonique").innerHTML = texte.page_menu.metpnonbaryonique;
- // document.getElementById("Particule_massive").innerHTML = texte.page_menu.part_massive;
- // document.getElementById("Photon").innerHTML = texte.page_menu.part_photon;
-  document.getElementById("Kerr").innerHTML = texte.page_menu.kerr;
-  document.getElementById("Particule_massive_kerr").innerHTML = texte.page_menu.part_massive;
-  document.getElementById("Photon_kerr").innerHTML = texte.page_menu.part_photon;
-  document.getElementById("Apropos").innerHTML = texte.page_menu.apropos;
-  //document.getElementById("Maj").innerHTML=texte.page_menu.maj;
-  document.getElementById("langue").innerHTML = texte.page_menu.langue;
-  document.getElementById("langue_fr").innerHTML = texte.page_menu.langue_fr;
-  document.getElementById("langue_en").innerHTML = texte.page_menu.langue_en;
-
+	var texte = o_recupereJson();
+	document.getElementById("Univers_Tuto").innerHTML = texte.page_menu.Ututo;
+	document.getElementById("Trajectoires_Tuto").innerHTML = texte.page_menu.Ttuto;
+	document.getElementById("Tuto").innerHTML = texte.page_menu.tuto;
+	document.getElementById("Accueil").innerHTML = texte.page_menu.accueil;
+	document.getElementById("Univers").innerHTML = texte.page_menu.univers;
+	document.getElementById("Univers_theorie").innerHTML = texte.page_menu.theorie;
+	document.getElementById("Simulation_univers").innerHTML = texte.page_menu.simulation;
+	document.getElementById("Standard").innerHTML = texte.page_menu.standard;
+	document.getElementById("Energie_Sombre").innerHTML = texte.page_menu.energiesombre;
+	document.getElementById("Trajectoire").innerHTML = texte.page_menu.trajectoire;
+	document.getElementById("Trajectoire_theorie").innerHTML = texte.page_menu.theorie;
+	document.getElementById("Schwarzschild").innerHTML = texte.page_menu.schwarzschild;
+	document.getElementById("Metmbaryonique").innerHTML = texte.page_menu.metmbaryonique;
+	document.getElementById("Metpbaryonique").innerHTML = texte.page_menu.metpbaryonique;
+	document.getElementById("Metmnonbaryonique").innerHTML = texte.page_menu.metmnonbaryonique;
+	document.getElementById("Metpnonbaryonique").innerHTML = texte.page_menu.metpnonbaryonique;
+	document.getElementById("Kerr").innerHTML = texte.page_menu.kerr;
+	document.getElementById("Particule_massive_kerr").innerHTML = texte.page_menu.part_massive;
+	document.getElementById("Photon_kerr").innerHTML = texte.page_menu.part_photon;
+	document.getElementById("Apropos").innerHTML = texte.page_menu.apropos;
+	document.getElementById("langue").innerHTML = texte.page_menu.langue;
+	document.getElementById("langue_fr").innerHTML = texte.page_menu.langue_fr;
+	document.getElementById("langue_en").innerHTML = texte.page_menu.langue_en;
 }
 
 function texteConstantes() {
-  var texte = o_recupereJson();
-  document.getElementById("txt_titre").innerHTML = texte.page_constantes.titre;
-  document.getElementById("txt_Grego").innerHTML = texte.page_constantes.gregorien;
-  document.getElementById("txt_Sider").innerHTML = texte.page_constantes.sideral;
-  document.getElementById("txt_Julien").innerHTML = texte.page_constantes.julienne;
-  document.getElementById("txt_Trop").innerHTML = texte.page_constantes.tropique;
-  document.getElementById("annee").innerHTML = texte.page_constantes.annee;
-  document.getElementById("bout_enregistrer").value = texte.page_constantes.enregistrer;
-  document.getElementById("bout_retour").value = texte.page_constantes.retour;
+	var texte = o_recupereJson();
+	document.getElementById("txt_titre").innerHTML = texte.page_constantes.titre;
+	document.getElementById("txt_Grego").innerHTML = texte.page_constantes.gregorien;
+	document.getElementById("txt_Sider").innerHTML = texte.page_constantes.sideral;
+	document.getElementById("txt_Julien").innerHTML = texte.page_constantes.julienne;
+	document.getElementById("txt_Trop").innerHTML = texte.page_constantes.tropique;
+	document.getElementById("annee").innerHTML = texte.page_constantes.annee;
+	document.getElementById("bout_enregistrer").value = texte.page_constantes.enregistrer;
+	document.getElementById("bout_retour").value = texte.page_constantes.retour;
 }
 
 function texteUnivers() {
-  var texte = o_recupereJson();
-  document.getElementById("monofluide").value = texte.page_univers.bouton_monofluides;
-  document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
-  document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
-  document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
-  document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
-  document.getElementById("txt_titre").innerHTML = texte.page_univers.titre;
-  document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
-  document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
-  document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
-  document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
-  document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
-  document.getElementById("txt_univplat").innerHTML = texte.page_univers.univers_plat;
-  document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers.matierelambdaRFCNeu;
-  document.getElementById("txt_MLRFC").innerHTML = texte.page_univers.matierelambdaRFC;
-  document.getElementById("txt_ML").innerHTML = texte.page_univers.matierelambda;
+	var texte = o_recupereJson();
+	document.getElementById("monofluide").value = texte.page_univers.bouton_monofluides;
+	document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
+	document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
+	document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
+	document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
+	document.getElementById("txt_titre").innerHTML = texte.page_univers.titre;
+	document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
+	document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
+	document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
+	document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
+	document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
+	document.getElementById("txt_univplat").innerHTML = texte.page_univers.univers_plat;
+	document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers.matierelambdaRFCNeu;
+	document.getElementById("txt_MLRFC").innerHTML = texte.page_univers.matierelambdaRFC;
+	document.getElementById("txt_ML").innerHTML = texte.page_univers.matierelambda;
 }
 
 function texteUniversCalculs() {
-  var texte = o_recupereJson();
-  document.getElementById("bouton_retour").value = texte.page_univers_calculs.bouton_retour;
-  document.getElementById("txt_titre").innerHTML = texte.page_univers_calculs.titre;
-  document.getElementById("txt_valeursZ").innerHTML = texte.page_univers_calculs.valeursZ;
-  document.getElementById("txt_valeursZ1").innerHTML = texte.page_univers_calculs.valeursZ1;
+	var texte = o_recupereJson();
+	document.getElementById("bouton_retour").value = texte.page_univers_calculs.bouton_retour;
+	document.getElementById("txt_titre").innerHTML = texte.page_univers_calculs.titre;
+	document.getElementById("txt_valeursZ").innerHTML = texte.page_univers_calculs.valeursZ;
+	document.getElementById("txt_valeursZ1").innerHTML = texte.page_univers_calculs.valeursZ1;
 
-  document.getElementById("txt_parametres").innerHTML = texte.page_univers_calculs.parametres;
-  document.getElementById("bcalc_ord").value = texte.page_univers_calculs.bouton_calcul;
-  document.getElementById("txt_resultats").innerHTML = texte.page_univers_calculs.resultats;
+	document.getElementById("txt_parametres").innerHTML = texte.page_univers_calculs.parametres;
+	document.getElementById("bcalc_ord").value = texte.page_univers_calculs.bouton_calcul;
+	document.getElementById("txt_resultats").innerHTML = texte.page_univers_calculs.resultats;
 
-  // cas non monofluides
-  if (document.getElementById("txt_univplat")) {
-    document.getElementById("txt_univplat").innerHTML = texte.page_univers_calculs.univers_plat;
-    if (document.getElementById("EnergieSombre")) {
-      document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_calculs.matiereEsombreRFCNeu;
-      document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_calculs.matiereEsombreRFC;
-      document.getElementById("txt_ML").innerHTML = texte.page_univers_calculs.matiereEsombre;
-    } else {
-      document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_calculs.matierelambdaRFCNeu;
-      document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_calculs.matierelambdaRFC;
-      document.getElementById("txt_ML").innerHTML = texte.page_univers_calculs.matierelambda;
-	  document.getElementById("txt_graphe_d").innerHTML = texte.page_univers_calculs.tracer_d;
-      document.getElementById("txt_graphe_omega").innerHTML = texte.page_univers_calculs.tracer_omega;
-	   document.getElementById("txt_graphe_t").innerHTML = texte.page_univers_calculs.tracer_t;
-      document.getElementById("txt_generateur_graphiques").innerHTML = texte.page_univers_calculs.GenerateurG;
-      document.getElementById("txt_zmin").innerHTML = texte.page_univers_calculs.zmin;
-      document.getElementById("txt_zmax").innerHTML = texte.page_univers_calculs.zmax;
-      document.getElementById("boutonGraphe_distances").value = texte.page_univers_calculs.bouton_tracer;
-      document.getElementById("boutonGraphe_omega").value = texte.page_univers_calculs.bouton_tracer;
-	  document.getElementById("boutonGraphe_t").value = texte.page_univers_calculs.bouton_tracer;
-      document.getElementById("txt_geometrie").innerHTML = texte.page_univers_calculs.Geometrie;
-      document.getElementById("txt_photometrie").innerHTML = texte.page_univers_calculs.Photometrie;
-      document.getElementById("txt_valeurs_Intensite").innerHTML = texte.page_univers_calculs.Intensite;  // Ajout de text page annexe Intensite
-      document.getElementById("ts-1").value = texte.page_univers_general.bouton_tracer;
-      document.getElementById("ts-2").value = texte.page_univers_general.bouton_tracer;
-      document.getElementById("txt_infoCalculs").innerHTML = texte.page_univers_calculs.infoCalculs;
-      document.getElementById("secondeArc").innerHTML = texte.page_univers_calculs.secondeArc;
-      document.getElementById("calculInverse").innerHTML = texte.page_univers_calculs.calculInverse;
-      document.getElementById("boutonCalculInverse").value = texte.page_univers_calculs.bouton_calcul;
-      document.getElementById("annee1").innerHTML = texte.page_univers_calculs.annee;
-      document.getElementById("annee2").innerHTML = texte.page_univers_calculs.annee;
-      document.getElementById("temission").innerHTML = texte.page_univers_calculs.temission;
-      document.getElementById("treception").innerHTML = texte.page_univers_calculs.treception;																						  
-    }
-  }
-  // cas sans energie noire
-  if (document.getElementById("calculInverse")) {
-    document.getElementById("txt_geometrie").innerHTML = texte.page_univers_calculs.Geometrie;
-    document.getElementById("txt_photometrie").innerHTML = texte.page_univers_calculs.Photometrie;
-    document.getElementById("txt_valeurs_Intensite").innerHTML = texte.page_univers_calculs.Intensite;  // Ajout de text page annexe Intensite																							   
-    document.getElementById("ts-1").value = texte.page_univers_general.bouton_tracer;
-    document.getElementById("ts-2").value = texte.page_univers_general.bouton_tracer;
-    document.getElementById("txt_infoCalculs").innerHTML = texte.page_univers_calculs.infoCalculs;
-    document.getElementById("secondeArc").innerHTML = texte.page_univers_calculs.secondeArc;
-    document.getElementById("calculInverse").innerHTML = texte.page_univers_calculs.calculInverse;
-    document.getElementById("boutonCalculInverse").value = texte.page_univers_calculs.bouton_calcul;
-    document.getElementById("annee1").innerHTML = texte.page_univers_calculs.annee;
-    document.getElementById("annee2").innerHTML = texte.page_univers_calculs.annee;
-    document.getElementById("temission").innerHTML = texte.page_univers_calculs.temission;
-    document.getElementById("treception").innerHTML = texte.page_univers_calculs.treception;
-  }
+	// cas non monofluides
+	if (document.getElementById("txt_univplat")) {
+		document.getElementById("txt_univplat").innerHTML = texte.page_univers_calculs.univers_plat;
+		if (document.getElementById("EnergieSombre")) {
+			document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_calculs.matiereEsombreRFCNeu;
+			document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_calculs.matiereEsombreRFC;
+			document.getElementById("txt_ML").innerHTML = texte.page_univers_calculs.matiereEsombre;
+		} else {
+			document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_calculs.matierelambdaRFCNeu;
+			document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_calculs.matierelambdaRFC;
+			document.getElementById("txt_ML").innerHTML = texte.page_univers_calculs.matierelambda;
+			document.getElementById("txt_graphe_d").innerHTML = texte.page_univers_calculs.tracer_d;
+			document.getElementById("txt_graphe_omega").innerHTML = texte.page_univers_calculs.tracer_omega;
+		 	document.getElementById("txt_graphe_t").innerHTML = texte.page_univers_calculs.tracer_t;
+			document.getElementById("txt_graphe_d_t").innerHTML = texte.page_univers_calculs.tracer_d_t;
+			document.getElementById("txt_graphe_omega_t").innerHTML = texte.page_univers_calculs.tracer_omega_t;
+			document.getElementById("txt_generateur_graphiques").innerHTML = texte.page_univers_calculs.GenerateurG;
+			document.getElementById("txt_zmin").innerHTML = texte.page_univers_calculs.zmin;
+			document.getElementById("txt_zmax").innerHTML = texte.page_univers_calculs.zmax;
+			document.getElementById("boutonGraphe_distances").value = texte.page_univers_calculs.bouton_tracer;
+			document.getElementById("boutonGraphe_omega").value = texte.page_univers_calculs.bouton_tracer;
+			document.getElementById("boutonGraphe_t").value = texte.page_univers_calculs.bouton_tracer;
+			document.getElementById("boutonGraphe_distances_t").value = texte.page_univers_calculs.bouton_tracer;
+			document.getElementById("boutonGraphe_omega_t").value = texte.page_univers_calculs.bouton_tracer;
+			document.getElementById("txt_geometrie").innerHTML = texte.page_univers_calculs.Geometrie;
+			document.getElementById("txt_photometrie").innerHTML = texte.page_univers_calculs.Photometrie;
+			document.getElementById("txt_valeurs_Intensite").innerHTML = texte.page_univers_calculs.Intensite;  // Ajout de text page annexe Intensite
+			document.getElementById("ts-1").value = texte.page_univers_general.bouton_tracer;
+			document.getElementById("ts-2").value = texte.page_univers_general.bouton_tracer;
+			document.getElementById("txt_infoCalculs").innerHTML = texte.page_univers_calculs.infoCalculs;
+			document.getElementById("secondeArc").innerHTML = texte.page_univers_calculs.secondeArc;
+			document.getElementById("calculInverse").innerHTML = texte.page_univers_calculs.calculInverse;
+			document.getElementById("boutonCalculInverse").value = texte.page_univers_calculs.bouton_calcul;
+			document.getElementById("annee1").innerHTML = texte.page_univers_calculs.annee;
+			document.getElementById("annee2").innerHTML = texte.page_univers_calculs.annee;
+			document.getElementById("temission").innerHTML = texte.page_univers_calculs.temission;
+			document.getElementById("treception").innerHTML = texte.page_univers_calculs.treception;																						  
+		}
+	}
+	// cas sans energie noire
+	if (document.getElementById("calculInverse")) {
+		document.getElementById("txt_geometrie").innerHTML = texte.page_univers_calculs.Geometrie;
+		document.getElementById("txt_photometrie").innerHTML = texte.page_univers_calculs.Photometrie;
+		document.getElementById("txt_valeurs_Intensite").innerHTML = texte.page_univers_calculs.Intensite;  // Ajout de text page annexe Intensite																							   
+		document.getElementById("ts-1").value = texte.page_univers_general.bouton_tracer;
+		document.getElementById("ts-2").value = texte.page_univers_general.bouton_tracer;
+		document.getElementById("txt_infoCalculs").innerHTML = texte.page_univers_calculs.infoCalculs;
+		document.getElementById("secondeArc").innerHTML = texte.page_univers_calculs.secondeArc;
+		document.getElementById("calculInverse").innerHTML = texte.page_univers_calculs.calculInverse;
+		document.getElementById("boutonCalculInverse").value = texte.page_univers_calculs.bouton_calcul;
+		document.getElementById("annee1").innerHTML = texte.page_univers_calculs.annee;
+		document.getElementById("annee2").innerHTML = texte.page_univers_calculs.annee;
+		document.getElementById("temission").innerHTML = texte.page_univers_calculs.temission;
+		document.getElementById("treception").innerHTML = texte.page_univers_calculs.treception;
+	}
 }
 
 function texteUniversNoire() {
-  var texte = o_recupereJson();
-  document.getElementById("monofluide").value = texte.page_univers_noire.bouton_monofluides;
-  document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
-  document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
-  document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
-  document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
-  document.getElementById("txt_titre").innerHTML = texte.page_univers_noire.titre;
-  document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
-  document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
-  document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
-  document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
-  document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
-  document.getElementById("txt_univplat").innerHTML = texte.page_univers_noire.univers_plat;
-  document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_noire.matiereEsombreRFCNeu;
-  document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_noire.matiereEsombreRFC;
-  document.getElementById("txt_ML").innerHTML = texte.page_univers_noire.matiereEsombre;
+	var texte = o_recupereJson();
+	document.getElementById("monofluide").value = texte.page_univers_noire.bouton_monofluides;
+	document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
+	document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
+	document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
+	document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
+	document.getElementById("txt_titre").innerHTML = texte.page_univers_noire.titre;
+	document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
+	document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
+	document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
+	document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
+	document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
+	document.getElementById("txt_univplat").innerHTML = texte.page_univers_noire.univers_plat;
+	document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_noire.matiereEsombreRFCNeu;
+	document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_noire.matiereEsombreRFC;
+	document.getElementById("txt_ML").innerHTML = texte.page_univers_noire.matiereEsombre;
 }
 
 function texteUniversMonofluides() {
-  var texte = o_recupereJson();
-  document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
-  document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
-  document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
-  document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
-  document.getElementById("txt_titre").innerHTML = texte.page_univers_monofluides.titre;
-  document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
-  document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
-  document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
-  document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
-  document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
-  document.getElementById("txt_choix").innerHTML = texte.page_univers_monofluides.mod_choix;
-  document.getElementById("txt_einstein").innerHTML = texte.page_univers_monofluides.mod_einstein;
-  document.getElementById("txt_weinberg").innerHTML = texte.page_univers_monofluides.mod_weinberg;
-  document.getElementById("txt_sitter").innerHTML = texte.page_univers_monofluides.mod_sitter;
-  document.getElementById("txt_courbure").innerHTML = texte.page_univers_monofluides.mod_courbure;
-  document.getElementById("retour").value = texte.page_univers_monofluides.bouton_retour;
+	var texte = o_recupereJson();
+	document.getElementById("trace").value = texte.page_univers_general.bouton_tracer;
+	document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
+	document.getElementById("para").value = texte.page_univers_general.bouton_constantes;
+	document.getElementById("calc").value = texte.page_univers_general.bouton_calculsAnnexes;
+	document.getElementById("txt_titre").innerHTML = texte.page_univers_monofluides.titre;
+	document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
+	document.getElementById("txt_entrees").innerHTML = texte.page_univers_general.entrees;
+	document.getElementById("txt_sorties").innerHTML = texte.page_univers_general.sorties;
+	document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
+	document.getElementById("txt_dureeeUniv").innerHTML = texte.page_univers_general.dureeUnivers;
+	document.getElementById("txt_choix").innerHTML = texte.page_univers_monofluides.mod_choix;
+	document.getElementById("txt_einstein").innerHTML = texte.page_univers_monofluides.mod_einstein;
+	document.getElementById("txt_weinberg").innerHTML = texte.page_univers_monofluides.mod_weinberg;
+	document.getElementById("txt_sitter").innerHTML = texte.page_univers_monofluides.mod_sitter;
+	document.getElementById("txt_courbure").innerHTML = texte.page_univers_monofluides.mod_courbure;
+	document.getElementById("retour").value = texte.page_univers_monofluides.bouton_retour;
 }
 
 function texteUniversMonofluidesNoire() {
@@ -554,11 +680,12 @@ function texteUniversMonofluidesNoire() {
 	document.getElementById("txt_sitter").innerHTML = texte.page_univers_monofluides_noire.mod_sitter;
 	document.getElementById("txt_courbure").innerHTML = texte.page_univers_monofluides_noire.mod_courbure;
 	document.getElementById("retour").value = texte.page_univers_monofluides_noire.bouton_retour;
-	}
+
+}
 
 function texteTrajectoireMassive(nbrderockets) {
 	var texte = o_recupereJson();
-	//document.getElementById("txt_explosion").title = texte.pages_trajectoire.txt_explosion;
+	
 	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive.titre;
 	document.getElementById("txt_rphysique").innerHTML = texte.page_trajectoire_massive.rayon_physique;																				   
 	document.getElementById("moinsvi").title = texte.pages_trajectoire.bouton_moins;
@@ -585,11 +712,7 @@ function texteTrajectoireMassive(nbrderockets) {
 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
 	if(canvaswidthheightt=="750"){
 		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
-	
 }
-  
-
-
 
 function texteTrajectoireMassiveEnGrand() {  // ne sert pas!!!!!!!!!!!!!
 	var texte = o_recupereJson();
@@ -605,13 +728,12 @@ function texteTrajectoireMassiveEnGrand() {  // ne sert pas!!!!!!!!!!!!!
 	document.getElementById("r2").innerHTML = texte.pages_trajectoire.trajectoire_simple;
 	document.getElementById("rebondd").innerHTML = texte.page_trajectoire_massive.rebond;
 	document.getElementById("r3").innerHTML = texte.pages_trajectoire.observateur;
-	document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile; 
-	//document.getElementById("amortissement").innerHTML = texte.page_trajectoire_massive.amortissement;
+	document.getElementById("r4").innerHTML = texte.pages_trajectoire.mobile;
 	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
 	document.getElementById("acceleration").innerHTML = texte.pages_trajectoire.acceleration;
 	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
 	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
-  	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
+	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
 }
 
 
@@ -634,7 +756,7 @@ function texteTrajectoirePhoton(nbrderockets) {
 
 	for (count = 1; count <= nbrderockets; count += 1) {
 		document.getElementById("temps_ecoule"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_ecoule;
-        document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
+		document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
 		document.getElementById("temps_obs"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_obs;
 		document.getElementById("v_total"+count.toString()+"").innerHTML = texte.pages_trajectoire.v_total;
 
@@ -643,8 +765,8 @@ function texteTrajectoirePhoton(nbrderockets) {
 	if(canvaswidthheightt=="750"){
 		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 	}
-	
 }
+
 function texteTrajectoireMassiveNonBar(nbrderockets) {
 	var texte = o_recupereJson();
 	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_massive_nonBar.titre;
@@ -668,13 +790,11 @@ function texteTrajectoireMassiveNonBar(nbrderockets) {
 		document.getElementById("temps_obs"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_obs;
 		document.getElementById("decal_spect"+count.toString()+"").innerHTML = texte.pages_trajectoire.decal_spect;
 		document.getElementById("v_total"+count.toString()+"").innerHTML = texte.pages_trajectoire.v_total;
-
 	}
 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
 	if(canvaswidthheightt=="750"){
 		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 	}
-
 
 }
 
@@ -696,7 +816,7 @@ function texteTrajectoirePhotonNonBar(nbrderockets) {
 	
 	for (count = 1; count <= nbrderockets; count += 1) {
 		document.getElementById("temps_ecoule"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_ecoule;
-        document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
+		document.getElementById("acceleration"+count.toString()+"").innerHTML ="Gradient &nbsp;<span id='DivClignotante"+count.toString()+"'></span>";
 		document.getElementById("temps_obs"+count.toString()+"").innerHTML = texte.pages_trajectoire.temps_obs;
 		document.getElementById("v_total"+count.toString()+"").innerHTML = texte.pages_trajectoire.v_total;
 
@@ -729,7 +849,7 @@ function texteTrajectoireMassiveKerr() {
 	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
 	document.getElementById("v_total").innerHTML = texte.pages_trajectoire.v_total;
 	document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
-	}
+}
 
 
 
@@ -752,6 +872,7 @@ function texteTrajectoireMassiveKerrGrand() {
 	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
 	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
 }
+
 function texteTrajectoirePhotonKerr() {
 	var texte = o_recupereJson();
 	document.getElementById("txt_titre").innerHTML = texte.page_trajectoire_photon_kerr.titre;
@@ -771,7 +892,6 @@ function texteTrajectoirePhotonKerr() {
 	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
 	document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 	document.getElementById("v_total").innerHTML = texte.pages_trajectoire.v_total;
-  
 }
 
 function texteTrajectoirePhotonKerrGrand() {
@@ -791,5 +911,4 @@ function texteTrajectoirePhotonKerrGrand() {
 	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
 	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
 	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-  
 }
