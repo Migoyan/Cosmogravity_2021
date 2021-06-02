@@ -232,7 +232,7 @@ function genereHtml(){
 	jstring +='<th class="tg-6l4m" id="rayonschwars" title="" >$rs=\\frac{2GM}{c^{2}}(m)$</th>';
 
 	jstring +='<th class="tg-6l4m" id="gravtxt" title="">$grav=\\frac{GM}{R^{2}}\\frac{1}{9.81}(g)$</th>';																																	 
-    string +='</tr>';
+    jstring +='</tr>';
 
           
 	newRow.innerHTML = jstring;
@@ -354,10 +354,12 @@ function initialisation(compteur){
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value);
 	teta = Number(document.getElementById("teta"+compteur.toString()).value);
+
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
-	vphi=Math.sin(teta)*c
-	vr=Math.cos(teta)*c
+
+	vphi=Math.sin(teta)*c/Math.sqrt(1-rs/r0);
+	vr=Math.cos(teta)*c;
 
 	if (compteur==1){
 		vphiblab=vphi;

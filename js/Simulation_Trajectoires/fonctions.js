@@ -40,19 +40,15 @@ var calculs = calculs || (function() {
         MSC_In_vitess : function(E,L,r,rs,ra,vr,ref){
             ap=1-((r**2)*rs)/(ra**3);
             bt=(3/2)*Math.sqrt(1-rs/ra)-(1/2)*Math.sqrt(ap);
-            gtt=(c**2)*bt**2;
-            dt=(E/bt**2);
-            gamma=gtt*(dt)**2/(c**2);
-            dphie=c*L/(r**2)
+            dphie=c*L*(bt**2)/(E*r**2);
             if(ref){
-                v_r=ap*(vr)**2/gamma;
+                dr=((c/E)**2)*ap*(bt**4)*((E/bt)**2-(L/r)**2);
             }
             else{
-                v_r=ap*((vr*dt)**2)/gamma;
+                dr=((c/E)**2)*ap*(bt**4)*((E/bt)**2-(L/r)**2-1);
             }
-            v_p=(r**2)*(dphi**2)/gamma;
-            vtot=v_r+v_p;
-            return Math.sqrt(vtot);
+            vtot=(dr+ap*(r*dphi)**2)/(ap*(bt**2));
+            return Math.sqrt(Math.abs(vtot));
         },
         
         /**
@@ -67,27 +63,28 @@ var calculs = calculs || (function() {
          * @returns 
          */
         MK_vitess :function(E,l,a,r,rs,vr,ref){
-            vr=vr;
             deta=(r**2)-(rs*r)+(a**2); ///delta dans la metric de kerr
             dt=((r**2+a**2+a*rs/r)*E-rs*a*l/r)/deta; // dt/dtau
+            dphi=(c/deta)*(rs*a*E/(r)+(1-rs/r)*l);
+            //dr=(c**2)*(E**2+(rs/r)+((a**2)*(E**2)-l**2)/(r**2)+rs*((l-a*E)**2)/(r**3));
+            ///----Elements de métrique-----
             gtt=(-1)*(c**2)*(1-(rs/r)); 
             gtp=(-1)*(c*rs*a/r);
-            dphi=(c/deta)*(rs*a*E/(r)+(1-rs/r)*l);
-            gamma=(Math.sqrt(Math.abs(gtt))*dt+gtp*dphi/(Math.sqrt(Math.abs(gtt))))/c;
             gpp=r**2+(a**2)+rs*(a**2)/r;
             grr=(r**2)/deta;
-            dr=(c**2)*(E**2+(rs/r)+((a**2)*(E**2-1)-l)/(r**2)+rs*((l-a*E)**2)/(r**3));
+            gamma=(Math.sqrt(Math.abs(gtt))*dt+gtp*dphi/(Math.sqrt(Math.abs(gtt))))/c;
+         
             if(ref){
                 v_r=grr*(vr**2)/(gamma**2);
-                 
             }
             else{
                 v_r=grr*((vr*dt)**2)/(gamma**2);    
             }
             v_p=(gpp*gtt-(gtp**2))*(dphi**2)/(gtt*(gamma**2));
             //alert("gamma:"+gamma.toExponential(3).toString()+" dt :"+dt.toExponential(3).toString()+" gtt :"+gtt.toExponential(3).toString());
+            //vtot=(1-rs/r)*((dr/(dt**2))/deta+(deta/(1-rs/r))*(dphi/dt)**2)/((1-rs/r+(rs*a/(c*r))*(dphi/dt)**2)**2);
             vtot=math.abs(v_r+v_p);
-            vtot=Math.sqrt(vtot);
+            vtot=Math.sqrt(Math.abs(vtot));
             //alert(vtot);
             return vtot;
         }

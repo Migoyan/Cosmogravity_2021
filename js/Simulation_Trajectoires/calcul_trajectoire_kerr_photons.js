@@ -63,11 +63,15 @@ function initialisation(){
 	M = Number(document.getElementById("M").value);
 	//vphi = Number(document.getElementById("vphi").value); 
 	//vr = Number(document.getElementById("vr").value);
-	teta = Number(document.getElementById("teta").value);
-	phi0=Number(document.getElementById("phi0").value);
+	teta = Number(document.getElementById("teta").value); //angle de la vitess
+	phi0=Number(document.getElementById("phi0").value);  // angle de départ
 	phi0=phi0*Math.PI/180;
+
 	vr=c*Math.cos(teta*Math.PI/180);
 	vphi=c*Math.sin(teta*Math.PI/180);
+	//vphi=5.1e7;
+	//vr=0;
+
 	J = Number(document.getElementById("J").value);
 	a = J / (c * M);
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
@@ -75,6 +79,7 @@ function initialisation(){
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
 	rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
+	
 	E = (vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2));
 	E=Math.sqrt(Math.abs(E));
 	L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
@@ -95,8 +100,8 @@ function initialisation(){
 
 function verifnbr() {
 	r0 = document.getElementById("r0").value;
-	//vphi = document.getElementById("vphi").value;
-	//vr = document.getElementById("vr").value;
+	vphi = document.getElementById("phi0").value;
+	vr = document.getElementById("teta").value;
 	M = document.getElementById("M").value;
 	J = document.getElementById("J").value;
 
@@ -327,13 +332,12 @@ function trajectoire() {
     creation_blocs(context);
 
     $(document.params.traj[0]).change(function() {
-      // Tracé du Rayon de Schwarzchild si on change en cours de simulation
-      creation_blocs(context);
+		// Tracé du Rayon de Schwarzchild si on change en cours de simulation
+		creation_blocs(context);
     });
 
 	dr = rmax / 1000;
 
-	
 	element2=document.getElementById('traject_type2');												  
 
 	if (element2.value != "mobile"){
@@ -405,7 +409,7 @@ function animate() {
 
 
     if (r0 != 0.0) {
-        
+
 		varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
 		phi = phi + varphi;
 		varphi_obs = c *dtau* ( rs*a*E/r_part_obs + (1-rs/r_part_obs)*L )/( (Math.pow(r_part_obs,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part_obs)*E - rs*a*L/r_part_obs ); 
@@ -516,7 +520,7 @@ function animate() {
 				document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
 				vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,vr_3_obs,false);/// voir fonctions.js
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);
-				}
+			}
         }
 		else{    
             if (r_part>=0){
@@ -526,11 +530,11 @@ function animate() {
                 document.getElementById("r_par").innerHTML = r_part.toExponential(3);
                 document.getElementById("vrkp").innerHTML = vr_3.toExponential(3);
                 if(J==0) {vp_3= c*L/r_part;}
-                    if(r_part<=rhp && J!=0) {vp_3=1/0;}
+                if(r_part<=rhp && J!=0) {vp_3=1/0;}
                 document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);
 				vtot=calculs.MK_vitess(E,L,a,r_part,rs,vr_3,true);
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);				
-                }
+            }
         }
         if (element2.value != "mobile"){
             temps_observateur += dtau;
@@ -557,13 +561,13 @@ function testvaleur(x) {
 }							
 // Expression du potentiel divisé par c^2
 function Vr_mob(r) {
-  return potentiel_Kerr_photon(r);
+	return potentiel_Kerr_photon(r);
 }
 
 function Vr_obs(r) {
 	denom=(Math.pow(r,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r)*E-rs*a*L/r;
 	dtausurdtaucarre = Math.pow(delta(r)/denom,2);
-  	return Math.pow(E,2)-( Math.pow(E,2)-potentiel_Kerr_photon(r) )*dtausurdtaucarre  ;
+	return Math.pow(E,2)-( Math.pow(E,2)-potentiel_Kerr_photon(r) )*dtausurdtaucarre  ;
 }
 
 function potentiel_Kerr_photon(r) {
@@ -571,23 +575,23 @@ function potentiel_Kerr_photon(r) {
 }
 
 function derivee_seconde_Kerr_photon(r) {
-  return -Math.pow(c, 2) / (2 * Math.pow(r, 4)) * (2 * r * (Math.pow(a * E, 2) - L * L) 
-  + 3 * rs  * Math.pow(L - a * E, 2));
+	return -Math.pow(c, 2) / (2 * Math.pow(r, 4)) * (2 * r * (Math.pow(a * E, 2) - L * L) 
+	+ 3 * rs  * Math.pow(L - a * E, 2));
 }	
 	
-function rungekutta(h, r, A) {
-      k = [0, 0, 0, 0];
-      k[0] = derivee_seconde_Kerr_photon(r);
-      k[1] = derivee_seconde_Kerr_photon(r + 0.5 * h * A);
-      k[2] = derivee_seconde_Kerr_photon(r + 0.5 * h * A + 0.25 * h * h * k[0]);
-      k[3] = derivee_seconde_Kerr_photon(r + h * A + 0.5 * h * h * k[1]);
-      r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-      A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-      return [r, A];
-    }
+function rungekutta(h, r, A){
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_Kerr_photon(r);
+	k[1] = derivee_seconde_Kerr_photon(r + 0.5 * h * A);
+	k[2] = derivee_seconde_Kerr_photon(r + 0.5 * h * A + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Kerr_photon(r + h * A + 0.5 * h * h * k[1]);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
+	}
 
 function delta(r) {
-  return r * r - rs * r + a * a;
+	return r * r - rs * r + a * a;
 }
 
 function derivee_seconde_Kerr_photon_obs(r) {
@@ -606,15 +610,15 @@ function derivee_seconde_Kerr_photon_obs(r) {
 }
 			  
 function rungekutta_obs(h, r, A) {
-      k = [0, 0, 0, 0];
-      k[0] = derivee_seconde_Kerr_photon_obs(r);
-      k[1] = derivee_seconde_Kerr_photon_obs(r + 0.5 * h * A);
-      k[2] = derivee_seconde_Kerr_photon_obs(r + 0.5 * h * A + 0.25 * h * h * k[0]);
-      k[3] = derivee_seconde_Kerr_photon_obs(r + h * A + 0.5 * h * h * k[1]);
-      r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-      A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-      return [r, A];
-    }
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_Kerr_photon_obs(r);
+	k[1] = derivee_seconde_Kerr_photon_obs(r + 0.5 * h * A);
+	k[2] = derivee_seconde_Kerr_photon_obs(r + 0.5 * h * A + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Kerr_photon_obs(r + h * A + 0.5 * h * h * k[1]);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
+}
 
 
 function calcul_rmax(){
@@ -666,314 +670,311 @@ function calcul_rmax(){
 
 // Fonction bouton pause
 function pausee() {
-  if (pause == false) {
-    //dtau = 0;
-    pause = true;
-    document.getElementById("pau").src = "Images/lecture.png";
-    document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture;
-    document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause;
-    clearInterval(myInterval);
-  } 
-  else {
-    if(peuxonrelancer == true) {
-    pause = false;
-    document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
-    document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-    document.getElementById("pau").src = "Images/pause.png";
-    myInterval = setInterval(animate, 1000 / 300);
-  }
-/*    if (rmax > 100000) {
-      dtau = temps_chute_libre / 100;
-    } else {
-      dtau = Math.pow(2, (clicks-1))*temps_chute_libre / 1000;
-    }*/
-  }
+	if (pause == false) {
+		//dtau = 0;
+		pause = true;
+		document.getElementById("pau").src = "Images/lecture.png";
+		document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture;
+		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause;
+		clearInterval(myInterval);
+	} 
+	else {
+		if(peuxonrelancer == true) {
+			pause = false;
+			document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
+			document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+			document.getElementById("pau").src = "Images/pause.png";
+			myInterval = setInterval(animate, 1000 / 300);
+		}
+	}
 }
 
 // permet de gérer les touches du clavier pour certaines actions
 function clavierEvenement(){
-  $(document).keyup(function(event) { // the event variable contains the key pressed
-    if(event.which == 65) { // touche a
-      $('#r1').click();
-    }
-    if(event.which == 90) { // touche z
-      $('#r2').click();
-    }
-    if(event.which == 81) { // touche q
-      $('#start').click();
-    }
-    if(event.which == 83) { // touche s
-      $('#clear').click();
-    }
-    if(event.which == 68) { // touche d
-      $('#boutton_enregis').click();
-    }
-    if(event.which == 70) { // touche f
-      $('#boutton_recup').click();
-    }
-    if(event.which == 87) { // touche w
-      $('#moinsvite').click();
-    }
-    if(event.which == 88) { // touche x
-      $('#pau').click();
-    }
-    if(event.which == 67) { // touche c
-      $('#plusvi').click();
-    }
-  });
+	$(document).keyup(function(event) { // the event variable contains the key pressed
+		if(event.which == 65) { // touche a
+			$('#r1').click();
+		}
+		if(event.which == 90) { // touche z
+			$('#r2').click();
+		}
+		if(event.which == 81) { // touche q
+			$('#start').click();
+		}
+		if(event.which == 83) { // touche s
+			$('#clear').click();
+		}
+		if(event.which == 68) { // touche d
+			$('#boutton_enregis').click();
+		}
+		if(event.which == 70) { // touche f
+			$('#boutton_recup').click();
+		}
+		if(event.which == 87) { // touche w
+			$('#moinsvite').click();
+		}
+		if(event.which == 88) { // touche x
+			$('#pau').click();
+		}
+		if(event.which == 67) { // touche c
+			$('#plusvi').click();
+		}
+	});
 }
 
 function rafraichir() {
-  window.location.reload(); 						   
-  element2.value="non";}
+	window.location.reload(); 						   
+	element2.value="non";
+}
 
 
 function siTrajectoireSimple() {
-  if (element.value == 'simple') {
-    majFondFixe();
-    // Tracé du Rayon de Schwarzchild,...
-    creation_blocs(context);
-    diametre_particule = DIAMETRE_PART*2;
-  }
+	if (element.value == 'simple') {
+		majFondFixe();
+		// Tracé du Rayon de Schwarzchild,...
+		creation_blocs(context);
+		diametre_particule = DIAMETRE_PART*2;
+	}
 }
 
 
 function enregistrer(){
   // ces 2 fonctions sont issues des biblios saveSvgAsPng.js et canvas-to-image.js
   
-  if(document.getElementById('trace_present').value=="1"){
+  	if(document.getElementById('trace_present').value=="1"){
 
     canvas3 = document.getElementById("myCanvas3");
     context3 = canvas3.getContext("2d");
     context3.drawImage(canvas, 0,0);
     
     if (element2.value != "mobile"){
-    context3.beginPath();
-    context3.fillStyle = COULEUR_BLEU;
-    context3.arc(posX2, posY2 , 5, 0, Math.PI * 2);
-    context3.lineWidth = "1";
-    context3.fill();
+		context3.beginPath();
+		context3.fillStyle = COULEUR_BLEU;
+		context3.arc(posX2, posY2 , 5, 0, Math.PI * 2);
+		context3.lineWidth = "1";
+		context3.fill();
 		canvasToImage(canvas3, {
-		  name: 'Trajectoire_photon_Kerr',
-		  type: 'png'
+			name: 'Trajectoire_photon_Kerr',
+			type: 'png'
 		});
     majFondFixe3();
-    }else{
-    context3.beginPath();
-    context3.fillStyle = COULEUR_BLEU;
-    context3.arc(posX1, posY1 , 5, 0, Math.PI * 2);
-    context3.lineWidth = "1";
-    context3.fill();
+    }
+	else{
+		context3.beginPath();
+		context3.fillStyle = COULEUR_BLEU;
+		context3.arc(posX1, posY1 , 5, 0, Math.PI * 2);
+		context3.lineWidth = "1";
+		context3.fill();
 		canvasToImage(canvas3, {
-		  name: 'Trajectoire_photon_Kerr',
-		  type: 'png'
+			name: 'Trajectoire_photon_Kerr',
+			type: 'png'
 		});
     majFondFixe3();
     }
 
     // permet si l'on veut d'enregistrer le graphe du potentiel
     // saveSvgAsPng(document.getElementById("grsvg_2"),"Potentiel_massive_Schwar.png",{backgroundColor:"white"});
-  }
-  else{
-    var texte = o_recupereJson();
-    alert(texte.pages_trajectoire.message_enregistrer);
-  }
+	}
+	else{
+		var texte = o_recupereJson();
+		alert(texte.pages_trajectoire.message_enregistrer);
+	}
 }
 
 function traceEstAbsent(){
-  document.getElementById('trace_present').value="0";
+	document.getElementById('trace_present').value="0";
 }
 
 function siTrajectoireComplete() {
-  if (element.value == 'complete') {
-    diametre_particule = DIAMETRE_PART;
-  }
+	if (element.value == 'complete') {
+		diametre_particule = DIAMETRE_PART;
+	}
 }
 
 function choixTrajectoire() {
-  siTrajectoireSimple();
-  siTrajectoireComplete();
+	siTrajectoireSimple();
+	siTrajectoireComplete();
 }
 
 function estUnMobile(){
-  var x = window.matchMedia("(max-width: 960px)")
-  if(x.matches){
-    document.getElementById("bouton_info").style.visibility='hidden';
-  }
-  else{
-    document.getElementById("bouton_info").style.visibility='visible';
-  }
+	var x = window.matchMedia("(max-width: 960px)")
+	if(x.matches){
+		document.getElementById("bouton_info").style.visibility='hidden';
+	}
+	else{
+		document.getElementById("bouton_info").style.visibility='visible';
+	}
 }
 
 function commandes(){
-  var texte = o_recupereJson();
-  alert(texte.pages_trajectoire.commandes_horsSchwarMassif);
+	var texte = o_recupereJson();
+	alert(texte.pages_trajectoire.commandes_horsSchwarMassif);
 }
 
 function majFondFixe(){
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  // Ajout d'un fond blanc pour l'exportation
-  context.fillStyle = 'white';
-  context.fillRect(0, 0, canvas.width, canvas.height);
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	// Ajout d'un fond blanc pour l'exportation
+	context.fillStyle = 'white';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	context.font = "15pt bold";
+	context.fillStyle = "black";
+	context.fillText(texte.page_trajectoire_photon_kerr.titre,5,40);
+	context.font = "13pt bold";
+	context.fillText(texte.pages_trajectoire.entrees,5,70);
+	context.font = "11pt normal";
+	context.fillText("M = "+M.toExponential(3)+" kg",5,90);
+	context.fillText("r\u2080 = "+r0.toExponential(3)+" m",5,110);
+	context.fillText("a = "+a.toExponential(3)+" m",5,130);
+	context.fillText("U\u1D69(r\u2080) = "+vphi.toExponential(3)+" m.s\u207B\u00B9",5,150);
+	context.fillText("U\u1D63(r\u2080) = "+vr.toExponential(3)+" m.s\u207B\u00B9",5,170);
+	if(document.getElementById('traject_type2').value=="observateur"){
+		context.fillText(texte.pages_trajectoire.observateur,5,190);
+	} 
+	else { context.fillText(texte.pages_trajectoire.photon,5,190); }
 
-  context.font = "15pt bold";
-  context.fillStyle = "black";
-  context.fillText(texte.page_trajectoire_photon_kerr.titre,5,40);
-  context.font = "13pt bold";
-  context.fillText(texte.pages_trajectoire.entrees,5,70);
-  context.font = "11pt normal";
-  context.fillText("M = "+M.toExponential(3)+" kg",5,90);
-    context.fillText("r\u2080 = "+r0.toExponential(3)+" m",5,110);
-   context.fillText("a = "+a.toExponential(3)+" m",5,130);
-   context.fillText("U\u1D69(r\u2080) = "+vphi.toExponential(3)+" m.s\u207B\u00B9",5,150);
-  context.fillText("U\u1D63(r\u2080) = "+vr.toExponential(3)+" m.s\u207B\u00B9",5,170);
-   if(document.getElementById('traject_type2').value=="observateur"){
-  context.fillText(texte.pages_trajectoire.observateur,5,190);
-  } else { context.fillText(texte.pages_trajectoire.photon,5,190); }
-  
 }
 
 function majFondFixe22(){
-  context22.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context22.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 function majFondFixe3(){
-  context3.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context3.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 function test_Jmax() { //teste si la valeur de J est supérieure à sa valeur maximale
   var texte = o_recupereJson();
-  initialisation();
-  if (Math.abs(J) > G * Math.pow(M, 2) / c) {
-    alert(texte.page_trajectoire_photon_kerr.moment_angulaire + "(" + G * Math.pow(M, 2) / c + ")");
-    return false;
-  }
-  else{
-    return true;
-  }
+	initialisation();
+	if (Math.abs(J) > G * Math.pow(M, 2) / c) {
+		alert(texte.page_trajectoire_photon_kerr.moment_angulaire + "(" + G * Math.pow(M, 2) / c + ")");
+		return false;
+	}
+	else{
+		return true;
+	}
 }
 
 function test_r0(){
-  var texte = o_recupereJson();
-  initialisation();
-	   if(vr==0 && vphi==0) {	
-    alert(texte.pages_trajectoire.vitesses_initiales_nulles);
-    arretkerr();
-  }		
-  if(r0<=rhp){
-    alert(texte.pages_trajectoire.rayonHorzInfRayon);
-    return false;
-  }
-  else if(isNaN(E) || isNaN(L)){
-    alert(texte.pages_trajectoire.EouLisNaN);
-    return false;
-  }
-  else{
-    return true;
-  }
+	var texte = o_recupereJson();
+	initialisation();
+	if(vr==0 && vphi==0) {	
+		alert(texte.pages_trajectoire.vitesses_initiales_nulles);
+		arretkerr();
+	}		
+	if(r0<=rhp){
+		alert(texte.pages_trajectoire.rayonHorzInfRayon);
+		return false;
+	}
+	else if(isNaN(E) || isNaN(L)){
+		alert(texte.pages_trajectoire.EouLisNaN);
+		return false;
+	}
+	else{
+		return true;
+	}
 }
 
 function tests_lancement(){
-  var val_test=test_Jmax()&&test_r0();
-  if(val_test==true){
-    save_kerr_photon();
-    trajectoire();
+	var val_test=test_Jmax()&&test_r0();
+	if(val_test==true){
+	save_kerr_photon();
+	trajectoire();
 
     //  Le cas où les valeurs de E et L ne sont pas calculables(Test)
-            if (isNaN(E) || isNaN(L)){
-              document.getElementById("L").innerHTML = "Non calculable" ;
-				      document.getElementById("E").innerHTML = "Non calculable";
-            }
+	if (isNaN(E) || isNaN(L)){
+		document.getElementById("L").innerHTML = "Non calculable" ;
+		document.getElementById("E").innerHTML = "Non calculable";
+	}
   }
 }
 
 // crée les différentes couches visuelles
 function creation_blocs(context){
-  context.lineWidth = "1";
-  if (((scale_factor * rs / rmax)) < 6) {
-    context.beginPath();
-    context.strokeStyle = COULEUR_RS;
-    context.moveTo(posX3 - 10, posY3);
-    context.lineTo(posX3 - 3, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3 + 3, posY3);
-    context.lineTo(posX3 + 10, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 - 10);
-    context.lineTo(posX3, posY3 - 3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 + 3);
-    context.lineTo(posX3, posY3 + 10);
-    context.stroke();
-  } else {
-    context.beginPath();
-    context.setLineDash([]);
-    context.fillStyle = COULEUR_ERGOS;
-    context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rs / rmax)), 0, Math.PI * 2);
-    context.fill();
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
-    context.fillStyle = 'white';
-    context.fill();
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
-    context.strokeStyle = COULEUR_RS;
-    context.stroke();
-    // tracé de RH- en bleue
-    context.strokeStyle = 'blue';
-    context.beginPath()
-    var posX3 = (canvas.width / 2.0);
-    var posY3 = (canvas.height / 2.0);
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, (rhm * scale_factor)/rmax, 0, 2 * Math.PI);
-    context.stroke();
-     // tracé de RH+ en rouge
-    context.strokeStyle = 'red';
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, (rhp * scale_factor)/rmax, 0, 2 * Math.PI);
-    context.stroke();
-    context.closePath();
-    context.closePath();
-    context.strokeStyle = COULEUR_RS;
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, (rs * scale_factor)/rmax, 0, 2 * Math.PI);
-    context.stroke();
-    context.closePath();
-    context.closePath();
+	context.lineWidth = "1";
+	if (((scale_factor * rs / rmax)) < 6) {
+		context.beginPath();
+		context.strokeStyle = COULEUR_RS;
+		context.moveTo(posX3 - 10, posY3);
+		context.lineTo(posX3 - 3, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3 + 3, posY3);
+		context.lineTo(posX3 + 10, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 - 10);
+		context.lineTo(posX3, posY3 - 3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 + 3);
+		context.lineTo(posX3, posY3 + 10);
+		context.stroke();
+	} 
+	else {
+		context.beginPath();
+		context.setLineDash([]);
+		context.fillStyle = COULEUR_ERGOS;
+		context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rs / rmax)), 0, Math.PI * 2);
+		context.fill();
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
+		context.fillStyle = 'white';
+		context.fill();
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc((canvas.width / 2.0), (canvas.height / 2.0), ((scale_factor * rhp / rmax)), 0, Math.PI * 2);
+		context.strokeStyle = COULEUR_RS;
+		context.stroke();
+		// tracé de RH- en bleue
+		context.strokeStyle = 'blue';
+		context.beginPath()
+		var posX3 = (canvas.width / 2.0);
+		var posY3 = (canvas.height / 2.0);
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, (rhm * scale_factor)/rmax, 0, 2 * Math.PI);
+		context.stroke();
+			// tracé de RH+ en rouge
+		context.strokeStyle = 'red';
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, (rhp * scale_factor)/rmax, 0, 2 * Math.PI);
+		context.stroke();
+		context.closePath();
+		context.closePath();
+		context.strokeStyle = COULEUR_RS;
+		context.beginPath();
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, (rs * scale_factor)/rmax, 0, 2 * Math.PI);
+		context.stroke();
+		context.closePath();
+		context.closePath();
+	}
+	context.fillStyle = 'white';
 
-  }
-context.fillStyle = 'white';
+	r2bis=(80*r0)/(scale_factor);
+	r1bis=Math.round((80*r0)/(scale_factor*10**testnum(r2bis)));
+	ech=r1bis*10**testnum(r2bis);
+	xe=((r1bis*10**testnum(r2bis))*scale_factor)/r0;
 
-r2bis=(80*r0)/(scale_factor);
-r1bis=Math.round((80*r0)/(scale_factor*10**testnum(r2bis)));
-ech=r1bis*10**testnum(r2bis);
-xe=((r1bis*10**testnum(r2bis))*scale_factor)/r0;
+	context.fillStyle = COULEUR_RS;
+	context.fillText(ech.toExponential()+" m",605,90);
+	context.stroke();
+	context.beginPath();// Début du chemin
+	context.strokeStyle = COULEUR_RS;
 
-context.fillStyle = COULEUR_RS;
-context.fillText(ech.toExponential()+" m",605,90);
-context.stroke();
-context.beginPath();      // Début du chemin
-context.strokeStyle = COULEUR_RS;
-
-//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
-//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
-context.moveTo(600,110);
-context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,110);
-context.moveTo(600,105);
-context.lineTo(600,115);
-context.moveTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,105);
-context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,115);
-// Fermeture du chemin (facultative)
-context.stroke();
+	//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
+	//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
+	context.moveTo(600,110);
+	context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,110);
+	context.moveTo(600,105);
+	context.lineTo(600,115);
+	context.moveTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,105);
+	context.lineTo(600+((r1bis*10**testnum(r2bis))*scale_factor)/r0,115);
+	// Fermeture du chemin (facultative)
+	context.stroke();
 
 }
 
@@ -983,59 +984,57 @@ context.stroke();
 //https://gist.github.com/weepy/6009631
 function CubicSolve(a, b, c, d){
 
-  b /= a;
-  c /= a;
-  d /= a;
+	b /= a;
+	c /= a;
+	d /= a;
 
-  var discrim, q, r, dum1, s, t, term1, r13;
+	var discrim, q, r, dum1, s, t, term1, r13;
 
-  q = (3.0*c - (b*b))/9.0;
-  r = -(27.0*d) + b*(9.0*c - 2.0*(b*b));
-  r /= 54.0;
+	q = (3.0*c - (b*b))/9.0;
+	r = -(27.0*d) + b*(9.0*c - 2.0*(b*b));
+	r /= 54.0;
 
-  discrim = q*q*q + r*r;
-  
-  var roots = [ {real: 0, i: 0}, {real: 0, i: 0}, {real: 0, i: 0} ]
-  
-  term1 = (b/3.0);
+	discrim = q*q*q + r*r;
 
-  if (discrim > 0) { // one root real, two are complex
-   s = r + Math.sqrt(discrim);
-   s = ((s < 0) ? -Math.pow(-s, (1.0/3.0)) : Math.pow(s, (1.0/3.0)));
-   t = r - Math.sqrt(discrim);
-   t = ((t < 0) ? -Math.pow(-t, (1.0/3.0)) : Math.pow(t, (1.0/3.0)));
-   
-   roots[0].real = -term1 + s + t;
-   term1 += (s + t)/2.0;
-   roots[2].real = roots[2].real = -term1;
-   term1 = Math.sqrt(3.0)*(-t + s)/2;
-   
-   roots[1].i = term1;
-   roots[2].i = -term1;
-   return roots;
-  } // End if (discrim > 0)
+	var roots = [ {real: 0, i: 0}, {real: 0, i: 0}, {real: 0, i: 0} ]
 
-  // The remaining options are all real
-  
+	term1 = (b/3.0);
 
-  if (discrim == 0){ // All roots real, at least two are equal.
-   r13 = ((r < 0) ? -Math.pow(-r,(1.0/3.0)) : Math.pow(r,(1.0/3.0)));
-   roots[0].real = -term1 + 2.0*r13;
-   roots[2].real = roots[1].real = -(r13 + term1);
-   return roots;
-  } // End if (discrim == 0)
+	if (discrim > 0) { // one root real, two are complex
+		s = r + Math.sqrt(discrim);
+		s = ((s < 0) ? -Math.pow(-s, (1.0/3.0)) : Math.pow(s, (1.0/3.0)));
+		t = r - Math.sqrt(discrim);
+		t = ((t < 0) ? -Math.pow(-t, (1.0/3.0)) : Math.pow(t, (1.0/3.0)));
 
-  // Only option left is that all roots are real and unequal (to get here, q < 0)
-  q = -q;
-  dum1 = q*q*q;
-  dum1 = Math.acos(r/Math.sqrt(dum1));
-  r13 = 2.0*Math.sqrt(q);
-  
-  roots[0].real = -term1 + r13*Math.cos(dum1/3.0);
-  roots[1].real = -term1 + r13*Math.cos((dum1 + 2.0*Math.PI)/3.0);
-  roots[2].real = -term1 + r13*Math.cos((dum1 + 4.0*Math.PI)/3.0);
-  
-  return roots;
-} 
+		roots[0].real = -term1 + s + t;
+		term1 += (s + t)/2.0;
+		roots[2].real = roots[2].real = -term1;
+		term1 = Math.sqrt(3.0)*(-t + s)/2;
+
+		roots[1].i = term1;
+		roots[2].i = -term1;
+		return roots;
+	} // End if (discrim > 0)
+
+	// The remaining options are all real
 
 
+	if (discrim == 0){ // All roots real, at least two are equal.
+		r13 = ((r < 0) ? -Math.pow(-r,(1.0/3.0)) : Math.pow(r,(1.0/3.0)));
+		roots[0].real = -term1 + 2.0*r13;
+		roots[2].real = roots[1].real = -(r13 + term1);
+		return roots;
+	} // End if (discrim == 0)
+
+	// Only option left is that all roots are real and unequal (to get here, q < 0)
+	q = -q;
+	dum1 = q*q*q;
+	dum1 = Math.acos(r/Math.sqrt(dum1));
+	r13 = 2.0*Math.sqrt(q);
+
+	roots[0].real = -term1 + r13*Math.cos(dum1/3.0);
+	roots[1].real = -term1 + r13*Math.cos((dum1 + 2.0*Math.PI)/3.0);
+	roots[2].real = -term1 + r13*Math.cos((dum1 + 4.0*Math.PI)/3.0);
+
+	return roots;
+}

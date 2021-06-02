@@ -111,9 +111,11 @@ function supprHtml(){
 	for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
 		var elementrayonasuppr = document.getElementById("rayon"+countt.toString()+"");
 		elementrayonasuppr.parentNode.removeChild(elementrayonasuppr);
-		var elementvpasuppr = document.getElementById("vitessep"+countt.toString()+"");
+		var elementvpasuppr = document.getElementById("vitesseur"+countt.toString()+"");
 		elementvpasuppr.parentNode.removeChild(elementvpasuppr);
-		var elementvrasuppr = document.getElementById("vitesser"+countt.toString()+"");
+		var elementvrasuppr = document.getElementById("tetaid"+countt.toString()+"");
+		elementvrasuppr.parentNode.removeChild(elementvrasuppr);
+		var elementvrasuppr = document.getElementById("idphie"+countt.toString()+"");
 		elementvrasuppr.parentNode.removeChild(elementvrasuppr);
 		var elementcanvasbouleasuppr = document.getElementById("myCanvasBoule"+countt.toString()+"");
 		elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
@@ -177,82 +179,79 @@ function genereHtml(){
 
 
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitessep"+countt.toString()+"");
-	var divchampsr = document.getElementById('champs_a_remplir');
+		var span = document.createElement("span");
+		span.setAttribute("id","vitessep"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
 
 
-	divchampsr.appendChild(span);
-    if(countt==1){
-	var newlabel = document.createElement("Label");
-    newlabel.setAttribute("id","vitesseuphilabel");
-    newlabel.setAttribute("title","");
-	newlabel.setAttribute("for","v01");
-    newlabel.innerHTML = "v<sub>0"+"</sub>(m.s<sup>-1</sup>) =";
-	span.appendChild(newlabel);}
-
-
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","v0"+countt.toString()+"");
-	newinput.setAttribute("value","1e7");
-
-	newinput.setAttribute("maxlength","10");
-
-	newinput.setAttribute("type","text");
-
-	newinput.setAttribute("size","10");
-
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-
-	span.appendChild(newinput);
-	}
-
-
-
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitesser"+countt.toString()+"");
-	var divchampsr = document.getElementById('champs_a_remplir');
-	divchampsr.appendChild(span);
-    if(countt==1){
+		divchampsr.appendChild(span);
+		if(countt==1){
 		var newlabel = document.createElement("Label");
 		newlabel.setAttribute("id","vitesseurlabel");
 		newlabel.setAttribute("title","");
-		newlabel.setAttribute("for","phi01");
-		newlabel.innerHTML = htmlDecode("&phi; ")+" =";
-		span.appendChild(newlabel);
+		newlabel.setAttribute("for","v01");
+		newlabel.innerHTML = "v<sub>0"+"</sub>(m.s<sup>-1</sup>) =";
+		span.appendChild(newlabel);}
+
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","v0"+countt.toString()+"");
+		newinput.setAttribute("value","1e7");
+
+		newinput.setAttribute("maxlength","10");
+
+		newinput.setAttribute("type","text");
+
+		newinput.setAttribute("size","10");
+
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+
+		span.appendChild(newinput);
 	}
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","phi0"+countt.toString()+"");
-	newinput.setAttribute("value","0");
-	newinput.setAttribute("maxlength","10");
-	newinput.setAttribute("type","text");
-	newinput.setAttribute("size","10");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);
-}
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var span = document.createElement("span");
-    span.setAttribute("id","vitesser"+countt.toString()+"");
-	var divchampsr = document.getElementById('champs_a_remplir');
-	divchampsr.appendChild(span);
-    if(countt==1){
-		var newlabel = document.createElement("Label");
-		newlabel.setAttribute("id","vitesseurlabel");
-		newlabel.setAttribute("title","");
-		newlabel.setAttribute("for","teta1");
-		newlabel.innerHTML = htmlDecode("&alpha;")+" =";
-		span.appendChild(newlabel);
+
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","idphie"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			newlabel.setAttribute("id","philabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","phi01");
+			newlabel.innerHTML = htmlDecode("&phi; ")+" =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","phi0"+countt.toString()+"");
+		newinput.setAttribute("value","0");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","10");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
 	}
-	var newinput = document.createElement("Input");
-	newinput.setAttribute("id","teta"+countt.toString()+"");
-	newinput.setAttribute("value","110");
-	newinput.setAttribute("maxlength","10");
-	newinput.setAttribute("type","text");
-	newinput.setAttribute("size","10");
-	newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
-	span.appendChild(newinput);
-}
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var span = document.createElement("span");
+		span.setAttribute("id","tetaid"+countt.toString()+"");
+		var divchampsr = document.getElementById('champs_a_remplir');
+		divchampsr.appendChild(span);
+		if(countt==1){
+			var newlabel = document.createElement("Label");
+			newlabel.setAttribute("id","tetalabel");
+			newlabel.setAttribute("title","");
+			newlabel.setAttribute("for","teta1");
+			newlabel.innerHTML = htmlDecode("&alpha;")+" =";
+			span.appendChild(newlabel);
+		}
+		var newinput = document.createElement("Input");
+		newinput.setAttribute("id","teta"+countt.toString()+"");
+		newinput.setAttribute("value","110");
+		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("type","text");
+		newinput.setAttribute("size","10");
+		newinput.setAttribute("onChange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		span.appendChild(newinput);
+	}
 
 		var newRow=document.getElementById('tableauconstanteslers').insertRow();
 
@@ -288,39 +287,33 @@ for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 
         newRow2.innerHTML = jstring;
 
+	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
+		var newRow=document.getElementById('tableauresultatsimu').insertRow();
+		// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
+		newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
+					<th class="tg-aicv">r(m)</th>
+					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
+					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
+					<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
+					<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`
 
+		var newRow2=document.getElementById('tableauresultatsimu').insertRow();
 
+		newRow2.innerHTML =       `<tr id="tg2ggb`+countt.toString()+`">
+				<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>
+				<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`
+					
 
-
-
-
-for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
-	var newRow=document.getElementById('tableauresultatsimu').insertRow();
-	// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
-	newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
-				<th class="tg-aicv">r(m)</th>
-				<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-				<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
-				<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-				<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
-				<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
-        		<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
-				<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`
-
-	var newRow2=document.getElementById('tableauresultatsimu').insertRow();
-
-	newRow2.innerHTML =       `<tr id="tg2ggb`+countt.toString()+`">
-			<td class="tg-3ozo" id="r_par`+countt.toString()+`">res</td>
-			<td class="tg-3ozo" id="tp`+countt.toString()+`">res</td>
-			<td class="tg-3ozo" id="ga`+countt.toString()+`">res</td>
-			<td class="tg-3ozo" id="vr_sc_mas`+countt.toString()+`">res</td>
-			<td class="tg-3ozo" id="vp_sc_mas`+countt.toString()+`">res</td>
-			<td class="tg-3ozo" id="to`+countt.toString()+`">res</td>
-			<td class="tg-3ozo" id="decal`+countt.toString()+`">res</td>
-			<td class="tg-3ozo" id="v_tot`+countt.toString()+`">res</td>`
-				
-
-}
+	}
 
 	var canvaswidthheight = document.getElementById("canvaswidthheight").value;
 
@@ -397,9 +390,24 @@ function initialisation(compteur){
 	teta = Number(document.getElementById("teta"+compteur.toString()).value); // angle de la vitesse
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
-	vphi=Math.sin(teta)*v0
-	vr=Math.cos(teta)*v0
 
+	if(r0 > r_phy) { 
+		E = Math.sqrt(1 - rs /r0)/Math.sqrt(1-v0**2/c**2);
+		vphi=Math.sin(teta)*v0*E/Math.sqrt(1-rs/r0);
+		vr=Math.cos(teta)*v0*E;
+
+	} 
+	else{ 
+		//E = Math.sqrt(Math.pow(beta(r0)/c,2)*(Math.pow(vr,2)/alpha(r0)+Math.pow(vphi,2)+Math.pow(c,2)));
+		E=Math.sqrt(beta(r0))/Math.sqrt(1-V*2/(c**2));
+		vphi=Math.sin(teta)*v0*E/beta(r0);
+		vr=Math.cos(teta)*Math.sqrt(alpha(r0))*v0*E/beta(r0);
+		
+	}
+
+	
+
+	L = vphi * r0 / c;
 	//pour la legende du graph
 	if(compteur==1){
 		vphiblab =vphi;
@@ -410,14 +418,7 @@ function initialisation(compteur){
 		vr2i =vr2;
 	}
 
-	if(r0 > r_phy) { 
-		L = vphi * r0 / c;
-		E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0)* (1 + Math.pow(L / r0, 2)));
-	} 
-	else{ 
-		L = vphi * r0 / c;
-		E = Math.sqrt(Math.pow(beta(r0)/c,2)*(Math.pow(vr,2)/alpha(r0)+Math.pow(vphi,2)+Math.pow(c,2)));
-	}
+	
 
 
 
@@ -1051,23 +1052,23 @@ else{      // observateur
 
     //decalage spectrale
 
-if (element2.value != "mobile"){
-	if(mobile.r_part_obs >= r_phy) {
-		z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
-		document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
-	} 
-	else {
-		z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
-		document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+	if (element2.value != "mobile"){
+		if(mobile.r_part_obs >= r_phy) {
+			z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
+			document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+		} 
+		else {
+			z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
+			document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+		}
 	}
-}
-else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
+	else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 
 
 //  Les différents "temps" et autres valeurs à afficher
 
 	if (element2.value != "mobile"){
-		if(mobile.r_part_obs >= r_phy)   {
+		if(mobile.r_part_obs >= r_phy){
 			mobile.temps_observateur+=mobile.dtau;
 			mobile.temps_particule += mobile.dtau*(1-rs/mobile.r_part_obs)/mobile.E;
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
@@ -1078,7 +1079,8 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
 			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
-		}else{
+		}
+		else{
 			mobile.temps_observateur+=mobile.dtau;
 			mobile.temps_particule += mobile.dtau*Math.pow(beta(mobile.r_part_obs),2)/mobile.E;
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
@@ -1090,7 +1092,8 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 			}	
-	}else{
+	}
+	else{
 		if (mobile.r_part>= r_phy){
 			mobile.temps_particule+=mobile.dtau;
 			mobile.temps_observateur+=mobile.dtau*mobile.E/(1-rs/mobile.r_part);
@@ -1111,7 +1114,7 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
+			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
 			}
 	}
@@ -1127,11 +1130,11 @@ else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
 			document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
 		} 
-		else if (1 < Number(fm) && Number(fm) < 5) {
+		else if (1 < Number(fm) && Number(fm) < 7) {
 			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
 			document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
 		} 
-		else if (Number(fm) >= 5) {
+		else if (Number(fm) >= 7) {
 			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 			document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
 		} 

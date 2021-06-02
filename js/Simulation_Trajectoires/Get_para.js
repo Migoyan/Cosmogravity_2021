@@ -31,11 +31,12 @@ function save_schwarshild_massif(nbrderockets) {
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
 		v0 = document.getElementById("v0"+count.toString()+"").value;
-		v0= document.getElementById("v0"+count.toString()+"").value;
+		phi0= document.getElementById("phi0"+count.toString()+"").value;
 		teta = document.getElementById("teta"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
-		sessionStorage.setItem("teta"+count.toString()+"", teta);
 		sessionStorage.setItem("v0"+count.toString()+"", v0);
+		sessionStorage.setItem("phi0"+count.toString()+"", phi0);
+		sessionStorage.setItem("teta"+count.toString()+"", teta);
 		
 	}
 
@@ -67,7 +68,7 @@ function load_schwarshild_massif() {
 		for (count = 1; count <= nbrderockets; count += 1) {
 			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
 			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
-			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
+			document.getElementById("phi0"+count.toString()+"").value=sessionStorage.getItem("phi0"+count.toString()+"");
 			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
 		}
 
@@ -128,9 +129,11 @@ function save_schwarshild_massif_nonBar(nbrderockets) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
 		v0= document.getElementById("v0"+count.toString()+"").value;
 		teta = document.getElementById("teta"+count.toString()+"").value;
+		phi0 = document.getElementById("phi0"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
 		sessionStorage.setItem("v0"+count.toString()+"", v0 );
 		sessionStorage.setItem("teta"+count.toString()+"", teta);
+		sessionStorage.setItem("phi0"+count.toString()+"", phi0);
 	}
 
 	// Stockage des valeurs
@@ -156,8 +159,10 @@ function save_schwarshild_photon_nonBar(nbrderockets) {
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
 		teta = document.getElementById("teta"+count.toString()+"").value;
+		phi0 = document.getElementById("phi0"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
 		sessionStorage.setItem("teta"+count.toString()+"", teta);
+		sessionStorage.setItem("phi0"+count.toString()+"", phi0);
 	}
 	// Stockage des valeurs
 	sessionStorage.setItem("r_phy", r_phy);
@@ -182,8 +187,10 @@ function save_schwarshild_photon(nbrderockets) {
 	for (count = 1; count <= nbrderockets; count += 1) {
 		r0 = document.getElementById("r0"+count.toString()+"").value;
 		teta = document.getElementById("teta"+count.toString()+"").value;
+		phi = document.getElementById("phi0"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
 		sessionStorage.setItem("teta"+count.toString()+"", teta);
+		sessionStorage.setItem("phi0"+count.toString()+"", phi0);
 	}
 	// Stockage des valeurs
 	sessionStorage.setItem("r_phy", r_phy);
@@ -217,6 +224,7 @@ function load_schwarshild_massif_nonBar() {
 			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
 			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
 			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
+			document.getElementById("phi0"+count.toString()+"").value=sessionStorage.getItem("phi0"+count.toString()+"");
 		}
 
 		document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
@@ -263,8 +271,9 @@ function load_schwarshild_photon() {
 	if (sessionStorage.getItem("r01")) {
 		for (count = 1; count <= nbrderockets; count += 1) {
 			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
-			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
+			//document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
 			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
+			document.getElementById("phi0"+count.toString()+"").value=sessionStorage.getItem("phi0"+count.toString()+"");
 		}
 		document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
 		document.getElementById("M").value = sessionStorage.getItem("M");
@@ -320,8 +329,9 @@ function load_schwarshild_photon_nonBar() {
   	if (sessionStorage.getItem("r01")) {
 		for (count = 1; count <= nbrderockets; count += 1) {
 			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");
-			document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
+			//document.getElementById("v0"+count.toString()+"").value=sessionStorage.getItem("v0"+count.toString()+"");
 			document.getElementById("teta"+count.toString()+"").value=sessionStorage.getItem("teta"+count.toString()+"");
+			document.getElementById("phi0"+count.toString()+"").value=sessionStorage.getItem("phi0"+count.toString()+"");
 		}
 
 		document.getElementById("r_phy").value = sessionStorage.getItem("r_phy");
@@ -355,8 +365,9 @@ function save_kerr_massif() {
 	r0 = document.getElementById("r0").value;
 	J = document.getElementById("J").value;
 	M = document.getElementById("M").value;
-	//v0= document.getElementById("v0").value;
-	//teta = document.getElementById("teta").value;
+	v0= document.getElementById("v0").value;
+	teta = document.getElementById("teta").value;
+	phi0 = document.getElementById("phi0").value;
 	traject_type = document.getElementById("traject_type").value;
 	traject_type2 = document.getElementById("traject_type2").value;
 	var graph_check = true;
@@ -367,8 +378,9 @@ function save_kerr_massif() {
 	// Stockage des valeurs
 	sessionStorage.setItem("r0", r0);
 	sessionStorage.setItem("J", J);
-	//sessionStorage.setItem("v0", v0);
-	//sessionStorage.setItem("teta", teta);
+	sessionStorage.setItem("v0", v0);
+	sessionStorage.setItem("teta", teta);
+	sessionStorage.setItem("phi0", phi0);
 	sessionStorage.setItem("M", M);
 	sessionStorage.setItem("traject_type", traject_type);
 	sessionStorage.setItem("traject_type2", traject_type2)
@@ -383,6 +395,7 @@ function load_kerr_massif() {
 		document.getElementById("M").value = sessionStorage.getItem("M");
 		document.getElementById("v0").value = sessionStorage.getItem("v0");
 		document.getElementById("teta").value = sessionStorage.getItem("teta");
+		document.getElementById("phi0").value = sessionStorage.getItem("phi0");
 		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
 		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
 		var graph_check = sessionStorage.getItem("graph_check");
@@ -410,7 +423,8 @@ function save_kerr_photon() {
     r0 = document.getElementById("r0").value;
     J = document.getElementById("J").value;
     M = document.getElementById("M").value;
-   
+	teta = document.getElementById("teta").value;
+	phi0 = document.getElementById("phi0").value;
     traject_type = document.getElementById("traject_type").value;
     traject_type2 = document.getElementById("traject_type2").value;
     var graph_check = true;
@@ -422,6 +436,8 @@ function save_kerr_photon() {
     sessionStorage.setItem("r0", r0);
     sessionStorage.setItem("J", J);
     sessionStorage.setItem("M", M);
+	sessionStorage.setItem("teta", teta);
+	sessionStorage.setItem("phi0", phi0);
     sessionStorage.setItem("traject_type", traject_type);
     sessionStorage.setItem("traject_type2", traject_type2)
     sessionStorage.setItem("graph_check", graph_check);
@@ -432,6 +448,8 @@ function load_kerr_photon() {
 		document.getElementById("r0").value = sessionStorage.getItem("r0");
 		document.getElementById("J").value = sessionStorage.getItem("J");
 		document.getElementById("M").value = sessionStorage.getItem("M");
+		document.getElementById("teta").value = sessionStorage.getItem("teta");
+		document.getElementById("phi0").value = sessionStorage.getItem("phi0");
 		document.getElementById("traject_type").value = sessionStorage.getItem("traject_type");
 		document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
 		var graph_check = sessionStorage.getItem("graph_check");
