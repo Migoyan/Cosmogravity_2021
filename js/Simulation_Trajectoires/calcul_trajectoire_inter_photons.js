@@ -376,7 +376,6 @@ function initialisation(compteur){
    	if(r0 > r_phy) { 
 		L = vphi * r0 / c;
 		E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0)* Math.pow(L / r0, 2));
-
   	} 
   	else { 
 		L = vphi * r0 / c;
@@ -390,7 +389,7 @@ function initialisation(compteur){
 	document.getElementById("m").innerHTML = rs.toExponential(3);
 
 	scale_factor = Number(document.getElementById("scalefactor").value);
-	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E }; 
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E}; 
 	
 	mobile["pointsvg"]="pointg"+compteur.toString();
 	mobile["graphesvg"]="#grsvg_"+compteur.toString();
@@ -979,8 +978,8 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8); 
 		}
 		else{
 			mobile.temps_observateur+=mobile.dtau;
@@ -991,7 +990,7 @@ function animate(compteur,mobile,mobilefactor) {
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
 			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,true); //voir fonctions.js
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8);
 		}	
 	}
 	else{
@@ -1003,8 +1002,8 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 			
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,true); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8); 			
 		}
 		else{
 			mobile.temps_particule+=0;
@@ -1014,8 +1013,8 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,true); //voir fonctions.js
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
+			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,true); //voir fonctions.js
+		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8);			
 		}
 	}
 	}   // fin r0 #0
@@ -1094,7 +1093,7 @@ function alpha(r){
 
 
 function beta(r){
-	return 1.5 * Math.sqrt(1-(rs/r_phy)) - 0.5 *Math.sqrt(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
+	return 1.5 * Math.sqrt(Math.abs(1-(rs/r_phy))) - 0.5 *Math.sqrt(Math.abs(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3)));
 }
 
 

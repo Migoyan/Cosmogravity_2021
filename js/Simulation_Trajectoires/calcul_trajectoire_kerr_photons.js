@@ -71,7 +71,7 @@ function initialisation(){
 	a = J / (c * M);
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
 	rs = 2 * G * M / Math.pow(c, 2);
-
+	console.log(a);
 	vr=c*Math.cos(teta*Math.PI/180)*Math.sqrt(delta(r0)/(r0*(r0-rs)));
 	vphi=c*Math.sin(teta*Math.PI/180)*r0/Math.sqrt(delta(r0));
 	//vphi=5.1e7;
@@ -520,7 +520,7 @@ function animate() {
 				document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 				document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
 				document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
-				vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,vr_3_obs,false);/// voir fonctions.js
+				vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,true);/// voir fonctions.js
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);
 			}
         }
@@ -534,7 +534,7 @@ function animate() {
                 if(J==0) {vp_3= c*L/r_part;}
                 if(r_part<=rhp && J!=0) {vp_3=1/0;}
                 document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);
-				vtot=calculs.MK_vitess(E,L,a,r_part,rs,vr_3,true);
+				vtot=calculs.MK_vitess(E,L,a,r_part,rs,true);
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);				
             }
         }

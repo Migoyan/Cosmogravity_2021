@@ -500,7 +500,7 @@ function animate() {
 			document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 			document.getElementById("vrk").innerHTML = vr_3_obs.toExponential(3);
 		    document.getElementById("vpk").innerHTML = vp_3_obs.toExponential(3);
-			vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,vr_3_obs,false);
+			vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
 		    document.getElementById("v_tot").innerHTML = vtot.toExponential(3);
         }
 
@@ -514,6 +514,8 @@ function animate() {
 			document.getElementById("vrk").innerHTML = vr_3.toExponential(3);
 			if(J==0) {vp_3= c*L/r_part;}
 			if(r_part<=rhp && J!=0) {vp_3=1/0;}
+			vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
+		    document.getElementById("v_tot").innerHTML = vtot.toExponential(3);
 			document.getElementById("vpk").innerHTML = vp_3.toExponential(3);  //}
 			console.log("ligne 609 vp_3",vp_3);
 		}
