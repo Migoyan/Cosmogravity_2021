@@ -69,15 +69,14 @@ function initialisation(){
 
 	J = Number(document.getElementById("J").value);
 	a = J / (c * M);
+	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
+	rs = 2 * G * M / Math.pow(c, 2);
 
 	vr=c*Math.cos(teta*Math.PI/180)*Math.sqrt(delta(r0)/(r0*(r0-rs)));
 	vphi=c*Math.sin(teta*Math.PI/180)*r0/Math.sqrt(delta(r0));
 	//vphi=5.1e7;
 	//vr=0;
 
-
-	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
-	rs = 2 * G * M / Math.pow(c, 2);
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
 	rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
@@ -85,6 +84,7 @@ function initialisation(){
 	E = (vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2));
 	E=Math.sqrt(Math.abs(E));
 	L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
+	//L=(r0*Math.sin(teta*Math.PI/180)*Math.sqrt(delta(r0))-a*rs)/(r0-rs);
 
 	textegravetetc_Kerr();				   
 	document.getElementById("a").innerHTML = a.toExponential(3);

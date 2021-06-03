@@ -1077,7 +1077,7 @@ else{      // observateur
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_1_obs,false); //voir fonctions.js
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		}
 		else{
@@ -1089,9 +1089,9 @@ else{      // observateur
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,vr_1_obs,false); //voir fonctions.js
+			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
-			}	
+		}	
 	}
 	else{
 		if (mobile.r_part>= r_phy){
@@ -1105,7 +1105,8 @@ else{      // observateur
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
 			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 				
-		}else{
+		}
+		else{
 			mobile.temps_particule+=mobile.dtau;
 			mobile.temps_observateur+=mobile.dtau*mobile.E/Math.pow(beta(mobile.r_part),2);
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
@@ -1116,7 +1117,7 @@ else{      // observateur
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
 			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
-			}
+		}
 	}
 
 
@@ -1150,14 +1151,14 @@ else{      // observateur
 // Expression du potentiel divisée par c^2
 
 function Vr_mob(r,E,L) {
-	if(r > r_phy) { return potentiel_externe_massif(r,L);
-	}else{ return potentiel_interne_massif(r,E,L);}
+	if(r > r_phy) { return potentiel_externe_massif(r,L);}
+	else{ return potentiel_interne_massif(r,E,L);}
 }
 
 function Vr_obs(r,E,L) {
-	if(r > r_phy) { return Math.pow(E,2)-( 1-potentiel_externe_massif(r,L)/Math.pow(E,2) )*Math.pow(1-rs/r,2)  ;	
-  }else{ return Math.pow(E,2)- Math.pow(beta(r),4)*( 1-potentiel_interne_massif(r,E,L)/Math.pow(E,2) ); } 
-  }										   
+	if(r > r_phy) { return Math.pow(E,2)-( 1-potentiel_externe_massif(r,L)/Math.pow(E,2) )*Math.pow(1-rs/r,2);}
+	else{ return Math.pow(E,2)- Math.pow(beta(r),4)*( 1-potentiel_interne_massif(r,E,L)/Math.pow(E,2) );} 
+}										   
 
 function potentiel_interne_massif(r,E,L) {
 	return Math.pow(E,2) - alpha(r)* (Math.pow(E/beta(r),2)- Math.pow(L / r, 2)-1);
@@ -1323,25 +1324,25 @@ function clavierEvenement() {
 		$('#rebondd').click();
     }
     if (event.which == 81) { // touche q
-      $('#start').click();
+    	$('#start').click();
     }
     if (event.which == 83) { // touche s
-      $('#clear').click();
+    	$('#clear').click();
     }
     if (event.which == 68) { // touche d
-      $('#boutton_enregis').click();
+    	$('#boutton_enregis').click();
     }
     if (event.which == 70) { // touche f
-      $('#boutton_recup').click();
+    	$('#boutton_recup').click();
     }
     if (event.which == 87) { // touche w
-      $('#moinsvite').click();
+    	$('#moinsvite').click();
     }
     if (event.which == 88) { // touche x
-      $('#pau').click();
+    	$('#pau').click();
     }
     if (event.which == 67) { // touche c
-      $('#plusvi').click();
+    	$('#plusvi').click();
     }
   });
 }
@@ -1372,9 +1373,7 @@ function enregistrer(){
 		canvas3 = document.getElementById("myCanvas3three");
 		context3 = canvas3.getContext("2d");
 		context3.drawImage(canvas, 0,0);
-		
 		document.getElementById("enregistrer2").click();
-
 		canvasToImage(canvas3, {
 			name: 'Trajectoire_massive_Schwar',
 			type: 'png'
@@ -1414,18 +1413,18 @@ function choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,r0ou2) {
 }
 
 function estUnMobile(){
-  var x = window.matchMedia("(max-width: 960px)")
-  if(x.matches){
-    document.getElementById("bouton_info").style.visibility='hidden';
-  }
-  else{
-    document.getElementById("bouton_info").style.visibility='visible';
-  }
+	var x = window.matchMedia("(max-width: 960px)")
+	if(x.matches){
+		document.getElementById("bouton_info").style.visibility='hidden';
+	}
+	else{
+		document.getElementById("bouton_info").style.visibility='visible';
+	}
 }
 
 function commandes(){
-  var texte = o_recupereJson();
-  alert(texte.page_trajectoire_massive.commandes);
+	var texte = o_recupereJson();
+	alert(texte.page_trajectoire_massive.commandes);
 }
 
 function majFondFixe(){

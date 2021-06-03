@@ -961,7 +961,7 @@ if(element2.value != "mobile"){
 				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); 
 			}
 			else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);}
-				vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,vr_2_obs,false);/// voir fichier fonctions.j fonction vitessSc
+				vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true);/// voir fichier fonctions.j fonction vitessSc
 				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(9);
 	 	}  																										  
 	}
@@ -972,7 +972,7 @@ if(element2.value != "mobile"){
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_2.toExponential(3);
             document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,vr_2,true);/// voir fichier fonctions.j fonction vitessSc
+			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,true);/// voir fichier fonctions.j fonction vitessSc
 			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(9);
 		    document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 		  
