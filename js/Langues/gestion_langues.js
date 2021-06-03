@@ -39,12 +39,8 @@ function s_testLangueJson() {
 		} else {
 			return PATH_JSON_EN;
 		}
-<<<<<<< HEAD
 	} 
 	else {
-=======
-	} else {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		// recupere la langue du navigateur par defaut
 		var userLang = navigator.language || navigator.userLanguage;
 		if (userLang == "fr" || userLang == "fr-FR" || userLang == "fr-fr") {
@@ -54,25 +50,19 @@ function s_testLangueJson() {
 			userLang == "en"
 			return PATH_JSON_EN;
 		}
-<<<<<<< HEAD
-    sessionStorage.setItem("LANGUE", userLang);
-  	}
-=======
+
 		sessionStorage.setItem("LANGUE", userLang);
 	}
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
+
 }
 
 // charge la page tutoriel en fonction du choix de langue
 function langageTutorielUnivers() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_UNIV_TUTO_FR, "_blank");
-<<<<<<< HEAD
 	} 
 	else if (s_testLangue() == "en") {
-=======
-	} else if (s_testLangue() == "en") {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
+
 		window.open(PATH_UNIV_TUTO_EN, "_blank");
 	}
 }
@@ -80,12 +70,8 @@ function langageTutorielUnivers() {
 function langageTutorielTrajectoires() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_TRAJ_TUTO_FR, "_blank");
-<<<<<<< HEAD
 	} 
 	else if (s_testLangue() == "en") {
-=======
-	} else if (s_testLangue() == "en") {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		window.open(PATH_TRAJ_TUTO_EN, "_blank");
 	}
 }
@@ -94,12 +80,8 @@ function langageTutorielTrajectoires() {
 function langageTheorieUnivers() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_UNIV_THEORIE_FR, "_blank");
-<<<<<<< HEAD
 	} 
 	else if (s_testLangue() == "en") {
-=======
-	} else if (s_testLangue() == "en") {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		window.open(PATH_UNIV_THEORIE_EN, "_blank");
 	}
 }
@@ -108,48 +90,11 @@ function langageTheorieUnivers() {
 function langageTheorieTrajectoire() {
 	if (s_testLangue() == "fr") {
 		window.open(PATH_TRAJ_THEO_FR, "_blank");
-<<<<<<< HEAD
-	} 
-	else if (s_testLangue() == "en") {
-		window.open(PATH_TRAJ_THEO_EN, "_blank");
-	}
-}
-
-
-
-// fonction utile pour mettre à jour la langue dans la partie théorie lorsque chagnement de langue sur la page
-/*function testSiBonneLangueUniversTheo() {
-  var languePage = document.documentElement.lang;
-  if (languePage != "en" && s_testLangue() == "en") {
-    window.open(PATH_TRAJ_UNIV_EN, "_blank");
-  } else if (languePage != "fr" && s_testLangue() == "fr") {
-    window.open(PATH_TRAJ_UNIV_FR, "_blank");
-  }
-}
-// fonction utile pour mettre à jour la langue dans la partie tutoriel lorsque chagnement de langue sur la page
-function testSiBonneLangueUniversTheo() {
-  var languePage = document.documentElement.lang;
-  if (languePage != "en" && s_testLangue() == "en") {
-    window.open(PATH_TRAJ_TUTO_EN, "_blank");
-  } else if (languePage != "fr" && s_testLangue() == "fr") {
-    window.open(PATH_TRAJ_TUTO_FR, "_blank");
-  }
-}
-// fonction utile pour mettre à jour la langue dans la partie théorie lorsque chagnement de langue sur la page
-function testSiBonneLangueTrajectoireTheo() {
-  var languePage = document.documentElement.lang;
-  if (languePage != "en" && s_testLangue() == "en") {
-    window.open(PATH_TRAJ_THEO_EN, "_blank");
-  } else if (languePage != "fr" && s_testLangue() == "fr") {
-    window.open(PATH_TRAJ_THEO_FR, "_blank");
-  }
-} */ 
-=======
 	} else if (s_testLangue() == "en") {
 		window.open(PATH_TRAJ_THEO_EN, "_blank");
 	}
 }
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
+
 
 // similaire à s_testLangueJson() mais renvoi la valeur de la variable langue
 function s_testLangue() {
@@ -157,12 +102,8 @@ function s_testLangue() {
 	if (sessionStorage.getItem("LANGUE")) {
 		langue = sessionStorage.getItem("LANGUE");
 		return langue;
-<<<<<<< HEAD
-		} 
-	else {
-=======
-	} else {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
+	} 
+	else{
 		langue = navigator.language || navigator.userLanguage;
 		if (langue == "fr" || langue == "fr-FR" || langue == "fr-fr"){
 			langue="fr";
@@ -245,7 +186,6 @@ function notationvitesseree2(){
 	numberoftherockets = document.getElementById("nombredefusees").value;
 	if(document.getElementById('traject_type2').value=="observateur"){
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-<<<<<<< HEAD
 		document.getElementById("tetalabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		for (count = 1; count <= numberoftherockets; count += 1) {
@@ -255,61 +195,25 @@ function notationvitesseree2(){
 
 		}
 	}
-		else{
-			document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-			document.getElementById("tetalabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
-			document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
-			for (count = 1; count <= numberoftherockets; count += 1) {
-				document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-				document.getElementById("tetaid"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-				document.getElementById("idphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-			}
-	}
-
-
-=======
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
-		for (count = 1; count <= numberoftherockets; count += 1) {
-		document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-		document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-		}
-	}else{
+	else{
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		document.getElementById("tetalabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		for (count = 1; count <= numberoftherockets; count += 1) {
-		document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurtau);
-		document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphitau);
+			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
+			document.getElementById("tetaid"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+			document.getElementById("idphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
 		}
 	}
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
+
 }
+
 
 function zoom() {
 	var texte = o_recupereJson();
 	document.getElementById("zoomtxt").title = texte.page_univers_general.zoomtxt;
 }
-<<<<<<< HEAD
-	
- 
-function textegravetetc_Kerr(){
-	var texte = o_recupereJson();
-	document.getElementById("acceleration").title = texte.pages_trajectoire.diffderive;
-	document.getElementById("ctreastre").title = texte.pages_trajectoire.ctreastre;
-	document.getElementById("massetxt").title = texte.pages_trajectoire.massetxt;
-	document.getElementById("moment").title = texte.pages_trajectoire.moment;
-	document.getElementById("spin").title = texte.pages_trajectoire.spin;
-	document.getElementById("rayonschwars").title = texte.pages_trajectoire.rayonschwars;
 
-	document.getElementById("horizon1").title = texte.pages_trajectoire.horizon1;
-	document.getElementById("horizon2").title = texte.pages_trajectoire.horizon2;
-	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
-	if(canvaswidthheightt=="750"){
-		document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;
-	}																			 
-
-
-=======
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 
 function textegravetetc_Kerr(){
 	var texte = o_recupereJson();
@@ -319,34 +223,14 @@ function textegravetetc_Kerr(){
 	document.getElementById("moment").title = texte.pages_trajectoire.moment;
 	document.getElementById("spin").title = texte.pages_trajectoire.spin;
 	document.getElementById("rayonschwars").title = texte.pages_trajectoire.rayonschwars;
-	
 	document.getElementById("horizon1").title = texte.pages_trajectoire.horizon1;
 	document.getElementById("horizon2").title = texte.pages_trajectoire.horizon2;
  	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
 	if(canvaswidthheightt=="750"){
-	document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;}
+		document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;
+	}
 }
-<<<<<<< HEAD
-function textegravetetc(){
-	var texte = o_recupereJson();
 
-	//document.getElementById("txt_explosion").title = texte.pages_trajectoire.txt_explosion;
-
-	document.getElementById("gravtxt").title = texte.pages_trajectoire.gravtitle;
-	document.getElementById("ctreastre").title = texte.pages_trajectoire.ctreastre;
-	document.getElementById("rayonschwars").title = texte.pages_trajectoire.rayonschwars;
-	document.getElementById("massetxt").title = texte.pages_trajectoire.massetxt;
-	document.getElementById("txt_rphysique").title = texte.pages_trajectoire.txt_rphysique;
-	document.getElementById("labelnumberfusees").innerHTML = texte.pages_trajectoire.labelnumberfusees;
-	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
-	if(canvaswidthheightt=="750"){
-	document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;}
-
-
-	var nbrfusetexte = Number(document.getElementById("nombredefusees").value);
-	for (countt = 1; countt <= nbrfusetexte; countt += 1) {
-	document.getElementById("acceleration"+countt.toString()).title = texte.pages_trajectoire.diffderive;}
-=======
 
 function textegravetetc(){
 	var texte = o_recupereJson();
@@ -363,7 +247,6 @@ function textegravetetc(){
 	if(canvaswidthheightt=="750"){
 		document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;
 	}
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 
 	var nbrfusetexte = Number(document.getElementById("nombredefusees").value);
 	for (countt = 1; countt <= nbrfusetexte; countt += 1) {
@@ -373,68 +256,41 @@ function textegravetetc(){
 
 function notationvitesseree2kerr(){
 	var texte = o_recupereJson();
-<<<<<<< HEAD
-	if(document.getElementById('traject_type2').value=="observateur"){
-=======
 	if(document.getElementById('traject_type2').value=="observateur") {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-<<<<<<< HEAD
+
 	}
 	else{
-=======
-	} else {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurtau);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphitau);
 	}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
 
 function notationvitesseree1kerr(){
 	var texte = o_recupereJson();
-<<<<<<< HEAD
-	if(document.getElementById('traject_type2').value=="observateur"){
-=======
 	if(document.getElementById('traject_type2').value=="observateur") {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-<<<<<<< HEAD
 	}
 	else{
-=======
-	} else {
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurlambda);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
 	}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
 
 
 function notationvitesseree1(){
 	var texte = o_recupereJson();
 	numberoftherockets = document.getElementById("nombredefusees").value;
-
-<<<<<<< HEAD
 	if(document.getElementById('traject_type2').value=="observateur"){
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
 		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
@@ -451,33 +307,10 @@ function notationvitesseree1(){
 			document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
 		}
 	}
-
-
-=======
-	if(document.getElementById('traject_type2').value=="observateur") {
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
-		for (countet = 1; countet <= numberoftherockets; countet += 1) {
-		document.getElementById("vitesseur"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-		document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-		}
-	} else {
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
-		for (countet = 1; countet <= numberoftherockets; countet += 1) {
-		document.getElementById("vitesseur"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurlambda);
-		document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
-		}
-	}
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 }
 
 function infobulleobservateurdistant(){
 	var texte = o_recupereJson();
-<<<<<<< HEAD
-	//document.getElementById("r3").title ="distance >> RS ... sans être cosmologique";
-=======
->>>>>>> 0f0b3f7c5690cf6f574a5a67a99384f096f2b3c3
 	document.getElementById("r3").title =texte.pages_trajectoire.r3;
 }
 
@@ -497,7 +330,7 @@ function texteApropos() {
 	document.getElementById("txt_version_2020").innerHTML = texte.page_apropos.version_2020;  
 }
 
-function texteMenu() {
+function texteMenu(){
 	var texte = o_recupereJson();
 	document.getElementById("Univers_Tuto").innerHTML = texte.page_menu.Ututo;
 	document.getElementById("Trajectoires_Tuto").innerHTML = texte.page_menu.Ttuto;
@@ -573,7 +406,8 @@ function texteUniversCalculs() {
 			document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_calculs.matiereEsombreRFCNeu;
 			document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_calculs.matiereEsombreRFC;
 			document.getElementById("txt_ML").innerHTML = texte.page_univers_calculs.matiereEsombre;
-		} else {
+		} 
+		else {
 			document.getElementById("txt_MLRFCN").innerHTML = texte.page_univers_calculs.matierelambdaRFCNeu;
 			document.getElementById("txt_MLRFC").innerHTML = texte.page_univers_calculs.matierelambdaRFC;
 			document.getElementById("txt_ML").innerHTML = texte.page_univers_calculs.matierelambda;

@@ -37,11 +37,11 @@ var calculs = calculs || (function() {
          * @returns 
          */
         ///Calcule la vitess réel en m/s pour la métrique de Schwarzchild pour une intéraction non barionique à l'intérieur de l'astre
-        MSC_In_vitess : function(E,L,r,rs,ra,vr,ref){
+        MSC_In_vitess : function(E,L,r,rs,ra,vr,photon){
             ap=1-((r**2)*rs)/(ra**3);
             bt=(3/2)*Math.sqrt(1-rs/ra)-(1/2)*Math.sqrt(ap);
             dphie=c*L*(bt**2)/(E*r**2);
-            if(ref){
+            if(photon){
                 dr=((c/E)**2)*ap*(bt**4)*((E/bt)**2-(L/r)**2);
             }
             else{

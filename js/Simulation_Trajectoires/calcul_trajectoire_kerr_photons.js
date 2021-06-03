@@ -67,13 +67,15 @@ function initialisation(){
 	phi0=Number(document.getElementById("phi0").value);  // angle de départ
 	phi0=phi0*Math.PI/180;
 
-	vr=c*Math.cos(teta*Math.PI/180);
-	vphi=c*Math.sin(teta*Math.PI/180);
+	J = Number(document.getElementById("J").value);
+	a = J / (c * M);
+
+	vr=c*Math.cos(teta*Math.PI/180)*Math.sqrt(delta(r0)/(r0*(r0-rs)));
+	vphi=c*Math.sin(teta*Math.PI/180)*r0/Math.sqrt(delta(r0));
 	//vphi=5.1e7;
 	//vr=0;
 
-	J = Number(document.getElementById("J").value);
-	a = J / (c * M);
+
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
 	rs = 2 * G * M / Math.pow(c, 2);
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
