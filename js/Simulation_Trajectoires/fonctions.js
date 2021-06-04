@@ -20,15 +20,20 @@ var calculs = calculs || (function() {
             var vtot=0;
             dt=E/(1-(rs/r)); //dt/dtau ou dt/dlambda pour photon
             dphi=c*L/(r**2);// dphi/dtau ou dphi/dlambda pour photon
+            vphi=Math.sqrt(((r**2)*(dphi/dt)**2)/(1-rs/r));
             if(photon){ // calcule photon
                 dr=(c/E)**2*(1-rs/r)**2*(E**2-(1-rs/r)*((L/r)**2));
+                vr=Math.sqrt(dr/(1-rs/r)**2);
             }
             else{ // calcule particule
                 dr=(c/E)**2*(1-rs/r)**2*(E**2-(1-rs/r)*(1+(L/r)**2));
+                vr=math.sqrt(dr/(1-rs/r)**2);
             }
-            vtot=Math.abs((dr+(1-rs/r)*(r**2)*(dphi/dt)**2)/(1-rs/r)**2);
+            //vtot=Math.abs((dr+(1-rs/r)*(r**2)*(dphi/dt)**2)/(1-rs/r)**2);
+            vtot=vphi**2+vr**2
             return Math.sqrt(vtot);
         },
+
         /**
          * 
          * @param {*} E constant de la metrique 
@@ -44,14 +49,18 @@ var calculs = calculs || (function() {
             ap=1-((r**2)*rs)/(ra**3);
             bt=(3/2)*Math.sqrt(1-rs/ra)-(1/2)*Math.sqrt(ap);
             dphie=c*L*(bt**2)/(E*(r**2));
+            vphi=Math.sqrt((r**2/bt**2)*(c*L*bt**2/r**2)**2);
             if(photon){
                 dr=((c/E)**2)*ap*(bt**4)*((E/bt)**2-(L/r)**2);
+                vr=Math.sqrt(dr/(ap*bt**2));
             }
             else{
                 dr=((c/E)**2)*ap*(bt**4)*((E/bt)**2-(L/r)**2-1);
+                vr=Math.sqrt(dr/(ap*bt**2));
             }
-            vtot=(dr+ap*(r*dphi)**2)/(ap*(bt**2));
-            return Math.sqrt(Math.abs(vtot));
+            vtot=Math.sqrt(vphi**2+vr**2);
+            
+            return [vtot,vr,vphi];
         },
         
         /**

@@ -4,14 +4,14 @@
 
 function save_nbfusees() {
 	savenbfusees = document.getElementById("nombredefusees").value;
-    sessionStorage.setItem("nombredefusees", savenbfusees);
-    //console.log(sessionStorage.getItem("nombredefusees"),"log");
+	sessionStorage.setItem("nombredefusees", savenbfusees);
+	//console.log(sessionStorage.getItem("nombredefusees"),"log");
 }
 
 
 function save_nbfusees_recupvaleurs() {
 	savenbfuseesrecupvaleurs = document.getElementById("nombredefusees").value;
-    sessionStorage.setItem("nombredefuseesrecupvaleurs", savenbfuseesrecupvaleurs);
+	sessionStorage.setItem("nombredefuseesrecupvaleurs", savenbfuseesrecupvaleurs);
     //console.log(sessionStorage.getItem("nombredefuseesrecupvaleurs"),"second log");
 }
 

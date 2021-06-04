@@ -47,11 +47,11 @@ function testnum(a){
 
 // Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.
 function testvaleur(x) {
-        if (isNaN(x)) {
-          return 'Not a Number!';
-        }
-        return x ;
-      }
+	if (isNaN(x)){
+		return 'Not a Number!';
+	}
+	return x ;
+}
 
 
 
@@ -107,8 +107,6 @@ function supprHtml(){
 		elementvpasuppr.parentNode.removeChild(elementvpasuppr);
 		var elementvrasuppr = document.getElementById("vitesser"+countt.toString()+"");
 		elementvrasuppr.parentNode.removeChild(elementvrasuppr);
-		var elementvrasuppr = document.getElementById("idteta"+countt.toString()+"");
-		elementvrasuppr.parentNode.removeChild(elementvrasuppr);
 		var elementcanvasbouleasuppr = document.getElementById("myCanvasBoule"+countt.toString()+"");
 		elementcanvasbouleasuppr.parentNode.removeChild(elementcanvasbouleasuppr);
 		if(canvaswh=="750"){
@@ -131,9 +129,7 @@ function htmlDecode(input) {
 
 function genereHtml(){
 	var nbredefuseesgenere = Number(document.getElementById("nombredefusees").value);
-
-
-		lenbdefusees = nbredefuseesgenere;
+	lenbdefusees = nbredefuseesgenere;
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		var span = document.createElement("span");
 		span.setAttribute("id","rayon"+countt.toString()+"");
@@ -258,11 +254,13 @@ function genereHtml(){
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		var newRow=document.getElementById('tableauresultatsimu').insertRow();
 		// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
+		//<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
+		//<td class="tg-3ozo" id="ga`+countt.toString()+`"></td>
 		newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
 					<th class="tg-aicv">r(m)</th>
 					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-					<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
 					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
 					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
 					<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`;
@@ -872,9 +870,15 @@ function animate(compteur,mobile,mobilefactor) {
 					else{mobile.phi=0; mobile.A_part=-mobile.A_part; }
 				} 
 				else {mobile.phi = mobile.phi + varphi;}
-			vr_1=mobile.A_part;
-			vp_1=c*mobile.L /mobile.r_part;  
+				//vr_1=mobile.A_part;
+				//vp_1=c*mobile.L /mobile.r_part;
+				var vitess_phys=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,true);
+				vtotal=vitess_phys[0];
+				vr_1_obs=vitess_phys[1];
+				v_1_obs=vitess_phys[2];  
 			}
+			mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
+    		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
 		}
 		//observateur
 		else{
@@ -903,20 +907,20 @@ function animate(compteur,mobile,mobilefactor) {
 					else{mobile.phi_obs=0; mobile.A_part_obs=-mobile.A_part_obs;}
 				}
 				else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
-		
-		
-		vr_1_obs=mobile.A_part_obs;
-		vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
-		}
+				var vitess_phys=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,true);
+				vtotal=vitess_phys[0];
+				vr_1_obs=vitess_phys[1];
+				v_1_obs=vitess_phys[2];
+			}
+			mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
+    		mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);
 	}	
 
 	mobile.posinterm= mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax);
 	mobile.posintero= mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax);
 
-	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
-    mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
-	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
-    mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);	
+	
+		
 
 							 
     if (element2.value != "mobile"){
@@ -970,7 +974,7 @@ function animate(compteur,mobile,mobilefactor) {
 
 //  Les différents "temps" et autres valeurs à afficher
 	if (element2.value != "mobile"){
-		if(mobile.r_part_obs >= r_phy){
+		if(mobile.r_part_obs > r_phy){
 			mobile.temps_observateur+=mobile.dtau;
 			mobile.temps_particule += 0;
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
@@ -989,7 +993,7 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,true); //voir fonctions.js
+			//vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8);
 		}	
 	}
@@ -1013,7 +1017,7 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,true); //voir fonctions.js
+			//vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8);			
 		}
 	}
@@ -1060,8 +1064,9 @@ function rungekutta_interne_photon(h, r, A,E,L) {
 	k[1] = derivee_seconde_interne_photon(r + 0.5 * h * A,E,L);
 	k[2] = derivee_seconde_interne_photon(r + 0.5 * h * A + 0.25 * h * h * k[0],E,L);
 	k[3] = derivee_seconde_interne_photon(r + h * A + 0.5 * h * h * k[1],E,L);
-	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	r = r + h * A+ (1 / 6) * h * h * (k[0] + k[1] + k[2]);
 	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	
 	return [r, A];
 }
 
@@ -1093,7 +1098,7 @@ function alpha(r){
 
 
 function beta(r){
-	return 1.5 * Math.sqrt(Math.abs(1-(rs/r_phy))) - 0.5 *Math.sqrt(Math.abs(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3)));
+	return 1.5 * Math.sqrt(Math.abs(1-(rs/r_phy))) - 0.5 *Math.sqrt(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
 }
 
 
@@ -1104,7 +1109,7 @@ function derivee_seconde_interne_photon(r,E,L) {
    +  Math.pow(c, 2)* alpha(r)/2 * ( 2* Math.pow(L, 2)/Math.pow(r, 3)-(Math.pow(E,2)*r*rs)/(Math.pow(beta(r), 3)*Math.sqrt(alpha(r))*Math.pow(r_phy, 3)));
 	*/
 	resulta=-(c**2 * r * rs / r_phy**3) * (Math.pow(E /beta(r), 2) - Math.pow(L / r, 2))
-		+ c**2 * alpha(r) * .5 * (-(E**2 * r * rs) / ((beta(r) * r_phy)**3 * alpha(r)**.5) + 2 * L**2 / r**3);
+		+ c**2 * alpha(r) * 0.5 * (-(E**2 * r * rs) / ((beta(r) * r_phy)**3 * Math.sqrt(alpha(r))) + 2 * L**2 / r**3);
 	//console.log("al"+alpha(r));
 	//resulta=cc*El+ca*el2;
 	return resulta ;

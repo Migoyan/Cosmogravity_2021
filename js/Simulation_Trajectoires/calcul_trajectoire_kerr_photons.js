@@ -411,33 +411,33 @@ function animate() {
 
 
     if (r0 != 0.0) {
+		if (element2.value != "mobile"){
+			val_obs = rungekutta_obs(dtau, r_part_obs, A_part_obs);
+			r_part_obs = val_obs[0];
+			varphi_obs = c *dtau* ( rs*a*E/r_part_obs + (1-rs/r_part_obs)*L )/( (Math.pow(r_part_obs,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part_obs)*E - rs*a*L/r_part_obs ); 
+			phi_obs=phi_obs+varphi_obs;
+			if(r_part_obs<rhp*1.001) { r_part_obs=rhp;}
+			A_part_obs = val_obs[1];
+			vr_3_obs=A_part_obs;
+			if(r_part_obs<rhp*1.0001) { vr_3_obs=0;}
+			vp_3_obs= r_part_obs*varphi_obs/dtau;
+			posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
+			posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
+		}
+		else{
+			varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
+			phi = phi + varphi;
+        	val = rungekutta(dtau, r_part, A_part);
+        	r_part = val[0];
+        	A_part = val[1];
+        	vr_3=A_part;
+        	vp_3=r_part* varphi/dtau;
+			posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
+			posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
 
-		varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
-		phi = phi + varphi;
-		varphi_obs = c *dtau* ( rs*a*E/r_part_obs + (1-rs/r_part_obs)*L )/( (Math.pow(r_part_obs,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r_part_obs)*E - rs*a*L/r_part_obs ); 
-		phi_obs=phi_obs+varphi_obs;
-        val = rungekutta(dtau, r_part, A_part);
-        r_part = val[0];
-        A_part = val[1];
-        vr_3=A_part;
-        vp_3=r_part* varphi/dtau;
-        
-        val_obs = rungekutta_obs(dtau, r_part_obs, A_part_obs);
-        r_part_obs = val_obs[0];
-        
-        if(r_part_obs<rhp*1.001) { r_part_obs=rhp;}
-        
-        A_part_obs = val_obs[1];
-        vr_3_obs=A_part_obs;
-        
-        if(r_part_obs<rhp*1.0001) { vr_3_obs=0;}
-        
-        vp_3_obs= r_part_obs*varphi_obs/dtau; 
-
-        posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
-        posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
-        posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
-        posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
+		}
+		
+      
         
 
         if (element2.value != "mobile"){	
@@ -587,8 +587,8 @@ function rungekutta(h, r, A){
 	k[1] = derivee_seconde_Kerr_photon(r + 0.5 * h * A);
 	k[2] = derivee_seconde_Kerr_photon(r + 0.5 * h * A + 0.25 * h * h * k[0]);
 	k[3] = derivee_seconde_Kerr_photon(r + h * A + 0.5 * h * h * k[1]);
-	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3])
+	r = r + h * A;
 	return [r, A];
 	}
 
@@ -624,48 +624,53 @@ function rungekutta_obs(h, r, A) {
 
 
 function calcul_rmax(){
-  rmax = 5000; //eq3d(L,m,E);
-  // Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur//
-  if (E > 1) {
-    rmax = 5 * r0;
-  }
+	rmax = 5000; //eq3d(L,m,E);
+	// Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur//
+	if (E > 1) {
+		rmax = 5 * r0;
+	}
 
-  /* --- */
+	/* --- */
 
-  r1 = (L * (L - Math.sqrt(Math.pow(L, 2) - 12 * Math.pow(m, 2))) / (2 * m));
-  r2 = (L * (L + Math.sqrt(Math.pow(L, 2) - 16 * Math.pow(m, 2))) / (4 * m));
+	r1 = (L * (L - Math.sqrt(Math.pow(L, 2) - 12 * Math.pow(m, 2))) / (2 * m));
+	r2 = (L * (L + Math.sqrt(Math.pow(L, 2) - 16 * Math.pow(m, 2))) / (4 * m));
 
-  ra = 2 * m * Math.pow(L, 2);
-  rb = ((2 * m / r0) - 1) * Math.pow(L, 2);
-  X0 = 1 / r0;
-  rc = 2 * m - Math.pow(L, 2) * X0 + 2 * m * Math.pow(L * X0, 2);
-  DELTA = Math.pow(rb, 2) - 4 * ra * rc;
-  r3 = (-rb - Math.sqrt(DELTA)) / (2*ra);
+	ra = 2 * m * Math.pow(L, 2);
+	rb = ((2 * m / r0) - 1) * Math.pow(L, 2);
+	X0 = 1 / r0;
+	rc = 2 * m - Math.pow(L, 2) * X0 + 2 * m * Math.pow(L * X0, 2);
+	DELTA = Math.pow(rb, 2) - 4 * ra * rc;
+	r3 = (-rb - Math.sqrt(DELTA)) / (2*ra);
 
-  if (L < 2 * Math.sqrt(3) * m) {
-    rmax = r0;
-  } else if (L <= 4 * m && L > 2 * Math.sqrt(3) * m) {
-    if (Vr_mob(r0) <= Vr_mob(r1) && r0 > r1) {
-      if (r3 > r0) {
-        rmax = r3;
-      } else if (r3 < r0) {
-        rmax = r0;
-      }
-    } else {
-      rmax = r0;
-    }
-  } else if (L > 4 * m) {
-    if (r0 > r2) {
-      if (r3 > r0) {
-        rmax = r3;
-      } else if (r3 < r0) {
-        rmax = r0;
-      }
-    } else {
-      rmax = r0;
-    }
-  }
-  
+	if (L < 2 * Math.sqrt(3) * m) {
+		rmax = r0;
+	} 
+	else if (L <= 4 * m && L > 2 * Math.sqrt(3) * m) {
+	if (Vr_mob(r0) <= Vr_mob(r1) && r0 > r1) {
+		if (r3 > r0) {
+			rmax = r3;
+		} 
+		else if (r3 < r0) {
+			rmax = r0;
+		}
+	} 
+	else {
+		rmax = r0;
+	}
+	} 
+	else if (L > 4 * m) {
+		if (r0 > r2) {
+			if (r3 > r0) {
+				rmax = r3;
+			} else if (r3 < r0) {
+				rmax = r0;
+			}
+	} 
+	else {
+		rmax = r0;
+	}
+	}
+
 }
 
 

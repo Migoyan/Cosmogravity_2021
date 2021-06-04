@@ -560,7 +560,6 @@ function trajectoire(compteur,mobile) {
 
 		var blyo = Number(document.getElementById("nombredefusees").value);
 
-
 		for (countt = 1; countt <= blyo; countt += 1) {
 			document.getElementById('r0'+countt.toString()+'').disabled = true;
 			document.getElementById('phi0'+countt.toString()+'').disabled = true;
@@ -574,8 +573,7 @@ function trajectoire(compteur,mobile) {
 
     // permet de controler si il y a un tracé ou non pour l'enregistrement
     document.getElementById('trace_present').value="1";
-
-
+	
     mobile.pause = false;
     mobile.debut = false;
 
