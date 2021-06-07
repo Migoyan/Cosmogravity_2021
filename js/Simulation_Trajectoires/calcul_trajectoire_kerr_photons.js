@@ -71,7 +71,7 @@ function initialisation(){
 	a = J / (c * M);
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
 	rs = 2 * G * M / Math.pow(c, 2);
-	console.log(a);
+	//console.log(a);
 	vr=c*Math.cos(teta*Math.PI/180)*Math.sqrt(delta(r0)/(r0*(r0-rs)));
 	vphi=c*Math.sin(teta*Math.PI/180)*r0/Math.sqrt(delta(r0));
 	//vphi=5.1e7;
@@ -418,9 +418,11 @@ function animate() {
 			phi_obs=phi_obs+varphi_obs;
 			if(r_part_obs<rhp*1.001) { r_part_obs=rhp;}
 			A_part_obs = val_obs[1];
-			vr_3_obs=A_part_obs;
+			resulta=calculs.MK_vitess(E,L,a,r_part_obs,rs,true);
+			vtot=resulta[0];
+			vr_3_obs=resulta[1];
 			if(r_part_obs<rhp*1.0001) { vr_3_obs=0;}
-			vp_3_obs= r_part_obs*varphi_obs/dtau;
+			vp_3_obs=resulta[2];// r_part_obs*varphi_obs/dtau;
 			posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
 			posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
 		}
@@ -430,8 +432,10 @@ function animate() {
         	val = rungekutta(dtau, r_part, A_part);
         	r_part = val[0];
         	A_part = val[1];
-        	vr_3=A_part;
-        	vp_3=r_part* varphi/dtau;
+			resulta=calculs.MK_vitess(E,L,a,r_part,rs,true);
+			vtot=resulta[0];
+			vr_3=resulta[1];
+        	vp_3=resulta[2];
 			posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
 			posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
 
@@ -520,7 +524,7 @@ function animate() {
 				document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 				document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
 				document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
-				vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,true);/// voir fonctions.js
+				//vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,true);/// voir fonctions.js
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);
 			}
         }
@@ -534,7 +538,7 @@ function animate() {
                 if(J==0) {vp_3= c*L/r_part;}
                 if(r_part<=rhp && J!=0) {vp_3=1/0;}
                 document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);
-				vtot=calculs.MK_vitess(E,L,a,r_part,rs,true);
+				//vtot=calculs.MK_vitess(E,L,a,r_part,rs,true);
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);				
             }
         }

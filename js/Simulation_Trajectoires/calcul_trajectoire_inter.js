@@ -915,8 +915,10 @@ if(element2.value == "mobile"){
 		mobile.A_part = val[1];
 		varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
 		mobile.phi = mobile.phi + varphi;
-		vr_1=mobile.A_part;
-		vp_1=c*mobile.L/mobile.r_part; 
+		resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); //voir fonctions.js
+		vtotal=resultat[0];
+		vr_1=resultat[1];
+		vp_1=resultat[2]; 
 	
     } 
 	else {		
@@ -929,8 +931,10 @@ if(element2.value == "mobile"){
 			else{mobile.phi=0; mobile.A_part=-mobile.A_part; }
 		} 
 		else { mobile.phi = mobile.phi + varphi;}
-		vr_1=mobile.A_part;
-		vp_1=c*mobile.L /mobile.r_part;  
+		resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); //voir fonctions.js
+		vtotal=resultat[0];
+		vr_1=resultat[1];
+		vp_1=resultat[2];  
 	}
 }
 else{      // observateur
@@ -943,9 +947,10 @@ else{      // observateur
 
 		varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
 		mobile.phi_obs=mobile.phi_obs+varphi_obs;
-
-		vr_1_obs=mobile.A_part_obs;
-		vp_1_obs= c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E; 
+		resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
+		vtotal=resultat[0];
+		vr_1_obs=resultat[1];
+		vp_1_obs=resultat[2]; 
 	
     } 
 	else {
@@ -963,8 +968,10 @@ else{      // observateur
 			else{mobile.phi_obs=0; mobile.A_part_obs=-mobile.A_part_obs;}
 		}
 		else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
-		vr_1_obs=mobile.A_part_obs;
-		vp_1_obs=c*mobile.L*(1-rs/mobile.r_part_obs)/mobile.r_part_obs/mobile.E;  
+		resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
+		vtotal=resultat[0];
+		vr_1_obs=resultat[1];
+		vp_1_obs=resultat[2];
 	}
 }	
 	
@@ -1077,7 +1084,6 @@ else{      // observateur
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		}
 		else{
@@ -1089,7 +1095,6 @@ else{      // observateur
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
     		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
 		}	
 	}
@@ -1103,7 +1108,6 @@ else{      // observateur
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 				
 		}
 		else{
@@ -1115,7 +1119,6 @@ else{      // observateur
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			vtotal=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
 		}
 	}

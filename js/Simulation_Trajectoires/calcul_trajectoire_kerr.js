@@ -392,9 +392,11 @@ function animate() {
 			phi_obs=phi_obs+varphi_obs;
 			if(r_part_obs<rhp*1.001) { r_part_obs=rhp;}
 			A_part_obs = val_obs[1];
-			vr_3_obs=A_part_obs;
+			resulta=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
+			vtot=resulta[0];
+			vr_3_obs=resulta[1];
 			if(r_part_obs<rhp*1.0001) { vr_3_obs=0;}
-			vp_3_obs= r_part_obs*varphi_obs/dtau; 
+			vp_3_obs= resulta[2]; 
 			posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
 			posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
 			
@@ -403,10 +405,12 @@ function animate() {
 			val = rungekutta(dtau, r_part, A_part);
 			r_part = val[0];
 			A_part = val[1];
-			vr_3=A_part;
+			resulta=calculs.MK_vitess(E,L,a,r_part,rs,false);
+			vtot=resulta[0];
+			vr_3=resulta[1];
 			varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
 			phi = phi + varphi;
-			vp_3=r_part* varphi/dtau;
+			vp_3=resulta[2];
 			posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
 			posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
 		}
@@ -500,7 +504,6 @@ function animate() {
 			document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 			document.getElementById("vrk").innerHTML = vr_3_obs.toExponential(3);
 		    document.getElementById("vpk").innerHTML = vp_3_obs.toExponential(3);
-			vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
 		    document.getElementById("v_tot").innerHTML = vtot.toExponential(3);
         }
 

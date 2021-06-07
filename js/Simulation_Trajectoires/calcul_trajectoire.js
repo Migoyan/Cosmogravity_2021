@@ -426,7 +426,6 @@ function initialisation(compteur){
 	//alert(teta);
 
 	L = vphi * r0 / c;
-	//E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0) * (1 + Math.pow(vphi/c, 2)));
 
 	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
 	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
@@ -908,9 +907,11 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile.r_part_obs = val_obs[0];
 			if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
 			mobile.A_part_obs = val_obs[1];
-			vr_1_obs=mobile.A_part_obs;
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false);
+			vtotal=resultat[0];
+			vr_1_obs=resultat[1];
 			if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
-			vp_1_obs=mobile.L/(mobile.r_part_obs**2); 
+			vp_1_obs=resultat[2]; 
 			if(mobile.r_part_obs<rs*1.0001) { vp_1_obs=0;}
 			varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
 			mobile.phi_obs=mobile.phi_obs+varphi_obs;
@@ -922,11 +923,10 @@ function animate(compteur,mobile,mobilefactor) {
 			val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
 			mobile.r_part = val[0];
 			mobile.A_part = val[1];
-			gtt=(c**2)*(1-(rs/mobile.r_part)); //élement de métrique liée a dt
-			dt=E/(1-(rs/mobile.r_part)); //dt/dtau ou dt/dlambda pour photon
-			gamma=gtt*(dt)**2/(c**2);
-			vr_1=Math.sqrt(Math.abs((c**2)*(1-(rs/mobile.r_part_obs))*mobile.A_part**2/gamma**2 ));
-			vp_1=c*mobile.L/(mobile.r_part**2);
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false);
+			vtotal=resultat[0];
+			vr_1=resultat[1];
+			vp_1=resultat[2];
 			varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
 			mobile.phi = mobile.phi + varphi;
 			mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
@@ -1164,7 +1164,7 @@ if (element2.value != "mobile"){
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = (vr_1_obs).toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
+			//vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 			
         }
@@ -1178,7 +1178,7 @@ if (element2.value != "mobile"){
 			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);  //}
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); // voir fonctions.js
+			//vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); // voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		} 
 		else {

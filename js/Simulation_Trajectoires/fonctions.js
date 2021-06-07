@@ -1,7 +1,5 @@
 /// Document pour metre des fonctions de calcul
 
-
-
 var calculs = calculs || (function() {
     let c=299792458;
     return {
@@ -30,8 +28,8 @@ var calculs = calculs || (function() {
                 vr=math.sqrt(dr/(1-rs/r)**2);
             }
             //vtot=Math.abs((dr+(1-rs/r)*(r**2)*(dphi/dt)**2)/(1-rs/r)**2);
-            vtot=vphi**2+vr**2
-            return Math.sqrt(vtot);
+            vtot=Math.sqrt(vphi**2+vr**2);
+            return [vtot,vr,vphi];
         },
 
         /**
@@ -74,24 +72,32 @@ var calculs = calculs || (function() {
          * @returns 
          */
         MK_vitess :function(E,l,a,r,rs,photon){
+            //alert(a);
             deta=(r**2)-(rs*r)+(a**2); ///delta dans la metric de kerr
-            dt=((r**2+a**2+a*rs/r)*E-rs*a*l/r)/deta; // dt/dtau
-            dphi=(c/deta)*(rs*a*E/(r)+(1-rs/r)*l);
-            //dphi=c*L/(r**2)/(E/(1-(rs/r)));
-            if(photon){
-                dr=(c**2)*(E**2+((a**2)*(E**2)-l**2)/(r**2)+rs*((l-a*E)**2)/(r**3));
-                //dr=(c/E)**2*(1-rs/r)**2*(E**2-(1-rs/r)*((L/r)**2))/(E/(1-(rs/r)))**2;
+            dphi=c*((rs*a*E)/r+(1-rs/r)*l)/((r**2+a**2+(rs/r)*(a**2))*E-rs*a*l/r);
+            vphie=deta*(dphi**2)/((1-(rs/r)+rs*a*(dphi)/(c*r))**2);
+            vphie=Math.sqrt(vphie);
+          
 
+            if(photon){
+                dr=(c**2)*(E**2+((a**2)*(E**2)-l**2)/(r**2)+rs*(((l-a*E)**2)/(r**3)));
+                dr*=(deta**2)/(((r**2+a**2+(rs/r)*a**2)*E-rs*a*l/r)**2);
+                vr=(1-rs/r)*((r**2)*dr/deta)/(1-(rs/r)+rs*a*(dphi)/(c*r))**2;
+                vr=Math.sqrt(vr);
+                //alert(vr);
+                //console.log(vr);
             }
             else{
-                dr=(c**2)*(E**2-1+rs/r+((a**2)*(E**2-1)-l**2)/(r**2)+rs*((l-a*E)**2)/(r**3));
+                dr=(c**2)*(E**2-1+rs/r+((a**2)*(E**2-1)-l**2)/(r**2)+rs*(((l-a*E)**2)/(r**3)));
+                dr*=(deta**2)/((r**2+a+(rs/r)*a**2)*E-rs*a*l/r)**2;
+                vr=(r**2)*(1-rs/r)*(dr/deta)/(1-(rs/r)+rs*a*(dphi)/(c*r))**2;
+                vr=Math.sqrt(vr);
+               
 
             }
-            vtot=(1-rs/r)*((dr/dt**2)/deta+(deta/(1-rs/r))*(dphi/dt)**2)/((1-rs/r+(rs*a/(c*r))*(dphi/dt)**2)**2);
-            //vtot=Math.abs((dr+(1-rs/r)*(r**2)*(dphi)**2)/(1-rs/r)**2);
-            vtot=Math.sqrt(Math.abs(vtot));
+            vtot=Math.sqrt(vr**2+vphie**2);
             //alert(vtot);
-            return vtot;
+            return [vtot,vr,vphie];
         }
     }
 
