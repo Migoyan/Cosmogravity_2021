@@ -47,7 +47,7 @@ const COULEUR_ERGOS = COULEUR_JAUNE;
 function testnum(a){
 	for (var i = -30; i < 30; i++) {
 		resu=a/(10**i);
-		if (resu >1 && resu <10){
+		if (resu >=1 && resu <=10){
 			z=i; return z;
 		}
 	}
@@ -64,27 +64,23 @@ function initialisation(){
 	v0 = Number(document.getElementById("v0").value);
 	teta = Number(document.getElementById("teta").value);
 	phi0=Number(document.getElementById("phi0").value);
-
 	phi0=phi0*Math.PI/180;
-
-	vr=v0*Math.cos(teta*Math.PI/180); 
-	vphi=v0*Math.sin(teta*Math.PI/180);
-	//vphi=5.1e7;
-	//vr=0;
-
+	
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
 	rs = 2 * m;
-	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
+
+	//E=Math.sqrt(Math.abs((1-rs/r0)/((1-v0**2/c**2))));
+	//L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(teta*Math.PI/180)*Math.sqrt(r0*delta(r0)))/Math.sqrt(Math.abs((c**2-v0**2)*(r0-rs)))
+	a = J / (c * M);
 	
-	//rhp =(rs+Math.sqrt(rs**2-4*a**2))/2;
-	//rhm =(rs-Math.sqrt(rs**2-4*a**2))/2;
+	vr=v0*Math.cos(teta*Math.PI/180)*c*Math.sqrt(delta(r0))/(r0*Math.sqrt(c**2-v0**2)); 
+	vphi=v0*Math.sin(teta*Math.PI/180)*c*Math.sqrt(Math.abs(r0*(r0-rs))/Math.sqrt(delta(r0)*(c**2-v0**2))); 
+	
+	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
     rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
-	a = J / (c * M);
-
-	E = 1 / (r0 * r0 * delta(r0)) * (Math.pow(vr / c, 2) * (r0 - rs) * Math.pow(r0, 3) +
-		r0 * (r0 - rs)*delta(r0) + Math.pow(delta(r0) * vphi / c, 2));
-	E=Math.sqrt(Math.abs(E));
+	E = Math.sqrt((1 / (r0 * r0 * delta(r0)))*(Math.pow(vr / c, 2) * (r0 - rs) * Math.pow(r0, 3) +
+    	r0 * (r0 - rs)*delta(r0) + Math.pow(delta(r0) * vphi / c, 2)));
 	L = ((delta(r0) * vphi / c) - rs * a * E) / (r0 - rs);
 
 	textegravetetc_Kerr();						   
@@ -181,8 +177,10 @@ function trajectoire() {
 		r_part = r_init;			 
 		A_init_obs = vr*delta(r0)/( (Math.pow(r0,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r0)*E - rs*a*L/r0 );
 		A_part_obs=A_init_obs;												
-		vrobs=A_init_obs; vphiobs=vphi*delta(r0)/( (Math.pow(r0,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r0)*E - rs*a*L/r0 );		   
-		r_init_obs = r0; r_part_obs=r_init_obs;												
+		vrobs=A_init_obs; 
+		vphiobs=vphi*delta(r0)/( (Math.pow(r0,2)+Math.pow(a,2)+rs*Math.pow(a,2)/r0)*E - rs*a*L/r0 );		   
+		r_init_obs = r0; 
+		r_part_obs=r_init_obs;												
 		data1 = [];
 		data2 = [];
 		temps_particule = 0;

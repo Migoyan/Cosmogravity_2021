@@ -83,15 +83,15 @@ var calculs = calculs || (function() {
                 dr=(c**2)*(E**2+((a**2)*(E**2)-l**2)/(r**2)+rs*(((l-a*E)**2)/(r**3)));
                 dr*=(deta**2)/(((r**2+a**2+(rs/r)*a**2)*E-rs*a*l/r)**2);
                 vr=(1-rs/r)*((r**2)*dr/deta)/(1-(rs/r)+rs*a*(dphi)/(c*r))**2;
-                vr=Math.sqrt(vr);
+                vr=Math.sqrt(Math.abs(vr));
                 //alert(vr);
                 //console.log(vr);
             }
             else{
-                dr=(c**2)*(E**2-1+rs/r+((a**2)*(E**2-1)-l**2)/(r**2)+rs*(((l-a*E)**2)/(r**3)));
-                dr*=(deta**2)/((r**2+a+(rs/r)*a**2)*E-rs*a*l/r)**2;
-                vr=(r**2)*(1-rs/r)*(dr/deta)/(1-(rs/r)+rs*a*(dphi)/(c*r))**2;
-                vr=Math.sqrt(vr);
+                dr=(c**2)*(E**2-1+(rs/r)+((a**2)*(E**2-1)-l**2)/(r**2)+rs*(((l-a*E)**2)/(r**3)));
+                dr*=(deta**2)/((r**2+a**2+(rs/r)*a**2)*E-rs*a*l/r)**2;
+                vr=(1-rs/r)*((r**2)*dr/deta)/((1-(rs/r)+rs*a*(dphi)/(c*r))**2);
+                vr=Math.sqrt(Math.abs(vr));
                
 
             }

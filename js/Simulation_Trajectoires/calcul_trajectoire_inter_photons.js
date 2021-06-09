@@ -924,9 +924,6 @@ function animate(compteur,mobile,mobilefactor) {
 	mobile.posinterm= mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax);
 	mobile.posintero= mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax);
 
-	
-		
-
 							 
     if (element2.value != "mobile"){
 		if (mobile.r_part >= 0){
