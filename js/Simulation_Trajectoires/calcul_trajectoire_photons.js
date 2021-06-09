@@ -42,7 +42,7 @@ var listejsonfusees={};
   function testnum(a){
   for (var i = -30; i < 30; i++) {
   resu=a/(10**i);
-  if (resu >1 && resu <10){ z=i; return z; }
+  if (resu >=1 && resu <=10){ z=i; return z; }
     }}
 	
   // Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.

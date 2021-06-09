@@ -65,7 +65,7 @@ var G = 6.6742 * Math.pow(10, -11);
 function testnum(a){
 	for (var i = -30; i < 30; i++) {
 		resu=a/(10**i);
-		if (resu >1 && resu <10){
+		if (resu >=1 && resu <=10){
 			z=i; 
 			return z;
 		}
