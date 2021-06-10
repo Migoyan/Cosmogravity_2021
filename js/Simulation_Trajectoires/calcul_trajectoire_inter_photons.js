@@ -146,7 +146,6 @@ function genereHtml(){
 		newlabel.innerHTML = "r<sub>0</sub> (m) =";
 		span.appendChild(newlabel);}
 
-
 		var newinput = document.createElement("Input");
 		newinput.setAttribute("id","r0"+countt.toString()+"");
 		newinput.setAttribute("value","5e3");
@@ -332,8 +331,6 @@ function genereHtml(){
 	 
 }
 
-
-
 function initialisation(compteur){
 
 	G = 6.6742 * Math.pow(10, -11);
@@ -360,7 +357,6 @@ function initialisation(compteur){
 		
 	}
 
-	 
 	//pr majFondFixe
 	if(compteur==1){
 		vphiblab = vphi;
@@ -430,19 +426,16 @@ function initialisation(compteur){
 	return mobile;
 }  // fin fonction initialisation
 
-
-
-
 function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs ne sont pas donnée dans l'une des cases
   
 	r_phy = document.getElementById("r_phy").value;
 	M = document.getElementById("M").value;
+
 	var onebolean=false;
 	var twobolean=false;
 	var threebolean=false;
-
-
   	var sddsdsddss = Number(document.getElementById("nombredefusees").value);
+
   	for (countetttt = 1; countetttt <= sddsdsddss; countetttt += 1) {
 		var r0verifnbr = Number(document.getElementById("r0"+countetttt.toString()+"").value); 
 		var vphiverifnbr = Number(document.getElementById("phi0"+countetttt.toString()+"").value);
@@ -457,7 +450,6 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 			threebolean=true;
 		}
   	}
-
 
 	if (onebolean){
 		alert ("Veuillez vérifier vos saisie en r0");}
@@ -477,8 +469,6 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
   
 }
 
-
-
 // première étape qui lance la partie calculatoire
 function trajectoire(compteur,mobile) {
   	texte = o_recupereJson();
@@ -487,7 +477,6 @@ function trajectoire(compteur,mobile) {
 		Ycouleur = 0.2126*mobile.red + 0.7152*mobile.green + 0.0722*mobile.blue
 		if(Ycouleur<128){r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:white");}
 		else{r0setcouleur.setAttribute("style","background-color:"+mobile.couleur+";color:black");}
-
 
 		document.getElementById("tg2").style.display = "table";
 		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
@@ -507,14 +496,11 @@ function trajectoire(compteur,mobile) {
 
 		var blyo = Number(document.getElementById("nombredefusees").value);
 
-
 	for (countt = 1; countt <= blyo; countt += 1) {
 		document.getElementById('r0'+countt.toString()+'').disabled = true;
 		document.getElementById('phi0'+countt.toString()+'').disabled = true;
 		document.getElementById('teta'+countt.toString()+'').disabled = true;
     }
-
-
 
     //empecher de passer d'observateur a mobile ou inversement pendant la simulation
     document.getElementById('r3').disabled = true;
@@ -523,17 +509,15 @@ function trajectoire(compteur,mobile) {
     // permet de controler si il y a un tracé ou non pour l'enregistrement
     document.getElementById('trace_present').value="1";
 
-
     mobile.pause = false;
     mobile.debut = false;
-	   
+
     //--------------------------------------------------------------------------------------//
     //Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre//
     phi = 0.0;
     mobile["phi"]=phi;//mobile.phi
 	phi_obs=0;
     mobile["phi_obs"]=phi_obs;//mobile.phi_obs
-
 
     temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
 	mobile["temps_chute_libre"]=temps_chute_libre;//mobile.temps_chute_libre
@@ -549,7 +533,6 @@ function trajectoire(compteur,mobile) {
 			ifUneFois2=false;
 		}
 	}
-   
    
    if (nbredefusees>=2) {
         if(ifUneFois){			
@@ -662,8 +645,7 @@ function trajectoire(compteur,mobile) {
 
     // les dtau1 et 2 permettent de contenir le dtau pour obtenir une simulation hors controle
     // à voir, l'utilisation du settimeout à la place de setinterval. Ca permettrait de remplacer le 10/6 par une variable dt_simu pouvant être modifiée à la place du pas dtau utilisé dans rungekutta
-      // lorsqu'on est dans le setinterval, il est impossible ce modifier ce 10/6 par une variable qu'on pourrait incrémenter. Il utilise la valeur initiale avant l'entrée dans setinterval
-   
+    // lorsqu'on est dans le setinterval, il est impossible ce modifier ce 10/6 par une variable qu'on pourrait incrémenter. Il utilise la valeur initiale avant l'entrée dans setinterval
 
 	mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10 / 6);
     Dtau1 = 1e8 * mobile.dtau ;
@@ -673,7 +655,6 @@ function trajectoire(compteur,mobile) {
     document.getElementById('bouton_pause').addEventListener('click', function() {
 		pausee(compteur,mobile,mobilefactor);
     }, false);
-
 
 //Gestion des bouttons accélerer et decélerer											   
     document.getElementById('plusvite').addEventListener('click', function() {
@@ -749,7 +730,6 @@ function trajectoire(compteur,mobile) {
 	CentrerPopPotentiel();
 	}	
 
-
     //Ici le bout de code pour le bouton Reset, quand on clique dessus, la fonction appelé efface le canvas en entier.
     document.getElementById('clear').addEventListener('click', function() {
       	rafraichir();
@@ -796,8 +776,6 @@ function trajectoire(compteur,mobile) {
 		data2=[];
 
 		if (element2.value != "mobile"){	
-		
-
 			for (r = rs/2; r < mobile.borne; r += mobile.dr) {
 			V = Vr_obs(r,mobile.E,mobile.L);
 			data1.push({date: r,close: V});
@@ -805,9 +783,6 @@ function trajectoire(compteur,mobile) {
 			V = Vr_obs(mobile.r0,mobile.E,mobile.L);
 			data2.push({date: mobile.r0,close: V});
 			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
-
-
-		
 		}
 		else{
 			for (r =rs/2 ; r < mobile.borne; r += mobile.dr) {
@@ -853,7 +828,7 @@ function animate(compteur,mobile,mobilefactor) {
 				
 				varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
 				mobile.phi = mobile.phi + varphi;
-			
+		
 				resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true); //voir fonctions.js
 				vtotal=resultat[0];
 				vr_1=resultat[1];
@@ -923,7 +898,6 @@ function animate(compteur,mobile,mobilefactor) {
 
 	mobile.posinterm= mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax);
 	mobile.posintero= mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax);
-
 							 
     if (element2.value != "mobile"){
 		if (mobile.r_part >= 0){
@@ -1037,9 +1011,8 @@ function Vr_mob(r,E,L) {
 function Vr_obs(r,E,L) {
 	if(r > r_phy) { return Math.pow(E,2)-( 1-potentiel_externe_photon(r,L)/Math.pow(E,2) )*Math.pow(1-rs/r,2) ;}
 	else{ return Math.pow(E,2)- Math.pow(beta(r),4)*( 1-potentiel_interne_photon(r,E,L)/Math.pow(E,2) ); } 
-}	
-
-					
+}
+			
 function potentiel_interne_photon(r,E,L) {
 	return Math.pow(E,2) - alpha(r)* (Math.pow(E/beta(r),2)- Math.pow(L / r, 2));
 }
@@ -1058,7 +1031,6 @@ function rungekutta_externe_photon(h, r, A, L) {
 	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
 	return [r, A];
 }
-
 
 function rungekutta_interne_photon(h, r, A,E,L) {
 	k = [0, 0, 0, 0];
@@ -1103,7 +1075,6 @@ function beta(r){
 	return 1.5 * Math.sqrt(Math.abs(1-(rs/r_phy))) - 0.5 *Math.sqrt(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
 }
 
-
 // fonctions utilisées pour Runge Kutta
 
 function derivee_seconde_interne_photon(r,E,L) {
@@ -1135,8 +1106,6 @@ function derivee_seconde_externe_photon_obs(r,E,L) {
 function calcul_rmax(L,E,vr,r0,rmax1ou2){
   // Vr different de 0
   //JPC mis en commentaire ici rmax = eq3d(L, m, E);
-
-
   // Vr=0
   //JPC et ici if (vr == 0) {
     r1 = (L * (L - Math.sqrt(Math.pow(L, 2) - 12 * Math.pow(m, 2))) / (2 * m));
@@ -1153,14 +1122,14 @@ function calcul_rmax(L,E,vr,r0,rmax1ou2){
     }
     else if ( (L <= 4*m) && (L > 2*Math.sqrt(3)*m) ) {
       // dans ce cas, r varie entre 2 valeurs r0 et r3
-      if ( (Vr(r0) <= Vr(r1)) && (r0 > r1) ) {
-        if (r3 > r0) {
-          rmax = r3;
-        }
-        else if (r3 < r0) {
-          rmax = r0;
-        }
-      }
+		if ( (Vr(r0) <= Vr(r1)) && (r0 > r1) ) {
+			if (r3 > r0) {
+				rmax = r3;
+			}
+			else if (r3 < r0) {
+				rmax = r0;
+			}
+		}
       // comprend les cas r0<=r1 et V(r0)>V(r1) où la particule tombe au centre
       else {
         rmax = r0;
@@ -1206,40 +1175,39 @@ function pausee(compteur,mobile,mobilefactor) {
   }
 }
 
-
 // permet de gérer les touches du clavier pour certaines actions
 function clavierEvenement() {
-  $(document).keyup(function(event) { // the event variable contains the key pressed
-    if (event.which == 65) { // touche a
-      $('#r1').click();
-    }
-    if (event.which == 90) { // touche z
-      $('#r2').click();
-    }
-    if (event.which == 69) { // touche e
-      $('#rebondd').click();
-    }
-    if (event.which == 81) { // touche q
-      $('#start').click();
-    }
-    if (event.which == 83) { // touche s
-      $('#clear').click();
-    }
-    if (event.which == 68) { // touche d
-      $('#boutton_enregis').click();
-    }
-    if (event.which == 70) { // touche f
-      $('#boutton_recup').click();
-    }
-    if (event.which == 87) { // touche w
-      $('#moinsvite').click();
-    }
-    if (event.which == 88) { // touche x
-      $('#pau').click();
-    }
-    if (event.which == 67) { // touche c
-      $('#plusvi').click();
-    }
+	$(document).keyup(function(event) { // the event variable contains the key pressed
+	if (event.which == 65) { // touche a
+		$('#r1').click();
+	}
+	if (event.which == 90) { // touche z
+		$('#r2').click();
+	}
+	if (event.which == 69) { // touche e
+		$('#rebondd').click();
+	}
+	if (event.which == 81) { // touche q
+		$('#start').click();
+	}
+	if (event.which == 83) { // touche s
+		$('#clear').click();
+	}
+	if (event.which == 68) { // touche d
+		$('#boutton_enregis').click();
+	}
+	if (event.which == 70) { // touche f
+		$('#boutton_recup').click();
+	}
+	if (event.which == 87) { // touche w
+		$('#moinsvite').click();
+	}
+	if (event.which == 88) { // touche x
+		$('#pau').click();
+	}
+	if (event.which == 67) { // touche c
+		$('#plusvi').click();
+	}
   });
 }
 
@@ -1249,16 +1217,16 @@ creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
 }
 
 function rafraichir() {
-  window.location.reload();
-  element2.value="observateur";}
+	window.location.reload();
+	element2.value="observateur";}
 
 function siTrajectoireSimple() {
-  if (element.value == 'simple') {
-    majFondFixe();
-    // Tracé du Rayon de Schwarzchild,...
-    creation_blocs(context);
-    diametre_particule = DIAMETRE_PART*2;
-  }
+	if (element.value == 'simple') {
+		majFondFixe();
+		// Tracé du Rayon de Schwarzchild,...
+		creation_blocs(context);
+		diametre_particule = DIAMETRE_PART*2;
+	}
 }
 
 
@@ -1266,144 +1234,130 @@ function siTrajectoireSimple() {
 
 function enregistrer(){
   // ces 2 fonctions sont issues des biblios saveSvgAsPng.js et canvas-to-image.js
-  if(document.getElementById('trace_present').value=="1"){
+	if(document.getElementById('trace_present').value=="1"){
 
-    canvas3 = document.getElementById("myCanvas3three");
-    context3 = canvas3.getContext("2d");
-    context3.drawImage(canvas, 0,0);
-    document.getElementById("enregistrer2").click();
+		canvas3 = document.getElementById("myCanvas3three");
+		context3 = canvas3.getContext("2d");
+		context3.drawImage(canvas, 0,0);
+		document.getElementById("enregistrer2").click();
 
 		canvasToImage(canvas3, {
-		  name: 'Trajectoire_photons_Inter',
-		  type: 'png'
+			name: 'Trajectoire_photons_Inter',
+			type: 'png'
 		});
-	majFondFixe3();
+		majFondFixe3();
 
-    // permet si l'on veut d'enregistrer le graphe du potentiel
-    // saveSvgAsPng(document.getElementById("grsvg_2"),"Potentiel_massive_Schwar.png",{backgroundColor:"white"});
-  }
-  else{
-    var texte = o_recupereJson();
-    alert(texte.pages_trajectoire.message_enregistrer);
-  }
+	// permet si l'on veut d'enregistrer le graphe du potentiel
+	// saveSvgAsPng(document.getElementById("grsvg_2"),"Potentiel_massive_Schwar.png",{backgroundColor:"white"});
+	}
+	else{
+		var texte = o_recupereJson();
+		alert(texte.pages_trajectoire.message_enregistrer);
+	}
 }
 
 
 function traceEstAbsent(){
-  document.getElementById('trace_present').value="0";
+	document.getElementById('trace_present').value="0";
 }
 
 function siTrajectoireComplete() {
-  if (element.value == 'complete') {
-    diametre_particule = DIAMETRE_PART;
-  }
+	if (element.value == 'complete') {
+		diametre_particule = DIAMETRE_PART;
+	}
 }
-/*
-function choixTrajectoire() {
-  siTrajectoireSimple();
-  siTrajectoireComplete();
-}*/
 
 function choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,r0ou2) {
-  if (element.value == 'simple') {
-    majFondFixe();
-    // Tracé du Rayon de Schwarzchild,...
-    creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
-    diametre_particule = DIAMETRE_PART*2;
-  }
-  else if (element.value == 'complete') {
-    diametre_particule = DIAMETRE_PART;
-  }
+	if (element.value == 'simple') {
+		majFondFixe();
+		// Tracé du Rayon de Schwarzchild,...
+		creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
+		diametre_particule = DIAMETRE_PART*2;
+	}
+	else if (element.value == 'complete') {
+		diametre_particule = DIAMETRE_PART;
+	}
 
 }
 
 function estUnMobile(){
-  var x = window.matchMedia("(max-width: 960px)")
-  if(x.matches){
-    document.getElementById("bouton_info").style.visibility='hidden';
-  }
-  else{
-    document.getElementById("bouton_info").style.visibility='visible';
-  }
+	var x = window.matchMedia("(max-width: 960px)")
+	if(x.matches){
+		document.getElementById("bouton_info").style.visibility='hidden';
+	}
+	else{
+		document.getElementById("bouton_info").style.visibility='visible';
+	}
 }
 
 function commandes(){
-  var texte = o_recupereJson();
-  alert(texte.page_trajectoire_massive.commandes);
+	var texte = o_recupereJson();
+	alert(texte.page_trajectoire_massive.commandes);
 }
 
-
 function majFondFixe(){
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  // Ajout d'un fond blanc pour l'exportation
-  context.fillStyle = 'white';
-  context.fillRect(0, 0, canvas.width, canvas.height);
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	// Ajout d'un fond blanc pour l'exportation
+	context.fillStyle = 'white';
+	context.fillRect(0, 0, canvas.width, canvas.height);
 
-  context.font = "15pt bold";
-  context.fillStyle = "black";
-  context.fillText(texte.page_trajectoire_photon.non_baryonique_photon,5,40);
-  context.font = "13pt bold";
-  context.fillText(texte.pages_trajectoire.entrees,5,70);
-  context.font = "11pt normal";
-  context.fillText("M = "+M.toExponential(3)+" kg",5,90);
-  context.fillText("r\u209A\u2095\u1D67 = "+r_phy.toExponential(3)+" m",5,110);
-  if(document.getElementById('traject_type2').value=="observateur"){
-  context.fillText(texte.pages_trajectoire.observateur,5,130);
-  } else { context.fillText(texte.pages_trajectoire.photon,5,130); }
-  
-  context.fillText("mobile1:",5,150);
-  context.fillText("r\u2080 = "+(r0o2[1]).toExponential(3)+" m",5,170);
-  context.fillText("U\u1D69(r\u2080) = "+vphiblab.toExponential(3)+" m.s\u207B\u00B9",5,190);
-  context.fillText("U\u1D63(r\u2080) = "+vrblab.toExponential(3)+" m.s\u207B\u00B9",5,210);																																						
+	context.font = "15pt bold";
+	context.fillStyle = "black";
+	context.fillText(texte.page_trajectoire_photon.non_baryonique_photon,5,40);
+	context.font = "13pt bold";
+	context.fillText(texte.pages_trajectoire.entrees,5,70);
+	context.font = "11pt normal";
+	context.fillText("M = "+M.toExponential(3)+" kg",5,90);
+	context.fillText("r\u209A\u2095\u1D67 = "+r_phy.toExponential(3)+" m",5,110);
+	if(document.getElementById('traject_type2').value=="observateur"){
+		context.fillText(texte.pages_trajectoire.observateur,5,130);
+	}
+	else { context.fillText(texte.pages_trajectoire.photon,5,130); }
 
-																	 
-															  
-																	
-  nombeuhreudefusees = Number(document.getElementById("nombredefusees").value);
+	context.fillText("mobile1:",5,150);
+	context.fillText("r\u2080 = "+(r0o2[1]).toExponential(3)+" m",5,170);
+	context.fillText("U\u1D69(r\u2080) = "+vphiblab.toExponential(3)+" m.s\u207B\u00B9",5,190);
+	context.fillText("U\u1D63(r\u2080) = "+vrblab.toExponential(3)+" m.s\u207B\u00B9",5,210);																	
+	nombeuhreudefusees = Number(document.getElementById("nombredefusees").value);
 
-
-  if (nombeuhreudefusees>=2) {
-  context.fillText("mobile2:",5,230);
-  context.fillText("r\u2080 = "+r0o2[2].toExponential(3)+" m",5,250);
-  context.fillText("U\u1D69(r\u2080) = "+vphi2i.toExponential(3)+" m.s\u207B\u00B9",5,270);
-  context.fillText("U\u1D63(r\u2080) = "+vr2i.toExponential(3)+" m.s\u207B\u00B9",5,290);
-  }
-
- 
-
+	if (nombeuhreudefusees>=2) {
+		context.fillText("mobile2:",5,230);
+		context.fillText("r\u2080 = "+r0o2[2].toExponential(3)+" m",5,250);
+		context.fillText("U\u1D69(r\u2080) = "+vphi2i.toExponential(3)+" m.s\u207B\u00B9",5,270);
+		context.fillText("U\u1D63(r\u2080) = "+vr2i.toExponential(3)+" m.s\u207B\u00B9",5,290);
+	}
 }
 
 function majFondFixe44(mobile){
-  mobile["context22"].clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	mobile["context22"].clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 function majFondFixe22(){
-  context22.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context22.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 function majFondFixe3(){
-  context3.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context3.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 // Empeche le lancer si on part de l'interieur de l'horizon
 function test_inte() {
 
-  G = 6.6742 * Math.pow(10, -11);
-  M = Number(document.getElementById("M").value);
-  r_phy = Number(document.getElementById("r_phy").value);
-  m = G * M / Math.pow(c, 2); 
-  rs=2*m;
+	G = 6.6742 * Math.pow(10, -11);
+	M = Number(document.getElementById("M").value);
+	r_phy = Number(document.getElementById("r_phy").value);
+	m = G * M / Math.pow(c, 2); 
+	rs=2*m;
 
+	var onebol=false;
+	var twobol=false;
+	var threebol=false;
 
-  var onebol=false;
-  var twobol=false;
-  var threebol=false;
-
-  var nbrdefuseestestinte = Number(document.getElementById("nombredefusees").value);
-  for (countetttt = 1; countetttt <= nbrdefuseestestinte; countetttt += 1) {
+	var nbrdefuseestestinte = Number(document.getElementById("nombredefusees").value);
+	for (countetttt = 1; countetttt <= nbrdefuseestestinte; countetttt += 1) {
 		var r0testinte = Number(document.getElementById("r0"+countetttt.toString()+"").value); 
 		if(r0testinte==0){
 			onebol=true;
@@ -1412,33 +1366,29 @@ function test_inte() {
 			twobol=true;
 		}
 
-  	}
-
-  	var texte = o_recupereJson();
-    if(onebol) {
-	   	alert(texte.pages_trajectoire.r0egale0);
-    	arret();
-   	}
+	}
+	var texte = o_recupereJson();
+	if(onebol) {
+		alert(texte.pages_trajectoire.r0egale0);
+		arret();
+	}
 	if (r_phy < 0 || twobol) {
-    	alert(texte.pages_trajectoire.rayon_neg);
-    	arret();
-  	} 
+		alert(texte.pages_trajectoire.rayon_neg);
+		arret();
+	} 
 	else if (r_phy <= rs ) {
-    	alert(texte.pages_trajectoire.rayonPhyInfHorz);
-    	arret();
-  	} 
+		alert(texte.pages_trajectoire.rayonPhyInfHorz);
+		arret();
+	} 
 	else if(r_phy < 1.15*rs ){
-    	alert(texte.pages_trajectoire.rphysetrs);
-    	arret();
-  	}
-
-        
- 	if(threebol) {
-   	 	alert(texte.pages_trajectoire.vitesses_initiales_nulles);
-    	arret();
-  	}
+		alert(texte.pages_trajectoire.rphysetrs);
+		arret();
+	}
+	if(threebol) {
+		alert(texte.pages_trajectoire.vitesses_initiales_nulles);
+		arret();
+	}
 }
-
 
 // crée les différentes couches visuelles
 function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
@@ -1446,71 +1396,71 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
 	r1bis=Math.round((80*r0ou2)/(mobilefactor[cle]*10**testnum(r2bis)));
 	ech=r1bis*10**testnum(r2bis);
 
-  context.lineWidth = "1";
-  context.fillStyle = COULEUR_NOIR;
-  if ((mobilefactor[cle] * m / rmaxjson[cle]) < 3) {
-    context.beginPath();
-    context.strokeStyle = COULEUR_GRIS;
-    context.moveTo(posX3 - 10, posY3);
-    context.lineTo(posX3 - 3, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3 + 3, posY3);
-    context.lineTo(posX3 + 10, posY3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 - 10);
-    context.lineTo(posX3, posY3 - 3);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(posX3, posY3 + 3);
-    context.lineTo(posX3, posY3 + 10);
-    context.stroke();
-  } else {
-    context.beginPath();
-    context.strokeStyle = COULEUR_GRIS;
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2);
-    context.stroke();
-  }
-  if (rs < r_phy) {
-    context.beginPath();
-    context.fillStyle = COULEUR_RPHY;
-    context.setLineDash([]);
-    context.arc(posX3, posY3, (mobilefactor[cle] * r_phy / rmaxjson[cle]), 0, Math.PI * 2);
-    context.fill();
-    context.beginPath();
-    context.strokeStyle = COULEUR_GRIS;
-    context.setLineDash([5, 5]);
-    context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2); 
-    context.stroke();
-  }
-  context.fillStyle = 'white';
+	context.lineWidth = "1";
+	context.fillStyle = COULEUR_NOIR;
+	if ((mobilefactor[cle] * m / rmaxjson[cle]) < 3) {
+		context.beginPath();
+		context.strokeStyle = COULEUR_GRIS;
+		context.moveTo(posX3 - 10, posY3);
+		context.lineTo(posX3 - 3, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3 + 3, posY3);
+		context.lineTo(posX3 + 10, posY3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 - 10);
+		context.lineTo(posX3, posY3 - 3);
+		context.stroke();
+		context.beginPath();
+		context.moveTo(posX3, posY3 + 3);
+		context.lineTo(posX3, posY3 + 10);
+		context.stroke();
+	} else {
+		context.beginPath();
+		context.strokeStyle = COULEUR_GRIS;
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2);
+		context.stroke();
+	}
+	if (rs < r_phy) {
+		context.beginPath();
+		context.fillStyle = COULEUR_RPHY;
+		context.setLineDash([]);
+		context.arc(posX3, posY3, (mobilefactor[cle] * r_phy / rmaxjson[cle]), 0, Math.PI * 2);
+		context.fill();
+		context.beginPath();
+		context.strokeStyle = COULEUR_GRIS;
+		context.setLineDash([5, 5]);
+		context.arc(posX3, posY3, ((mobilefactor[cle] * 2 * m / rmaxjson[cle])), 0, Math.PI * 2); 
+		context.stroke();
+	}
+	context.fillStyle = 'white';
 
 
-// Ajout d'un fond blanc pour l'exportation
-context.font = "15pt bold";
-context.fillStyle = "black"; 
-context.fillText(texte.page_trajectoire_photon.non_baryonique_photon,5,40);
-context.font = "13pt bold";
-context.fillText(texte.pages_trajectoire.entrees,5,70);
-context.font = "11pt normal";
-context.fillStyle = COULEUR_RS;
-context.fillText(ech.toExponential()+" m",605,90);
-context.stroke();
-context.beginPath();      // Début du chemin
-context.strokeStyle = COULEUR_RS;
+	// Ajout d'un fond blanc pour l'exportation
+	context.font = "15pt bold";
+	context.fillStyle = "black"; 
+	context.fillText(texte.page_trajectoire_photon.non_baryonique_photon,5,40);
+	context.font = "13pt bold";
+	context.fillText(texte.pages_trajectoire.entrees,5,70);
+	context.font = "11pt normal";
+	context.fillStyle = COULEUR_RS;
+	context.fillText(ech.toExponential()+" m",605,90);
+	context.stroke();
+	context.beginPath();      // Début du chemin
+	context.strokeStyle = COULEUR_RS;
 
-//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
-//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
-context.moveTo(600,110);
-context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,110);
-context.moveTo(600,105);
-context.lineTo(600,115);
-context.moveTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,105);
-context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,115);
-// Fermeture du chemin (facultative)
-context.stroke();
+	//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
+	//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
+	context.moveTo(600,110);
+	context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,110);
+	context.moveTo(600,105);
+	context.lineTo(600,115);
+	context.moveTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,105);
+	context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,115);
+	// Fermeture du chemin (facultative)
+	context.stroke();
 
 }
 

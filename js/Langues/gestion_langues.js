@@ -257,8 +257,8 @@ function textegravetetc(){
 function notationvitesseree2kerr(){
 	var texte = o_recupereJson();
 	if(document.getElementById('traject_type2').value=="observateur") {
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		document.getElementById("vitesseurlabeltau").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
+		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabel);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
 

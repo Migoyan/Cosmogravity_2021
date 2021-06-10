@@ -33,8 +33,6 @@ var cle;
 var fuseecompteur;
 var listejsonfusees={};
 
-
-
 //Fonction pour arrondir l'échelle:
 function testnum(a){
 	for (var i = -30; i < 30; i++) {
@@ -46,13 +44,13 @@ function testnum(a){
 	}
 }
 
-  // Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.
+// Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.
 function testvaleur(x) {
-        if (isNaN(x)) {
-          	return 'Not a Number!';
-        }
-        return x ;
-      	}
+	if (isNaN(x)) {
+		return 'Not a Number!';
+	}
+	return x ;
+}
 
 
 //genere couleur aleatoirement
@@ -64,12 +62,12 @@ function generateurCouleur(){
 }
 
 function initialisationGenerale(fuseecompteur){
-    c = 299792458;
-    G = 6.6742 * Math.pow(10, -11);
-    M = Number(document.getElementById("M").value);
-    r_phy = Number(document.getElementById("r_phy").value);
-    m = G * M / Math.pow(c, 2); 
-    rs=2*m;
+	c = 299792458;
+	G = 6.6742 * Math.pow(10, -11);
+	M = Number(document.getElementById("M").value);
+	r_phy = Number(document.getElementById("r_phy").value);
+	m = G * M / Math.pow(c, 2); 
+	rs=2*m;
 
 	for (compteur = 1; compteur <= fuseecompteur; compteur += 1) {
 	    listejsonfusees[compteur]=initialisation(compteur);  
@@ -78,15 +76,15 @@ function initialisationGenerale(fuseecompteur){
 }
 
 function lancerDeFusees(fuseecompteur){
-    c = 299792458;
-    G = 6.6742 * Math.pow(10, -11);
-    M = Number(document.getElementById("M").value);
-    r_phy = Number(document.getElementById("r_phy").value);
-    m = G * M / Math.pow(c, 2); 
-    rs=2*m;
+	c = 299792458;
+	G = 6.6742 * Math.pow(10, -11);
+	M = Number(document.getElementById("M").value);
+	r_phy = Number(document.getElementById("r_phy").value);
+	m = G * M / Math.pow(c, 2); 
+	rs=2*m;
 
 	for (compteur = 1; compteur <= fuseecompteur; compteur += 1) {
-        trajectoire(compteur,listejsonfusees[compteur]);
+		trajectoire(compteur,listejsonfusees[compteur]);
 	}
 
 }

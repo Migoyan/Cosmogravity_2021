@@ -68,10 +68,12 @@ function initialisation(){
 	
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
 	rs = 2 * m;
-
-	//E=Math.sqrt(Math.abs((1-rs/r0)/((1-v0**2/c**2))));
-	//L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(teta*Math.PI/180)*Math.sqrt(r0*delta(r0)))/Math.sqrt(Math.abs((c**2-v0**2)*(r0-rs)))
+	if (r0 <= rs){
+		alert("r0 inférieur à rs");
+	}
 	a = J / (c * M);
+	E=c*Math.sqrt((r0-rs)/(r0*(c**2-v0**2)));
+	L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(teta*Math.PI/180)*Math.sqrt(r0*delta(r0)))/Math.sqrt((c**2-v0**2)*(r0-rs))
 	
 	vr=v0*Math.cos(teta*Math.PI/180)*c*Math.sqrt(delta(r0))/(r0*Math.sqrt(c**2-v0**2)); 
 	vphi=v0*Math.sin(teta*Math.PI/180)*c*Math.sqrt(Math.abs(r0*(r0-rs))/Math.sqrt(delta(r0)*(c**2-v0**2))); 
@@ -79,9 +81,9 @@ function initialisation(){
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
     rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
-	E = Math.sqrt((1 / (r0 * r0 * delta(r0)))*(Math.pow(vr / c, 2) * (r0 - rs) * Math.pow(r0, 3) +
+	/*E = Math.sqrt((1 / (r0 * r0 * delta(r0)))*(Math.pow(vr / c, 2) * (r0 - rs) * Math.pow(r0, 3) +
     	r0 * (r0 - rs)*delta(r0) + Math.pow(delta(r0) * vphi / c, 2)));
-	L = ((delta(r0) * vphi / c) - rs * a * E) / (r0 - rs);
+	L = ((delta(r0) * vphi / c) - rs * a * E) / (r0 - rs);*/
 
 	textegravetetc_Kerr();						   
 	document.getElementById("a").innerHTML = a.toExponential(3);
@@ -193,7 +195,7 @@ function trajectoire() {
 		clavierEvenement();
 
 		scale_factor = 280;
-		dtau=r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1e-20)/1000;
+		dtau=r0*500/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1e-20);
 		if(dtau>temps_chute_libre/500.){dtau= temps_chute_libre/500.;} 	   
 
 		// Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur//
@@ -390,11 +392,19 @@ function animate() {
 			phi_obs=phi_obs+varphi_obs;
 			if(r_part_obs<rhp*1.001) { r_part_obs=rhp;}
 			A_part_obs = val_obs[1];
-			resulta=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
-			vtot=resulta[0];
-			vr_3_obs=resulta[1];
+			
 			if(r_part_obs<rhp*1.0001) { vr_3_obs=0;}
-			vp_3_obs= resulta[2]; 
+			if(r_part_obs<=rs){
+				vtot=NaN;
+				vr_3_obs=NaN;
+				vp_3_obs=NaN;
+			}
+			else{
+				resulta=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
+				vtot=resulta[0];
+				vr_3_obs=resulta[1];
+				vp_3_obs= resulta[2]; 
+			}
 			posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
 			posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
 			
@@ -403,12 +413,21 @@ function animate() {
 			val = rungekutta(dtau, r_part, A_part);
 			r_part = val[0];
 			A_part = val[1];
-			resulta=calculs.MK_vitess(E,L,a,r_part,rs,false);
-			vtot=resulta[0];
-			vr_3=resulta[1];
 			varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
 			phi = phi + varphi;
-			vp_3=resulta[2];
+			
+			if(r_part<=rs){
+				vtot=NaN;
+				vr_3=NaN;
+				vp_3=NaN;
+			}
+			else{
+				resulta=calculs.MK_vitess(E,L,a,r_part,rs,false);
+				vtot=resulta[0];
+				//console.log(vtot)
+				vr_3=resulta[1];
+				vp_3=resulta[2];
+			}
 			posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
 			posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
 		}
@@ -515,9 +534,8 @@ function animate() {
 			document.getElementById("vrk").innerHTML = vr_3.toExponential(3);
 			if(J==0) {vp_3= c*L/r_part;}
 			if(r_part<=rhp && J!=0) {vp_3=1/0;}
-			vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
 		    document.getElementById("v_tot").innerHTML = vtot.toExponential(3);
-			document.getElementById("vpk").innerHTML = vp_3.toExponential(3);  //}
+			document.getElementById("vpk").innerHTML = vp_3.toExponential(3);
 			console.log("ligne 609 vp_3",vp_3);
 		}
 	}
