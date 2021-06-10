@@ -936,8 +936,45 @@ function graphique_creation(id_document, params_to_plotly){
 	}
 
 	window.document.getElementById(id_document).style.height = hei + "px";
-
+	
+	var img_png = d3.select('#png');
+	var img_jpg = d3.select('#jpg');
+	var img_svg = d3.select('#svg-1');
+	
 	Plotly.newPlot(params_to_plotly[0], params_to_plotly[1], params_to_plotly[2], params_to_plotly[3]);
+	
+
+
+	Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3])
+      .then(function(url) {
+        img_png.attr("href", url);
+        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
+          format: 'png'
+        })
+      }).then(function(url) {
+        img_jpg.attr("href", url);
+        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
+          format: 'jpeg'
+        })
+      }).then(function(url) {
+        img_jpg.attr("href", url);
+        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
+          format: 'jpeg'
+        })
+      }).then(function(url) {
+        img_svg.attr("href", url);
+        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
+          format: 'svg'
+        })
+      })
+      .then(function(url) {
+        img_svg.attr("href", url);
+        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
+          format: 'svg'
+        })
+		
+      });
+		
 }
 
 function enre() {
