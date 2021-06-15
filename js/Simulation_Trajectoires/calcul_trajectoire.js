@@ -907,7 +907,7 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile.r_part_obs = val_obs[0];
 			if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
 			mobile.A_part_obs = val_obs[1];
-			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false);
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); /// voir fichier fonctions.js
 			vtotal=resultat[0];
 			vr_1_obs=resultat[1];
 			if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
@@ -923,7 +923,7 @@ function animate(compteur,mobile,mobilefactor) {
 			val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
 			mobile.r_part = val[0];
 			mobile.A_part = val[1];
-			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false);
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); /// voir fichier fonctions.js
 			vtotal=resultat[0];
 			vr_1=resultat[1];
 			vp_1=resultat[2];
@@ -1164,7 +1164,7 @@ if (element2.value != "mobile"){
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = (vr_1_obs).toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
-			//vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
+			
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 			
         }
@@ -1174,11 +1174,9 @@ if (element2.value != "mobile"){
 			mobile.temps_particule+=mobile.dtau;
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-			//if(mobile.onestarrete==0){
-			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);  //}
+			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			//vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); // voir fonctions.js
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
 		} 
 		else {

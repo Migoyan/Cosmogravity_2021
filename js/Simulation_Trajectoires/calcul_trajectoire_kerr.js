@@ -73,7 +73,7 @@ function initialisation(){
 	}
 	a = J / (c * M);
 	E=c*Math.sqrt((r0-rs)/(r0*(c**2-v0**2)));
-	L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(teta*Math.PI/180)*Math.sqrt(r0*delta(r0)))/Math.sqrt((c**2-v0**2)*(r0-rs))
+	L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(teta*Math.PI/180)*Math.sqrt(r0*delta(r0)))/Math.sqrt((c**2-v0**2)*(r0-rs));
 	
 	vr=v0*Math.cos(teta*Math.PI/180)*c*Math.sqrt(delta(r0))/(r0*Math.sqrt(c**2-v0**2)); 
 	vphi=v0*Math.sin(teta*Math.PI/180)*c*Math.sqrt(Math.abs(r0*(r0-rs))/Math.sqrt(delta(r0)*(c**2-v0**2))); 
@@ -400,7 +400,7 @@ function animate() {
 				vp_3_obs=NaN;
 			}
 			else{
-				resulta=calculs.MK_vitess(E,L,a,r_part_obs,rs,false);
+				resulta=calculs.MK_vitess(E,L,a,r_part_obs,rs,false); /// voir fichier fonctions.js
 				vtot=resulta[0];
 				vr_3_obs=resulta[1];
 				vp_3_obs= resulta[2]; 
@@ -422,7 +422,7 @@ function animate() {
 				vp_3=NaN;
 			}
 			else{
-				resulta=calculs.MK_vitess(E,L,a,r_part,rs,false);
+				resulta=calculs.MK_vitess(E,L,a,r_part,rs,false); /// voir fichier fonctions.js
 				vtot=resulta[0];
 				//console.log(vtot)
 				vr_3=resulta[1];

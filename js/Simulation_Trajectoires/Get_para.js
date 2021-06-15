@@ -325,7 +325,6 @@ function load_schwarshild_photon_nonBar() {
 	save_nbfusees();
 	updatenbredefusees();
 
-
   	if (sessionStorage.getItem("r01")) {
 		for (count = 1; count <= nbrderockets; count += 1) {
 			document.getElementById("r0"+count.toString()+"").value=sessionStorage.getItem("r0"+count.toString()+"");

@@ -830,7 +830,7 @@ function animate(compteur,mobile,mobilefactor) {
 			val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
 			mobile.r_part = val[0];
 			mobile.A_part = val[1];
-			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,true); /// voir fichier fonctions.j fonction vitessSc
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,true); /// voir fichier fonctions.j 
 			vtotal=resultat[0];
 			mobile.phi = mobile.phi + c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
 			vr_2=resultat[1];
@@ -843,7 +843,7 @@ function animate(compteur,mobile,mobilefactor) {
 			val_obs = rungekutta_obs(mobile.E,mobile.L,mobile.dtau, mobile.r_part_obs, mobile.A_part_obs);
 			mobile.r_part_obs = val_obs[0];
 			mobile.A_part_obs = val_obs[1];
-			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true); /// voir fichier fonctions.j fonction vitessSc
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true); /// voir fichier fonctions.j 
 			vtotal=resultat[0];
 			if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
 			vr_2_obs=resultat[1];
@@ -965,7 +965,6 @@ function animate(compteur,mobile,mobilefactor) {
 				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); 
 			}
 			else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);}
-				//vtotal=
 				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(9);
 	 	}  																										  
 	}
@@ -976,7 +975,6 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_2.toExponential(3);
             document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_2.toExponential(3);
-			//vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,true);/// voir fichier fonctions.j fonction vitessSc
 			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(9);
 		    document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
 		  

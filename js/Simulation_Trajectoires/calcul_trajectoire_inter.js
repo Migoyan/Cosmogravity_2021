@@ -892,260 +892,251 @@ function trajectoire(compteur,mobile) {
 
 // tracé de la particule
 function animate(compteur,mobile,mobilefactor) {
-  // on vérifie le type de trajectoire sélectionné
-  estUnMobile();
-  element = document.getElementById('traject_type');
-  choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,maximum);
-   
-   element2=document.getElementById('traject_type2');
-   
-  if (mobile.r0 != 0.0) {
- 
+	// on vérifie le type de trajectoire sélectionné
+	estUnMobile();
+	element = document.getElementById('traject_type');
+	choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,maximum);
 
+	element2=document.getElementById('traject_type2');
 
+	if (mobile.r0 != 0.0) {
 
- 
-if(element2.value == "mobile"){   
-	
-	if(mobile.r_part > r_phy) {
-		val = rungekutta_externe_massif(mobile.dtau, mobile.r_part, mobile.A_part,mobile.L);
-		mobile.r_part = val[0];
-		mobile.A_part = val[1];
-		varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-		mobile.phi = mobile.phi + varphi;
-		resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); //voir fonctions.js
-		vtotal=resultat[0];
-		vr_1=resultat[1];
-		vp_1=resultat[2]; 
-	
-    } 
-	else {		
-		val = rungekutta_interne_massif(mobile.dtau, mobile.r_part, mobile.A_part,mobile.E,mobile.L);
-		mobile.r_part = val[0];
-		mobile.A_part = val[1];
-		varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-		if(mobile.r_part <= r_phy*5e-3 && varphi <= 1e-3) { 
-			if(mobile.posinterm > 0) {mobile.phi=Math.PI;mobile.A_part=-mobile.A_part;}
-			else{mobile.phi=0; mobile.A_part=-mobile.A_part; }
+	if(element2.value == "mobile"){   
+		
+		if(mobile.r_part > r_phy) {
+			val = rungekutta_externe_massif(mobile.dtau, mobile.r_part, mobile.A_part,mobile.L);
+			mobile.r_part = val[0];
+			mobile.A_part = val[1];
+			varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+			mobile.phi = mobile.phi + varphi;
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); //voir fonctions.js
+			vtotal=resultat[0];
+			vr_1=resultat[1];
+			vp_1=resultat[2]; 
+		
 		} 
-		else { mobile.phi = mobile.phi + varphi;}
-		resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,false); //voir fonctions.js
-		vtotal=resultat[0];
-		vr_1=resultat[1];
-		vp_1=resultat[2];  
-	}
-}
-else{      // observateur
-
-	if(mobile.r_part_obs > r_phy) {
-		
-		val = rungekutta_externe_massif_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
-		mobile.r_part_obs = val[0];
-		mobile.A_part_obs = val[1];
-
-		varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
-		mobile.phi_obs=mobile.phi_obs+varphi_obs;
-		resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
-		vtotal=resultat[0];
-		vr_1_obs=resultat[1];
-		vp_1_obs=resultat[2]; 
-	
-    } 
-	else {
-			
-		val = rungekutta_interne_massif_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
-		mobile.r_part_obs = val[0];
-		mobile.A_part_obs = val[1];
-		
-		varphi_obs = c * mobile.L * mobile.dtau*Math.pow(beta(mobile.r_part_obs),2) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
-	
-		if(mobile.r_part_obs <= r_phy*5e-3 && varphi_obs <= 1e-3) { 
-			if(mobile.posintero > 0) { 
-				mobile.phi_obs=Math.PI;mobile.A_part_obs=-mobile.A_part_obs;
-			}
-			else{mobile.phi_obs=0; mobile.A_part_obs=-mobile.A_part_obs;}
+		else {		
+			val = rungekutta_interne_massif(mobile.dtau, mobile.r_part, mobile.A_part,mobile.E,mobile.L);
+			mobile.r_part = val[0];
+			mobile.A_part = val[1];
+			varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
+			if(mobile.r_part <= r_phy*5e-3 && varphi <= 1e-3) { 
+				if(mobile.posinterm > 0) {mobile.phi=Math.PI;mobile.A_part=-mobile.A_part;}
+				else{mobile.phi=0; mobile.A_part=-mobile.A_part; }
+			} 
+			else { mobile.phi = mobile.phi + varphi;}
+			resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,false); //voir fonctions.js
+			vtotal=resultat[0];
+			vr_1=resultat[1];
+			vp_1=resultat[2];  
 		}
-		else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
-		resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,false); //voir fonctions.js
-		vtotal=resultat[0];
-		vr_1_obs=resultat[1];
-		vp_1_obs=resultat[2];
 	}
-}	
-	
-	
-	mobile.posinterm= mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax);
-	mobile.posintero= mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax);
+	else{      // observateur
+
+		if(mobile.r_part_obs > r_phy) {
+			
+			val = rungekutta_externe_massif_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
+			mobile.r_part_obs = val[0];
+			mobile.A_part_obs = val[1];
+
+			varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+			mobile.phi_obs=mobile.phi_obs+varphi_obs;
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
+			vtotal=resultat[0];
+			vr_1_obs=resultat[1];
+			vp_1_obs=resultat[2]; 
 		
-	mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
-    mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
-	mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
-    mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);	
-							 
-    if (element2.value != "mobile"){
-      	if (mobile.r_part >= 0){
+		} 
+		else {
+				
+			val = rungekutta_interne_massif_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
+			mobile.r_part_obs = val[0];
+			mobile.A_part_obs = val[1];
+			
+			varphi_obs = c * mobile.L * mobile.dtau*Math.pow(beta(mobile.r_part_obs),2) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
+		
+			if(mobile.r_part_obs <= r_phy*5e-3 && varphi_obs <= 1e-3) { 
+				if(mobile.posintero > 0) { 
+					mobile.phi_obs=Math.PI;mobile.A_part_obs=-mobile.A_part_obs;
+				}
+				else{mobile.phi_obs=0; mobile.A_part_obs=-mobile.A_part_obs;}
+			}
+			else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
+			resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,false); //voir fonctions.js
+			vtotal=resultat[0];
+			vr_1_obs=resultat[1];
+			vp_1_obs=resultat[2];
+		}
+	}	
+		
+		
+		mobile.posinterm= mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax);
+		mobile.posintero= mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax);
+			
+		mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
+		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
+		mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
+		mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);	
+								
+		if (element2.value != "mobile"){
+			if (mobile.r_part >= 0){
+				context.beginPath();
+				context.fillStyle = mobile.couleur;
+				context.rect(mobile.position.posX2, mobile.position.posY2, 1, 1);
+				context.lineWidth = "1";
+				context.fill();
+
+				majFondFixe44(mobile);
+				mobile["context22"].beginPath();
+				mobile["context22"].fillStyle = COULEUR_BLEU;
+				mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
+				mobile["context22"].lineWidth = "1";
+				mobile["context22"].fill();
+
+			}
+		}
+		else{
 			context.beginPath();
 			context.fillStyle = mobile.couleur;
-			context.rect(mobile.position.posX2, mobile.position.posY2, 1, 1);
+			context.rect(mobile.positionspatio.posX1, mobile.positionspatio.posY1, 1, 1);
 			context.lineWidth = "1";
 			context.fill();
-
 			majFondFixe44(mobile);
 			mobile["context22"].beginPath();
 			mobile["context22"].fillStyle = COULEUR_BLEU;
-			mobile["context22"].arc(mobile.position.posX2, mobile.position.posY2 , 5, 0, Math.PI * 2);
+			mobile["context22"].arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
 			mobile["context22"].lineWidth = "1";
 			mobile["context22"].fill();
-
-   		}
-    }
-	else{
-		context.beginPath();
-		context.fillStyle = mobile.couleur;
-		context.rect(mobile.positionspatio.posX1, mobile.positionspatio.posY1, 1, 1);
-		context.lineWidth = "1";
-		context.fill();
-		majFondFixe44(mobile);
-		mobile["context22"].beginPath();
-		mobile["context22"].fillStyle = COULEUR_BLEU;
-		mobile["context22"].arc(mobile.positionspatio.posX1, mobile.positionspatio.posY1 , 5, 0, Math.PI * 2);
-		mobile["context22"].lineWidth = "1";
-		mobile["context22"].fill();
-    }
-
-
-	if (element2.value != "mobile"){	
-		V = Vr_obs(mobile.r_part_obs,mobile.E,mobile.L);
-		data2 = [];
-		data2.push({date: mobile.r_part_obs, close: V });
-		if(mobile.point !== undefined){
-			update_graphique_2(mobile.point,data2,mobile);
 		}
-	}
-	else{
-		V = Vr_mob(mobile.r_part,mobile.E,mobile.L);
-		data2 = [];
-		data2.push({date: mobile.r_part, close: V });
-		if(mobile.point !== undefined){update_graphique_2(mobile.point,data2,mobile);}			
-	}									
-    if(mobile.r_part<0){ mobile.r_part=0; }
-     
-    // gradient d'accélération
-		if (element2.value == "mobile"){
-		    if(mobile.r_part > r_phy) {
-				gm = derivee_seconde_externe_massif(mobile.r_part,mobile.L);
-				gmp = derivee_seconde_externe_massif(mobile.r_part+1,mobile.L);
+
+
+		if (element2.value != "mobile"){	
+			V = Vr_obs(mobile.r_part_obs,mobile.E,mobile.L);
+			data2 = [];
+			data2.push({date: mobile.r_part_obs, close: V });
+			if(mobile.point !== undefined){
+				update_graphique_2(mobile.point,data2,mobile);
 			}
-			else{ 
-				gm = derivee_seconde_interne_massif(mobile.r_part,mobile.E,mobile.L); 
-				gmp = derivee_seconde_interne_massif(mobile.r_part+1,mobile.E,mobile.L);
-			}
-			fm = Math.abs(gm - gmp); 
 		}
 		else{
-			if(mobile.r_part_obs > r_phy) {
-				gm = derivee_seconde_externe_massif_obs(mobile.r_part_obs,mobile.E,mobile.L);
-				gmp = derivee_seconde_externe_massif_obs(mobile.r_part_obs+1,mobile.E,mobile.L);
+			V = Vr_mob(mobile.r_part,mobile.E,mobile.L);
+			data2 = [];
+			data2.push({date: mobile.r_part, close: V });
+			if(mobile.point !== undefined){update_graphique_2(mobile.point,data2,mobile);}			
+		}									
+		if(mobile.r_part<0){ mobile.r_part=0; }
+		
+		// gradient d'accélération
+			if (element2.value == "mobile"){
+				if(mobile.r_part > r_phy) {
+					gm = derivee_seconde_externe_massif(mobile.r_part,mobile.L);
+					gmp = derivee_seconde_externe_massif(mobile.r_part+1,mobile.L);
+				}
+				else{ 
+					gm = derivee_seconde_interne_massif(mobile.r_part,mobile.E,mobile.L); 
+					gmp = derivee_seconde_interne_massif(mobile.r_part+1,mobile.E,mobile.L);
+				}
+				fm = Math.abs(gm - gmp); 
 			}
-			else{ 
-				gm = derivee_seconde_interne_massif_obs(mobile.r_part_obs,mobile.E,mobile.L); 
-				gmp = derivee_seconde_interne_massif_obs(mobile.r_part_obs+1,mobile.E,mobile.L); 
+			else{
+				if(mobile.r_part_obs > r_phy) {
+					gm = derivee_seconde_externe_massif_obs(mobile.r_part_obs,mobile.E,mobile.L);
+					gmp = derivee_seconde_externe_massif_obs(mobile.r_part_obs+1,mobile.E,mobile.L);
+				}
+				else{ 
+					gm = derivee_seconde_interne_massif_obs(mobile.r_part_obs,mobile.E,mobile.L); 
+					gmp = derivee_seconde_interne_massif_obs(mobile.r_part_obs+1,mobile.E,mobile.L); 
+				}
+				fm = Math.abs(gm - gmp); 		
 			}
-			fm = Math.abs(gm - gmp); 		
+
+		//decalage spectrale
+
+		if (element2.value != "mobile"){
+			if(mobile.r_part_obs >= r_phy) {
+				z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
+				document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+			} 
+			else {
+				z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
+				document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
+			}
 		}
+		else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
 
 
+	//  Les différents "temps" et autres valeurs à afficher
 
-    //decalage spectrale
-
-	if (element2.value != "mobile"){
-		if(mobile.r_part_obs >= r_phy) {
-			z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
-			document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
-		} 
-		else {
-			z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
-			document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
-		}
-	}
-	else{document.getElementById("decal"+compteur.toString()).innerHTML="";}
-
-
-//  Les différents "temps" et autres valeurs à afficher
-
-	if (element2.value != "mobile"){
-		if(mobile.r_part_obs >= r_phy){
-			mobile.temps_observateur+=mobile.dtau;
-			mobile.temps_particule += mobile.dtau*(1-rs/mobile.r_part_obs)/mobile.E;
-			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
-			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3); 
-			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
-    		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
+		if (element2.value != "mobile"){
+			if(mobile.r_part_obs >= r_phy){
+				mobile.temps_observateur+=mobile.dtau;
+				mobile.temps_particule += mobile.dtau*(1-rs/mobile.r_part_obs)/mobile.E;
+				document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
+				document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
+				document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3); 
+				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
+				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
+				document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
+			}
+			else{
+				mobile.temps_observateur+=mobile.dtau;
+				mobile.temps_particule += mobile.dtau*Math.pow(beta(mobile.r_part_obs),2)/mobile.E;
+				document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
+				document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
+				document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
+				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
+				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
+				document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
+			}	
 		}
 		else{
-			mobile.temps_observateur+=mobile.dtau;
-			mobile.temps_particule += mobile.dtau*Math.pow(beta(mobile.r_part_obs),2)/mobile.E;
-			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3);
-			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
-			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1_obs.toExponential(3);
-    		document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3); 
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);
-		}	
-	}
-	else{
-		if (mobile.r_part>= r_phy){
-			mobile.temps_particule+=mobile.dtau;
-			mobile.temps_observateur+=mobile.dtau*mobile.E/(1-rs/mobile.r_part);
-			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
-			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
-			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			//vtotal=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,vr_1,true); //voir fonctions.js
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 				
+			if (mobile.r_part>= r_phy){
+				mobile.temps_particule+=mobile.dtau;
+				mobile.temps_observateur+=mobile.dtau*mobile.E/(1-rs/mobile.r_part);
+				document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
+				document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
+				document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
+				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
+				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
+				document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			
+				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 				
+			}
+			else{
+				mobile.temps_particule+=mobile.dtau;
+				mobile.temps_observateur+=mobile.dtau*mobile.E/Math.pow(beta(mobile.r_part),2);
+				document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
+				document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
+				document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
+				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
+				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
+				document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
+			
+				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
+			}
 		}
-		else{
-			mobile.temps_particule+=mobile.dtau;
-			mobile.temps_observateur+=mobile.dtau*mobile.E/Math.pow(beta(mobile.r_part),2);
-			document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); 
-			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
-			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part.toExponential(3);
-			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
-			document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1.toExponential(3);
-			document.getElementById("to"+compteur.toString()).innerHTML = mobile.temps_observateur.toExponential(3);
-			//vtotal=calculs //voir fonctions.js
-		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);			
-		}
-	}
+
+	//  Gestion de la diode gradient accélération
 
 
-
- 
-//  Gestion de la diode gradient accélération
-
-
-	if (element2.value == "mobile"){							 
-		if (Number(fm) <= 1) {
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
-			document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
-		} 
-		else if (1 < Number(fm) && Number(fm) < 7) {
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
-			document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
-		} 
-		else if (Number(fm) >= 7) {
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-			document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
-		} 
-		else {
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = texte.pages_trajectoire.erreur;
-    }  
+		if (element2.value == "mobile"){							 
+			if (Number(fm) <= 1) {
+				document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+				document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
+			} 
+			else if (1 < Number(fm) && Number(fm) < 7) {
+				document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+				document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
+			} 
+			else if (Number(fm) >= 7) {
+				document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+				document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
+			} 
+			else {
+				document.getElementById('DivClignotante'+compteur.toString()).innerHTML = texte.pages_trajectoire.erreur;
+		}  
 	}
 
   }   // fin r0 #0
