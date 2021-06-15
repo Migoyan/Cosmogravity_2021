@@ -394,6 +394,7 @@ function texteUniversCalculs() {
 			document.getElementById("txt_graphe_d_t").innerHTML = texte.page_univers_calculs.tracer_d_t;
 			document.getElementById("txt_graphe_omega_t").innerHTML = texte.page_univers_calculs.tracer_omega_t;
 			document.getElementById("txt_generateur_graphiques").innerHTML = texte.page_univers_calculs.GenerateurG;
+			document.getElementById("txt_echelle_loglog").innerHTML = texte.page_univers_calculs.echelle_loglog;
 			document.getElementById("txt_zmin").innerHTML = texte.page_univers_calculs.zmin;
 			document.getElementById("txt_zmax").innerHTML = texte.page_univers_calculs.zmax;
 			document.getElementById("boutonGraphe_distances").value = texte.page_univers_calculs.bouton_tracer;

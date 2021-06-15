@@ -110,6 +110,7 @@
 		"tracer_d_t":"Tracer d<sub>i</sub>(t)",
 		"tracer_omega_t":"Tracer &Omega;<sub>i</sub>(t)",
 		"GenerateurG":"Generateur des Graphiques:",
+		"echelle_loglog" :"Echelle loglog",
 		"zmin":"z<sub>min</sub>",
 		"zmax":"z<sub>max</sub>"
 	},

@@ -592,7 +592,7 @@
 						</div>
 						<div style="padding:10px">
 							<label for="boutonGraphe_t">
-							<span id="txt_graphe_t">t(z)</span>
+							<span id="txt_graphe_t"></span>
 							</label>
 							<input id="boutonGraphe_t" type="button" onclick="lance_calc(3);" value="Calcul"></input>
 						</div>
@@ -614,24 +614,30 @@
 							<input id="boutonGraphe_omega_t" type="button" onclick="lance_calc(5);" value="Calcul"></input>
 						</div>
 
-						<!-- bouton pour tracer les graphes en echelle loglog de t-->
+						<!-- bouton forme checkbox pour tracer les graphes en echelle loglog de t-->
 						<div style="padding:12px 15px">
-							<label for="loglog t">echelle loglog</label>
-							<input type="checkbox" name="loglog_t" id="t_checkbox" value="loglog t"></input>
+							<label for="t_checkbox">
+							<span id="txt_echelle_loglog"></span>
+							</label>
+							<input type="checkbox" name="t_checkbox" id="t_checkbox" value="Calcul"></input>
 						</div>
 	
 					</div>
 
-					<!-- bouton pour tracer les graphes en echelle loglog de d et omega-->
+					<!-- bouton forme checkbox pour tracer les graphes en echelle loglog de d et omega-->
 					<div>
 						<div style="padding:10px 13px">
-							<label for="loglog d">echelle loglog</label>
-							<input type="checkbox" name="loglog_d" id="d_checkbox"  value="loglog d"></input>
+							<label for="d_checkbox">
+							<span id="txt_echelle_loglog"></span>
+							</label>
+							<input type="checkbox" name="d_checkbox" id="d_checkbox"  value="Calcul"></input>
 						</div>
 
 						<div style="padding:15px">
-							<label for="loglog omega">echelle loglog</label>
-							<input type="checkbox" name="loglog_omega" id="omega_checkbox" value="loglog omega"></input>
+							<label for="omega_checkbox">
+							<span id="txt_echelle_loglog"></span>
+							</label>
+							<input type="checkbox" name="omega_checkbox" id="omega_checkbox" value="Calcul"></input>
 						</div>					
 					</div>
 					

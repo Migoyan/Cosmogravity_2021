@@ -459,7 +459,7 @@ function calcu(path) {
 		d_checkbox = document.getElementById("d_checkbox");
 		if(d_checkbox.checked) {
 			document.getElementById("graph_container_loglog_d_z").style.display = "contents"; //display graph
-			plot_title = "echelle loglog d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			plot_title = "Echelle loglog d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'log'
 		}
 		else{
@@ -528,7 +528,7 @@ function calcu(path) {
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
 			document.getElementById("graph_container_loglog_omega_z").style.display = "contents"; //display graph
-			plot_title = "echelle loglog <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_title = "Echelle loglog <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
 			plot_type = 'log'
 		}
 		else{
@@ -596,7 +596,7 @@ function calcu(path) {
 		t_checkbox = document.getElementById("t_checkbox");				
 		if(t_checkbox.checked) {
 			document.getElementById("graph_container_loglog_t").style.display = "contents"; //display graph
-			plot_title = "echelle loglog <b>t(z)</b>"
+			plot_title = "Echelle loglog <b>t(z)</b>"
 			plot_type = 'log'
 		}
 		else{
@@ -659,7 +659,7 @@ function calcu(path) {
 		d_checkbox = document.getElementById("d_checkbox");
 		if(d_checkbox.checked) {
 			document.getElementById("graph_container_loglog_d_t").style.display = "contents"; //display graph
-			plot_title = "echelle loglog d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			plot_title = "Echelle loglog d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'log'
 		}
 		else{
@@ -728,7 +728,7 @@ function calcu(path) {
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
 			document.getElementById("graph_container_loglog_omega_t").style.display = "contents"; //display graph
-			plot_title = "echelle loglog <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_title = "Echelle loglog <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
 			plot_type = 'log'
 		}
 		else{
