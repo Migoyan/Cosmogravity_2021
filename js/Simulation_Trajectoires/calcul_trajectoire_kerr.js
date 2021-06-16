@@ -480,9 +480,6 @@ function animate() {
 		context22.fill();
     }
 
-
-   
-
 	if(element2.value == "mobile"){
 		if(r_part<=rhp){
 			textesfinarret_kerr();

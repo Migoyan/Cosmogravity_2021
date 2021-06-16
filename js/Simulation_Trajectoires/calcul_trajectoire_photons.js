@@ -1,4 +1,4 @@
-    // variables globales
+// variables globales
 
 const DIAMETRE_PART = 1;
 var z=0;
@@ -6,7 +6,6 @@ var z_obs=0;
 
 var title = "V(r)/c²";		  
 var clicks = 0;
-
 
 // liste de couleurs en hexa
 const COULEUR_NOIR = '#2F2D2B';
@@ -38,13 +37,13 @@ var cle;
 var fuseecompteur;
 var listejsonfusees={};
 
+function testnum(a){
+	for (var i = -30; i < 30; i++) {
+		resu=a/(10**i);
+		if (resu >=1 && resu <=10){ z=i; return z; }
+	}
+}
 
-  function testnum(a){
-  for (var i = -30; i < 30; i++) {
-  resu=a/(10**i);
-  if (resu >=1 && resu <=10){ z=i; return z; }
-    }}
-	
   // Fonction pour garder les dernieres valeurs de vr et vphi au moment du pause.
       function testvaleur(x) {
         if (isNaN(x)) {
@@ -53,16 +52,11 @@ var listejsonfusees={};
         return x ;
       }			   
 
-
-
 function generateurCouleur(){
-
-redd=Math.floor(Math.random() * 255); 
-greenn=Math.floor(Math.random() * 255); 
-
-bluee=Math.floor(Math.random() * 255); 
-
-return [redd,greenn,bluee];
+	redd=Math.floor(Math.random() * 255); 
+	greenn=Math.floor(Math.random() * 255); 
+	bluee=Math.floor(Math.random() * 255); 
+	return [redd,greenn,bluee];
 }
 
 function initialisationGenerale(fuseecompteur){
@@ -188,13 +182,11 @@ function genereHtml(){
 	}	
 
 
-
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		var span = document.createElement("span");
 		span.setAttribute("id","vitesser"+countt.toString()+"");
 
 		var divchampsr = document.getElementById('champs_a_remplir');
-
 
 		divchampsr.appendChild(span);
 		if(countt==1){
@@ -253,12 +245,6 @@ function genereHtml(){
 
 	newRow2.innerHTML = jstring;
 
-
-
-
-
-
-
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		var newRow=document.getElementById('tableauresultatsimu').insertRow();
 		// il faudrait songer a la sécurité ici, 'never trust user input', serait il possible pour un utilisateur de prendre le controle avec ses user input?
@@ -309,8 +295,6 @@ function genereHtml(){
 
 	}
 
-
-
 	var canvas3genere = document.createElement("canvas");
     canvas3genere.setAttribute("id","myCanvas3three");
     canvas3genere.setAttribute("width",canvaswidthheight);
@@ -335,14 +319,13 @@ function genereHtml(){
 	textegravetetc();						
     //pour le bon affichage du katex
 	renderMathInElement(document.body, {
-				// ...options...
-				delimiters:[
-				{left:"$",right:'$',display: false},
-				]
-			});
+		// ...options...
+		delimiters:[
+			{left:"$",right:'$',display: false},
+		]
+	});
 	 
 }
-
 
 function initialisation(compteur){
 	c = 299792458;
@@ -412,9 +395,6 @@ function initialisation(compteur){
   	return mobile;
 }  // fin fonction initialisation
 
-
-
-
 function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs ne sont pas donnée dans l'une des cases
   
 	r_phy = document.getElementById("r_phy").value;
@@ -422,7 +402,6 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 	var onebolean=false;
 	var twobolean=false;
 	var threebolean=false;
-
 
 	var sddsdsddss = Number(document.getElementById("nombredefusees").value);
 	for (countetttt = 1; countetttt <= sddsdsddss; countetttt += 1) {
@@ -504,9 +483,6 @@ function trajectoire(compteur,mobile) {
 			document.getElementById('teta'+countt.toString()+'').disabled = true;
 		}
 
-
-
-
     //empecher de passer d'observateur a mobile ou inversement pendant la simulation
     document.getElementById('r3').disabled = true;
     document.getElementById('r4').disabled = true;
@@ -553,9 +529,6 @@ function trajectoire(compteur,mobile) {
             ifUneFois=false;
         }
     }
-
-
-
 
 	A_part = A_init;
     mobile["A_part"]=A_part; //mobile.A_part
@@ -615,7 +588,6 @@ function trajectoire(compteur,mobile) {
 
     //pr majFondFixe
 
-
     majFondFixe();	
 	majFondFixe44(mobile);	
     diametre_particule = DIAMETRE_PART;
@@ -635,7 +607,7 @@ function trajectoire(compteur,mobile) {
 	}
 
 	if (document.getElementById("toggle").checked==false) {
-	CentrerPopPotentiel();
+		CentrerPopPotentiel();
 	}
 
     // La position de départ est le milieu de la fenêtre d'affichage auquel on ajoute la position initiale de la particule.
@@ -664,8 +636,8 @@ function trajectoire(compteur,mobile) {
     Dtau2 = mobile.temps_chute_libre / 1e8;
     mobile["Dtau2"]=Dtau2;//mobile.Dtau2
 
-    document.getElementById('bouton_pause').addEventListener('click', function() {
-    	pausee(compteur,mobile,mobilefactor);
+	document.getElementById('bouton_pause').addEventListener('click', function() {
+ 		pausee(compteur,mobile,mobilefactor);
     }, false);
 
 
@@ -706,7 +678,6 @@ function trajectoire(compteur,mobile) {
 
     }, false);
 
-
     document.getElementById('pluszoom').addEventListener('click', function() {       
 		var rourt=bouttons.zoom(true,mobile,canvas,mobilefactor,compteur); 
     	mobile=retour[0];
@@ -722,11 +693,9 @@ function trajectoire(compteur,mobile) {
         rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
     }, false);
 
-
-
     //Ici le bout de code pour le bouton Reset, quand on clique dessus, la fonction appelé efface le canvas en entier.
     document.getElementById('clear').addEventListener('click', function() {
-      location.reload();  //rafraichir
+    	location.reload();  //rafraichir
     }, false);
 
     // Tracé du Rayon de Schwarzchild.
@@ -775,7 +744,6 @@ function trajectoire(compteur,mobile) {
 		data1=[];
 		data2=[];
 
-
 		if (element2.value != "mobile"){	
 			for (r = rmini; r < mobile.rmax * 1.2; r += mobile.dr) {
 				V = Vr_obs(mobile.E,mobile.L,r);
@@ -814,7 +782,6 @@ function trajectoire(compteur,mobile) {
 
 // tracé de la particule
 
-
 function animate(compteur,mobile,mobilefactor) {
 	mobile.onestarrete=0;
 	estUnMobile();
@@ -824,8 +791,6 @@ function animate(compteur,mobile,mobilefactor) {
 	element2=document.getElementById('traject_type2');													 
 
 	if (mobile.r0 != 0.0) {
-
-	
 		if (element2.value == "mobile"){
 			val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
 			mobile.r_part = val[0];
@@ -938,10 +903,10 @@ function animate(compteur,mobile,mobilefactor) {
 		gm = derivee_seconde_Schwarzchild_photon_obs(mobile.E,mobile.L,mobile.r_part_obs);
 		gmp = derivee_seconde_Schwarzchild_photon_obs(mobile.E,mobile.L,mobile.r_part_obs + 1);
 		fm = Math.abs(gm - gmp);
-	}else{
+	}
+	else{
 		fm=0;
 	}
-
 
     // pour éviter d'avoir des surprises sur le dernier calcul avant la fin
     if(mobile.r_part<0){
@@ -1011,16 +976,15 @@ function animate(compteur,mobile,mobilefactor) {
 // Expression du potentiel divisé par c^2
 
 function Vr_mob(L,r) {
-  return potentiel_Schwarzchild_photon(L,r);
+	return potentiel_Schwarzchild_photon(L,r);
 }
 
 function Vr_obs(E,L,r) {
-  return Math.pow(E,2)-( 1-potentiel_Schwarzchild_photon(L,r)/Math.pow(E,2) )*Math.pow(1-rs/r,2)  ;
+	return Math.pow(E,2)-( 1-potentiel_Schwarzchild_photon(L,r)/Math.pow(E,2) )*Math.pow(1-rs/r,2)  ;
 }
 
-
 function Vr(L,r) {
-  return potentiel_Schwarzchild_photon(L,r);
+	return potentiel_Schwarzchild_photon(L,r);
 }
 
 function potentiel_Schwarzchild_photon(L,r) {
@@ -1028,288 +992,267 @@ function potentiel_Schwarzchild_photon(L,r) {
 }
 
 function derivee_seconde_Schwarzchild_photon(L, r) {
-   return     Math.pow(c, 2)/(2*Math.pow(r, 4)) * Math.pow(L, 2)*(2*r-3*rs);
+	return Math.pow(c, 2)/(2*Math.pow(r, 4)) * Math.pow(L, 2)*(2*r-3*rs);
 }																											  
  
 function rungekutta(L,h, r, A) {
-      k = [0, 0, 0, 0];
-      k[0] = derivee_seconde_Schwarzchild_photon(L,r);
-      k[1] = derivee_seconde_Schwarzchild_photon(L,r + 0.5 * h * A);
-      k[2] = derivee_seconde_Schwarzchild_photon(L,r + 0.5 * h * A + 0.25 * h * h * k[0]);
-      k[3] = derivee_seconde_Schwarzchild_photon(L,r + h * A + 0.5 * h * h * k[1]);
-      r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-      A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-      return [r, A];
-    }
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_Schwarzchild_photon(L,r);
+	k[1] = derivee_seconde_Schwarzchild_photon(L,r + 0.5 * h * A);
+	k[2] = derivee_seconde_Schwarzchild_photon(L,r + 0.5 * h * A + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Schwarzchild_photon(L,r + h * A + 0.5 * h * h * k[1]);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
+}
 
 function derivee_seconde_Schwarzchild_photon_obs(E,L,r) {
-return c*c*(r-rs)*(2*E*E*r*r*r*rs + 2*L*L*r*r - 7*L*L*r*rs + 5*L*L*rs*rs)/(2*Math.pow(r,6)*E*E); }
+	return c*c*(r-rs)*(2*E*E*r*r*r*rs + 2*L*L*r*r - 7*L*L*r*rs + 5*L*L*rs*rs)/(2*Math.pow(r,6)*E*E); 
+}
 			  
 function rungekutta_obs(E,L,h, r, A) {
-      k = [0, 0, 0, 0];
-      k[0] = derivee_seconde_Schwarzchild_photon_obs(E,L,r);
-      k[1] = derivee_seconde_Schwarzchild_photon_obs(E,L,r + 0.5 * h * A);
-      k[2] = derivee_seconde_Schwarzchild_photon_obs(E,L,r + 0.5 * h * A + 0.25 * h * h * k[0]);
-      k[3] = derivee_seconde_Schwarzchild_photon_obs(E,L,r + h * A + 0.5 * h * h * k[1]);
-      r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
-      A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
-      return [r, A];
-    }
+	k = [0, 0, 0, 0];
+	k[0] = derivee_seconde_Schwarzchild_photon_obs(E,L,r);
+	k[1] = derivee_seconde_Schwarzchild_photon_obs(E,L,r + 0.5 * h * A);
+	k[2] = derivee_seconde_Schwarzchild_photon_obs(E,L,r + 0.5 * h * A + 0.25 * h * h * k[0]);
+	k[3] = derivee_seconde_Schwarzchild_photon_obs(E,L,r + h * A + 0.5 * h * h * k[1]);
+	r = r + h * A + (1 / 6) * h * h * (k[0] + k[1] + k[2]);
+	A = A + (h / 6) * (k[0] + 2 * (k[1] + k[2]) + k[3]);
+	return [r, A];
+}
 
 
 
 function calcul_rmax(L,E,vr,r0,rmax1ou2){
+	//eq3d(L,m,E); dans le cas avec particule massive
+	if (E > 1) {
+		rmax = 5 * r0;
+	}
+	r1 = (L * (L - Math.sqrt(Math.pow(L, 2) - 12 * Math.pow(m, 2))) / (2 * m));
+	r2 = (L * (L + Math.sqrt(Math.pow(L, 2) - 16 * Math.pow(m, 2))) / (4 * m));
+	ra = 2 * m * Math.pow(L, 2);
+	rb = ((2 * m / r0) - 1) * Math.pow(L, 2);
+	X0 = 1 / r0;
+	rc = 2 * m - Math.pow(L, 2) * X0 + 2 * m * Math.pow(L * X0, 2);
+	DELTA = Math.pow(rb, 2) - 4 * ra * rc;
+	r3 = (-rb - Math.sqrt(DELTA)) / (2*ra);
 
-   //eq3d(L,m,E); dans le cas avec particule massive
-  
-  if (E > 1) {
-    rmax = 5 * r0;
-  }
-
-  r1 = (L * (L - Math.sqrt(Math.pow(L, 2) - 12 * Math.pow(m, 2))) / (2 * m));
-  r2 = (L * (L + Math.sqrt(Math.pow(L, 2) - 16 * Math.pow(m, 2))) / (4 * m));
-
-  ra = 2 * m * Math.pow(L, 2);
-  rb = ((2 * m / r0) - 1) * Math.pow(L, 2);
-  X0 = 1 / r0;
-  rc = 2 * m - Math.pow(L, 2) * X0 + 2 * m * Math.pow(L * X0, 2);
-  DELTA = Math.pow(rb, 2) - 4 * ra * rc;
-  r3 = (-rb - Math.sqrt(DELTA)) / (2*ra);
-
-  if (L < 2 * Math.sqrt(3) * m) {
-    rmax = r0;
-  } else if (L <= 4 * m && L > 2 * Math.sqrt(3) * m) {
-    if (Vr_mob(L,r0) <= Vr_mob(L,r1) && r0 > r1) {
-      if (r3 > r0) {
-        rmax = r3;
-      } else if (r3 < r0) {
-        rmax = r0;
-      }
-    } else {
-      rmax = r0;
-    }
-  } else if (L > 4 * m) {
-    if (r0 > r2) {
-      if (r3 > r0) {
-        rmax = r3;
-      } else if (r3 < r0) {
-        rmax = r0;
-      }
-    } else {
-      rmax = r0;
-    }
-  }
+	if (L < 2 * Math.sqrt(3) * m) {
+		rmax = r0;
+	} 
+	else if (L <= 4 * m && L > 2 * Math.sqrt(3) * m) {
+		if (Vr_mob(L,r0) <= Vr_mob(L,r1) && r0 > r1) {
+			if (r3 > r0) {
+				rmax = r3;
+			} 
+			else if (r3 < r0) {
+				rmax = r0;
+			}
+		} 
+		else {
+			rmax = r0;
+		}
+	} 
+	else if (L > 4 * m) {
+		if (r0 > r2) {
+			if (r3 > r0) {
+				rmax = r3;
+			} 
+			else if (r3 < r0) {
+				rmax = r0;
+			}
+		} 
+		else {
+			rmax = r0;
+		}
+	}
 }
-
 
 // Fonction bouton pause
 function pausee(compteur,mobile,mobilefactor) {
-
-  if (mobile.pause == false) {
-      mobile.pause = true;
-      document.getElementById("pau").src = "Images/lecture.png";
-      document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture;
-      document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause;
-      clearInterval(mobile.myInterval);
-  } else {
-    if(mobile.peuxonrelancer == true) {
-    mobile.pause = false;
-    document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
-    document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
-    document.getElementById("pau").src = "Images/pause.png";
-    mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10/6);
-    }
-
-
-  }
+	if (mobile.pause == false) {
+		mobile.pause = true;
+		document.getElementById("pau").src = "Images/lecture.png";
+		document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture;
+		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause;
+		clearInterval(mobile.myInterval);
+	} 
+	else {
+		if(mobile.peuxonrelancer == true) {
+		mobile.pause = false;
+		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;
+		document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;
+		document.getElementById("pau").src = "Images/pause.png";
+		mobile.myInterval = setInterval(animate.bind(null,compteur,mobile,mobilefactor), 10/6);
+		}
+	}
 }
 
 // permet de gérer les touches du clavier pour certaines actions
 function clavierEvenement(){
-  $(document).keyup(function(event) { // the event variable contains the key pressed
-    if(event.which == 65) { // touche a
-      $('#r1').click();
-    }
-    if(event.which == 90) { // touche z
-      $('#r2').click();
-    }
-    if(event.which == 69) { // touche e
-      $('#rebondd').click();
-    }
-    if(event.which == 81) { // touche q
-      $('#start').click();
-    }
-    if(event.which == 83) { // touche s
-      $('#clear').click();
-    }
-    if(event.which == 68) { // touche d
-      $('#boutton_enregis').click();
-    }
-    if(event.which == 70) { // touche f
-      $('#boutton_recup').click();
-    }
-    if(event.which == 87) { // touche w
-      $('#moinsvite').click();
-    }
-    if(event.which == 88) { // touche x
-      $('#pau').click();
-    }
-    if(event.which == 67) { // touche c
-      $('#plusvi').click();
-    }
-  });
+	$(document).keyup(function(event) { // the event variable contains the key pressed
+	if(event.which == 65) { // touche a
+		$('#r1').click();
+	}
+	if(event.which == 90) { // touche z
+		$('#r2').click();
+	}
+	if(event.which == 69) { // touche e
+		$('#rebondd').click();
+	}
+	if(event.which == 81) { // touche q
+		$('#start').click();
+	}
+	if(event.which == 83) { // touche s
+		$('#clear').click();
+	}
+	if(event.which == 68) { // touche d
+		$('#boutton_enregis').click();
+	}
+	if(event.which == 70) { // touche f
+		$('#boutton_recup').click();
+	}
+	if(event.which == 87) { // touche w
+		$('#moinsvite').click();
+	}
+	if(event.which == 88) { // touche x
+		$('#pau').click();
+	}
+	if(event.which == 67) { // touche c
+		$('#plusvi').click();
+	}
+	});
 }
 
-
 function rafraichir2(context,mobilefactor,rmaxjson,r0ou2,compteur) {
-majFondFixe();
-creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
+	majFondFixe();
+	creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
 }
 
 function rafraichir() {
-  window.location.reload();
-
-  element2.value="observateur";
-  // obligé de le préciser car sinon, c'est la dernière valeur qui est conservée et non la valeur par défaut
-  document.getElementById("boutton_ammorti").value="0";
+	window.location.reload();
+	element2.value="observateur";
+	// obligé de le préciser car sinon, c'est la dernière valeur qui est conservée et non la valeur par défaut
+	document.getElementById("boutton_ammorti").value="0";
 }
-
 
 function enregistrer(){
   // ces 2 fonctions sont issues des biblios saveSvgAsPng.js et canvas-to-image.js
 
-  if(document.getElementById('trace_present').value=="1"){
+	if(document.getElementById('trace_present').value=="1"){
 
-    canvas3 = document.getElementById("myCanvas3three");
-    context3 = canvas3.getContext("2d");
-    context3.drawImage(canvas, 0,0);
-    
-    document.getElementById("enregistrer2").click();
-
+		canvas3 = document.getElementById("myCanvas3three");
+		context3 = canvas3.getContext("2d");
+		context3.drawImage(canvas, 0,0);
+		document.getElementById("enregistrer2").click();
 		canvasToImage(canvas3, {
-		  name: 'Trajectoire_photon_Schwar',
-		  type: 'png'
+			name: 'Trajectoire_photon_Schwar',
+			type: 'png'
 		});
-	majFondFixe3();
-
-    // permet si l'on veut d'enregistrer le graphe du potentiel
-    // saveSvgAsPng(document.getElementById("grsvg_2"),"Potentiel_massive_Schwar.png",{backgroundColor:"white"});
-  }
-  else{
-    var texte = o_recupereJson();
-    alert(texte.pages_trajectoire.message_enregistrer);
-  }
+		majFondFixe3();
+		// permet si l'on veut d'enregistrer le graphe du potentiel
+		// saveSvgAsPng(document.getElementById("grsvg_2"),"Potentiel_massive_Schwar.png",{backgroundColor:"white"});
+	}
+	else{
+		var texte = o_recupereJson();
+		alert(texte.pages_trajectoire.message_enregistrer);
+	}
 }
-
 
 function siTrajectoireSimple() {
-  if (element.value == 'simple') {
-    majFondFixe();
-    // Tracé du Rayon de Schwarzchild.
-    creation_blocs(context);
-    diametre_particule = DIAMETRE_PART*2;
-  }
+	if (element.value == 'simple') {
+		majFondFixe();
+		// Tracé du Rayon de Schwarzchild.
+		creation_blocs(context);
+		diametre_particule = DIAMETRE_PART*2;
+	}
 }
 
-
-
-
 function traceEstAbsent(){
-  document.getElementById('trace_present').value="0";
+	document.getElementById('trace_present').value="0";
 }
 
 function siTrajectoireComplete() {
-  if (element.value == 'complete') {
-    diametre_particule = DIAMETRE_PART;
-  }
+	if (element.value == 'complete') {
+		diametre_particule = DIAMETRE_PART;
+	}
 }
 
 function choixTrajectoire(compteur,context,mobile,mobilefactor,rmaxjson,r0ou2) {
-  if (element.value == 'simple') {
-    majFondFixe();
-    // Tracé du Rayon de Schwarzchild,...
-    creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
-    diametre_particule = DIAMETRE_PART*2;
-  }
-  else if (element.value == 'complete') {
-    diametre_particule = DIAMETRE_PART;
-  }
-
+	if (element.value == 'simple') {
+		majFondFixe();
+		// Tracé du Rayon de Schwarzchild,...
+		creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur);
+		diametre_particule = DIAMETRE_PART*2;
+	}
+	else if (element.value == 'complete') {
+		diametre_particule = DIAMETRE_PART;
+	}
 }
 
-
-
 function estUnMobile(){
-  var x = window.matchMedia("(max-width: 960px)")
-  if(x.matches){
-    document.getElementById("bouton_info").style.visibility='hidden';
-  }
-  else{
-    document.getElementById("bouton_info").style.visibility='visible';
-  }
+	var x = window.matchMedia("(max-width: 960px)")
+	if(x.matches){
+		document.getElementById("bouton_info").style.visibility='hidden';
+	}
+	else{
+		document.getElementById("bouton_info").style.visibility='visible';
+	}
 }
 
 function commandes(){
-  var texte = o_recupereJson();
-  alert(texte.pages_trajectoire.commandes_horsSchwarMassif);
+	var texte = o_recupereJson();
+	alert(texte.pages_trajectoire.commandes_horsSchwarMassif);
 }
 
 
 function majFondFixe(){
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  // Ajout d'un fond blanc pour l'exportation
-  context.fillStyle = 'white';
-  context.fillRect(0, 0, canvas.width, canvas.height);
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	// Ajout d'un fond blanc pour l'exportation
+	context.fillStyle = 'white';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	context.font = "15pt bold";
+	context.fillStyle = "black";
+	context.fillText(texte.page_trajectoire_photon.titre3,5,40);
+	context.font = "13pt bold";
+	context.fillText(texte.pages_trajectoire.entrees,5,70);
+	context.font = "11pt normal";
+	context.fillText("M = "+M.toExponential(3)+" kg",5,90);
+	context.fillText("r\u209A\u2095\u1D67 = "+r_phy.toExponential(3)+" m",5,110);
+	if (document.getElementById("boutton_ammorti").value == 1){context.fillText(texte.page_trajectoire_massive.amortissement+" = 0",5,130)};
+	if(document.getElementById('traject_type2').value=="observateur"){
+		context.fillText(texte.pages_trajectoire.observateur,5,150);
+	} 
+	else { context.fillText(texte.pages_trajectoire.photon,5,150); }
 
-  context.font = "15pt bold";
-  context.fillStyle = "black";
-  context.fillText(texte.page_trajectoire_photon.titre3,5,40);
-  context.font = "13pt bold";
-  context.fillText(texte.pages_trajectoire.entrees,5,70);
-  context.font = "11pt normal";
-  context.fillText("M = "+M.toExponential(3)+" kg",5,90);
-  context.fillText("r\u209A\u2095\u1D67 = "+r_phy.toExponential(3)+" m",5,110);
-  if (document.getElementById("boutton_ammorti").value == 1){context.fillText(texte.page_trajectoire_massive.amortissement+" = 0",5,130)};
-   if(document.getElementById('traject_type2').value=="observateur"){
-  context.fillText(texte.pages_trajectoire.observateur,5,150);
-  } else { context.fillText(texte.pages_trajectoire.photon,5,150); }
-
-
-  context.fillText("mobile1:",5,170);
-  context.fillText("r\u2080 = "+(r0o2[1]).toExponential(3)+" m",5,190);
-  context.fillText("U\u1D69(r\u2080) = "+vphiblab.toExponential(3)+" m.s\u207B\u00B9",5,210);
-  context.fillText("U\u1D63(r\u2080) = "+vrblab.toExponential(3)+" m.s\u207B\u00B9",5,230);
- 
-
-  nombeuhreudefusees = Number(document.getElementById("nombredefusees").value);
-
-
-  if (nombeuhreudefusees>=2) {
-  context.fillText("mobile2:",5,250);
-  context.fillText("r\u2080 = "+r0o2[2].toExponential(3)+" m",5,270);
-  context.fillText("U\u1D69(r\u2080) = "+vphi2i.toExponential(3)+" m.s\u207B\u00B9",5,290);
-  context.fillText("U\u1D63(r\u2080) = "+vr2i.toExponential(3)+" m.s\u207B\u00B9",5,310);
-  }
-
- 
-
+	context.fillText("mobile1:",5,170);
+	context.fillText("r\u2080 = "+(r0o2[1]).toExponential(3)+" m",5,190);
+	context.fillText("U\u1D69(r\u2080) = "+vphiblab.toExponential(3)+" m.s\u207B\u00B9",5,210);
+	context.fillText("U\u1D63(r\u2080) = "+vrblab.toExponential(3)+" m.s\u207B\u00B9",5,230);
+	nombeuhreudefusees = Number(document.getElementById("nombredefusees").value);
+	if (nombeuhreudefusees>=2) {
+		context.fillText("mobile2:",5,250);
+		context.fillText("r\u2080 = "+r0o2[2].toExponential(3)+" m",5,270);
+		context.fillText("U\u1D69(r\u2080) = "+vphi2i.toExponential(3)+" m.s\u207B\u00B9",5,290);
+		context.fillText("U\u1D63(r\u2080) = "+vr2i.toExponential(3)+" m.s\u207B\u00B9",5,310);
+	}
 }
 
 
 function majFondFixe44(mobile){
-  mobile["context22"].clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	mobile["context22"].clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 
 function majFondFixe22(){
-  context22.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context22.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 function majFondFixe3(){
-  context3.clearRect(0, 0, canvas.width, canvas.height);
-  //console.log(canvas.width, canvas.height);
+	context3.clearRect(0, 0, canvas.width, canvas.height);
+	//console.log(canvas.width, canvas.height);
 }
 
 // Empeche le lancer si on part de l'interieur de l'horizon et si le rayon est négatif
@@ -1370,9 +1313,6 @@ function test_inte() {
   
 }
 
-
-
-
 // crée les différentes couches visuelles
 function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
 	r2bis=(80*r0ou2)/(mobilefactor[cle]);
@@ -1430,23 +1370,21 @@ context.font = "13pt bold";
 context.fillText(texte.pages_trajectoire.entrees,5,70);
 context.font = "11pt normal";*/
 
-context.fillStyle = COULEUR_RS;
-context.fillText(ech.toExponential()+" m",605,90);
-context.stroke();
-context.beginPath();      // Début du chemin
-context.strokeStyle = COULEUR_RS;
+	context.fillStyle = COULEUR_RS;
+	context.fillText(ech.toExponential()+" m",605,90);
+	context.stroke();
+	context.beginPath();      // Début du chemin
+	context.strokeStyle = COULEUR_RS;
 
-
-
-//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
-//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
-context.moveTo(600,110);
-context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,110);
-context.moveTo(600,105);
-context.lineTo(600,115);
-context.moveTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,105);
-context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,115);
-// Fermeture du chemin (facultative)
-context.stroke();
+	//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
+	//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
+	context.moveTo(600,110);
+	context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,110);
+	context.moveTo(600,105);
+	context.lineTo(600,115);
+	context.moveTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,105);
+	context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,115);
+	// Fermeture du chemin (facultative)
+	context.stroke();
 
 }

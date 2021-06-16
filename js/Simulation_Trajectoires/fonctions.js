@@ -32,7 +32,7 @@ var calculs = calculs || (function() {
             return [vtot,vr,vphi];
         },
 
-        /**
+        /**Calcule la vitess réel en m/s pour la métrique de Schwarzchild pour une intéraction non barionique à l'intérieur de l'astre
          * 
          * @param {*} E constant de la metrique 
          * @param {*} L constant de la metrique 
@@ -42,7 +42,7 @@ var calculs = calculs || (function() {
          * @param {*} ref choix du réferentiel
          * @returns 
          */
-        ///Calcule la vitess réel en m/s pour la métrique de Schwarzchild pour une intéraction non barionique à l'intérieur de l'astre
+        
         MSC_In_vitess : function(E,L,r,rs,ra,photon){
             alpha_=1-((r**2)*rs)/(ra**3); /// alpha pour la métrique de Schawr interne
             beta_=(3/2)*Math.sqrt(1-rs/ra)-(1/2)*Math.sqrt(alpha_);/// beta pour la métrique de Schawr interne
