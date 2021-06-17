@@ -508,7 +508,7 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
-				type : plot_type,
+				type : "scatter",
 				title: 'al',
 				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
 				showline: true
@@ -577,8 +577,9 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
-				type : plot_type,
-				title: '',
+				type : "scatter",
+				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
+				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
@@ -633,7 +634,7 @@ function calcu(path) {
 			},
 
 			yaxis: {
-				type : plot_type,
+				type : "scatter",
 				autorange: true,
 				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
 				showline: true
@@ -708,7 +709,7 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
-				type : plot_type,
+				type : "scatter",
 				title: 'al',
 				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
 				showline: true
@@ -777,8 +778,9 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
-				type : plot_type,
-				title: '',
+				type : "scatter",
+				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
+				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
@@ -943,7 +945,7 @@ function calcul_omegas(zmin,zmax,dt){
 		omArr.push(Omz);
 
 		Olz = Number(omegalambda0) / fonction_E(Number(i), omegam0, Number(omegalambda0), Or);
-		Olz = Olz.toExponential(4);
+		Olz = Olz.toExponential(4);	
 		olArr.push(Olz);
 
 		Orz = Or * Math.pow(1 + Number(i), 4) / fonction_E(Number(i), omegam0, Number(omegalambda0), Or);
