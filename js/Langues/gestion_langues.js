@@ -547,7 +547,8 @@ function texteTrajectoireMassive(nbrderockets) {
 	}
 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
 	if(canvaswidthheightt=="750"){
-		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;}
+		//document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	}
 }
 
 function texteTrajectoireMassiveEnGrand() {  // ne sert pas!!!!!!!!!!!!!
@@ -599,7 +600,7 @@ function texteTrajectoirePhoton(nbrderockets) {
 	}
 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
 	if(canvaswidthheightt=="750"){
-		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+		//document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 	}
 }
 
@@ -629,7 +630,7 @@ function texteTrajectoireMassiveNonBar(nbrderockets) {
 	}
 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
 	if(canvaswidthheightt=="750"){
-		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+		//document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 	}
 
 }
@@ -659,7 +660,7 @@ function texteTrajectoirePhotonNonBar(nbrderockets) {
 	}
 	var canvaswidthheightt = document.getElementById("canvaswidthheight").value;
 	if(canvaswidthheightt=="750"){
-		document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+		//document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 	}
 
 }
@@ -684,7 +685,7 @@ function texteTrajectoireMassiveKerr() {
 	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
 	document.getElementById("decal_spect").innerHTML = texte.pages_trajectoire.decal_spect;
 	document.getElementById("v_total").innerHTML = texte.pages_trajectoire.v_total;
-	document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	//document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 }
 
 
@@ -726,7 +727,7 @@ function texteTrajectoirePhotonKerr() {
 	document.getElementById("temps_ecoule").innerHTML = texte.pages_trajectoire.temps_ecoule;
 	document.getElementById("temps_obs").innerHTML = texte.pages_trajectoire.temps_obs;
 	document.getElementById("boutton_recup").innerHTML = texte.pages_trajectoire.boutton_recup;
-	document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
+	//document.getElementById("ouvreengrand").innerHTML = texte.pages_trajectoire.ouvreengrand;
 	document.getElementById("v_total").innerHTML = texte.pages_trajectoire.v_total;
 }
 

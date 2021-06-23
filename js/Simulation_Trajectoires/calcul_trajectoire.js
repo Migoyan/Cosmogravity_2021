@@ -246,7 +246,7 @@ function genereHtml(){
 		divchampsr.appendChild(span);
 		if(countt==1){
 			var newlabel = document.createElement("Label");
-			newlabel.setAttribute("id","tetalabel");
+			newlabel.setAttribute("id","thetalabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta1");
 			newlabel.innerHTML = htmlDecode("&alpha;")+"<sub>en degré</sub> =";

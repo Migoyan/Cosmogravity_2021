@@ -190,7 +190,7 @@ function save_schwarshild_photon(nbrderockets) {
 		phi = document.getElementById("phi0"+count.toString()+"").value;
 		sessionStorage.setItem("r0"+count.toString()+"", r0);
 		sessionStorage.setItem("teta"+count.toString()+"", teta);
-		sessionStorage.setItem("phi0"+count.toString()+"", phi0);
+		sessionStorage.setItem("phi0"+count.toString()+"", phi);
 	}
 	// Stockage des valeurs
 	sessionStorage.setItem("r_phy", r_phy);
