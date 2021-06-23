@@ -668,12 +668,6 @@ function calcu(path) {
 
 			title: "<b>t(z)</b>",
 			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-
-			xaxis: {
-
-			title: plot_title,
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
-
 			xaxis: {
 
 				type : plot_type,
