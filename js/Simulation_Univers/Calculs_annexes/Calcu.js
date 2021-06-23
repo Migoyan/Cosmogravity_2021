@@ -458,8 +458,8 @@ function calcu(path) {
 		// Distance's charts in function of z
 		d_checkbox = document.getElementById("d_checkbox");
 		if(d_checkbox.checked) {
-			document.getElementById("graph_container_loglog_d_z").style.display = "contents"; //display graph
-			plot_title = "Echelle loglog d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			document.getElementById("graph_container_log_d_z").style.display = "contents"; //display graph
+			plot_title = "Echelle log d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'log'
 		}
 		else{
@@ -517,7 +517,7 @@ function calcu(path) {
 		};
 
 		if(d_checkbox.checked) {
-			graphique_creation("graphique_loglog_d_z", ['graphique_loglog_d_z', data, layout, {displaylogo: false}]);
+			graphique_creation("graphique_log_d_z", ['graphique_log_d_z', data, layout, {displaylogo: false}]);
 		}
 		else{
 			graphique_creation("graphique_d_z", ['graphique_d_z', data, layout, {displaylogo: false}]);
@@ -527,8 +527,8 @@ function calcu(path) {
 		// Omega's charts in function of z
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
-			document.getElementById("graph_container_loglog_omega_z").style.display = "contents"; //display graph
-			plot_title = "Echelle loglog <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			document.getElementById("graph_container_log_omega_z").style.display = "contents"; //display graph
+			plot_title = "Echelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
 			plot_type = 'log'
 		}
 		else{
@@ -586,7 +586,7 @@ function calcu(path) {
 		};
 
 		if(omega_checkbox.checked) {
-			graphique_creation("graphique_loglog_omega_z", ['graphique_loglog_omega_z', data, layout, {displaylogo: false}]);
+			graphique_creation("graphique_log_omega_z", ['graphique_log_omega_z', data, layout, {displaylogo: false}]);
 		}
 		else{
 			graphique_creation("graphique_omega_z", ['graphique_omega_z', data, layout, {displaylogo: false}]);
@@ -596,8 +596,8 @@ function calcu(path) {
 		// Chart t(z)	
 		t_checkbox = document.getElementById("t_checkbox");				
 		if(t_checkbox.checked) {
-			document.getElementById("graph_container_loglog_t").style.display = "contents"; //display graph
-			plot_title = "Echelle loglog <b>t(z)</b>"
+			document.getElementById("graph_container_log_t").style.display = "contents"; //display graph
+			plot_title = "Echelle log <b>t(z)</b>"
 			plot_type = 'log'
 		}
 		else{
@@ -649,7 +649,7 @@ function calcu(path) {
 			annotations: annots,
 		};
 		if(t_checkbox.checked) {
-			graphique_creation("graphique_loglog_t", ['graphique_loglog_t', data, layout, {displaylogo: false}]);
+			graphique_creation("graphique_log_t", ['graphique_log_t', data, layout, {displaylogo: false}]);
 		}
 		else{
 			graphique_creation("graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
@@ -659,8 +659,8 @@ function calcu(path) {
 		// Distance's charts d in function of t
 		d_checkbox = document.getElementById("d_checkbox");
 		if(d_checkbox.checked) {
-			document.getElementById("graph_container_loglog_d_t").style.display = "contents"; //display graph
-			plot_title = "Echelle loglog d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			document.getElementById("graph_container_log_d_t").style.display = "contents"; //display graph
+			plot_title = "Echelle log d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'log'
 		}
 		else{
@@ -718,7 +718,7 @@ function calcu(path) {
 		};
 
 		if(d_checkbox.checked) {
-			graphique_creation("graphique_loglog_d_t", ['graphique_loglog_d_t', data, layout, {displaylogo: false}]);
+			graphique_creation("graphique_log_d_t", ['graphique_log_d_t', data, layout, {displaylogo: false}]);
 		}
 		else{
 			graphique_creation("graphique_d_t", ['graphique_d_t', data, layout, {displaylogo: false}]);
@@ -728,8 +728,8 @@ function calcu(path) {
 		// Omega's charts in function of t
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
-			document.getElementById("graph_container_loglog_omega_t").style.display = "contents"; //display graph
-			plot_title = "Echelle loglog <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			document.getElementById("graph_container_log_omega_t").style.display = "contents"; //display graph
+			plot_title = "Echelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
 			plot_type = 'log'
 		}
 		else{
@@ -787,7 +787,7 @@ function calcu(path) {
 		};
 
 		if(omega_checkbox.checked) {
-			graphique_creation("graphique_loglog_omega_t", ['graphique_loglog_omega_t', data, layout, {displaylogo: false}]);
+			graphique_creation("graphique_log_omega_t", ['graphique_log_omega_t', data, layout, {displaylogo: false}]);
 		}
 		else{
 			graphique_creation("graphique_omega_t", ['graphique_omega_t', data, layout, {displaylogo: false}]);

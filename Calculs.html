@@ -614,31 +614,32 @@
 							<input id="boutonGraphe_omega_t" type="button" onclick="lance_calc(5);" value="Calcul"></input>
 						</div>
 
-						<!-- bouton forme checkbox pour tracer les graphes en echelle loglog de t-->
+						<!-- bouton forme checkbox pour tracer les graphes en echelle log de t-->
 						<div style="padding:12px 15px">
 							<label for="t_checkbox">
-							<span id="txt_echelle_loglog_t"></span>
+							<span id="txt_echelle_log_t"></span>
 							</label>
 							<input type="checkbox" name="t_checkbox" id="t_checkbox" value="Calcul"></input>
 						</div>
 	
 					</div>
 
-					<!-- bouton forme checkbox pour tracer les graphes en echelle loglog de d et omega-->
+					<!-- bouton forme checkbox pour tracer les graphes en echelle log de d et omega-->
 					<div>
 						<div style="padding:10px 13px">
 							<label for="d_checkbox">
-							<span id="txt_echelle_loglog_d"></span>
+							<span id="txt_echelle_log_d"></span>
 							</label>
 							<input type="checkbox" name="d_checkbox" id="d_checkbox"  value="Calcul"></input>
 						</div>
 
 						<div style="padding:15px">
 							<label for="omega_checkbox">
-							<span id="txt_echelle_loglog_omega"></span>
+							<span id="txt_echelle_log_omega"></span>
 							</label>
 							<input type="checkbox" name="omega_checkbox" id="omega_checkbox" value="Calcul"></input>
-						</div>					
+						</div>	
+										
 					</div>
 					
 				</div>
@@ -676,9 +677,9 @@
 			</div>
 		</div>
 
-		<div id="graph_container_loglog_d_z" style="display:none">
+		<div id="graph_container_log_d_z" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_loglog_d_z">
+				<div id="graphique_log_d_z">
 				</div>
 				<div style="display:none;" id="graphique_enr">
 				</div>
@@ -723,9 +724,9 @@
 			</div>
 		</div>
 
-		<div id="graph_container_loglog_d_t" style="display:none">
+		<div id="graph_container_log_d_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_loglog_d_t">
+				<div id="graphique_log_d_t">
 				</div>
 				<div style="display:none;" id="graphique_enr">
 				</div>
@@ -751,7 +752,7 @@
 			<div style="padding:50px" align="center">
 				<div id="graphique_omega_z">
 				</div>
-				<div style="display:none;" id="graphique_omega_enr">
+				<div style="display:none;" id="graphique_enr">
 				</div>
 				<div id="enregistrer">
 						
@@ -771,11 +772,11 @@
 			</div>
 		</div>
 
-		<div id="graph_container_loglog_omega_z" style="display:none">
+		<div id="graph_container_log_omega_z" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_loglog_omega_z">
+				<div id="graphique_log_omega_z">
 				</div>
-				<div style="display:none;" id="graphique_omega_enr">
+				<div style="display:none;" id="graphique_enr">
 				</div>
 				<div id="enregistrer">
 						
@@ -799,7 +800,7 @@
 			<div style="padding:50px" align="center">
 				<div id="graphique_omega_t">
 				</div>
-				<div style="display:none;" id="graphique_omega_enr">
+				<div style="display:none;" id="graphique_enr">
 				</div>
 				<div id="enregistrer">
 						
@@ -819,11 +820,11 @@
 			</div>
 		</div>
 
-		<div id="graph_container_loglog_omega_t" style="display:none">
+		<div id="graph_container_log_omega_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_loglog_omega_t">
+				<div id="graphique_log_omega_t">
 				</div>
-				<div style="display:none;" id="graphique_omega_enr">
+				<div style="display:none;" id="graphique_enr">
 				</div>
 				<div id="enregistrer">
 						
@@ -847,7 +848,7 @@
 			<div style="padding:50px" align="center">
 				<div id="graphique_t">
 				</div>
-				<div style="display:none;" id="graphique_t_enr">
+				<div style="display:none;" id="graphique_enr">
 				</div>
 				<div id="enregistrer">
 						
@@ -867,11 +868,11 @@
 			</div>
 		</div>
 
-		<div id="graph_container_loglog_t" style="display:none">
+		<div id="graph_container_log_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_loglog_t">
+				<div id="graphique_log_t">
 				</div>
-				<div style="display:none;" id="graphique_t_enr">
+				<div style="display:none;" id="graphique_enr">
 				</div>
 				<div id="enregistrer">
 						
