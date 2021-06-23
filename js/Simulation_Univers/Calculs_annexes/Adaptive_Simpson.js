@@ -1,6 +1,6 @@
-﻿ //formule utilisee pour le calcul de l'age de l'univers
+﻿//formule utilisee pour le calcul de l'age de l'univers
 function fonction_integrale(x, omegam0, omegalambda0, Or) {
-  return (1. / H0enannee) * (1.0 / (1.0 + x)) * Math.pow(Or * Math.pow(1.0 + x, 4)
+  return (1 / H0enannee) * (1.0 / (1.0 + x)) * Math.pow(Or * Math.pow(1.0 + x, 4)
   + omegam0 * Math.pow(1.0 + x, 3) - (omegalambda0 + Or + omegam0 - 1.0)
   * Math.pow(1.0 + x, 2) + omegalambda0, (-1.0 / 2));
 }

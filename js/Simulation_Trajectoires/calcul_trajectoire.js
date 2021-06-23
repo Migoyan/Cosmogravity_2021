@@ -63,6 +63,7 @@ var G = 6.6742 * Math.pow(10, -11);
 
 //Fonction pour arrondir l'échelle:
 function testnum(a){
+
 	for (var i = -30; i < 30; i++) {
 		resu=a/(10**i);
 		if (resu >=1 && resu <=10){
@@ -79,6 +80,7 @@ function testvaleur(x) {
 	}
 	return x ;
 }
+
 
 //genere couleur aleatoirement pour le trace du mobile
 //il faudrait verifier que blanc ou des couleurs trop proches de blanc ne soient pas generes (a definir ce qui est trop proche de blanc)

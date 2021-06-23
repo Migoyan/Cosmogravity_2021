@@ -1,3 +1,4 @@
+
 {
 	"page_index":{
 		"version": "<strong>Version Beta</strong> 1.1 (01/02/2021)",
@@ -23,7 +24,6 @@
 		"version_2019":"<strong>Version 2019 :</strong><br />  Youssef Jeyar, Mahmoud Najah, Ivan Sproudé, Elie Faye, Estuardo Quand, avec l'aide de Matthieu Carrère",
 		"version_2020":"<strong>Version 2020 :</strong><br />  Karim Hakim, Sanxi Padovani, Yuming Xiang, Badreddine Zaidi"
 	},
-
 
 	"page_menu":{
 		"Ututo" : "Univers",
@@ -111,6 +111,9 @@
 		"tracer_d_t":"Tracer d<sub>i</sub>(t)",
 		"tracer_omega_t":"Tracer &Omega;<sub>i</sub>(t)",
 		"GenerateurG":"Generateur des Graphiques:",
+		"echelle_log_d" :"Echelle log",
+		"echelle_log_omega" :"Echelle log",
+		"echelle_log_t" :"Echelle log",
 		"zmin":"z<sub>min</sub>",
 		"zmax":"z<sub>max</sub>"
 	},
@@ -276,29 +279,30 @@
 		"commandes":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z \n- Avec ou sans rebond : touche e \n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c"
 	},
 
-"page_trajectoire_photon":{
-	"titre":"Trajectoire d'un photon en métrique de Schwarzchild",
-	"titre3":"Masse baryonique et photon",
-	"rayon_physique":"r<sub>physique</sub> (m) =",
-	"non_baryonique_photon":"Masse non baryonique et photon",
-	"vitesses_initiales_nulles":"conditions initiales nulles",
-	"rebond":"Rebond"
-},
+	"page_trajectoire_photon":{
+		"titre":"Trajectoire d'un photon en métrique de Schwarzchild",
+		"titre3":"Masse baryonique et photon",
+		"rayon_physique":"r<sub>physique</sub> (m) =",
+		"non_baryonique_photon":"Masse non baryonique et photon",
+		"vitesses_initiales_nulles":"conditions initiales nulles",
+		"rebond":"Rebond"
+	},
 
-"page_trajectoire_massive_nonBar":{
-    "titre":"Trajectoire d'un projectile en métrique de Schwarzchild <br/> (cas non baryonique)"
-},
+	"page_trajectoire_massive_nonBar":{
+		"titre":"Trajectoire d'un projectile en métrique de Schwarzchild <br/> (cas non baryonique)"
+	},
 
-"page_trajectoire_photon_nonBar":{
-    "titre":"Trajectoire d'un photon en métrique de Schwarzchild <br/> (cas non baryonique)"
-},
-"page_trajectoire_massive_kerr":{
-	"titre":"Trajectoire d'une particule massive en métrique de Kerr",
-	"moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
- },
+	"page_trajectoire_photon_nonBar":{
+		"titre":"Trajectoire d'un photon en métrique de Schwarzchild <br/> (cas non baryonique)"
+	},
+	"page_trajectoire_massive_kerr":{
+		"titre":"Trajectoire d'une particule massive en métrique de Kerr",
+		"moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
+	},
 
-"page_trajectoire_photon_kerr":{
-	"titre":"Trajectoire d'un photon en métrique de Kerr",
-    "moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
+	"page_trajectoire_photon_kerr":{
+		"titre":"Trajectoire d'un photon en métrique de Kerr",
+		"moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
+	}
 }
-}
+
