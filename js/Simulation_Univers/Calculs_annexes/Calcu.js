@@ -21,8 +21,8 @@ function Compte_calc() {
 
 function lance_calc(path) {
   	calculs = calculs + 1;
-	  chargement();
-	  setTimeout(calcu(path), 100);
+	chargement();
+	setTimeout(calcu(path), 100);
 }
 
 
@@ -1106,29 +1106,9 @@ function graphique_creation(id_document, params_to_plotly){
 	}
 
 	window.document.getElementById(id_document).style.height = hei + "px";
-
-	var img_png = d3.select('#png' + '_' + id_document);
-	var img_jpg = d3.select('#jpg' + '_' + id_document);
-	var img_svg = d3.select('#svg-1' + '_' + id_document);
 	
 	Plotly.newPlot(params_to_plotly[0], params_to_plotly[1], params_to_plotly[2], params_to_plotly[3]);
-	Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3])
-      .then(function(url) {
-        img_png.attr("href", url);
-        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
-          format: 'png'
-        })
-      }).then(function(url) {
-        img_jpg.attr("href", url);
-        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
-          format: 'jpeg'
-        })  
-      }).then(function(url) {
-        img_svg.attr("href", url);
-        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
-          format: 'svg'
-        })		
-      });
+	
 }
 
 function enre(format, graph) {
