@@ -22,11 +22,7 @@ function Compte_calc() {
 function lance_calc(path) {
   	calculs = calculs + 1;
 	chargement();
-	if (path==0) {
-		setTimeout(calcu(path), 100);
-	}else {
-		setTimeout(calcu(path), 100);
-	}
+	setTimeout(calcu(path), 100);
 }
 
 
@@ -459,42 +455,51 @@ function calcu(path) {
 		document.getElementById("Tz2").innerHTML = Tz2;
 
 	} else if (path == 1 && modele==0) {
-		// Distances' charts in function of z
-		document.getElementById("graph_container_d").style.display = "contents"; //display graph
+		// Distance's charts in function of z
+		d_checkbox = document.getElementById("d_checkbox");
+		if(d_checkbox.checked) {
+			document.getElementById("graph_container_log_d_z").style.display = "contents"; //display graph
+			plot_title = "Echelle log d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			plot_type = 'log'
+		}
+		else{
+			document.getElementById("graph_container_d_z").style.display = "contents"; //display graph
+			plot_title = "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			plot_type = 'scatter'
+		}
+
+		
 		let annots = [];
 		let val_graph = calculDeDs(zmin, zmax, 100);
 		let data = [
 			{
 				x: val_graph[3],
 				y: val_graph[1],
-				type: 'scatter',
 				name: '<b>d<sub>a</sub><b>'
 			},
 			{
 				x: val_graph[3],
 				y: val_graph[2],
-				type: 'scatter',
 				name: '<b>d<sub>m</sub><b>'
 			},
 			{
 				x: val_graph[3],
 				y: val_graph[0],
-				type: 'scatter',
 				name: '<b>d<sub>L</sub><b>'
 			},
 			{
 				x: val_graph[3],
 				y: val_graph[4],
-				type: 'scatter',
 				name: '<b>d<sub>LT</sub><b>'
 			}
 		];
 		let layout = {
-			title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
+			title: plot_title,
 			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 			
 			xaxis: {
 				autorange: true,
+				type : plot_type,
 				title: 'z',
 				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 				showline: true
@@ -503,50 +508,67 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
+				type : "scatter",
 				title: 'al',
 				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
 		};
-		graphique_creation("graphique", ['graphique', data, layout, {displaylogo: false}]);
+
+		if(d_checkbox.checked) {
+			graphique_creation("graphique_log_d_z", ['graphique_log_d_z', data, layout, {displaylogo: false}]);
+		}
+		else{
+			graphique_creation("graphique_d_z", ['graphique_d_z', data, layout, {displaylogo: false}]);
+		}
+		
 	} else if (path == 2 && modele==0) {
-		// Omegas' charts in function of z
-		document.getElementById("graph_container_omega").style.display = "contents"; //display graph
+		// Omega's charts in function of z
+		omega_checkbox = document.getElementById("omega_checkbox");
+		if(omega_checkbox.checked) {
+			document.getElementById("graph_container_log_omega_z").style.display = "contents"; //display graph
+			plot_title = "Echelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_type = 'log'
+		}
+		else{
+			document.getElementById("graph_container_omega_z").style.display = "contents"; //display graph
+			plot_title = "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_type = 'scatter'
+		}
+
+		
 		let annots = [];
 		let val_graph = calcul_omegas(zmin,zmax,1000);
 		let data = [
 			{
 				x: val_graph[4],
 				y: val_graph[0],
-				type: 'scatter',
 				name: '<b>Ω<sub>m</sub></b>'
 			},
 			{
 				x: val_graph[4],
 				y: val_graph[1],
-				type: 'scatter',
 				name: '<b>Ω<sub>Λ</sub></b>'
 			},
 			{
 				x: val_graph[4],
 				y: val_graph[2],
-				type: 'scatter',
 				name: '<b>Ω<sub>r</sub></b>'
 			},
 			{
 				x: val_graph[4],
 				y: val_graph[3],
-				type: 'scatter',
 				name: '<b>Ω<sub>k</sub></b>'
 			}
 		];
 		let layout = {
-			title: "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>",
+			title: plot_title,
 			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 	
 			xaxis: {
 				autorange: true,
+				type : plot_type,
 				title: 'z',
 				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 				showline: true
@@ -555,22 +577,43 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
-				title: '',
+				type : "scatter",
+				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
+				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
 		};
-		graphique_creation("graphique_omega", ['graphique_omega', data, layout, {displaylogo: false}]);
+
+		if(omega_checkbox.checked) {
+			graphique_creation("graphique_log_omega_z", ['graphique_log_omega_z', data, layout, {displaylogo: false}]);
+		}
+		else{
+			graphique_creation("graphique_omega_z", ['graphique_omega_z', data, layout, {displaylogo: false}]);
+		}
+
 	} else if(path == 3 && modele==0){
-		// Chart t(z)
-		document.getElementById("graph_container_t").style.display = "contents"; //display graph
+		// Chart t(z)	
+		t_checkbox = document.getElementById("t_checkbox");				
+		if(t_checkbox.checked) {
+			document.getElementById("graph_container_log_t").style.display = "contents"; //display graph
+			plot_title = "Echelle log <b>t(z)</b>"
+			plot_type = 'log'
+		}
+		else{
+			document.getElementById("graph_container_t").style.display = "contents"; //display graph
+			plot_title = "<b>t(z)</b>"
+			plot_type = 'scatter'
+		}
+	
 		let annots = [];
 		let val_graph = calcul_temps(zmin,zmax,100);
 		let data = [
 			{
 				x: val_graph[0],
 				y: val_graph[1],
-				type: 'scatter',
+				
+				
 				line: {
 					simplify: false
 				},
@@ -578,10 +621,12 @@ function calcu(path) {
 			}
 		];
 		let layout = {
-			title: "<b>t(z)</b>",
+			title: plot_title,
 			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 
 			xaxis: {
+
+				type : plot_type,
 				autorange: true,
 				title: 'z',
 				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
@@ -589,6 +634,7 @@ function calcu(path) {
 			},
 
 			yaxis: {
+				type : "scatter",
 				autorange: true,
 				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
 				showline: true
@@ -602,10 +648,27 @@ function calcu(path) {
 
 			annotations: annots,
 		};
-		graphique_creation("graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
+		if(t_checkbox.checked) {
+			graphique_creation("graphique_log_t", ['graphique_log_t', data, layout, {displaylogo: false}]);
+		}
+		else{
+			graphique_creation("graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
+		}
+		
 	} else if(path == 4 && modele==0) {
-		// Distances' charts in function of t
-		document.getElementById("graph_container_d_t").style.display = "contents"; //display graph
+		// Distance's charts d in function of t
+		d_checkbox = document.getElementById("d_checkbox");
+		if(d_checkbox.checked) {
+			document.getElementById("graph_container_log_d_t").style.display = "contents"; //display graph
+			plot_title = "Echelle log d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			plot_type = 'log'
+		}
+		else{
+			document.getElementById("graph_container_d_t").style.display = "contents"; //display graph
+			plot_title = "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
+			plot_type = 'scatter'
+		}
+	
 		var val_abscissa = calcul_temps(zmin, zmax, 100);
 		let val_graph = calculDeDs(zmin, zmax, 100);
 		let annots = [];
@@ -613,34 +676,31 @@ function calcu(path) {
 			{
 				x: val_abscissa[1],
 				y: val_graph[1],
-				type: 'scatter',
 				name: '<b>d<sub>a</sub><b>'
 			},
 			{
 				x: val_abscissa[1],
 				y: val_graph[2],
-				type: 'scatter',
 				name: '<b>d<sub>m</sub><b>'
 			},
 			{
 				x: val_abscissa[1],
 				y: val_graph[0],
-				type: 'scatter',
 				name: '<b>d<sub>L</sub><b>'
 			},
 			{
 				x: val_abscissa[1],
 				y: val_graph[4],
-				type: 'scatter',
 				name: '<b>d<sub>LT</sub><b>'
 			}
 		];
 		let layout = {
-			title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
+			title: plot_title,
 			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 			
 			xaxis: {
 				autorange: true,
+				type : plot_type,
 				title: 't',
 				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 				showline: true
@@ -649,16 +709,35 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
+				type : "scatter",
 				title: 'al',
 				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
 		};
-		graphique_creation("graphique_dt", ['graphique_dt', data, layout, {displaylogo: false}]);
+
+		if(d_checkbox.checked) {
+			graphique_creation("graphique_log_d_t", ['graphique_log_d_t', data, layout, {displaylogo: false}]);
+		}
+		else{
+			graphique_creation("graphique_d_t", ['graphique_d_t', data, layout, {displaylogo: false}]);
+		}
+		
 	} else if(path == 5 && modele==0) {
-		// Omegas' charts in function of t
-		document.getElementById("graph_container_omega_t").style.display = "contents"; //display graph
+		// Omega's charts in function of t
+		omega_checkbox = document.getElementById("omega_checkbox");
+		if(omega_checkbox.checked) {
+			document.getElementById("graph_container_log_omega_t").style.display = "contents"; //display graph
+			plot_title = "Echelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_type = 'log'
+		}
+		else{
+			document.getElementById("graph_container_omega_t").style.display = "contents"; //display graph
+			plot_title = "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_type = 'scatter'
+		}
+	
 		var val_abscissa = calcul_temps(zmin, zmax, 500);
 		let val_graph = calcul_omegas(zmin, zmax, 500);
 		let annots = [];
@@ -666,34 +745,31 @@ function calcu(path) {
 			{
 				x: val_abscissa[1],
 				y: val_graph[0],
-				type: 'scatter',
 				name: '<b>Ω<sub>m</sub></b>'
 			},
 			{
 				x: val_abscissa[1],
 				y: val_graph[1],
-				type: 'scatter',
 				name: '<b>Ω<sub>Λ</sub></b>'
 			},
 			{
 				x: val_abscissa[1],
 				y: val_graph[2],
-				type: 'scatter',
 				name: '<b>Ω<sub>r</sub></b>'
 			},
 			{
 				x: val_abscissa[1],
 				y: val_graph[3],
-				type: 'scatter',
 				name: '<b>Ω<sub>k</sub></b>'
 			}
 		];
 		let layout = {
-			title: "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>",
+			title: plot_title,
 			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 	
 			xaxis: {
 				autorange: true,
+				type : plot_type,
 				title: 't',
 				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
 				showline: true
@@ -702,12 +778,21 @@ function calcu(path) {
 			yaxis: {
 				rangemode: 'tozero',
 				autorange: true,
-				title: '',
+				type : "scatter",
+				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
+				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
 		};
-		graphique_creation("graphique_omegat", ['graphique_omegat', data, layout, {displaylogo: false}]);
+
+		if(omega_checkbox.checked) {
+			graphique_creation("graphique_log_omega_t", ['graphique_log_omega_t', data, layout, {displaylogo: false}]);
+		}
+		else{
+			graphique_creation("graphique_omega_t", ['graphique_omega_t', data, layout, {displaylogo: false}]);
+		}
+		
 	}
 
 	stop_spin();
@@ -860,7 +945,7 @@ function calcul_omegas(zmin,zmax,dt){
 		omArr.push(Omz);
 
 		Olz = Number(omegalambda0) / fonction_E(Number(i), omegam0, Number(omegalambda0), Or);
-		Olz = Olz.toExponential(4);
+		Olz = Olz.toExponential(4);	
 		olArr.push(Olz);
 
 		Orz = Or * Math.pow(1 + Number(i), 4) / fonction_E(Number(i), omegam0, Number(omegalambda0), Or);
@@ -936,7 +1021,6 @@ function graphique_creation(id_document, params_to_plotly){
 	}
 
 	window.document.getElementById(id_document).style.height = hei + "px";
-	
 	var img_png = d3.select('#png');
 	var img_jpg = d3.select('#jpg');
 	var img_svg = d3.select('#svg-1');
@@ -955,26 +1039,13 @@ function graphique_creation(id_document, params_to_plotly){
         img_jpg.attr("href", url);
         return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
           format: 'jpeg'
-        })
-      }).then(function(url) {
-        img_jpg.attr("href", url);
-        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
-          format: 'jpeg'
-        })
+        })  
       }).then(function(url) {
         img_svg.attr("href", url);
         return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
           format: 'svg'
-        })
-      })
-      .then(function(url) {
-        img_svg.attr("href", url);
-        return Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3], {
-          format: 'svg'
-        })
-		
+        })		
       });
-		
 }
 
 function enre() {
@@ -990,6 +1061,7 @@ function enre() {
 		svg.click();
 	}
 }
+
 
 function onlyOne(checkbox) {
 	var checkboxes = document.getElementsByName('z');
