@@ -1111,14 +1111,17 @@ function graphique_creation(id_document, params_to_plotly){
 	
 }
 
+
+
+
 function enre(format, graph) {
-	if (format.options[0].selected) {
-		Plotly.downloadImage(graph, {format: 'png', width: 1500, height: 500, filename: 'Graphique'});
-	} else if (format.options[1].selected) {
-		Plotly.downloadImage(graph, {format: 'jpeg', width: 1500, height: 500, filename: 'Graphique'});
-	} else {
-		Plotly.downloadImage(graph, {format: 'svg', width: 1500, height: 500, filename: 'Graphique'});
-	}
+if (format.options[0].selected) {
+	Plotly.downloadImage(graph, {format: 'png', width: 1500, height: 500, filename: 'Graphique'});
+} else if (format.options[1].selected) {
+	Plotly.downloadImage(graph, {format: 'jpeg', width: 1500, height: 500, filename: 'Graphique'});
+} else {
+	Plotly.downloadImage(graph, {format: 'svg', width: 1500, height: 500, filename: 'Graphique'});
+}
 }
 
 function onlyOne(checkbox) {
