@@ -1107,12 +1107,11 @@ function graphique_creation(id_document, params_to_plotly){
 
 	window.document.getElementById(id_document).style.height = hei + "px";
 
-	var img_png = d3.select('#png');
-	var img_jpg = d3.select('#jpg');
-	var img_svg = d3.select('#svg-1');
+	var img_png = d3.select('#png' + '_' + id_document);
+	var img_jpg = d3.select('#jpg' + '_' + id_document);
+	var img_svg = d3.select('#svg-1' + '_' + id_document);
 	
 	Plotly.newPlot(params_to_plotly[0], params_to_plotly[1], params_to_plotly[2], params_to_plotly[3]);
-
 	Plotly.toImage(params_to_plotly[0],params_to_plotly[1], params_to_plotly[2], params_to_plotly[3])
       .then(function(url) {
         img_png.attr("href", url);
@@ -1130,20 +1129,15 @@ function graphique_creation(id_document, params_to_plotly){
           format: 'svg'
         })		
       });
-
 }
 
-function enre() {
-	format = document.getElementById("format_enr");
-	png = document.getElementById("png");
-	jpg = document.getElementById("jpg");
-	svg = document.getElementById("svg-1");
+function enre(format, graph) {
 	if (format.options[0].selected) {
-		png.click();
+		Plotly.downloadImage(graph, {format: 'png', filename: 'Graphique'});
 	} else if (format.options[1].selected) {
-		jpg.click();
+		Plotly.downloadImage(graph, {format: 'jpeg', filename: 'Graphique'});
 	} else {
-		svg.click();
+		Plotly.downloadImage(graph, {format: 'svg', filename: 'Graphique'});
 	}
 }
 

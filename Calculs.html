@@ -665,18 +665,23 @@
 						
 						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
 					
-						<select id="format_enr">
+						<select id="format_enr_d_z">
 							<option selected>png</option>
 							<option>jpg</option>
 							<option>svg</option>
 						</select>&nbsp;
-						<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
+						<input class="myButton" id="button_enregistrer_d_z" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_d_z');
+							enre(format, 'graphique_d_z');"
+							value="Enregistrer">
+						</input>
 					</div>
-						
-						<a id="png" download="Graphique.png" style="display:none"></a>
-						<a id="jpg"  download="Graphique.jpg" style="display:none"></a>
-						<a id="svg-1"  download="Graphique.svg" style="display:none"></a>
-						<a id="ret" href="#nav" style="display:none;"></a>
+					
+<!--					<a id="png_graphique_d_z" download="Graphique.png" style="display:none"></a>
+					<a id="jpg_graphique_d_z"  download="Graphique.jpg" style="display:none"></a>
+					<a id="svg-1_graphique_d_z"  download="Graphique.svg" style="display:none"></a>
+					<a id="ret" href="#nav" style="display:none;"></a>-->
 			</div>
 		</div>
 
