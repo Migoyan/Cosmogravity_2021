@@ -109,9 +109,9 @@
 		"tracer_d_t":"Plot d<sub>i</sub>(t)",
 		"tracer_omega_t":"Plot &Omega;<sub>i</sub>(t)",
 		"GenerateurG":"Graph Generator:",
-		"echelle_log_d" :"log plot",
-		"echelle_log_omega" :"log plot",
-		"echelle_log_t" :"log plot",
+		"echelle_log_d" :"Log plot",
+		"echelle_log_omega" :"Log plot",
+		"echelle_log_t" :"Log plot",
 		"zmin":"z<sub>min</sub>",
 		"zmax":"z<sub>max</sub>"
 	},
