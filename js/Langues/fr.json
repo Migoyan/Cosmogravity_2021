@@ -1,3 +1,4 @@
+
 {
 	"page_index":{
 		"version": "<strong>Version Beta</strong> 1.1 (01/02/2021)",
@@ -201,19 +202,21 @@
 		"labelgp":"Afficher le graphe du potentiel",
 		"vrarret":"0",
 		"vphiarret":"0",
+		"v_total":"Vitesse (m/s)",
 		"vphikerrarret":"Infinity",
 		"vitesseurlabelt":"dr/dt initial ",
 		"vitesseuphilabelt":"r.(d&phi;/dt) initial ", 
-		"vitesseurt":"dr/dt",
+		"vitesseurt":"Vitesse Radial",
+		"vitesseuphi":"Vitesse tangentielle",
 		"vitesseuphit":"r.(d&phi;/dt)",
-		"vitesseurlabeltau":"dr/d&tau; initial ",
-		"vitesseuphilabeltau":"r.(d&phi;/d&tau;) initial ",
-		"vitesseurtau":"dr/d&tau;",
-		"vitesseuphitau":"r.(d&phi;/d&tau;)",
+		"vitesseurlabeld":"Vitesse initial ",
+		"vitesseuphilabeltau":"Angle de départ de la vitesse  ",
+		"vitesseurtau":"Vitesse radial;",
+		"vitesseuphitau":"Vitesse tangentielle",
 		"vitesseurlabellambda":"dr/d&lambda; initial",
 		"vitesseuphilabellambda":"r.(d&phi;/d&lambda;) initial",
-		"vitesseurlambda":"dr/d&lambda;",
-		"vitesseuphilambda":"r.(d&phi;/d&lambda;)",
+		"vitesseurlambda":"Vitesse radial;",
+		"vitesseuphilambda":"Vitesse tangentielle",
 		"calcul_termine":"<b>Calculs terminés</b>",
 		"calcul_encours":"<b>Calculs en cours</b>",
 		"calcul_enpause":"<b>Calculs en pause</b>",
@@ -258,7 +261,9 @@
 		"temps_obs":"Temps observateur distant",
 		"decal_spect":"Décalage spectral", 
 		"r0egale0": "r0 est  positif",
-		"commandes_horsSchwarMassif":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z\n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c"
+		"commandes_horsSchwarMassif":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z\n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c",
+		"theta_label":"Angle de départ de la vitesse",
+		"philabel":"Angle de départ"
 	},
 
 	"page_trajectoire_massive":{
@@ -300,3 +305,4 @@
 		"moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
 	}
 }
+
