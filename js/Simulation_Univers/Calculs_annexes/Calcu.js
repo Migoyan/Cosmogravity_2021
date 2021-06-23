@@ -1020,9 +1020,7 @@ function graphique_creation(id_document, params_to_plotly){
 		var hei = wid * 2 / 3;
 	}
 
-	//window.document.getElementById(id_document).style.height = hei + "px";
-	window.document.getElementById(id_document).style.clientHeight = hei;
-
+	window.document.getElementById(id_document).style.height = hei + "px";
 	var img_png = d3.select('#png');
 	var img_jpg = d3.select('#jpg');
 	var img_svg = d3.select('#svg-1');
@@ -1048,7 +1046,6 @@ function graphique_creation(id_document, params_to_plotly){
           format: 'svg'
         })		
       });
-
 }
 
 function enre() {
