@@ -303,8 +303,8 @@ function genereHtml(){
 						<th class="tg-aicv">r(m)</th>
 						<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
 						<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
-						<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-						<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+						<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+						<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 						<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
 						<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
 						<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`;
@@ -394,23 +394,13 @@ function initialisation(compteur){
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
 
+	if(v0>c){
+		alert("V0 supérieur à c");
+		return;
+	}
 	E=Math.sqrt(1-rs/r0)/Math.sqrt(1-v0**2/c**2);
-
 	vphi=Math.sin(teta)*v0*E/Math.sqrt(1-rs/r0);
 	vr=Math.cos(teta)*v0*E;
-	
-	//pour l'affichage sur le graph avec les condition initiale
-	if (compteur==1){
-		vphiblab=vphi;
-		vrblab=vr;
-	}
-	if(compteur==2){
-		vphi2i = vphi;
-		vr2i = vr;
-	}
-
-	//alert(teta);
-
 	L = vphi * r0 / c;
 
 	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
@@ -426,7 +416,6 @@ function initialisation(compteur){
 	mobile["onestarrete"]=0;
 	mobile["peuxonrelancer"]=true;
 
-
  /* Calcul de rmax */
   	if( (E>0.99999 & E<1.00001) && (L >= 2*rs || L <=-2*rs ) ){ 
 		rmax=1.1*r0;
@@ -438,14 +427,10 @@ function initialisation(compteur){
 	}   
 
 	mobile["rmax"]=rmax; //mobile.rmax
-
 	mobile["blups"]=0;
-
 	rmaxjson[compteur]=rmax;
-
 	mobilefactor[compteur]=scale_factor;
 	r0o2[compteur] = r0;
-
 	mobile["pause"]=true; //mobile.pause
 	mobile["debut"]=true; //mobile.debut
 	
@@ -455,8 +440,7 @@ function initialisation(compteur){
 	mobile["green"]=couleurs[1];
 	mobile["blue"]=couleurs[2];
 
-
-  //calcul de grav
+  	//calcul de grav
   	g=(G*M)/(Math.pow(r_phy,2)*9.81);
 	if(r_phy==0){
 		document.getElementById("g").innerHTML=" ";
@@ -464,6 +448,16 @@ function initialisation(compteur){
 	else{
 		document.getElementById("g").innerHTML=g.toExponential(2);
 	}
+	//pour l'affichage sur le graph avec les condition initiale
+	if (compteur==1){
+		vphiblab=vphi;
+		vrblab=vr;
+	}
+	if(compteur==2){
+		vphi2i = vphi;
+		vr2i = vr;
+	}
+	
 	return mobile;
 }  // fin fonction initialisation
 
@@ -874,17 +868,19 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile.r_part_obs = val_obs[0];
 			if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
 			mobile.A_part_obs = val_obs[1];
-			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); /// voir fichier fonctions.js
+
+			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false);        /// voir fichier fonctions.js
 			vtotal=resultat[0];
 			vr_1_obs=resultat[1];
-			if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
 			vp_1_obs=resultat[2]; 
+
+			if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
 			if(mobile.r_part_obs<rs*1.0001) { vp_1_obs=0;}
+
 			varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
 			mobile.phi_obs=mobile.phi_obs+varphi_obs;
 			mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
-			mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);																			 
-	
+			mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);
 		}
 		else{
 			val = rungekutta(mobile.L,mobile.dtau, mobile.r_part, mobile.A_part);
@@ -937,9 +933,7 @@ function animate(compteur,mobile,mobilefactor) {
 		mobile["context22"].lineWidth = "1";
 		mobile["context22"].fill();
 	}
-    
-
-      // Gestion du rebond
+    // Gestion du rebond
 
 	if(element2.value != "mobile"){
 		if (mobile.r_part_obs <= r_phy ) {
@@ -1113,7 +1107,7 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
 			document.getElementById("r_par"+compteur.toString()).innerHTML = mobile.r_part_obs.toExponential(3);
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = (vr_1_obs).toExponential(3);
-		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);	
+		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
 			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);	
         }
 	}
@@ -1282,37 +1276,37 @@ function pausee(compteur,mobile,mobilefactor) {
 // permet de gérer les touches du clavier pour certaines actions
 function clavierEvenement() {
   	$(document).keyup(function(event) { // the event variable contains the key pressed
-    if (event.which == 65) { // touche a
-    	$('#r1').click();
-    }
-    if (event.which == 90) { // touche z
-    	$('#r2').click();
-    }
-    if (event.which == 69) { // touche e
-    	$('#rebondd').click();
-    }
-    if (event.which == 81) { // touche q
-    	$('#start').click();
-    }
-    if (event.which == 83) { // touche s
-    	$('#clear').click();
-    }
-    if (event.which == 68) { // touche d
-    	$('#boutton_enregis').click();
-    }
-    if (event.which == 70) { // touche f
-    	$('#boutton_recup').click();
-    }
-    if (event.which == 87) { // touche w
-    	$('#moinsvite').click();
-    }
-    if (event.which == 88) { // touche x
-    	$('#pau').click();
-    }
-    if (event.which == 67) { // touche c
-    	$('#plusvi').click();
-    }
-  });
+		if (event.which == 65) { // touche a
+			$('#r1').click();
+		}
+		if (event.which == 90) { // touche z
+			$('#r2').click();
+		}
+		if (event.which == 69) { // touche e
+			$('#rebondd').click();
+		}
+		if (event.which == 81) { // touche q
+			$('#start').click();
+		}
+		if (event.which == 83) { // touche s
+			$('#clear').click();
+		}
+		if (event.which == 68) { // touche d
+			$('#boutton_enregis').click();
+		}
+		if (event.which == 70) { // touche f
+			$('#boutton_recup').click();
+		}
+		if (event.which == 87) { // touche w
+			$('#moinsvite').click();
+		}
+		if (event.which == 88) { // touche x
+			$('#pau').click();
+		}
+		if (event.which == 67) { // touche c
+			$('#plusvi').click();
+		}
+  	});
 }
 
 function rafraichir2(context,mobilefactor,rmaxjson,r0ou2,compteur) {
@@ -1414,7 +1408,6 @@ function majFondFixe44(mobile){
 	//console.log(canvas.width, canvas.height);
 }
 
-
 function majFondFixe22(){
 	context22.clearRect(0, 0, canvas.width, canvas.height);
 	//console.log(canvas.width, canvas.height);
@@ -1457,18 +1450,20 @@ function test_inte() {
 	if (r_phy < 0 || onebol) {
 		alert(texte.pages_trajectoire.rayon_neg);
 		arret();
-	} else if (r_phy <= rs && r_phy!=0)   {
+	} 
+	else if (r_phy <= rs && r_phy!=0)   {
 		alert(texte.pages_trajectoire.rayonPhyInfHorz);
 		arret();
-	} else if (twobol) {
+	} 
+	else if (twobol) {
 		alert(texte.pages_trajectoire.rayonHorzInfRayonSchw);
 		arret();
-	} else if(threebol){
+	} 
+	else if(threebol){
 		alert(texte.pages_trajectoire.lancerInterdit);
 		arret();
 	}
 }
-
 
 // crée les différentes couches visuelles
 function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
@@ -1517,7 +1512,6 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
 		context.stroke();
 	}
 	context.fillStyle = 'white';
-
 
 // Ajout d'un fond blanc pour l'exportation
 	context.font = "15pt bold";

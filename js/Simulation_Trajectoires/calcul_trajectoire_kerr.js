@@ -65,12 +65,13 @@ function initialisation(){
 	teta = Number(document.getElementById("teta").value);
 	phi0=Number(document.getElementById("phi0").value);
 	phi0=phi0*Math.PI/180;
-	
+	if(v0>c){
+		alert("V0 supérieur à c");
+		return;
+	}
+
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
 	rs = 2 * m;
-	if (r0 <= rs){
-		alert("r0 inférieur à rs");
-	}
 	a = J / (c * M);
 	E=c*Math.sqrt((r0-rs)/(r0*(c**2-v0**2)));
 	L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(teta*Math.PI/180)*Math.sqrt(r0*delta(r0)))/Math.sqrt((c**2-v0**2)*(r0-rs));
@@ -81,9 +82,6 @@ function initialisation(){
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
     rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
-	/*E = Math.sqrt((1 / (r0 * r0 * delta(r0)))*(Math.pow(vr / c, 2) * (r0 - rs) * Math.pow(r0, 3) +
-    	r0 * (r0 - rs)*delta(r0) + Math.pow(delta(r0) * vphi / c, 2)));
-	L = ((delta(r0) * vphi / c) - rs * a * E) / (r0 - rs);*/
 
 	textegravetetc_Kerr();						   
 	document.getElementById("a").innerHTML = a.toExponential(3);
@@ -106,7 +104,11 @@ function initialisation(){
 	else { 
 		calcul_rmax(); 
 		if(rmax<r0) {rmax=r0 ;}
-	}   
+	} 
+	if (r0 <= rs){
+		alert("r0 inférieur à rs");
+		return;
+	} 
 
 }  // fin fonction initialisation
 

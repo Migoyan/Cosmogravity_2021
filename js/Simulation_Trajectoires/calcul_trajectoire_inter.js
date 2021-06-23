@@ -52,7 +52,6 @@ function testvaleur(x) {
 	return x ;
 }
 
-
 //genere couleur aleatoirement
 function generateurCouleur(){
 	redd=Math.floor(Math.random() * 255); 
@@ -88,8 +87,6 @@ function lancerDeFusees(fuseecompteur){
 	}
 
 }
-
-
 
 function supprHtml(){
 	var nbrfuseesuppr = sessionStorage.getItem("nombredefusees");
@@ -129,7 +126,6 @@ function supprHtml(){
 	elementcanvas3asuppr.parentNode.removeChild(elementcanvas3asuppr);
 
 }
-
 
 //Fonction htmlDecode écrite par Comrade Programmer#7608, ce qui résout le problème d'affichage. 
 function htmlDecode(input) {
@@ -216,7 +212,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
-			newlabel.innerHTML = htmlDecode("&phi; ")+" =";
+			newlabel.innerHTML = htmlDecode("&phi; ")+"<sub>en degrée</sub> =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -235,10 +231,10 @@ function genereHtml(){
 		divchampsr.appendChild(span);
 		if(countt==1){
 			var newlabel = document.createElement("Label");
-			newlabel.setAttribute("id","tetalabel");
+			newlabel.setAttribute("id","thetalabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta1");
-			newlabel.innerHTML = htmlDecode("&alpha;")+" =";
+			newlabel.innerHTML = htmlDecode("&alpha;")+"<sub>en degrée</sub> =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -292,8 +288,8 @@ function genereHtml(){
 					<th class="tg-aicv">r(m)</th>
 					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
 					<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
-					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
 					<th id="decal_spect`+countt.toString()+`" title="" class="tg-aicv"></th>
 					<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`
@@ -370,9 +366,6 @@ function genereHtml(){
 	 
 }
 
-
-
-
 // calcul en temps réel des E, L,...
 function initialisation(compteur){
 	c = 299792458;
@@ -381,52 +374,36 @@ function initialisation(compteur){
 	r_phy = Number(document.getElementById("r_phy").value);
 	m = G * M / Math.pow(c, 2); 
 	rs=2*m;
-
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	v0= Number(document.getElementById("v0"+compteur.toString()).value);
 	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value); //angle de départ
 	teta = Number(document.getElementById("teta"+compteur.toString()).value); // angle de la vitesse
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
-
+	if(v0>c){
+		alert("V0 supérieur à c");
+		return;
+	}
 	if(r0 > r_phy) { 
 		E = Math.sqrt(1 - rs /r0)/Math.sqrt(1-v0**2/c**2);
 		vphi=Math.sin(teta)*v0*E/Math.sqrt(1-rs/r0);
 		vr=Math.cos(teta)*v0*E;
-
 	} 
 	else{ 
-		//E = Math.sqrt(Math.pow(beta(r0)/c,2)*(Math.pow(vr,2)/alpha(r0)+Math.pow(vphi,2)+Math.pow(c,2)));
 		E=Math.sqrt(beta(r0))/Math.sqrt(1-V*2/(c**2));
 		vphi=Math.sin(teta)*v0*E/beta(r0);
 		vr=Math.cos(teta)*Math.sqrt(alpha(r0))*v0*E/beta(r0);
 		
 	}
 
-	
-
 	L = vphi * r0 / c;
-	//pour la legende du graph
-	if(compteur==1){
-		vphiblab =vphi;
-		vrblab = vr;
-	}
-	if (compteur==2){
-		vphi2i = vphi;
-		vr2i =vr2;
-	}
-
-	
-
-
 
 	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
-	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
-	
+	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);	
 	document.getElementById("m").innerHTML = rs.toExponential(3);
 
 	scale_factor = Number(document.getElementById("scalefactor").value);
-	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E,phi0:phi0 }; 
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E , phi0:phi0 }; 
 	
 	mobile["pointsvg"]="pointg"+compteur.toString();
 	mobile["graphesvg"]="#grsvg_"+compteur.toString();
@@ -436,8 +413,7 @@ function initialisation(compteur){
 
  /* Calcul de rmax */
 	if( (E>0.99999 & E<1.00001) && (L >= 2*rs || L <=-2*rs ) ){ 
-		rmax=1.1*r0;  //rmax= 1/(2*rs)*(Math.pow(L,2)+ L*Math.sqrt(Math.pow(L,2)-4*Math.pow(rs,2)));
-		//if(rmax<r0) {rmax=2*r0;} 
+		rmax=1.1*r0;
 	} 
 	else if (E==1 && L==0) {rmax=2*r0;} 
 	else {
@@ -474,11 +450,17 @@ function initialisation(compteur){
 	else{
 		document.getElementById("g").innerHTML=g.toExponential(2);
 	}
-
+	//pour la legende du graph
+	if(compteur==1){
+		vphiblab =vphi;
+		vrblab = vr;
+	}
+	if (compteur==2){
+		vphi2i = vphi;
+		vr2i =vr2;
+	}
   	return mobile;
 }  // fin fonction initialisation
-
-
 
 
 function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs ne sont pas donnée dans l'une des cases
@@ -506,7 +488,6 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 		}
 	}
 
-
 	if (onebolean){
 		alert ("Veuillez vérifier vos saisie en r0");}
 
@@ -520,12 +501,10 @@ function verifnbr() {//fonction qui affiche un message d'erreur si des valeurs n
 		alert ("Veuillez vérifier vos saisie en r physique");
 	}
 	if (isNaN(M)){
-		alert ("Veuillez vérifier vos saisie en M");
-																	
+		alert ("Veuillez vérifier vos saisie en M");													
 	}
   
 }
-	  
 
 // première étape qui lance la partie calculatoire
 function trajectoire(compteur,mobile) {
@@ -594,33 +573,30 @@ function trajectoire(compteur,mobile) {
 			}
 		}
 	
-	
 	if (nbredefusees>=2) {
-			if(ifUneFois){			
-				maximum=0;
-				cle=0;
-				for (key = 1; key <= nbredefusees; key += 1) {
-					if(r0o2[key]>=maximum){
-						maximum=r0o2[key];
-						cle=key;
-					}
+		if(ifUneFois){			
+			maximum=0;
+			cle=0;
+			for (key = 1; key <= nbredefusees; key += 1) {
+				if(r0o2[key]>=maximum){
+					maximum=r0o2[key];
+					cle=key;
 				}
-				//console.log("compteur",compteur);
-				for (key = 1; key <= nbredefusees; key += 1) {
-					if(key!=cle){
-						mobilefactor[key]=mobilefactor[cle]*(r0o2[key]/r0o2[cle]);
-					}
-				}
-				ifUneFois=false;
 			}
+			//console.log("compteur",compteur);
+			for (key = 1; key <= nbredefusees; key += 1) {
+				if(key!=cle){
+					mobilefactor[key]=mobilefactor[cle]*(r0o2[key]/r0o2[cle]);
+				}
+			}
+			ifUneFois=false;
 		}
+	}
 
-		A_part = A_init;
-		mobile["A_part"]=A_part; //mobile.A_part
-		r_part = r_init;
-		mobile["r_part"]=r_part; //mobile.r_part
-
-
+	A_part = A_init;
+	mobile["A_part"]=A_part; //mobile.A_part
+	r_part = r_init;
+	mobile["r_part"]=r_part; //mobile.r_part
 
 		if(mobile.r0 > r_phy){	
 			r_init_obs = mobile.r0; 
@@ -663,7 +639,6 @@ function trajectoire(compteur,mobile) {
 		mobile.dtau /= 8;     
 
 		if(mobile.dtau>mobile.temps_chute_libre/500.){mobile.dtau= mobile.temps_chute_libre/500.;} 
-	
 
 		// Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur//
 		x1part = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi) / mobile.rmax;
@@ -684,7 +659,6 @@ function trajectoire(compteur,mobile) {
 		}
 
 		mobile["canvas22"]= document.getElementById("myCanvasBoule"+compteur.toString());
-
 
 		mobile["context22"]=mobile["canvas22"].getContext("2d");
 
@@ -723,20 +697,21 @@ function trajectoire(compteur,mobile) {
 
 	//Gestion des bouttons accélerer et decélerer
 		document.getElementById('plusvite').addEventListener('click', function() {
-		if (mobile.dtau >= mobile.Dtau1) {
-			mobile.dtau = mobile.Dtau1;
-		} else {
-			mobile.dtau += mobile.dtau;
-			clicks += 1;
-		}
+			if (mobile.dtau >= mobile.Dtau1) {
+				mobile.dtau = mobile.Dtau1;
+			} else {
+				mobile.dtau += mobile.dtau;
+				clicks += 1;
+			}
 		}, false);
 
 		document.getElementById('moinsvite').addEventListener('click', function() {
-		if (mobile.dtau <= mobile.Dtau2) {
-			mobile.dtau = mobile.Dtau2;
-		} else {
-			mobile.dtau /= 2;
-			clicks-=1; }
+			if (mobile.dtau <= mobile.Dtau2) {
+				mobile.dtau = mobile.Dtau2;
+			} 
+			else {
+				mobile.dtau /= 2;
+				clicks-=1; }
 		}, false);
 
 		document.getElementById('enregistrer2').addEventListener('click', function() {
@@ -765,9 +740,6 @@ function trajectoire(compteur,mobile) {
 			mobilefactor=retour[1]; 
 			majFondFixe44(mobile);      
 			rafraichir2(context,mobilefactor,rmaxjson,maximum,compteur);
-			
-		
-
 		}, false);
 
 		document.getElementById('pluszoom').addEventListener('click', function() {       
@@ -809,7 +781,6 @@ function trajectoire(compteur,mobile) {
 			CentrerPopPotentiel();
 		}
 
-
 		//Ici le bout de code pour le bouton Reset, quand on clique dessus, la fonction appelé efface le canvas en entier.
 		document.getElementById('clear').addEventListener('click', function() {
 			rafraichir();
@@ -825,10 +796,8 @@ function trajectoire(compteur,mobile) {
 		data1=[];
 		data2=[];
 
-
 		if(mobile.rmax < r_phy) {borne=r_phy;}else{borne=mobile.rmax;}
 		mobile["borne"]=borne;
-		
 		
 		if (element2.value != "mobile"){	 
 			for (r = rs/2; r < mobile.borne; r += mobile.dr) {
@@ -848,7 +817,6 @@ function trajectoire(compteur,mobile) {
 			data2.push({date: mobile.r0,close: V}); 
 			mobile.point = graphique_creation_pot(0,data1,data2,compteur,mobile);
 		}
-
 
 		window.addEventListener('resize', function() {
 			//console.log(compteur,"on a resize hay");
@@ -931,7 +899,7 @@ function animate(compteur,mobile,mobilefactor) {
 			vp_1=resultat[2];  
 		}
 	}
-	else{      // observateur
+	else{ // observateur
 
 		if(mobile.r_part_obs > r_phy) {
 			
@@ -1118,8 +1086,7 @@ function animate(compteur,mobile,mobilefactor) {
 		}
 
 	//  Gestion de la diode gradient accélération
-
-
+	
 		if (element2.value == "mobile"){							 
 			if (Number(fm) <= 1) {
 				document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";

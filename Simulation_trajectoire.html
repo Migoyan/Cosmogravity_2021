@@ -141,86 +141,83 @@ ga('send', 'pageview');
 <div id="corps">
 
 
-<div id="Bloc_Textee">	  
-<div id="trajectoire">
-  <img onclick="avertissement_trajectoire();" src="Images/warning.png" class="bouton_avertissement">
-  <span id="txt_trajectoire"></span>
-  <br/>
-  <span id="txt_avertissement_trajectoire"></span>
-</div>
-</div>
+	<div id="Bloc_Textee">	  
+		<div id="trajectoire">
+			<img onclick="avertissement_trajectoire();" src="Images/warning.png" class="bouton_avertissement">
+			<span id="txt_trajectoire"></span>
+			<br/>
+			<span id="txt_avertissement_trajectoire"></span>
+		</div>
+	</div>
 
 
-<div id="formulaire">
-  <form name="params" id="parametres" action="" method="post" autocomplete="off">
-    <div id="champs_a_remplir">
-      <span id="masse">
-                    <label id="massetxt" title= ""  for="M">M (kg) =</label>
-                    <input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisationGenerale(lenbdefusees)">
-              </span>
+	<div id="formulaire">
+		<form name="params" id="parametres" action="" method="post" autocomplete="off">
+		<div id="champs_a_remplir">
 
-                    
-      <span id="rayon_phy">
-                        <label title="" for="r_phy" id="txt_rphysique"></label>
-                        <input id="r_phy" value="0" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)">
-                    </span>
+		<span id="masse">
+			<label id="massetxt" title= ""  for="M">M (kg) =</label>
+			<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisationGenerale(lenbdefusees)">
+		</span>
 
+		<span id="rayon_phy">
+			<label title="" for="r_phy" id="txt_rphysique"></label>
+			<input id="r_phy" value="0" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)">
+		</span>
 
+		</div>
 
+		<div>
+			<label id="labelnumberfusees" for="nombredefusees"></label> 
+			<input id="nombredefusees" value="1" type="text" size="5" onchange="supprHtml();genereHtml();save_nbfusees();updatenbredefusees();">
+			<span id="case">
+			<label   id="labelgp" for="vr"></label>
+			<input id="toggle" type="checkbox"  checked>
+			</span>
+		</div>
 
-    </div>
+		<div id="radio_button">
+			<button id="r1" type="button" name="traj" class="myButton" value="complete" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireComplete()"></button>
+			<button id="r2" type="button" name="traj2" class="myButton2" value="simple" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireSimple()"></button>
+			<button id="r3" type="button" name="observateur" class="myButton" title="" value="observateur" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonObservateur();notationvitesseree2()"></button>
+			<button id="r4" type="button" name="mobile" class="myButton2" value="mobile" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonMobile();notationvitesseree2()"></button>  
 
+			<span id="sp_reb">
+			</span>
+			<button id="rebondd" type="button" name="reb" class="myButton2" onclick="ammort();changerBouttonRebond()"></button>
+		</div>
 
-  <div><label id="labelnumberfusees" for="nombredefusees"></label> 
-    <input id="nombredefusees" value="1" type="text" size="5" onchange="supprHtml();genereHtml();save_nbfusees();updatenbredefusees();">
-                    <span id="case">
-<label   id="labelgp" for="vr"></label>
-<input id="toggle" type="checkbox"  checked>
-</span>
-</div>
+		<div class="wraper" id="barre_reb">
+		<span id="amortissement"></span>
 
+		<input id="vl" maxlength="6" type="text" size="4" value=" 300 m/s" ></input>  &nbsp;&nbsp;
 
-    <div id="radio_button">
-      <button id="r1" type="button" name="traj" class="myButton" value="complete" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireComplete()"></button>
-      <button id="r2" type="button" name="traj2" class="myButton2" value="simple" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireSimple()"></button>
-      <button id="r3" type="button" name="observateur" class="myButton" title="" value="observateur" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonObservateur();notationvitesseree2()"></button>
-      <button id="r4" type="button" name="mobile" class="myButton2" value="mobile" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonMobile();notationvitesseree2()"></button>  
-  
-      <span id="sp_reb">
-              </span>
-      <button id="rebondd" type="button" name="reb" class="myButton2" onclick="ammort();changerBouttonRebond()"></button>
-    </div>
+		<input type="range" id="reb" max="100" min="0" value="0" name="rebond" oninput="ammortUpdate(value)" />&nbsp;
+		<span for="reb" id="ammorti"></span>
+		<!--	  <label> Le rebond est limité à une vitesse d'impact de </label> -->
 
-    <div class="wraper" id="barre_reb">
-      <span id="amortissement"></span>
-  
-  <input id="vl" maxlength="6" type="text" size="4" value=" 300 m/s" ></input>  &nbsp;&nbsp;
-  
-  <input type="range" id="reb" max="100" min="0" value="0" name="rebond" oninput="ammortUpdate(value)" />&nbsp;
-      <span for="reb" id="ammorti"></span>
-<!--	  <label> Le rebond est limité à une vitesse d'impact de </label> -->
-      
-      </div>
+		</div>
 
-    <div id="boutons_actions">
-      <span id="buts">
-                  <button type="button" class="myButton" id="start" onclick="test_inte();save_nbfusees_recupvaleurs();save_schwarshild_massif(lenbdefusees);lancerDeFusees(lenbdefusees);"></button>
-          </span>
-      <span id="bouton">
-                  <button type="button" id="clear" class="myButton" onclick="save_nbfusees_recupvaleurs();save_schwarshild_massif(lenbdefusees);rafraichir();"></button>
-          </span>
-      <span id="enregistrer">
-                <button id="boutton_enregis" type="button" class="myButton" onclick="enregistrer();"></button>
-            </span>
-      <span id="recup">
-              <button id="boutton_recup" type="button" class="myButton" onclick="load_schwarshild_massif();initialisationGenerale(lenbdefusees);"></button>
-          </span>
-      <span id="rrrrrrrrrrr">
-                  <button type="button" class="myButton" id="ouvreengrand" onclick="ouvre_trajEnGrand();"></button>
-          </span>          
-    </div>
+		<div id="boutons_actions">
+		<span id="buts">
+		<button type="button" class="myButton" id="start" onclick="test_inte();save_nbfusees_recupvaleurs();save_schwarshild_massif(lenbdefusees);lancerDeFusees(lenbdefusees);"></button>
+		</span>
+		<span id="bouton">
+		<button type="button" id="clear" class="myButton" onclick="save_nbfusees_recupvaleurs();save_schwarshild_massif(lenbdefusees);rafraichir();"></button>
+		</span>
+		<span id="enregistrer">
+		<button id="boutton_enregis" type="button" class="myButton" onclick="enregistrer();"></button>
+		</span>
+		<span id="recup">
+		<button id="boutton_recup" type="button" class="myButton" onclick="load_schwarshild_massif();initialisationGenerale(lenbdefusees);"></button>
+		</span>
+		<!--<span id="rrrrrrrrrrr">
+			Boutton pour basculer sur les pages en grand plus nésaire mais conserver au cas ou
+		<button type="button" class="myButton" id="ouvreengrand" onclick="ouvre_trajEnGrand();"></button>
+		</span>-->          
+		</div>
 
-  </form>
+		</form>
 </div>
 
 <!-- Table Resultats -->

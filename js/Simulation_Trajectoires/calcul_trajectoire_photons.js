@@ -165,7 +165,7 @@ function genereHtml(){
 		divchampsr.appendChild(span);
 		if(countt==1){
 			var newlabel = document.createElement("Label");
-			newlabel.setAttribute("id","vitesseuphilabel");
+			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
 			newlabel.innerHTML = htmlDecode("&phi;")+"<sub>en degrés</sup> =";
@@ -191,7 +191,7 @@ function genereHtml(){
 		divchampsr.appendChild(span);
 		if(countt==1){
 			var newlabel = document.createElement("Label"); 
-			newlabel.setAttribute("id","vitesseurlabel");
+			newlabel.setAttribute("id","thetalabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta1");
 			newlabel.innerHTML = htmlDecode("&alpha;")+"<sub>en degrés</sup> =";
@@ -252,8 +252,8 @@ function genereHtml(){
 					<th class="tg-aicv">r(m)</th>
 					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
 					<th id="acceleration`+countt.toString()+`" title="" class="tg-6l4m"></th>
-					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
-					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
 					<th id="v_total`+countt.toString()+`" class="tg-aicv"></th>`;
 
@@ -344,15 +344,6 @@ function initialisation(compteur){
 	vphi=Math.sin(teta)*c/Math.sqrt(1-rs/r0);
 	vr=Math.cos(teta)*c;
 
-	if (compteur==1){
-		vphiblab=vphi;
-		vrblab=vr;
-	}
-	if(compteur==2){
-		vphi2i = vphi;
-		vr2i = vr;
-	}
-
 	L = vphi * r0 / c;
 	E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0)* Math.pow(L / r0, 2));
 
@@ -391,6 +382,16 @@ function initialisation(compteur){
 	else{
 		document.getElementById("g").innerHTML=g.toExponential(2);
 	}
+
+	if (compteur==1){
+		vphiblab=vphi;
+		vrblab=vr;
+	}
+	if(compteur==2){
+		vphi2i = vphi;
+		vr2i = vr;
+	}
+
   
   	return mobile;
 }  // fin fonction initialisation

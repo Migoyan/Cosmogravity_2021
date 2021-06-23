@@ -153,53 +153,49 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 			</div>
 		</div>
 
-    <div id="formulaire">
+		<div id="formulaire">
 		<form name="params" id="parametres" action="" method="post" autocomplete="off">
 			<div id="champs_a_remplir">
-			<span id="masse">
-						<label id= "massetxt"for="M">M (kg) =</label>
-							<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
-						</span>
-						<span id="rayon">
-						<label  id="ctreastre" for="r0">r<sub>0</sub> (m) =</label>
-							<input id="r0" value="4455" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
-			</span>
-			
-			<span id="momentcinetique">
+				<span id="masse">
+					<label id= "massetxt"for="M">M (kg) =</label>
+					<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
+				</span>
+
+				<span id="rayon">
+					<label  id="ctreastre" for="r0">r<sub>0</sub> (m) =</label>
+					<input id="r0" value="4455" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
+				</span>
+				
+				<span id="momentcinetique">
 					<label id="moment"for="J">J (kg.m<sup>2</sup>.s<sup>-1</sup>)=</label>
-					<input id="J" value="0" align="left" maxlength="15" type="text" size="15" onChange="verifnbr();initialisation()">
-			</span>
+					<input id="J" value="8.5e41" align="left" maxlength="15" type="text" size="15" onChange="verifnbr();initialisation()">
+				</span>
+				
+				<span id="vitesse1">
+					<label id="philabel" title=""  for="">$\varphi$<sub>en degré</sub> =</label>
+					<input id="phi0" value="0" maxlength="15" type="text" size="15" onChange="verifnbr();initialisation()">
+				</span>
+		
+				<span id="vitesse2">
+					<label  id="thetalabel" title="" for="vr">$\alpha$ <sub>en degré</sub>=</label>
+					<input id="teta" value="90" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
+				</span>		   
+				
+				<span id="case">
+					<label  id="labelgp" for="vr"></label>
+					<input id="toggle" type="checkbox"  checked>
+				</span>     
+					
+			</div>
+
+			<div id="radio_button">
+				<button id="r1" type="button" name="traj" class="myButton" value="complete" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireComplete()"></button>
+				<button id="r2" type="button" name="traj2" class="myButton2" value="simple" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireSimple()"></button>
+				<button id="r3" type="button" name="observateur" class="myButton" value="observateur" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonObservateur();notationvitesseree1kerr();"></button>
+				<button id="r4" type="button" name="mobile" class="myButton2" value="mobile" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonMobile();notationvitesseree1kerr();"></button> 
+				
+			</div>
 			
-			<span id="vitesse1">
-			<label id="vitesseuphilabel" title=""  for="">$\varphi$ =</label>
-				<input id="phi0" value="0" maxlength="15" type="text" size="15" onChange="verifnbr();initialisation()">
-			</span>
-	
-			<span id="vitesse2">
-			<label  id="vitesseurlabel" title="" for="vr">$\alpha$ =</label>
-				<input id="teta" value="90" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
-			</span>		   
-		   
-              <span id="case">
-                  <label  id="labelgp" for="vr"></label>
-                      <input id="toggle" type="checkbox"  checked>
-            </span>     
-
-
-
-                                
-            </div>
-
-
-        <div id="radio_button">
-			<button id="r1" type="button" name="traj" class="myButton" value="complete" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireComplete()"></button>
-			<button id="r2" type="button" name="traj2" class="myButton2" value="simple" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireSimple()"></button>
-
-			<button id="r3" type="button" name="observateur" class="myButton" value="observateur" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonObservateur();notationvitesseree1kerr();"></button>
-			<button id="r4" type="button" name="mobile" class="myButton2" value="mobile" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonMobile();notationvitesseree1kerr();"></button> 
-
-			
-		</div>
 			<div id="boutons_actions">
 				<span id="buts">
 					<button type="button" class="myButton" id="start" onclick="save_kerr_photon();tests_lancement();"></button> 																																								
@@ -216,36 +212,37 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 					<button id="boutton_recup" type="button" class="myButton" onclick="load_kerr_photon();initialisation();"></button>
 				</span>
 
-				<span id="rrrrrrrrrrr">
+				<!--<span id="rrrrrrrrrrr">
+					Boutton pour basculer sur les pages en grand plus nésaire mais conserver au cas ou
 					<button type="button" class="myButton" id="ouvreengrand" onclick="ouvre_trajEnGrand();"></button>
-				</span>
+				</span>-->
 			</div>
 		</form>
 		</div>
 
 
-    <div id="tab_resultats">
-      <!-- Table Resultats -->
-    <div id="ct_tg">
-        <table class="tg" id="tg">
-			<tr>
-				<th class="tg-aicv">$L(m)$</th>
-				<th class="tg-aicv">$E$</th>
-				<th class="tg-6l4m" id="rayonschwars" >$rs=\frac{2GM}{c^{2}}(m)$</th>
-				<th class="tg-aicv" id="spin" >$a=\frac{J}{cM}(m)$</th>
-				<th class="tg-aicv" id="horizon1" >$Rh+(m)$</th>
-				<th class="tg-aicv" id="horizon2" >$Rh-(m)$</th>
-			</tr>
-			<tr>
-				<td class="tg-3ozo" id="L">0</td>
-				<td class="tg-3ozo" id="E">0</td>
-				<td class="tg-3ozo" id="m">0</td>
-				<td class="tg-3ozo" id="a">0</td>
-				<td class="tg-3ozo" id="rhp">0</td>
-				<td class="tg-3ozo" id="rhm">0</td>
-          	</tr>
-        </table>
-    </div>
+		<div id="tab_resultats">
+		<!-- Table Resultats -->
+		<div id="ct_tg">
+			<table class="tg" id="tg">
+				<tr>
+					<th class="tg-aicv">$L(m)$</th>
+					<th class="tg-aicv">$E$</th>
+					<th class="tg-6l4m" id="rayonschwars" >$rs=\frac{2GM}{c^{2}}(m)$</th>
+					<th class="tg-aicv" id="spin" >$a=\frac{J}{cM}(m)$</th>
+					<th class="tg-aicv" id="horizon1" >$Rh+(m)$</th>
+					<th class="tg-aicv" id="horizon2" >$Rh-(m)$</th>
+				</tr>
+				<tr>
+					<td class="tg-3ozo" id="L">0</td>
+					<td class="tg-3ozo" id="E">0</td>
+					<td class="tg-3ozo" id="m">0</td>
+					<td class="tg-3ozo" id="a">0</td>
+					<td class="tg-3ozo" id="rhp">0</td>
+					<td class="tg-3ozo" id="rhm">0</td>
+				</tr>
+			</table>
+		</div>
 
       	<div id="ct_tg2">
         	<table class="tg2" id="tg2">
@@ -253,8 +250,8 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 				<th class="tg-aicv">r(m)</th>
 				<th id="temps_ecoule" class="tg-aicv"></th>										   
 				<th id="acceleration" title="" class="tg-6l4m"></th>
-				<th id="vitesseur" title="" class="tg-aicv" >U<SUB>r</SUB>(m.s<sup>-1</sup>)</th>
-				<th id="vitesseuphi" title="" class="tg-aicv" >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+				<th id="vitesseur" title="" class="tg-aicv" >V<SUB>r</SUB>(m.s<sup>-1</sup>)</th>
+				<th id="vitesseuphi" title="" class="tg-aicv" >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 				<th id="temps_obs" class="tg-aicv"></th>
 				<th id="v_total" class="tg-aicv"></th>
 			</tr>
@@ -274,66 +271,66 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
 
     <!-- Tracés -->
-    <div id="bloc_resultats">
+	<div id="bloc_resultats">
 	<div class="wrapper">
 		<canvas id="myCanvas" width="750" height="750"></canvas>
 		<canvas id="myCanvas22" width="750" height="750"></canvas>
-        <canvas id="myCanvas3" width="750" height="750"></canvas>
+		<canvas id="myCanvas3" width="750" height="750"></canvas>
 	</div>
-    <div class="wrapper2">
-        <svg id="grsvg_2"></svg></div>
-    </div>
+	<div class="wrapper2">
+		<svg id="grsvg_2"></svg></div>
+	</div>
 
 
-  	</div>
+	</div>
 	<div id="panneau_mobile2">
-	  	<span id="moinszoom">
+		<span id="moinszoom">
 			<img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
-	  	</span>
-	  	<span id="initialiser">
-		 	<img id="pau1" src="Images/reset.png" class="bouton_mobile" title="Echelle par défault">
-	  	</span>
-	  	<span id="pluszoom">
+		</span>
+
+		<span id="initialiser">
+			<img id="pau1" src="Images/reset.png" class="bouton_mobile" title="Echelle par défault">
+		</span>
+
+		<span id="pluszoom">
 			<img id="plusvi1" src="Images/plus.png" class="bouton_mobile" title="Zoom (+)">
-	 	 </span>
+		</span>
 	</div>
 
 
 
   <!-- Panneau mobile qui apparait lorsque tracé -->
-  	<div id="panneau_mobile">
-    <span id="moinsvite">
-        <img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
-    </span>
-    <span id="bouton_pause">
-        <img id="pau" src="Images/pause.png" class="bouton_mobile" title="Pause">
-    </span>
-    <span id="plusvite">
-        <img id="plusvi" src="Images/rapide.png" class="bouton_mobile" title="Accélérer (attention, réduit la précision)">
-    </span>
-  </div>
-
-  
+	<div id="panneau_mobile">
+		<span id="moinsvite">
+			<img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
+		</span>
+		<span id="bouton_pause">
+			<img id="pau" src="Images/pause.png" class="bouton_mobile" title="Pause">
+		</span>
+		<span id="plusvite">
+			<img id="plusvi" src="Images/rapide.png" class="bouton_mobile" title="Accélérer (attention, réduit la précision)">
+		</span>
+	</div>
 
   <!-- Scripts pour resize et tracer du graphique au chargement + chargement du menu-->
-  <script src="js/Graphisme/Menu/nav.jquery.min.js"></script>
-  <script>
-    initialisation();
-    d3.select(window).on('resize', resize);
-    $(function() {
-      $("#nav-ici").load("Menu.html");
-    });
-    texteTrajectoirePhotonKerr();
-    traceEstAbsent();
-    textesimutraj();
+	<script src="js/Graphisme/Menu/nav.jquery.min.js"></script>
+	<script>
+		initialisation();
+		d3.select(window).on('resize', resize);
+		$(function() {
+			$("#nav-ici").load("Menu.html");
+		});
+		texteTrajectoirePhotonKerr();
+		traceEstAbsent();
+		textesimutraj();
 
-    document.getElementById('traject_type2').value="observateur";
-    document.getElementById('traject_type').value="complete";
+		document.getElementById('traject_type2').value="observateur";
+		document.getElementById('traject_type').value="complete";
 
-    notationvitesseree1kerr();
-    infobulleobservateurdistant();
-    peuxonrelancer=true;
-  </script>
+		notationvitesseree1kerr();
+		infobulleobservateurdistant();
+		peuxonrelancer=true;
+	</script>
 
 <a id="idouvreengrand" type="hidden" href="Simulation_trajectoire_kerr_photons_en_grand.html" target="_blank"><a/>
 </body>

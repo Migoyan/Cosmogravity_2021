@@ -203,7 +203,6 @@ function save_schwarshild_photon(nbrderockets) {
 }
 
 
-
 function load_schwarshild_massif_nonBar() {
 
 	if (sessionStorage.getItem("nombredefuseesrecupvaleurs")){
@@ -217,7 +216,6 @@ function load_schwarshild_massif_nonBar() {
 	genereHtml();
 	save_nbfusees();
 	updatenbredefusees();
-
 
   	if (sessionStorage.getItem("r01")) {
 		for (count = 1; count <= nbrderockets; count += 1) {
@@ -247,12 +245,9 @@ function load_schwarshild_massif_nonBar() {
 		} 
 		else if (document.getElementById("traject_type2").value == "mobile") {
 			pressionBouttonMobile();
-
 		}
   	}
 }
-
-
 
 function load_schwarshild_photon() {
  
@@ -306,11 +301,7 @@ function load_schwarshild_photon() {
 		}
 
 	}
-
-
 }
-
-
 
 function load_schwarshild_photon_nonBar() {
 	if (sessionStorage.getItem("nombredefuseesrecupvaleurs")){
@@ -340,22 +331,22 @@ function load_schwarshild_photon_nonBar() {
 		var graph_check = sessionStorage.getItem("graph_check");
 		if (graph_check == "false") {
 			document.getElementById("toggle").checked = false;
-    }
+		}
 
-    if (document.getElementById("traject_type").value == "simple") {
-      	pressionBouttonTrajectoireSimple();
-    } 
-	else if (document.getElementById("traject_type").value == "complete") {
-      	pressionBouttonTrajectoireComplete();
-    }
+		if (document.getElementById("traject_type").value == "simple") {
+			pressionBouttonTrajectoireSimple();
+		} 
+		else if (document.getElementById("traject_type").value == "complete") {
+			pressionBouttonTrajectoireComplete();
+		}
 
-    if (document.getElementById("traject_type2").value == "observateur") {
-      	pressionBouttonObservateur();
-    } else if (document.getElementById("traject_type2").value == "mobile") {
-      	pressionBouttonMobile();
+		if (document.getElementById("traject_type2").value == "observateur") {
+			pressionBouttonObservateur();
+		} else if (document.getElementById("traject_type2").value == "mobile") {
+			pressionBouttonMobile();
 
-    }
-  }
+		}
+	}
 }
 
 // CAS METRIQUE DE KERR

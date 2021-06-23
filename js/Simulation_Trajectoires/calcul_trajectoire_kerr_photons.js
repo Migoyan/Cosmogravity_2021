@@ -72,10 +72,9 @@ function initialisation(){
 	m = G * M / Math.pow(c, 2); //moitié du rayon de Schwarzchild
 	rs = 2 * G * M / Math.pow(c, 2);
 	//console.log(a);
+	
 	vr=c*Math.cos(teta*Math.PI/180)*Math.sqrt(delta(r0)/(r0*(r0-rs)));
 	vphi=c*Math.sin(teta*Math.PI/180)*r0/Math.sqrt(delta(r0));
-	//vphi=5.1e7;
-	//vr=0;
 
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
@@ -84,7 +83,6 @@ function initialisation(){
 	E = (vr * vr * (r0 - rs) * Math.pow(r0, 3) + Math.pow(delta(r0), 2) * vphi * vphi) / (delta(r0) * Math.pow(c * r0, 2));
 	E=Math.sqrt(Math.abs(E));
 	L = (delta(r0) * vphi / c - rs * a * E) / (r0 - rs);
-	//L=(r0*Math.sin(teta*Math.PI/180)*Math.sqrt(delta(r0))-a*rs)/(r0-rs);
 
 	textegravetetc_Kerr();				   
 	document.getElementById("a").innerHTML = a.toExponential(3);
@@ -183,8 +181,7 @@ function trajectoire() {
     /* Calcul de rmax */
     calcul_rmax();
 	
-	 element2=document.getElementById('traject_type2');
-	 
+	element2=document.getElementById('traject_type2');
 
   	if (element2.value != "mobile"){
 		dtau=r0/(Math.sqrt(vrobs*vrobs+vphiobs*vphiobs)+1)/1000;
@@ -212,14 +209,14 @@ function trajectoire() {
 
     context = canvas.getContext("2d");
     if (!context) {
-      alert(texte.pages_trajectoire.impossible_context);
-	  return;
+		alert(texte.pages_trajectoire.impossible_context);
+		return;
     }
 
     canvas22 = document.getElementById("myCanvas22");
     if (!canvas22) {
-      alert(texte.pages_trajectoire.impossible_canvas);
-	  return;
+		alert(texte.pages_trajectoire.impossible_canvas);
+		return;
     }
 
     context22 = canvas22.getContext("2d");
@@ -295,8 +292,6 @@ function trajectoire() {
         posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2);
         majFondFixe22();																				  
         rafraichir2();
-
-
     }, false);
 
     document.getElementById('initialiser').addEventListener('click', function() {
@@ -409,7 +404,6 @@ function animate() {
     choixTrajectoire();
     element2=document.getElementById('traject_type2');
 
-
     if (r0 != 0.0) {
 		if (element2.value != "mobile"){
 			val_obs = rungekutta_obs(dtau, r_part_obs, A_part_obs);
@@ -425,6 +419,11 @@ function animate() {
 			vp_3_obs=resulta[2];// r_part_obs*varphi_obs/dtau;
 			posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
 			posY2 = scale_factor * r_part_obs * (Math.sin(phi_obs) / rmax) + (canvas.height / 2.);
+			if(r_part_obs<rs){
+				vtot=NaN
+				vp_3_obs=NaN
+				vr_3_obs=NaN
+			}
 		}
 		else{
 			varphi = c *dtau* ( rs*a*E/r_part + (1-rs/r_part)*L )/delta(r_part);
@@ -438,11 +437,13 @@ function animate() {
         	vp_3=resulta[2];
 			posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
 			posY1 = scale_factor * r_part * (Math.sin(phi) / rmax) + (canvas.height / 2.);
+			if(r_part_obs<rs){
+				vtot=NaN
+				vp_3_obs=NaN
+				vr_3_obs=NaN
+			}
 
 		}
-		
-      
-        
 
         if (element2.value != "mobile"){	
 			V = Vr_obs(r_part_obs);
@@ -460,7 +461,6 @@ function animate() {
         if(r_part<=0){ r_part=0;}				   
                         
     //Tracé de la particule
-
 
         if (element2.value != "mobile"){
 			if (r_part_obs >= rhp){
@@ -493,7 +493,6 @@ function animate() {
 
         }
 
-
     //console.log("r part et rhp",r_part,rhp);
     if(element2.value == "mobile"){
         if(r_part<=rhp){
@@ -504,8 +503,6 @@ function animate() {
                 peuxonrelancer=false;
         }	
     }
-
-
 
         // gradient d'accélération
 
@@ -650,17 +647,17 @@ function calcul_rmax(){
 		rmax = r0;
 	} 
 	else if (L <= 4 * m && L > 2 * Math.sqrt(3) * m) {
-	if (Vr_mob(r0) <= Vr_mob(r1) && r0 > r1) {
-		if (r3 > r0) {
-			rmax = r3;
+		if (Vr_mob(r0) <= Vr_mob(r1) && r0 > r1) {
+			if (r3 > r0) {
+				rmax = r3;
+			} 
+			else if (r3 < r0) {
+				rmax = r0;
+			}
 		} 
-		else if (r3 < r0) {
+		else {
 			rmax = r0;
 		}
-	} 
-	else {
-		rmax = r0;
-	}
 	} 
 	else if (L > 4 * m) {
 		if (r0 > r2) {
@@ -669,15 +666,13 @@ function calcul_rmax(){
 			} else if (r3 < r0) {
 				rmax = r0;
 			}
-	} 
-	else {
-		rmax = r0;
-	}
+		} 
+		else {
+			rmax = r0;
+		}
 	}
 
 }
-
-
 
 // Fonction bouton pause
 function pausee() {

@@ -185,24 +185,24 @@ function notationvitesseree2(){
 	var texte = o_recupereJson();
 	numberoftherockets = document.getElementById("nombredefusees").value;
 	if(document.getElementById('traject_type2').value=="observateur"){
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-		document.getElementById("tetalabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
-		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeld);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
 		for (count = 1; count <= numberoftherockets; count += 1) {
 			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-			document.getElementById("tetaid"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-			document.getElementById("idphie"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
+			document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 
 		}
 	}
 	else{
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-		document.getElementById("tetalabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
-		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeld);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label	);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabelt);
 		for (count = 1; count <= numberoftherockets; count += 1) {
 			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-			document.getElementById("tetaid"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
-			document.getElementById("idphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
+			document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 		}
 	}
 
@@ -257,31 +257,33 @@ function textegravetetc(){
 function notationvitesseree2kerr(){
 	var texte = o_recupereJson();
 	if(document.getElementById('traject_type2').value=="observateur") {
-		document.getElementById("vitesseurlabeltau").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabel);
+		document.getElementById("vitesselabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeld);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
 
 	}
 	else{
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeltau);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabeltau);
+		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeld);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.hilabel);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurtau);
-		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphitau);
+		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
 	}
 }
 
 function notationvitesseree1kerr(){
 	var texte = o_recupereJson();
 	if(document.getElementById('traject_type2').value=="observateur") {
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
 	}
 	else{
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
+		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurlambda);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
 	}
@@ -292,19 +294,19 @@ function notationvitesseree1(){
 	var texte = o_recupereJson();
 	numberoftherockets = document.getElementById("nombredefusees").value;
 	if(document.getElementById('traject_type2').value=="observateur"){
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		for (countet = 1; countet <= numberoftherockets; countet += 1) {
 			document.getElementById("vitesseur"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-			document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+			document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 		}
 	}
 	else{
-		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabellambda);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.vitesseuphilabellambda);
+		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		for (countet = 1; countet <= numberoftherockets; countet += 1) {
-			document.getElementById("vitesseur"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurlambda);
-			document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
+			document.getElementById("vitesseur"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
+			document.getElementById("vitesseuphi"+countet.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 		}
 	}
 }

@@ -135,7 +135,7 @@
 	<input type="hidden" id="canvaswidthheight"  value="750"></input> 																						 
 	<!-- Permet de déterminer si il y a un tracé -->
 	<input type="hidden" id="trace_present" name="trace_present" value="0"></input>
-	<div id="corps">
+<div id="corps">
 
 	<div id="Bloc_Textee">	  
 		<div id="trajectoire">
@@ -163,15 +163,15 @@
           	</span>
 			  
 			<span id="vitesse0">
-				<label id="vitessephilabel" title=""  for="V">V (m.s<sup>-1</sup>)=</label>
+				<label id="vitesselabel" title=""  for="V">V (m.s<sup>-1</sup>)=</label>
 				<input id="v0" value="2.6e8" maxlength="15" type="text" size="15" onChange="verifnbr();initialisation()">
 			</span>
          	 <span id="vitesse2">
-				<label  id="vitesseurlabeltau" title="" for=""> $\alpha$ = </label>
+				<label  id="thetalabel" title="" for=""> $\alpha$<sub>en degré</sub> = </label>
 				<input id="teta" value="90" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
 			</span>
 			<span id="vitesse2">
-				<label  id="vitesseurlabel1" title="" for="">$\varphi$ = </label>
+				<label  id="philabel" title="" for="">$\varphi$ <sub>en degré</sub>= </label>
 				<input id="phi0" value="0" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
 			</span>
             <span id="case">
@@ -188,26 +188,27 @@
         </div>
 
         <div id="boutons_actions">
-        	<span id="buts">
+			<span id="buts">
 			<span id="bouton">
-                <button type="button" class="myButton" id="start" onclick="save_kerr_massif();tests_lancement();"></button>
+				<button type="button" class="myButton" id="start" onclick="save_kerr_massif();tests_lancement();"></button>
 			</span>
 
-          	<span id="bouton">
-              	<button type="button" id="clear" class="myButton" onclick="save_kerr_massif();rafraichir();"></button>
-    		</span>
+			<span id="bouton">
+				<button type="button" id="clear" class="myButton" onclick="save_kerr_massif();rafraichir();"></button>
+			</span>
 
-          	<span id="enregistrer">
-                <button id="boutton_enregis" type="button" class="myButton" onclick="enregistrer();"></button>
-            </span>
+			<span id="enregistrer">
+				<button id="boutton_enregis" type="button" class="myButton" onclick="enregistrer();"></button>
+			</span>
 
-          	<span id="recup">
-                    <button id="boutton_recup" type="button" class="myButton" onclick="load_kerr_massif();initialisation();"></button>
-            </span>
+			<span id="recup">
+					<button id="boutton_recup" type="button" class="myButton" onclick="load_kerr_massif();initialisation();"></button>
+			</span>
 
-          	<span id="rrrrrrrrrrr">
-                <button type="button" class="myButton" id="ouvreengrand" onclick="ouvre_trajEnGrand();"></button>
-            </span>
+			<!--<span id="rrrrrrrrrrr">
+				Boutton pour basculer sur les pages en grand plus nésaire mais conserver au cas ou
+				<button type="button" class="myButton" id="ouvreengrand" onclick="ouvre_trajEnGrand();"></button>
+			</span>-->
 
         </div>
       	</form>
@@ -242,8 +243,8 @@
 					<th class="tg-aicv">r(m)</th>
 					<th id="temps_ecoule" class="tg-aicv"></th>
 					<th id="acceleration" title="" class="tg-6l4m"></th>
-					<th id="vitesseur" title="" class="tg-aicv" >U<SUB>r</SUB>(m.s<sup>-1</sup>)</th>
-					<th id="vitesseuphi" title="" class="tg-aicv" >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="vitesseur" title="" class="tg-aicv" >V<SUB>r</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="vitesseuphi" title="" class="tg-aicv" >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 					<th id="temps_obs" class="tg-aicv"></th>
 					<th id="decal_spect" title="" class="tg-aicv"></th>
 					<th id="v_total" title="" class="tg-aicv"></th>
@@ -265,46 +266,43 @@
 
 
     <!-- Tracés -->
-    <div id="bloc_resultats">
+	<div id="bloc_resultats">
 	<div class="wrapper">
 		<canvas id="myCanvas" width="750" height="750"></canvas>
 		<canvas id="myCanvas22" width="750" height="750"></canvas>
-        <canvas id="myCanvas3" width="750" height="750"></canvas>
+		<canvas id="myCanvas3" width="750" height="750"></canvas>
 	</div>
-    <div class="wrapper2">
-        <svg id="grsvg_2"></svg></div>
-    </div>
+	<div class="wrapper2">
+		<svg id="grsvg_2"></svg></div>
+	</div>
 
 
-  </div>
-
+</div>
 
   <!-- Panneau mobile qui apparait lorsque tracé -->
-  <div id="panneau_mobile2">
-    <span id="moinszoom">
-              <img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
-    </span>
-    <span id="initialiser">
-        <img id="pau1" src="Images/reset.png" class="bouton_mobile" title="Echelle par défault">
-    </span>
-    <span id="pluszoom">
-              <img id="plusvi1" src="Images/plus.png" class="bouton_mobile" title="Zoom (+)">
-    </span>
+	<div id="panneau_mobile2">
+		<span id="moinszoom">
+			<img id="moinsvi1" src="Images/moins.png" class="bouton_mobile" title="Zoom (-)">
+		</span>
+		<span id="initialiser">
+			<img id="pau1" src="Images/reset.png" class="bouton_mobile" title="Echelle par défault">
+		</span>
+		<span id="pluszoom">
+			<img id="plusvi1" src="Images/plus.png" class="bouton_mobile" title="Zoom (+)">
+		</span>
+	</div>
 
-
-  
-</div>
-  <div id="panneau_mobile">
-    <span id="moinsvite">
-        <img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
-    </span>
-    <span id="bouton_pause">
-        <img id="pau" src="Images/pause.png" class="bouton_mobile" title="Pause">
-    </span>
-    <span id="plusvite">
-    	<img id="plusvi" src="Images/rapide.png" class="bouton_mobile" title="Accélérer (attention, réduit la précision)">
-    </span>
-</div>
+	<div id="panneau_mobile">
+		<span id="moinsvite">
+		<img id="moinsvi" src="Images/lent.png" class="bouton_mobile" title="Décélérer">
+		</span>
+		<span id="bouton_pause">
+		<img id="pau" src="Images/pause.png" class="bouton_mobile" title="Pause">
+		</span>
+		<span id="plusvite">
+		<img id="plusvi" src="Images/rapide.png" class="bouton_mobile" title="Accélérer (attention, réduit la précision)">
+		</span>
+	</div>
 
   
 

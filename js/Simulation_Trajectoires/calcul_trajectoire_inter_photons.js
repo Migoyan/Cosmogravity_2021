@@ -174,7 +174,7 @@ function genereHtml(){
 		divchampsr.appendChild(span);
 		if(countt==1){
 			var newlabel = document.createElement("Label");
-			newlabel.setAttribute("id","vitesseuphilabel");
+			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
 			newlabel.innerHTML = htmlDecode("&phi;")+" <sub>en degré</sub> =";
@@ -202,7 +202,7 @@ function genereHtml(){
 		divchampsr.appendChild(span);
 		if(countt==1){
 			var newlabel = document.createElement("Label"); 
-			newlabel.setAttribute("id","vitesseurlabel");
+			newlabel.setAttribute("id","thetalabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta");
 			newlabel.innerHTML = htmlDecode(" &alpha;")+" <sub>en degré</sub> =";
@@ -258,9 +258,9 @@ function genereHtml(){
 		newRow.innerHTML = `<tr id="tg2gga`+countt.toString()+`">
 					<th class="tg-aicv">r(m)</th>
 					<th id="temps_ecoule`+countt.toString()+`" class="tg-aicv"></th>
-					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
 					<th id="acceleration`+countt.toString()+`" title="Différence des dérivées seconde de r" class="tg-6l4m"></th>
-					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >U<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
+					<th id="vitesseur`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>r</SUB>(m.s<sup>-1</sup>) </th>
+					<th id="vitesseuphi`+countt.toString()+`" title="" class="tg-aicv"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>
 					<th id="temps_obs`+countt.toString()+`" class="tg-aicv"></th>
 					<th id="v_total`+countt.toString()+`" title="" class="tg-aicv"></th>`;
 
@@ -348,8 +348,6 @@ function initialisation(compteur){
 	if(r0 > r_phy) { 
 		vphi=Math.sin(teta)*c/Math.sqrt(1-rs/r0);
 		vr=Math.cos(teta)*c;
-		//vphi=-3e8;
-		//vr=-3.65e7;
 	} 
 	else{ 
 		vphi=Math.sin(teta)*c/beta(r0);
@@ -1445,9 +1443,6 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
 	context.stroke();
 	context.beginPath();      // Début du chemin
 	context.strokeStyle = COULEUR_RS;
-
-	//context.moveTo(canvas.width / 2.0,canvas.height / 2.0);    // Tracé test1
-	//context.lineTo((canvas.width / 2.0)+280,canvas.height / 2.0);  // Tracé test2
 	context.moveTo(600,110);
 	context.lineTo(600+((r1bis*10**testnum(r2bis))*mobilefactor[cle])/r0ou2,110);
 	context.moveTo(600,105);
