@@ -113,7 +113,9 @@
 		"echelle_log_omega" :"Log plot",
 		"echelle_log_t" :"Log plot",
 		"zmin":"z<sub>min</sub>",
-		"zmax":"z<sub>max</sub>"
+		"zmax":"z<sub>max</sub>",
+		"enregistrerEn":"Save as",
+		"bouton_enregistrer":"Save"
 	},
 
 	"page_constantes":{

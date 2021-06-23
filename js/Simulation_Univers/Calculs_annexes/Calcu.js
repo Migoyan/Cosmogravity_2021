@@ -1105,7 +1105,7 @@ function graphique_creation(id_document, params_to_plotly){
 		var hei = wid * 2 / 3;
 	}
 
-	window.document.getElementById(id_document).style.height = hei + "px";
+	window.document.getElementById(id_document).style.clientHeigh = hei;
 	
 	Plotly.newPlot(params_to_plotly[0], params_to_plotly[1], params_to_plotly[2], params_to_plotly[3]);
 	
@@ -1113,11 +1113,11 @@ function graphique_creation(id_document, params_to_plotly){
 
 function enre(format, graph) {
 	if (format.options[0].selected) {
-		Plotly.downloadImage(graph, {format: 'png', filename: 'Graphique'});
+		Plotly.downloadImage(graph, {format: 'png', width: 1500, height: 500, filename: 'Graphique'});
 	} else if (format.options[1].selected) {
-		Plotly.downloadImage(graph, {format: 'jpeg', filename: 'Graphique'});
+		Plotly.downloadImage(graph, {format: 'jpeg', width: 1500, height: 500, filename: 'Graphique'});
 	} else {
-		Plotly.downloadImage(graph, {format: 'svg', filename: 'Graphique'});
+		Plotly.downloadImage(graph, {format: 'svg', width: 1500, height: 500, filename: 'Graphique'});
 	}
 }
 

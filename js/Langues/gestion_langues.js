@@ -422,6 +422,8 @@ function texteUniversCalculs() {
 			document.getElementById("txt_echelle_log_d").innerHTML = texte.page_univers_calculs.echelle_log_d;
 			document.getElementById("txt_echelle_log_omega").innerHTML = texte.page_univers_calculs.echelle_log_omega;
 			document.getElementById("txt_echelle_log_t").innerHTML = texte.page_univers_calculs.echelle_log_t;
+			document.getElementById("txt_enregistrerEn").innerHTML = texte.page_univers_general.enregistrerEn;
+			document.getElementById("button_enregistrer").value = texte.page_univers_general.bouton_enregistrer;
 			document.getElementById("txt_zmin").innerHTML = texte.page_univers_calculs.zmin;
 			document.getElementById("txt_zmax").innerHTML = texte.page_univers_calculs.zmax;
 			document.getElementById("boutonGraphe_distances").value = texte.page_univers_calculs.bouton_tracer;
