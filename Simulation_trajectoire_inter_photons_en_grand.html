@@ -2,29 +2,29 @@
 <html lang="fr" class="nav-no-js">
 
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
 
-  <!-- Css de la page -->
-  <link rel="stylesheet" href="./Css/Simu_grav.css">
-  <link rel="stylesheet" href="./Css/Simu_avertissement.css">
+	<!-- Css de la page -->
+	<link rel="stylesheet" href="./Css/Simu_grav.css">
+	<link rel="stylesheet" href="./Css/Simu_avertissement.css">
 
-  <script src="./js/avertissement.js"></script>
-  <script src="./js/Simulation_Trajectoires/agrandit.js"></script>
-  <!-- Latex dans Html -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+	<script src="./js/avertissement.js"></script>
+	<script src="./js/Simulation_Trajectoires/agrandit.js"></script>
+	<!-- Latex dans Html -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 
-    <!-- The loading of KaTeX is deferred to speed up page rendering -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<!-- The loading of KaTeX is deferred to speed up page rendering -->
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
 
-    <!-- To automatically render math in text elements, include the auto-render extension: -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
- 
+	<!-- To automatically render math in text elements, include the auto-render extension: -->
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+		onload="renderMathInElement(document.body);"></script>
 
-  <link rel="stylesheet" type="text/css" 
-href="./katex/katex.min.css">
+
+	<link rel="stylesheet" type="text/css" 
+		href="./katex/katex.min.css">
 
 <script type="text/javascript" 
 src="./katex/katex.min.js"></script>
@@ -45,33 +45,32 @@ src="./katex/contrib/auto-render.min.js"></script>
 
 
   <!-- Scripts pour calculs -->
-  <script src="./Lib/jquery-1.12.3.min.js"></script>
-  <script src="./Lib/math.min.js"></script>
-  <script src="./Lib/d3.js"></script>
-  <script src="./Lib/snap.svg.js"></script>
-  <script src="./js/Simulation_Trajectoires/calcul_trajectoire_inter_photons.js"></script>
-  <script src="./js/Simulation_Trajectoires/equation3d.js"></script>
- 
-  <script src="./js/Simulation_Trajectoires/stopper.js"></script>
-  <script src="./js/Simulation_Trajectoires/graphe_potentiel.js"></script>
-  <script src="./js/Simulation_Trajectoires/Get_para.js"></script>
-  <script src="./js/Langues/gestion_langues.js"></script>
+	<script src="./Lib/jquery-1.12.3.min.js"></script>
+	<script src="./Lib/math.min.js"></script>
+	<script src="./Lib/d3.js"></script>
+	<script src="./Lib/snap.svg.js"></script>
+	<script src="./js/Simulation_Trajectoires/calcul_trajectoire_inter_photons.js"></script>
+	<script src="./js/Simulation_Trajectoires/equation3d.js"></script>
+	<script src="./js/Simulation_Trajectoires/bouttons.js"></script>
+	<script src="./js/Simulation_Trajectoires/stopper.js"></script>
+	<script src="./js/Simulation_Trajectoires/graphe_potentiel.js"></script>
+	<script src="./js/Simulation_Trajectoires/Get_para.js"></script>
+	<script src="./js/Langues/gestion_langues.js"></script>
+	<script src="./js/Simulation_Trajectoires/fonctions.js"></script>
+	<script src="./js/Graphisme/trajectoires.js"></script>
 
+	<!-- Pour enregistrer le graphe et le tracé -->
+	<script src="./Lib/saveSvgAsPng.js"></script>
+	<script src="./Lib/canvas-to-image.js"></script>
 
-  <script src="./js/Graphisme/trajectoires.js"></script>
-
-  <!-- Pour enregistrer le graphe et le tracé -->
-  <script src="./Lib/saveSvgAsPng.js"></script>
-  <script src="./Lib/canvas-to-image.js"></script>
-
-  <!-- MENUS
+<!-- MENUS
 Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-using-pure-css/
 																								-->
-  <link rel="stylesheet" href="Css/Resp-Menu/normalize.min.css">
-  <link rel="stylesheet" href="Css/Resp-Menu/defaults.min.css">
-  <link rel="stylesheet" href="Css/Resp-Menu/nav-core.min.css">
-  <link rel="stylesheet" href="Css/Resp-Menu/nav-layout.min.css">
-  <script src="js/Graphisme/Menu/rem.min.js"></script>
+	<link rel="stylesheet" href="Css/Resp-Menu/normalize.min.css">
+	<link rel="stylesheet" href="Css/Resp-Menu/defaults.min.css">
+	<link rel="stylesheet" href="Css/Resp-Menu/nav-core.min.css">
+	<link rel="stylesheet" href="Css/Resp-Menu/nav-layout.min.css">
+	<script src="js/Graphisme/Menu/rem.min.js"></script>
 
   <!-- Menu si internet explorer 9 -->
   <!--[if lt IE 9]>
@@ -81,18 +80,18 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
     <![endif]-->
 
   <!-- chargement de l'icone en fonction du support -->
-  <link rel="apple-touch-icon" sizes="180x180" href="./Images/Icones/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./Images/Icones/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./Images/Icones/favicon-16x16.png">
-  <link rel="manifest" href="./Images/Icones/site.webmanifest">
-  <link rel="mask-icon" href="./Images/Icones/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="apple-mobile-web-app-title" content="Cosmogravity">
-  <meta name="application-name" content="Cosmogravity">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="msapplication-TileImage" content="./Images/Icones/mstile-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+	<link rel="apple-touch-icon" sizes="180x180" href="./Images/Icones/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./Images/Icones/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./Images/Icones/favicon-16x16.png">
+	<link rel="manifest" href="./Images/Icones/site.webmanifest">
+	<link rel="mask-icon" href="./Images/Icones/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="apple-mobile-web-app-title" content="Cosmogravity">
+	<meta name="application-name" content="Cosmogravity">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-TileImage" content="./Images/Icones/mstile-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 
-  <title>Simulateur de trajectoire pour photon</title>
+	<title>Simulateur de trajectoire pour photon</title>
 </head>
 
 <body>
@@ -116,25 +115,25 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
   <!-- Menus -->
 
-  <header>
-    <h1>Cosmogravity</h1>
-  </header>
+	<header>
+		<h1>Cosmogravity</h1>
+	</header>
 
-  <div id="nav-ici"></div>
-  <span id="bouton_info">
-    <img onclick="commandes();" src="Images/info.png" class="bouton_info">
-  </span>
-  <p id="txt_titre"></p>
+	<div id="nav-ici"></div>
+	<span id="bouton_info">
+	<img onclick="commandes();" src="Images/info.png" class="bouton_info">
+	</span>
+	<p id="txt_titre"></p>
 
-  <!-- Paramètres -->
+	<!-- Paramètres -->
 
-  <input type="hidden" id="traject_type" name="traject_type" value="complete"></input>
+	<input type="hidden" id="traject_type" name="traject_type" value="complete"></input>
 
-  <input type="hidden" id="traject_type2" name="traject_type2" value="observateur"></input> 
+	<input type="hidden" id="traject_type2" name="traject_type2" value="observateur"></input> 
 
-  <input type="hidden" id="scalefactor" name="scalefactor" value=1000></input>
+	<input type="hidden" id="scalefactor" name="scalefactor" value=1000></input>
 
-  <input type="hidden" id="canvaswidthheight"  value="2200"></input> 
+	<input type="hidden" id="canvaswidthheight"  value="2200"></input> 
 
 
   <!-- Permet de déterminer si il y a un tracé -->
@@ -150,48 +149,33 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 		</div>
 	</div>
 
-    <div id="formulaire">
-      <form name="params" id="parametres" action="" method="post" autocomplete="off">
-        <div id="champs_a_remplir">
-          <span id="masse">
+	<div id="formulaire">
+		<form name="params" id="parametres" action="" method="post" autocomplete="off">
+		<div id="champs_a_remplir">
+			<span id="masse">
+				<label id= "massetxt"  for="M">M (kg) =</label>
+				<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
+			</span>
+			<span id="rayon_phy">
+				<label title="" for="r_phy" id="txt_rphysique"></label>
+				<input id="r_phy" value="3.5e3" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisation()">
+			</span>
+		</div>
+		<div><label id="labelnumberfusees" for="nombredefusees"></label> 
+			<input id="nombredefusees" value="1" type="text" size="5" onchange="supprHtml();genereHtml();save_nbfusees();updatenbredefusees();">
+			<span id="case">
+				<input id="toggle" type="hidden"  checked>
+			</span>
+		</div>
 
 
-      									<label id= "massetxt"  for="M">M (kg) =</label>
+	<div id="radio_button">
+		<button id="r1" type="button" name="traj" class="myButton" value="complete" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireComplete()"></button>
+		<button id="r2" type="button" name="traj2" class="myButton2" value="simple" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireSimple()"></button>
 
-
-
-      										<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisation()">
-      						</span>
-
-      									
-          <span id="rayon_phy">
-      		                  <label title="" for="r_phy" id="txt_rphysique"></label>
-      					            <input id="r_phy" value="3.5e3" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisation()">
-      									</span>
-
-
-
-        </div>
-
-     <div><label id="labelnumberfusees" for="nombredefusees"></label> 
-       <input id="nombredefusees" value="1" type="text" size="5" onchange="supprHtml();genereHtml();save_nbfusees();updatenbredefusees();">
- 
-                        <span id="case">
-                                               
-                                                 <input id="toggle" type="hidden"  checked>
-                                               </span>
-     </div>
-
-
-        <div id="radio_button">
-          <button id="r1" type="button" name="traj" class="myButton" value="complete" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireComplete()"></button>
-          <button id="r2" type="button" name="traj2" class="myButton2" value="simple" onclick="document.getElementById('traject_type').value = this.value;pressionBouttonTrajectoireSimple()"></button>
-
-          <button id="r3" type="button" name="observateur" class="myButton" value="observateur" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonObservateur();notationvitesseree1()"></button>
-          <button id="r4" type="button" name="mobile" class="myButton2" value="mobile" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonMobile();notationvitesseree1()"></button> 
-
-
-        </div>
+		<button id="r3" type="button" name="observateur" class="myButton" value="observateur" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonObservateur();notationvitesseree1()"></button>
+		<button id="r4" type="button" name="mobile" class="myButton2" value="mobile" onclick="document.getElementById('traject_type2').value = this.value;pressionBouttonMobile();notationvitesseree1()"></button> 
+	</div>
 
 
 
@@ -219,23 +203,20 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
       <div id="ct_tg">
         <table class="tg" id="tg">
-<tbody id="tableauconstanteslers"></tbody>
+        <tbody id="tableauconstanteslers"></tbody>
         </table>
       </div>
 
       <div id="ct_tg2">
         <table class="tg2" id="tg2">
-<tbody id="tableauresultatsimu"></tbody>
+        <tbody id="tableauresultatsimu"></tbody>
         </table>
       </div>
     </div>
     <span id="indic_calculs"></span>
     <!-- Tracés -->
     <div id="bloc_resultats">
-	<div id="wrapperengrand">
-
-	</div>
-        
+	    <div id="wrapperengrand"></div>   
     </div>
 
   </div>

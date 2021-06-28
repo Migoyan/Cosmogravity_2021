@@ -1,3 +1,4 @@
+
 {
 	"page_index":{
 		"version": "<strong>Version Beta</strong> 1.1 (01/02/2021)",
@@ -81,7 +82,7 @@
 		"bouton_tracer":"Tracer",
 		"bouton_calcul":"Calcul",
 		"bouton_retour":"Retour",
-		"infoCalculs":"Les 2 entrees suivants utilisent soit z<sub>1</sub> soit z<sub>2</sub> apres calcul,",
+		"infoCalculs":"Les 2 entrées suivantes utilisent soit z<sub>1</sub> soit z<sub>2</sub> après calcul,",
 		"parametres":"Les paramètres cosmologiques :",
 		"valeursZ":"Valeurs des z (z>-1) à définir pour obtenir les distances métriques et les temps d'émission/réception :",
 		"valeursZ1":"Les paramètres cosmologiques à z<sub>1</sub> et z<sub>2</sub>:",
@@ -89,9 +90,9 @@
 		"matierelambdaRFCNeu":"Matière, Lambda, RFC et Neutrinos",
 		"matierelambdaRFC":"Matière, Lambda et RFC",
 		"matierelambda":"Matière et Lambda",
-		"matiereEsombreRFCNeu":"Matière, Energie Sombre, RFC et Neutrinos",
-		"matiereEsombreRFC":"Matière, Energie Sombre et RFC",
-		"matiereEsombre":"Matière et Energie Sombre",
+		"matiereEsombreRFCNeu":"Matière, Énergie Sombre, RFC et Neutrinos",
+		"matiereEsombreRFC":"Matière, Énergie Sombre et RFC",
+		"matiereEsombre":"Matière et Énergie Sombre",
 		"secondeArc":"(Seconde d'arc)",
 		"calculInverse":"Calculs inverses",
 		"temission":"t<sub>émission</sub> =",
@@ -101,20 +102,22 @@
 		"message_z1_incorrect":"z1 n'a pas une valeur correcte !",
 		"message_z2_incorrect":"z2 n'a pas une valeur correcte !",
 		"message_valeur_critique":"L'écart entre z1 et z2 est trop important et votre appareil risque de surchauffer. Opération rejetée !",
-		"Intensite":"Valeur de l'Intensite pour des resultats de photometrie (E<sub>e</sub>,L<sub>e</sub>):",
-		"Geometrie":"Geometrie:",
-		"Photometrie":"Photometrie:",
+		"Intensite":"Valeur de l'Intensite pour des resultats de photométrie (E<sub>e</sub>,L<sub>e</sub>):",
+		"Geometrie":"Géometrie:",
+		"Photometrie":"Photométrie:",
 		"tracer_d":"Tracer d<sub>i</sub>(z)",
 		"tracer_t":"Tracer t(z)",
 		"tracer_omega":"Tracer &Omega;<sub>i</sub>(z)",
 		"tracer_d_t":"Tracer d<sub>i</sub>(t)",
 		"tracer_omega_t":"Tracer &Omega;<sub>i</sub>(t)",
-		"GenerateurG":"Generateur des Graphiques:",
-		"echelle_log_d" :"Echelle log",
-		"echelle_log_omega" :"Echelle log",
-		"echelle_log_t" :"Echelle log",
+		"GenerateurG":"Génerateur des Graphiques:",
+		"echelle_log_d" :"Échelle log",
+		"echelle_log_omega" :"Échelle log",
+		"echelle_log_t" :"Échelle log",
 		"zmin":"z<sub>min</sub>",
-		"zmax":"z<sub>max</sub>"
+		"zmax":"z<sub>max</sub>",
+		"enregistrerEn":"Enregistrer en",
+		"bouton_enregistrer":"Enregistrer"
 	},
 
 	"page_constantes":{
@@ -201,19 +204,21 @@
 		"labelgp":"Afficher le graphe du potentiel",
 		"vrarret":"0",
 		"vphiarret":"0",
+		"v_total":"Vitesse (m/s)",
 		"vphikerrarret":"Infinity",
 		"vitesseurlabelt":"dr/dt initial ",
 		"vitesseuphilabelt":"r.(d&phi;/dt) initial ", 
-		"vitesseurt":"dr/dt",
+		"vitesseurt":"Vitesse Radial",
+		"vitesseuphi":"Vitesse tangentielle",
 		"vitesseuphit":"r.(d&phi;/dt)",
-		"vitesseurlabeltau":"dr/d&tau; initial ",
-		"vitesseuphilabeltau":"r.(d&phi;/d&tau;) initial ",
-		"vitesseurtau":"dr/d&tau;",
-		"vitesseuphitau":"r.(d&phi;/d&tau;)",
+		"vitesseurlabeld":"Vitesse initial ",
+		"vitesseuphilabeltau":"Angle de départ de la vitesse  ",
+		"vitesseurtau":"Vitesse radial;",
+		"vitesseuphitau":"Vitesse tangentielle",
 		"vitesseurlabellambda":"dr/d&lambda; initial",
 		"vitesseuphilabellambda":"r.(d&phi;/d&lambda;) initial",
-		"vitesseurlambda":"dr/d&lambda;",
-		"vitesseuphilambda":"r.(d&phi;/d&lambda;)",
+		"vitesseurlambda":"Vitesse radial;",
+		"vitesseuphilambda":"Vitesse tangentielle",
 		"calcul_termine":"<b>Calculs terminés</b>",
 		"calcul_encours":"<b>Calculs en cours</b>",
 		"calcul_enpause":"<b>Calculs en pause</b>",
@@ -258,7 +263,9 @@
 		"temps_obs":"Temps observateur distant",
 		"decal_spect":"Décalage spectral", 
 		"r0egale0": "r0 est  positif",
-		"commandes_horsSchwarMassif":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z\n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c"
+		"commandes_horsSchwarMassif":"Liste des commandes au clavier : \n\n- Trajectoire Complète : touche a \n- Trajectoire Simple : touche z\n- Stopper la simulation : touche q \n- Reset : touche s \n- Enregistrer : touche d \n- Recupérer les valeurs précédentes : touche f \n- Ralentir la simulation : touche w \n- Pause / Lecture : touche x \n- Accélérer la simulation : touche c",
+		"theta_label":"Angle de départ de la vitesse",
+		"philabel":"Angle de départ"
 	},
 
 	"page_trajectoire_massive":{
@@ -300,3 +307,4 @@
 		"moment_angulaire":"Moment angulaire supérieur à la valeur maximale "
 	}
 }
+

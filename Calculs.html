@@ -2,7 +2,6 @@
 <html lang="fr">
 <html>
 
-
 	<!-- Fichier à rénommer avec un n om plus spécifique ? (ainsi que les autres "Calculs[...]".html ... ?) -->
 
 	<head>
@@ -121,7 +120,9 @@
 
 				<div id="box1">
 
+
 				<!-- Paramètres généraux -->
+
 
 					<span id="txt_parametres" style="font-weight:bold"></span>
 					<div>
@@ -138,6 +139,7 @@
 						<label for="omegam0_annexes">&Omega;<sub>m<sub>0</sub></sub> =</label>
 						<input id="omegam0_annexes" style="color:blue" onChange="update_omegar0_calc();" value="0.6" type="text"></input>
 					</div>
+
 
 					<div>
 						<label for="omegalambda0_annexes">&Omega;<sub>&Lambda;0</sub> =</label>
@@ -655,257 +657,203 @@
 
 		<div id="graph_container_d_z" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_d_z"></div>
-	
-					<div style="display:none;" id="graphique_enr"></div>
-						
-					<div id="enregistrer">
-						
-						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-					
-						<select id="format_enr">
+				<div id="graphique_d_z"></div>						
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_d_z">
 							<option selected>png</option>
 							<option>jpg</option>
 							<option>svg</option>
 						</select>&nbsp;
-						<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-					</div>
-						
-						<a id="png" download="Graphique.png" style="display:none"></a>
-						<a id="jpg"  download="Graphique.jpg" style="display:none"></a>
-						<a id="svg-1"  download="Graphique.svg" style="display:none"></a>
-						<a id="ret" href="#nav" style="display:none;"></a>
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_d_z');
+							enre(format, 'graphique_d_z');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
 
 		<div id="graph_container_log_d_z" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_log_d_z">
-				</div>
-				<div style="display:none;" id="graphique_enr">
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-				<a id="ret" href="#nav" style="display:none;"></a>
+				<div id="graphique_log_d_z"></div>					
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_log_d_z">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_log_d_z');
+							enre(format, 'graphique_log_d_z');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
 
 		<div id="graph_container_d_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_d_t"></div>
-				<div style="display:none;" id="graphique_enr"></div>
-				<div id="enregistrer">
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-				<a id="ret" href="#nav" style="display:none;"></a>
+				<div id="graphique_d_t"></div>							
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_d_t">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_d_t');
+							enre(format, 'graphique_d_t');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
 		
-						
-						
-				
-		
-
 		<div id="graph_container_log_d_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_log_d_t">
-				</div>
-				<div style="display:none;" id="graphique_omega_enr">
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
+				<div id="graphique_log_d_t"></div>							
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_log_d_t">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_log_d_t');
+							enre(format, 'graphique_log_d_t');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
 
 		<div id="graph_container_omega_z" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_omega_z">
-				</div>
-				<div style="display:none;" id="graphique_omega_enr">
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-			</div>
-		</div>
-
-		<div id="graph_container_log_omega_z" style="display:none">
-			<div style="padding:50px" align="center">
-				<div id="graphique_log_omega_z">
-				</div>
-				<div style="display:none;" id="graphique_omega_enr">
-				</div>
-				<div id="graphique_dt"></div>
-				<div style="display:none;" id="graphique_enr"></div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-				<a id="ret" href="#nav" style="display:none;"></a>
-
+				<div id="graphique_omega_z"></div>							
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_omega_z">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_omega_z');
+							enre(format, 'graphique_omega_z');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
 		
+		<div id="graph_container_log_omega_z" style="display:none">
+			<div style="padding:50px" align="center">
+				<div id="graphique_log_omega_z"></div>							
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_log_omega_z">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_log_omega_z');
+							enre(format, 'graphique_log_omega_z');"
+							value="Enregistrer">
+						</input>
+					</div>				
+			</div>
+		</div>
+				
 		<div id="graph_container_omega_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_omega_t">
-				</div>
-				<div style="display:none;" id="graphique_omega_enr">
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-				<a id="ret" href="#nav" style="display:none;"></a>
+				<div id="graphique_omega_t"></div>							
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_omega_t">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_omega_t');
+							enre(format, 'graphique_omega_t');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
 
 		<div id="graph_container_log_omega_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_log_omega_t">
-				</div>
-				<div style="display:none;" id="graphique_omega_enr">
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-				<a id="ret" href="#nav" style="display:none;"></a>
+				<div id="graphique_log_omega_t"></div>						
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_log_omega_t">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_log_omega_t');
+							enre(format, 'graphique_log_omega_t');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
-
+		
 		<div id="graph_container_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_t">
-				</div>
-				<div style="display:none;" id="graphique_t_enr">
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
-				<a id="ret" href="#nav" style="display:none;"></a>
+				<div id="graphique_t"></div>						
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_t">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_t');
+							enre(format, 'graphique_t');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
 		</div>
 
 		<div id="graph_container_log_t" style="display:none">
 			<div style="padding:50px" align="center">
-				<div id="graphique_log_t">
-				</div>
-				<div style="display:none;" id="graphique_t_enr">
-				</div>
-				<div id="enregistrer">
-						
-					<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
-				
-					<select id="format_enr">
-						<option selected>png</option>
-						<option>jpg</option>
-						<option>svg</option>
-					</select>&nbsp;
-					<input class="myButton" id="button_enregistrer" type="button" OnClick="enre()" value="Enregistrer"></input>
-				</div>
-				<a id="png" download="Graphique.png" style="display:none"></a>
-				<a id="jpg" download="Graphique.jpg" style="display:none"></a>
-				<a id="svg-1" download="Graphique.svg" style="display:none"></a>
+				<div id="graphique_log_t"></div>							
+					<div id="enregistrer">						
+						<span id="txt_enregistrerEn" style="font-weight:bold;"></span>					
+						<select id="format_enr_log_t">
+							<option selected>png</option>
+							<option>jpg</option>
+							<option>svg</option>
+						</select>&nbsp;
+						<input class="myButton" id="button_enregistrer" type="button" 
+							OnClick="
+							format = document.getElementById('format_enr_log_t');
+							enre(format, 'graphique_log_t');"
+							value="Enregistrer">
+						</input>
+					</div>				
 			</div>
-		</div>
+		</div>		
 
 		<script>
 			transfert_calcu(update_omegar0_calc, 1);
