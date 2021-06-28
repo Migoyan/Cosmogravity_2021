@@ -1,6 +1,6 @@
 {
 	"page_index":{
-			"version": "<strong>Beta Version </strong> 1.1 (2021/02/01)",
+			"version": "<strong>Beta Version </strong> 2021 (2028/06/28)",
 			"composition":"This program is structured in 2 parts :",
 			"univers":"Friedmann-Lemaître universes models and annex calculations",
 			"trajectoire":"Trajectory of a free particule in the Schwarzschild & Kerr space-time",
@@ -20,8 +20,9 @@
 		"descriptif":"<strong> Application </strong>created in the framework of tutored projects of the Master 1 of Digital Physics of the University of Montpellier.",
 		"contact":"<strong>Contact:<br/></strong>",
 		"envoyer":"Send",
-		"version_2019":"<strong>Version 2019 :</strong><br />  Youssef Jeyar, Mahmoud Najah, Ivan Sproudé, Elie Faye, Estuardo Quand, with help of Matthieu Carrère"		,
-		"version_2020":"<strong>Version 2020 :</strong><br />  Karim Hakim, Sanxi Padovani, Yuming Xiang, Badreddine Zaidi"		
+		"version_2019":"<strong>Version 2019 :</strong><br/>  Youssef Jeyar, Mahmoud Najah, Ivan Sproudé, Elie Faye, Estuardo Quand, with help of Matthieu Carrère",
+		"version_2020":"<strong>Version 2020 :</strong><br/>  Karim Hakim, Sanxi Padovani, Yuming Xiang, Badreddine Zaidi",
+		"version_2021":"<strong>Version 2021 :</strong><br/>  Younes Benamara, Quentin Gromoff, Akli Idoughi, Arthur Tourneix and Thomas Valette. (Developpment start of a V2 version)"
 	},
 
 	"page_menu":{
