@@ -493,10 +493,8 @@ function trajectoire(compteur,mobile) {
     mobile.debut = false;
     //--------------------------------------------------------------------------------------//
     //Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre, et aussi dans celui de l'observateur//
-	phi = 0.0;
-	mobile["phi"]=phi;//mobile.phi
-	phi_obs=0;
-	mobile["phi_obs"]=phi_obs;//mobile.phi_obs
+	mobile["phi"]=mobile.phi0;//mobile.phi
+	mobile["phi_obs"]=mobile.phi0;//mobile.phi_obs
 	temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
 	mobile["temps_chute_libre"]=temps_chute_libre;//mobile.temps_chute_libre
 	A_init = mobile.vr;

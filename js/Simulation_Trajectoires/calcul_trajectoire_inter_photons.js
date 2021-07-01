@@ -381,7 +381,7 @@ function initialisation(compteur){
 	document.getElementById("m").innerHTML = rs.toExponential(3);
 
 	scale_factor = Number(document.getElementById("scalefactor").value);
-	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E}; 
+	mobile = { r0:r0, vphi:vphi, vr:vr, L:L, E:E , phi0 : phi0}; 
 	
 	mobile["pointsvg"]="pointg"+compteur.toString();
 	mobile["graphesvg"]="#grsvg_"+compteur.toString();
@@ -512,10 +512,8 @@ function trajectoire(compteur,mobile) {
 
     //--------------------------------------------------------------------------------------//
     //Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre//
-    phi = 0.0;
-    mobile["phi"]=phi;//mobile.phi
-	phi_obs=0;
-    mobile["phi_obs"]=phi_obs;//mobile.phi_obs
+    mobile["phi"]=mobile.phi0;//mobile.phi
+    mobile["phi_obs"]=mobile.phi0;//mobile.phi_obs
 
     temps_chute_libre = Math.PI * mobile.r0 * Math.sqrt(mobile.r0 / (2 * G * M)) / 2;
 	mobile["temps_chute_libre"]=temps_chute_libre;//mobile.temps_chute_libre
