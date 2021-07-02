@@ -391,10 +391,12 @@ function initialisation(compteur){
 
 	/* Calcul de rmax */
 	if( E==1 && (L >= 2*rs || L <=-2*rs ) ){ 
-		rmax= 1/(2*rs)*(Math.pow(L,2)+ Math.sqrt(Math.pow(L,4)-4*Math.pow(rs*L,2)));
+		//rmax= 1/(2*rs)*(Math.pow(L,2)+ Math.sqrt(Math.pow(L,4)-4*Math.pow(rs*L,2))); calcule rentré par les ancienne promo pas de comentaire et posse probleme si vous comprener modifier
+		rmax=r0;
 		if(rmax<r0) {rmax=2*r0;}
 	}
-	else {calcul_rmax(L,E,vr,r0,1) ;  
+	else {
+		calcul_rmax(L,E,vr,r0,1) ;  
 		if(rmax<r0) {rmax=r0 ;} 
 	} 
 
@@ -602,6 +604,8 @@ function trajectoire(compteur,mobile) {
 	}
 
     // Ici, les positions de départ de la particule, dans son référentiel et dans celui de l'observateur// 
+	
+	//console.log(mobile.rmax);
     x1part = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi) / mobile.rmax;
     y1part = mobilefactor[compteur] * mobile.r0 * Math.sin(mobile.phi) / mobile.rmax;
     x1obs = mobilefactor[compteur] * mobile.r0 * Math.cos(mobile.phi_obs) / mobile.rmax;
@@ -1084,13 +1088,13 @@ function derivee_seconde_externe_photon(r,L) {
 }
 
 function derivee_seconde_interne_photon_obs(r,E,L) {
-   return - Math.pow(c, 2)*r*rs/Math.pow(E,2)/ Math.pow(r_phy, 3) * (Math.pow(E*beta(r),2)- Math.pow(L/r, 2)*Math.pow(beta(r),4) )
-   +  0.5*Math.pow(c, 2)* alpha(r)/Math.pow(E,2) * ( 2* Math.pow(L, 2)*Math.pow(beta(r),4)/Math.pow(r, 3)- Math.pow(E,2)*r*rs*beta(r)/(Math.sqrt(alpha(r))*Math.pow(r_phy, 3)))
+	return - Math.pow(c, 2)*r*rs/Math.pow(E,2)/ Math.pow(r_phy, 3) * (Math.pow(E*beta(r),2)- Math.pow(L/r, 2)*Math.pow(beta(r),4) )
+	+  0.5*Math.pow(c, 2)* alpha(r)/Math.pow(E,2) * ( 2* Math.pow(L, 2)*Math.pow(beta(r),4)/Math.pow(r, 3)- Math.pow(E,2)*r*rs*beta(r)/(Math.sqrt(alpha(r))*Math.pow(r_phy, 3)))
 	+Math.pow(c, 2)*Math.sqrt(alpha(r))/Math.pow(E,2)/ Math.pow(r_phy, 3)*(Math.pow(E,2)*beta(r)- Math.pow(L/r, 2)*Math.pow(beta(r),3) )*r*rs;
 }
 
 function derivee_seconde_externe_photon_obs(r,E,L) {
-   return   c*c*(r-rs)*(2*E*E*r*r*r*rs + 2*L*L*r*r - 7*L*L*r*rs + 5*L*L*rs*rs )/(2*Math.pow(r,6)*E*E);
+	return   c*c*(r-rs)*(2*E*E*r*r*r*rs + 2*L*L*r*r - 7*L*L*r*rs + 5*L*L*rs*rs )/(2*Math.pow(r,6)*E*E);
 }
 
 
@@ -1107,40 +1111,42 @@ function calcul_rmax(L,E,vr,r0,rmax1ou2){
     rc = 2 * m - Math.pow(L, 2) * X0 + 2 * m * Math.pow(L * X0, 2);
     DELTA = Math.pow(rb, 2) - 4 * ra * rc;
     r3 = (-rb - Math.sqrt(DELTA)) / (2*ra);
+	//console.log("r3",r3);
+	//console.log("r0",r0);
     // la particule tombe au centre
     if (L < 2 * Math.sqrt(3) * m) {
-      rmax = r0;
+    	rmax = r0;
     }
-    else if ( (L <= 4*m) && (L > 2*Math.sqrt(3)*m) ) {
-      // dans ce cas, r varie entre 2 valeurs r0 et r3
-		if ( (Vr(r0) <= Vr(r1)) && (r0 > r1) ) {
-			if (r3 > r0) {
-				rmax = r3;
+	else if ( (L <= 4*m) && (L > 2*Math.sqrt(3)*m) ) {
+		// dans ce cas, r varie entre 2 valeurs r0 et r3
+			if ( (Vr(r0) <= Vr(r1)) && (r0 > r1) ) {
+				if (r3 > r0) {
+					rmax = r3;
+				}
+				else if (r3 < r0) {
+					rmax = r0;
+				}
 			}
-			else if (r3 < r0) {
-				rmax = r0;
-			}
+		// comprend les cas r0<=r1 et V(r0)>V(r1) où la particule tombe au centre
+		else {
+			rmax = r0;
 		}
-      // comprend les cas r0<=r1 et V(r0)>V(r1) où la particule tombe au centre
-      else {
-        rmax = r0;
-      }
-    }
+	}
     // dans ce cas r varie entre les 2 valeurs r0 et r3
     else if (L > 4 * m) {
-      if (r0 > r2) {
-        if (r3 > r0) {
-          rmax = r3;
-        }
-        else if (r3 < r0) {
-          rmax = r0;
-        }
-      }
-      else {
-        rmax = r0;
-      }
-    }
-  //JPC}
+		if (r0 > r2) {
+			if (r3 > r0) {
+			rmax = r3;
+			}
+			else if (r3 < r0) {
+			rmax = r0;
+			}
+		}
+		else {
+			rmax = r0;
+		}
+	}
+	//console.log(mobile.rmax);
 }
 
 

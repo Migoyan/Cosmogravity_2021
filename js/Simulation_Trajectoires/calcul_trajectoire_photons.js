@@ -929,7 +929,7 @@ function animate(compteur,mobile,mobilefactor) {
 				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML=vr_2_obs.toExponential(3); 
 			}
 			else{document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML =vp_2_obs.toExponential(3);}
-				document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8);
+			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(8);
 	 	}  																										  
 	}
 	else{	
