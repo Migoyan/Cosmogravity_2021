@@ -1,7 +1,7 @@
 
 {
 	"page_index":{
-		"version": "<strong>Version Beta</strong> 1.1 (01/02/2021)",
+		"version": "<strong>Version Beta</strong> 2021 (28/06/2021)",
 		"composition":"Le programme est composé de 2 parties :",
 		"univers":"Modèles d’univers de Friedmann-Lemaître et calculs annexes",
 		"trajectoire":"Trajectoires d'une particule libre en espace-temps de Schwarzschild & Kerr",
@@ -21,8 +21,9 @@
 		"contact":"<strong>Contactez nous:<br/></strong>",
 		"envoyer":"Envoyer",
 		"remerciements":"<strong>Remerciements</strong> à Éric Gourgoulhon (LUTH) et Jean-Philippe Uzan (IAP) pour leurs conseils",
-		"version_2019":"<strong>Version 2019 :</strong><br />  Youssef Jeyar, Mahmoud Najah, Ivan Sproudé, Elie Faye, Estuardo Quand, avec l'aide de Matthieu Carrère",
-		"version_2020":"<strong>Version 2020 :</strong><br />  Karim Hakim, Sanxi Padovani, Yuming Xiang, Badreddine Zaidi"
+		"version_2019":"<strong>Version 2019 :</strong><br/>  Youssef Jeyar, Mahmoud Najah, Ivan Sproudé, Elie Faye, Estuardo Quand, avec l'aide de Matthieu Carrère",
+		"version_2020":"<strong>Version 2020 :</strong><br/>  Karim Hakim, Sanxi Padovani, Yuming Xiang, Badreddine Zaidi",
+		"version_2021":"<strong>Version 2021 :</strong><br/>  Younes Benamara & Quentin Gromoff & Akli Idoughi & Arthur Tourneix & Thomas Valette. (Début du développement d'une version V2)."
 	},
 
 	"page_menu":{

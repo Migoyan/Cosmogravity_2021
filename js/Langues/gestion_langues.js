@@ -329,7 +329,8 @@ function texteApropos() {
 	document.getElementById("txt_contact").innerHTML = texte.page_apropos.contact;
 	document.getElementById("bouton_envoyer").innerHTML = texte.page_apropos.envoyer;
 	document.getElementById("txt_version_2019").innerHTML = texte.page_apropos.version_2019;	
-	document.getElementById("txt_version_2020").innerHTML = texte.page_apropos.version_2020;  
+	document.getElementById("txt_version_2020").innerHTML = texte.page_apropos.version_2020;
+	document.getElementById("txt_version_2021").innerHTML = texte.page_apropos.version_2021; 
 }
 
 function texteMenu(){
