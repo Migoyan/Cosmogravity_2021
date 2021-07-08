@@ -118,7 +118,8 @@
 		"zmin":"z<sub>min</sub>",
 		"zmax":"z<sub>max</sub>",
 		"enregistrerEn":"Enregistrer en",
-		"bouton_enregistrer":"Enregistrer"
+		"bouton_enregistrer":"Enregistrer",
+		"refresh_button":"Rafraichir la page"
 	},
 
 	"page_constantes":{
