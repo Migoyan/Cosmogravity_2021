@@ -156,8 +156,8 @@ function trajectoire() {
 		//--------------------------------------------------------------------------------------//
 		//Cette Partie traite le calcul de la trajectoire de la particule, dans son référentiel propre, et aussi dans celui de l'observateur//
 
-		phi = 0.0;
-		phi_obs = 0.0;
+		phi = phi0;
+		phi_obs = phi0;
 		temps_chute_libre = (Math.PI * r0 * Math.sqrt(r0 / (2 * G * M)) / 2);
 		A_init = vr;
 		r_init = r0;

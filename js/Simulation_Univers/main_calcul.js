@@ -293,13 +293,14 @@ function calcul() { // fonction principale de cosmogravity
 	// on cherche si on a un big crunch c'est à dire quand adetau s'annulle, i final est le temps avant le big crunch
 		tBC=0;
 	if(age != 0) {
-			if (Math.abs(H0)>=100) {
-				exposant=Math.round(Math.log10(H0));
-			pas =  5e-6*age*Math.pow(10,exposant);
-			} else  {
-			pas = age*5e-4 ;  }
-				if(proche_vert) {pas=age*1e-2;}
-				if(proche_bleu) {pas=age*1e-2;}
+		if (Math.abs(H0)>=100) {
+			exposant=Math.round(Math.log10(H0));
+			pas = 1e-4;
+		} else  {
+			pas = 1e-4 ;
+		}
+		//if(proche_vert) {pas=age*1e-2;}
+		//if(proche_bleu) {pas=age*1e-2;}
 
 	adetau1 = 1;
 		dasurdtau = 1;
@@ -356,17 +357,12 @@ function calcul() { // fonction principale de cosmogravity
 		if(amin2>=1) {amin2=0;}
 		if (Math.abs(H0)>=100) {
 			exposant=Math.round(Math.log10(Math.abs(H0)));
-			pas =  1e-6*age*Math.pow(10,exposant);						   
-			} else  {
-			pas=Math.abs(age)*1e-4;  
-			}
-										
-			 
+			pas =  1e-4;
+		} else  {
+			pas = 1e-4;  
+		}
 			
-			if(proche_vert) {pas=age*1e-4;}
-				if(proche_bleu) {pas=age*1e-4}
-				
-			console.log("ligne 368 pas",pas);
+		console.log("ligne 368 pas",pas);
 			
 		if(H0<0) {modele=4;}
 		//  de a=1 à a=0 temps décroissants
