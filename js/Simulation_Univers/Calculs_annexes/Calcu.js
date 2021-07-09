@@ -462,17 +462,21 @@ function calcu(path) {
 			document.getElementById("graph_container_log_d_z").style.display = "contents"; //display graph
 			plot_title = "Échelle log d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'log'
+
+			var abscissa_d = log_scale(zmin, zmax, 100);
 		}
 		else{
 			document.getElementById("graph_container_d_z").style.display = "contents"; //display graph
 			plot_title = "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'scatter'
+
+			var abscissa_d = linear_scale(zmin, zmax, 100);
 		}
 
 		
 
 		let annots = [];
-		let val_graph = calculDeDs(zmin, zmax, 100);
+		let val_graph = calculDeDs(abscissa_d);
 		let data = [
 			{
 				x: val_graph[3],
@@ -724,11 +728,11 @@ function calcu(path) {
 			plot_title = "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'scatter'
 
-			var abscissa_t = linear_scale(zmin, zmax, 100);
+			var abscissa_d = linear_scale(zmin, zmax, 100);
 		}
 	
-		var val_abscissa = calcul_temps(abscissa_t);
-		let val_graph = calculDeDs(abscissa_t);
+		var val_abscissa = calcul_temps(abscissa_d);
+		let val_graph = calculDeDs(abscissa_d);
 		let annots = [];
 		let data = [
 			{
@@ -985,16 +989,20 @@ function linear_scale(zmin, zmax, nb_pts) {
  * @param {*} nb_pts 
  * @returns points for the x-axis
  */
-function log_scale(zmin, zmax, nb_pts) {
+ function log_scale(zmin, zmax, nb_pts) {
 	let zmin_10 = Math.log10(zmin + 1);
 	let zmax_10 = Math.log10(zmax + 1);
 	let abscissa = linear_scale(zmin_10, zmax_10, nb_pts);
 	let abscissa_10 = [];
-	abscissa.forEach(x => {
-		abscissa_10.push(10**abscissa(x) - 1);
-	});
+	for (let i = 0; i < abscissa.length; i++) {
+		abscissa_10.push(10**abscissa[i] - 1);	
+	}
+
+	console.log(abscissa);
+	console.log(abscissa_10);
 	return abscissa_10;
 }
+
 
 
 function calculDeDs(abscissa) {
