@@ -444,7 +444,8 @@ function texteUniversCalculs() {
 			document.getElementById("annee1").innerHTML = texte.page_univers_calculs.annee;
 			document.getElementById("annee2").innerHTML = texte.page_univers_calculs.annee;
 			document.getElementById("temission").innerHTML = texte.page_univers_calculs.temission;
-			document.getElementById("treception").innerHTML = texte.page_univers_calculs.treception;																						  
+			document.getElementById("treception").innerHTML = texte.page_univers_calculs.treception;
+			document.getElementById("refresh_button").innerHTML = texte.page_univers_calculs.refresh_button;
 		}
 	}
 	// cas sans energie noire
