@@ -182,7 +182,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","ctreastre");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","r01");
-			newlabel.innerHTML = "r<sub>0</sub> (m) =";
+			newlabel.innerHTML = " r<sub>0</sub> (m) =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -206,7 +206,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","vitesseurlabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","v01");
-			newlabel.innerHTML = "v<sub>0</sub> (m/s) =";
+			newlabel.innerHTML = " v<sub>0</sub> (m/s) =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -229,7 +229,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
-			newlabel.innerHTML =htmlDecode("&phi;")+"<sub>en degré</sub> =";
+			newlabel.innerHTML =" "+htmlDecode("&phi;")+"<sub>en degré</sub> =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -251,7 +251,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","thetalabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta1");
-			newlabel.innerHTML = htmlDecode("&alpha;")+"<sub>en degré</sub> =";
+			newlabel.innerHTML = " "+htmlDecode("&alpha;")+"<sub>en degré</sub> =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
