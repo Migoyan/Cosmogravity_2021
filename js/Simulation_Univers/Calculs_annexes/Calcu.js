@@ -516,7 +516,7 @@ function calcu(path) {
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+			titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
 			
 			xaxis: {
 				autorange: true,
@@ -524,7 +524,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 	
@@ -535,7 +535,7 @@ function calcu(path) {
 				type : "scatter",
 
 				title: 'al',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 			annotations: annots,
@@ -554,14 +554,14 @@ function calcu(path) {
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
 			document.getElementById("graph_container_log_omega_z").style.display = "contents"; //display graph
-			plot_title = "Échelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>";
+			plot_title = "Échelle log \Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub>";
 			plot_type = 'log';
 			
 			var abscissa_omega = log_scale(zmin, zmax, 1000);
 		}
 		else {
 			document.getElementById("graph_container_omega_z").style.display = "contents"; //display graph
-			plot_title = "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>";
+			plot_title = "\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub>";
 			plot_type = 'scatter';
 
 			var abscissa_omega = linear_scale(zmin, zmax, 1000);
@@ -577,7 +577,7 @@ function calcu(path) {
 				y: val_graph[0],
 
 				type: 'scatter',
-				name: '<b>Ω<sub>m</sub></b>'
+				name: 'Ω<sub>m</sub>'
 			},
 			{
 				x: val_graph[4],
@@ -585,7 +585,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: '<b>Ω<sub>Λ</sub></b>'
+				name: 'Ω<sub>Λ</sub>'
 			},
 			{
 				x: val_graph[4],
@@ -593,7 +593,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: '<b>Ω<sub>r</sub></b>'
+				name: 'Ω<sub>r</sub>'
 			},
 			{
 				x: val_graph[4],
@@ -601,22 +601,22 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: '<b>Ω<sub>k</sub></b>'
+				name: 'Ω<sub>k</sub>'
 			}
 		];
 		let layout = {
 
-			title: "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>",
+			title: "\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub>",
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+			titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
 	
 			xaxis: {
 				autorange: true,
 				type : plot_type,
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 	
@@ -627,8 +627,8 @@ function calcu(path) {
 				title: '',
 
 				type : "scatter",
-				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				title: 'Paramètre de densité Ω<sub>i</sub>',
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 
 				showline: true
 			},
@@ -642,19 +642,19 @@ function calcu(path) {
 			graphique_creation("graphique_omega_z", ['graphique_omega_z', data, layout, {displaylogo: false}]);
 		}
 
-	} else if (path == 3 && modele==0) {
+	} else if(path == 3 && modele==0){
 		// Chart t(z)	
 		t_checkbox = document.getElementById("t_checkbox");				
 		if(t_checkbox.checked) {
 			document.getElementById("graph_container_log_t").style.display = "contents"; //display graph
-			plot_title = "Échelle log <b>t(z)</b>"
+			plot_title = "Échelle log t(z)"
 			plot_type = 'log'
 
 			var abscissa_t = log_scale(zmin, zmax, 100);
 		}
 		else{
 			document.getElementById("graph_container_t").style.display = "contents"; //display graph
-			plot_title = "<b>t(z)</b>"
+			plot_title = "t(z)"
 			plot_type = 'scatter'
 
 			var abscissa_t = linear_scale(zmin, zmax, 100);
@@ -673,27 +673,27 @@ function calcu(path) {
 				line: {
 					simplify: false
 				},
-				name: '<b>t(z)</b>'
+				name: 't(z)'
 			}
 		];
 		let layout = {
 
-			title: "<b>t(z)</b>",
-			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+			title: "t(z)",
+			titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
 			xaxis: {
 
 				type : plot_type,
 
 				autorange: true,
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 
 			yaxis: {
 				type : "scatter",
 				autorange: true,
-				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				title: 'temps (Ga)',titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 
@@ -713,7 +713,7 @@ function calcu(path) {
 			graphique_creation("graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
 		}
 		
-	} else if (path == 4 && modele==0) {
+	} else if(path == 4 && modele==0) {
 		// Distance's charts d in function of t
 		d_checkbox = document.getElementById("d_checkbox");
 		if(d_checkbox.checked) {
@@ -770,7 +770,7 @@ function calcu(path) {
 
 			title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
 
-			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+			titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
 			
 			xaxis: {
 				autorange: true,
@@ -778,7 +778,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 't',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 	
@@ -789,7 +789,7 @@ function calcu(path) {
 				type : "scatter",
 
 				title: 'al',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 			annotations: annots,
@@ -802,19 +802,19 @@ function calcu(path) {
 			graphique_creation("graphique_d_t", ['graphique_d_t', data, layout, {displaylogo: false}]);
 		}
 		
-	} else if (path == 5 && modele==0) {
+	} else if(path == 5 && modele==0) {
 		// Omega's charts in function of t
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
 			document.getElementById("graph_container_log_omega_t").style.display = "contents"; //display graph
-			plot_title = "Échelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_title = "Échelle log \Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub>"
 			plot_type = 'log'
 
 			var abscissa_omega = log_scale(zmin, zmax, 500);
 		}
 		else{
 			document.getElementById("graph_container_omega_t").style.display = "contents"; //display graph
-			plot_title = "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
+			plot_title = "\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub>"
 			plot_type = 'scatter'
 
 			var abscissa_omega = linear_scale(zmin, zmax, 500);
@@ -831,7 +831,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: '<b>Ω<sub>m</sub></b>'
+				name: 'Ω<sub>m</sub>'
 			},
 			{
 				x: val_abscissa[1],
@@ -839,7 +839,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: '<b>Ω<sub>Λ</sub></b>'
+				name: 'Ω<sub>Λ</sub>'
 			},
 			{
 				x: val_abscissa[1],
@@ -847,7 +847,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: '<b>Ω<sub>r</sub></b>'
+				name: 'Ω<sub>r</sub>'
 			},
 			{
 				x: val_abscissa[1],
@@ -855,16 +855,16 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: '<b>Ω<sub>k</sub></b>'
+				name: 'Ω<sub>k</sub>'
 			}
 		];
 		let layout = {
 
-			title: "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>",
+			title: "\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub>",
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+			titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
 	
 			xaxis: {
 				autorange: true,
@@ -872,7 +872,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 't',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 				showline: true
 			},
 	
@@ -880,8 +880,8 @@ function calcu(path) {
 				rangemode: 'tozero',
 				autorange: true,
 				type : "scatter",
-				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
-				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
+				title: 'Paramètre de densité Ω<sub>i</sub>',
+				titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
 
 				showline: true
 			},
@@ -1149,7 +1149,6 @@ function graphique_creation(id_document, params_to_plotly){
 		This function create the graphics for calcul annexe using plotly lib
 		id_document : id of the object on html page
 		params_to_plotly : parameters that are passed to plotly
-
 		return : nothing
 	*/
 
