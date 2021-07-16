@@ -462,17 +462,21 @@ function calcu(path) {
 			document.getElementById("graph_container_log_d_z").style.display = "contents"; //display graph
 			plot_title = "Échelle log d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'log'
+
+			var abscissa_d = log_scale(zmin, zmax, 100);
 		}
 		else{
 			document.getElementById("graph_container_d_z").style.display = "contents"; //display graph
 			plot_title = "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'scatter'
+
+			var abscissa_d = linear_scale(zmin, zmax, 100);
 		}
 
 		
 
 		let annots = [];
-		let val_graph = calculDeDs(zmin, zmax, 100);
+		let val_graph = calculDeDs(abscissa_d);
 		let data = [
 			{
 				x: val_graph[3],
@@ -512,7 +516,7 @@ function calcu(path) {
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 			
 			xaxis: {
 				autorange: true,
@@ -520,7 +524,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -531,7 +535,7 @@ function calcu(path) {
 				type : "scatter",
 
 				title: 'al',
-				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
@@ -550,19 +554,23 @@ function calcu(path) {
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
 			document.getElementById("graph_container_log_omega_z").style.display = "contents"; //display graph
-			plot_title = "Échelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
-			plot_type = 'log'
+			plot_title = "Échelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>";
+			plot_type = 'log';
+			
+			var abscissa_omega = log_scale(zmin, zmax, 1000);
 		}
-		else{
+		else {
 			document.getElementById("graph_container_omega_z").style.display = "contents"; //display graph
-			plot_title = "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
-			plot_type = 'scatter'
+			plot_title = "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>";
+			plot_type = 'scatter';
+
+			var abscissa_omega = linear_scale(zmin, zmax, 1000);
 		}
 
 		
 
 		let annots = [];
-		let val_graph = calcul_omegas(zmin,zmax,1000);
+		let val_graph = calcul_omegas(abscissa_omega);
 		let data = [
 			{
 				x: val_graph[4],
@@ -602,13 +610,13 @@ function calcu(path) {
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 	
 			xaxis: {
 				autorange: true,
 				type : plot_type,
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -620,7 +628,7 @@ function calcu(path) {
 
 				type : "scatter",
 				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
-				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 
 				showline: true
 			},
@@ -641,16 +649,20 @@ function calcu(path) {
 			document.getElementById("graph_container_log_t").style.display = "contents"; //display graph
 			plot_title = "Échelle log <b>t(z)</b>"
 			plot_type = 'log'
+
+			var abscissa_t = log_scale(zmin, zmax, 100);
 		}
 		else{
 			document.getElementById("graph_container_t").style.display = "contents"; //display graph
 			plot_title = "<b>t(z)</b>"
 			plot_type = 'scatter'
+
+			var abscissa_t = linear_scale(zmin, zmax, 100);
 		}
 	
 
 		let annots = [];
-		let val_graph = calcul_temps(zmin,zmax,100);
+		let val_graph = calcul_temps(abscissa_t);
 		let data = [
 			{
 				x: val_graph[0],
@@ -667,21 +679,21 @@ function calcu(path) {
 		let layout = {
 
 			title: "<b>t(z)</b>",
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 			xaxis: {
 
 				type : plot_type,
 
 				autorange: true,
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 
 			yaxis: {
 				type : "scatter",
 				autorange: true,
-				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 
@@ -708,15 +720,19 @@ function calcu(path) {
 			document.getElementById("graph_container_log_d_t").style.display = "contents"; //display graph
 			plot_title = "Échelle log d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'log'
+
+			var abscissa_d = log_scale(zmin, zmax, 100);
 		}
 		else{
 			document.getElementById("graph_container_d_t").style.display = "contents"; //display graph
 			plot_title = "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>"
 			plot_type = 'scatter'
+
+			var abscissa_d = linear_scale(zmin, zmax, 100);
 		}
 	
-		var val_abscissa = calcul_temps(zmin, zmax, 100);
-		let val_graph = calculDeDs(zmin, zmax, 100);
+		var val_abscissa = calcul_temps(abscissa_d);
+		let val_graph = calculDeDs(abscissa_d);
 		let annots = [];
 		let data = [
 			{
@@ -754,7 +770,7 @@ function calcu(path) {
 
 			title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 			
 			xaxis: {
 				autorange: true,
@@ -762,7 +778,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 't',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -773,7 +789,7 @@ function calcu(path) {
 				type : "scatter",
 
 				title: 'al',
-				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
@@ -793,16 +809,20 @@ function calcu(path) {
 			document.getElementById("graph_container_log_omega_t").style.display = "contents"; //display graph
 			plot_title = "Échelle log <b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
 			plot_type = 'log'
+
+			var abscissa_omega = log_scale(zmin, zmax, 500);
 		}
 		else{
 			document.getElementById("graph_container_omega_t").style.display = "contents"; //display graph
 			plot_title = "<b>\Ω<sub>m</sub>  Ω<sub>Λ</sub>  Ω<sub>r</sub>  Ω<sub>k</sub></b>"
 			plot_type = 'scatter'
+
+			var abscissa_omega = linear_scale(zmin, zmax, 500);
 		}
 	
 
-		var val_abscissa = calcul_temps(zmin, zmax, 500);
-		let val_graph = calcul_omegas(zmin, zmax, 500);
+		var val_abscissa = calcul_temps(abscissa_omega);
+		let val_graph = calcul_omegas(abscissa_omega);
 		let annots = [];
 		let data = [
 			{
@@ -844,7 +864,7 @@ function calcu(path) {
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 	
 			xaxis: {
 				autorange: true,
@@ -852,7 +872,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 't',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -861,7 +881,7 @@ function calcu(path) {
 				autorange: true,
 				type : "scatter",
 				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
-				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 
 				showline: true
 			},
@@ -944,11 +964,52 @@ function calcultheta() {
 	}
 }
 
-function calculDeDs(zmin,zmax,dt){
+
+/**
+ * Linear Scale
+ * @param {*} zmin 
+ * @param {*} zmax 
+ * @param {*} nb_pts 
+ * @returns points for the x-axis
+ */
+function linear_scale(zmin, zmax, nb_pts) {
+	let step = (zmax - zmin) / nb_pts;
+	let abscissa = [];
+	for (let i=zmin; i<=zmax; i+=step) {
+		abscissa.push(i);
+	}
+	return abscissa;
+}
+
+
+/**
+ * Logarithmic Scale
+ * @param {*} zmin 
+ * @param {*} zmax 
+ * @param {*} nb_pts 
+ * @returns points for the x-axis
+ */
+ function log_scale(zmin, zmax, nb_pts) {
+	let zmin_10 = Math.log10(zmin + 1);
+	let zmax_10 = Math.log10(zmax + 1);
+	let abscissa = linear_scale(zmin_10, zmax_10, nb_pts);
+	let abscissa_10 = [];
+	for (let i = 0; i < abscissa.length; i++) {
+		abscissa_10.push(10**abscissa[i] - 1);	
+	}
+
+	console.log(abscissa);
+	console.log(abscissa_10);
+	return abscissa_10;
+}
+
+
+
+function calculDeDs(abscissa) {
 	Eps = Number(0.001);  //0.00001
-	var pas = (zmax - zmin)/dt;
+//	var pas = (zmax - zmin)/dt;	
 	var zArr = [];
-	var i = zmin;
+//	var i = zmin;
 	var daArr = [];
 	var da;
 	var dlArr = [];
@@ -964,7 +1025,7 @@ function calculDeDs(zmin,zmax,dt){
 	// temps_0= simpson_simple_degre2(fonction_integrale, 0, omegam0, Number(omegalambda0), Number(Or));  // temps en années
 	// temps_0 = temps_0 * H0enannee / H0parsec; 
 
-	while (i<=zmax) {
+	abscissa.forEach(i => {
 		
 		// calcul de la distance mètrique 
 
@@ -1005,25 +1066,24 @@ function calculDeDs(zmin,zmax,dt){
 		dltArr.push(dlt);
 
 		zArr.push(i);
-
-		i = i + pas;
-	}
+	});
 
 	return [dlArr,daArr,dmArr,zArr,dltArr];
 }
 
-function calcul_omegas(zmin,zmax,dt){
+function calcul_omegas(abscissa){
 	zz=0. ;
 	zArr = [];
 	omArr = [];
 	olArr = [];
 	orArr = [];
 	okArr = [];
-	pas = (zmax - zmin)/dt;
-	i=zmin;
+//	pas = (zmax - zmin)/dt;
+//	i=zmin;
 	// lz = Math.log10(1+i);
 
-	while (i<zmax) {
+	abscissa.forEach(i => {
+
 		Omz = omegam0 * Math.pow(1 + Number(i), 3) / fonction_E(Number(i), omegam0, Number(omegalambda0), Or);
 		Omz = Omz.toExponential(4);
 		omArr.push(Omz);
@@ -1042,27 +1102,26 @@ function calcul_omegas(zmin,zmax,dt){
 		okArr.push(Okz);
 		
 		zArr.push(i);
-		i = i + pas;
 		//lz=Math.log10(1+i);
-
-	}
+	});
 
 	return [omArr,olArr,orArr,okArr,zArr];
 }
 
 
 
-function calcul_temps(zmin,zmax,dt){
+function calcul_temps(abscissa){
 	zArr = [];
 	tempsArr=[];
-	pas = (zmax - zmin)/dt;
+//	pas = (zmax - zmin)/dt;
 	temps_0=0;
 	h0 = Number(document.getElementById("H0_annexes").value); 
 	if(h0<0) {temps_0=simpson_simple_degre2(fonction_integrale, 0, omegam0, Number(omegalambda0), Number(Or)); temps_0=-temps_0;}
 	
-	i = Number(zmin);
+//	i = Number(zmin);
 	
-	while(i<zmax){	
+abscissa.forEach(i => {
+
 		if (Number(i) <= 1e12) {
 			temps = simpson_simple_degre2(fonction_integrale, Number(i), omegam0, Number(omegalambda0), Number(Or));
 			tempsArr.push(temps+temps_0);
@@ -1080,8 +1139,8 @@ function calcul_temps(zmin,zmax,dt){
 			}
 		}
 		zArr.push(i);
-		i+=pas 
-	}
+	});
+
 	return [zArr,tempsArr];
 }
 
