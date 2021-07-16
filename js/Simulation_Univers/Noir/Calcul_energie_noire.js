@@ -138,7 +138,7 @@ function Calc() {
 	ymoinsrungederiv = [1, 1];
 	k = [0, 0, 0, 0];
 	j = [0, 0, 0, 0];
-	pas = 1e-4;
+	pas = age*5e-6;
 	m = 0;
 	yrunge = 1;
 	yrunge2 = 1;
@@ -149,10 +149,10 @@ function Calc() {
 		ymoinsrunge[0] = ymoinsrunge[1];
 		res = age + m / H0engannee;
 		ymoinsrungederiv[0] = ymoinsrungederiv[1];
-	//  if (yrunge2 > 0) {
+		if (yrunge2 > 0) {
 			data_x.push(age + m / H0engannee);
 			data_y.push(yrunge2);
-	//  }
+	 	}
 		m = m - pas;
 	}
 
@@ -161,7 +161,7 @@ function Calc() {
 
 	//on refait appel à rungekutta pour la deuxieme partie
 	i = 0;
-	pas = 1e-4;
+	pas = age*5e-6;
 	yrunge = 1;
 	ymoinsrunge = [1, 1];
 	ymoinsrungederiv = [1, 1];

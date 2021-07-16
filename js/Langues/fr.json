@@ -119,7 +119,7 @@
 		"zmax":"z<sub>max</sub>",
 		"enregistrerEn":"Enregistrer en",
 		"bouton_enregistrer":"Enregistrer",
-		"refresh_button":"Rafraichir la page"
+		"bouton_rafraichir":"Rafraichir la page"
 	},
 
 	"page_constantes":{
