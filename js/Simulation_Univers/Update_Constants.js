@@ -108,28 +108,24 @@ function update_omegak0_simu(){
 	document.getElementById("omegam0").value = omegam0;
 }
 
- function verifnbr() {
-
+function verifnbr() {
 	t0 = document.getElementById("T0").value;
 	h0 = document.getElementById("H0").value;
 	omegam0 = document.getElementById("omegam0").value;
 	omegalambda0 = document.getElementById("omegalambda0").value;
 
-
 	if (isNaN(t0)){
-    alert ("Veuillez vérifier vos saisie en t0");}
-  if (isNaN(h0)){
-    alert ("Veuillez vérifier vos saisie en h0");
-  }
-  if (isNaN(omegam0)){
-    alert ("Veuillez vérifier vos saisie en omegam0");
-  }
-  if (isNaN(omegalambda0)){
-    alert ("Veuillez vérifier vos saisie en omegalambda0");
-  }
-
-
- }
+    	alert ("Veuillez vérifier vos saisie en t0");}
+  	if (isNaN(h0)){
+    	alert ("Veuillez vérifier vos saisie en h0");
+  	}
+  	if (isNaN(omegam0)){
+    	alert ("Veuillez vérifier vos saisie en omegam0");
+  	}
+  	if (isNaN(omegalambda0)){
+    	alert ("Veuillez vérifier vos saisie en omegalambda0");
+  	}
+}
 
 
 
@@ -422,7 +418,7 @@ function update_omegak0_calc_noir(){
 		document.getElementById("omegaDE0_annexes").value = la;
 	}
 	else{
-		omegalambda0=	omegalambda0.toExponential(4);
+		omegalambda0 = omegalambda0.toExponential(4);
 		document.getElementById("omegaDE0_annexes").value = omegalambda0;
 	}
 	omegak0= omegak0.toExponential(4);

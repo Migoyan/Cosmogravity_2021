@@ -190,6 +190,7 @@ function ouvre_calc_Noire() {
   if (document.getElementById("univ_plat").checked) {
     uplat = true;
   }
+  console.log(Om, Ol);
   // Stockage des valeurs
   sessionStorage.setItem("T0", T0);
   sessionStorage.setItem("H0", H0);

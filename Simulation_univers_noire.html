@@ -158,24 +158,25 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 			<div class="inp">
 				<label>T<sub>0</sub> = </label>
 				<!-- Onchange pour actuliser les paramètre envoyés par le formulaire a chaque changement -->
-				<input id="T0" type="text" value="2.7255" onChange="update_omegar0_simu_noir();document.getElementById('T0calc').value = this.value;verifnbr();"></input>
+				<input id="T0" type="text" value="2.7255" onChange="update_omegar0_simu_noir();document.getElementById('T0calc').value = this.value;"></input>
 				K
 			</div>
 
 			<div id="balise_H0" class="inp">
 				<label>&nbsp;&nbsp; H<sub>0</sub> = </label>
-				<input id="H0" type="text" value="67.74" size="10" onChange="update_omegar0_simu_noir();document.getElementById('H0calc').value = this.value;verifnbr();"></input>
+				<input id="H0" type="text" value="67.74" size="10" onChange="update_omegar0_simu_noir();document.getElementById('H0calc').value = this.value;v"></input>
 				<label>km.s<sup>-1</sup>.Mpc<sup>-1</sup></label>
 			</div>
 
 			<div class="inp">
 				<label>Ω<sub>m0</sub> = </label>
-				<input id="omegam0" type="text" value="0.3089" onChange="verifnbr();document.getElementById('Omcalc').value = this.value;update_omegak0_simu_noir();document.getElementById('resultat_omegam0').innerHTML=this.value;verifnbr();"></input>
+				<input id="omegam0" type="text" value="0.3089" onChange="document.getElementById('Omcalc').value = this.value;
+				update_omegak0_simu_noir();document.getElementById('resultat_omegam0').innerHTML=this.value;"></input>
 			</div>
 
 			<div class="inp">
 				<label>Ω<sub>DE0</sub> = </label>
-				<input id="omegaDE0" type="text" value="0.6911" onChange="verifnbr();document.getElementById('Olcalc').value = this.value;update_omegak0_simu_noir();verifnbr();"></input>
+				<input id="omegaDE0" type="text" value="0.6911" onChange="document.getElementById('Olcalc').value = this.value;update_omegak0_simu_noir();"></input>
 			</div>
 			<div class="inp">
 				<label>w<sub>0</sub> = </label>
