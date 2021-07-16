@@ -152,35 +152,28 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 	</div>
 
     <div id="formulaire">
-      <form name="params" id="parametres" action="" method="post" autocomplete="off">
-        <div id="champs_a_remplir">
-          <span id="masse">
+		<form name="params" id="parametres" action="" method="post" autocomplete="off">
+		<div id="champs_a_remplir">
+			<span id="masse">
+			<label id= "massetxt"  for="M">M (kg) =</label>
 
+			<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisationGenerale(lenbdefusees)">
+			</span>
+			<span id="rayon_phy">
+				<label title="" for="r_phy" id="txt_rphysique"></label>
+				<input id="r_phy" value="3.5e3" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)">
+			</span>
 
-      									<label id= "massetxt"  for="M">M (kg) =</label>
+		</div>
 
-
-
-      										<input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onChange="verifnbr();initialisationGenerale(lenbdefusees)">
-      						</span>
-
-      									
-          <span id="rayon_phy">
-      		                  <label title="" for="r_phy" id="txt_rphysique"></label>
-      					            <input id="r_phy" value="3.5e3" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)">
-      									</span>
-
-
-
-        </div>
-
-     <div><label id="labelnumberfusees" for="nombredefusees"></label> 
-       <input id="nombredefusees" value="1" type="text" size="5" onchange="supprHtml();genereHtml();save_nbfusees();updatenbredefusees();">
-                        <span id="case">
-                                               <label id="labelgp"  for="vr"></label>
-                                                 <input id="toggle" type="checkbox"  checked>
-                                               </span>
-     </div>
+	<div>
+		<label id="labelnumberfusees" for="nombredefusees"></label> 
+		<input id="nombredefusees" value="1" type="text" size="5" onchange="supprHtml();genereHtml();save_nbfusees();updatenbredefusees();">
+		<span id="case">
+			<label id="labelgp"  for="vr"></label>
+			<input id="toggle" type="checkbox"  checked>
+		</span>
+	</div>
 
 
         <div id="radio_button">
