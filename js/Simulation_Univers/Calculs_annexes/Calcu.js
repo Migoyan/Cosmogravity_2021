@@ -634,7 +634,7 @@ function calcu(path) {
 			graphique_creation("graphique_omega_z", ['graphique_omega_z', data, layout, {displaylogo: false}]);
 		}
 
-	} else if (path == 3 && modele==0) {
+	} else if(path == 3 && modele==0){
 		// Chart t(z)	
 		t_checkbox = document.getElementById("t_checkbox");				
 		if(t_checkbox.checked) {
@@ -701,7 +701,7 @@ function calcu(path) {
 			graphique_creation("graphique_t", ['graphique_t', data, layout, {displaylogo: false}]);
 		}
 		
-	} else if (path == 4 && modele==0) {
+	} else if(path == 4 && modele==0) {
 		// Distance's charts d in function of t
 		d_checkbox = document.getElementById("d_checkbox");
 		if(d_checkbox.checked) {
@@ -786,7 +786,7 @@ function calcu(path) {
 			graphique_creation("graphique_d_t", ['graphique_d_t', data, layout, {displaylogo: false}]);
 		}
 		
-	} else if (path == 5 && modele==0) {
+	} else if(path == 5 && modele==0) {
 		// Omega's charts in function of t
 		omega_checkbox = document.getElementById("omega_checkbox");
 		if(omega_checkbox.checked) {
