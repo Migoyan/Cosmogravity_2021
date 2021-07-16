@@ -516,7 +516,7 @@ function calcu(path) {
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 			
 			xaxis: {
 				autorange: true,
@@ -524,7 +524,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -535,7 +535,7 @@ function calcu(path) {
 				type : "scatter",
 
 				title: 'al',
-				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
@@ -610,13 +610,13 @@ function calcu(path) {
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 	
 			xaxis: {
 				autorange: true,
 				type : plot_type,
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -628,7 +628,7 @@ function calcu(path) {
 
 				type : "scatter",
 				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
-				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 
 				showline: true
 			},
@@ -679,21 +679,21 @@ function calcu(path) {
 		let layout = {
 
 			title: "<b>t(z)</b>",
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 			xaxis: {
 
 				type : plot_type,
 
 				autorange: true,
 				title: 'z',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 
 			yaxis: {
 				type : "scatter",
 				autorange: true,
-				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				title: 'temps (Ga)',titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 
@@ -770,7 +770,7 @@ function calcu(path) {
 
 			title: "d<sub>m</sub>  d<sub>L</sub>  d<sub>a</sub>  d<sub>LT</sub>",
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 			
 			xaxis: {
 				autorange: true,
@@ -778,7 +778,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 't',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -789,7 +789,7 @@ function calcu(path) {
 				type : "scatter",
 
 				title: 'al',
-				titlefont:{family:"Arial black, monospace",size:25,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 			annotations: annots,
@@ -864,7 +864,7 @@ function calcu(path) {
 
 			title: plot_title,
 
-			titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+			titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
 	
 			xaxis: {
 				autorange: true,
@@ -872,7 +872,7 @@ function calcu(path) {
 				type : plot_type,
 
 				title: 't',
-				titlefont:{family:"Arial black, monospace",size:30,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 				showline: true
 			},
 	
@@ -881,7 +881,7 @@ function calcu(path) {
 				autorange: true,
 				type : "scatter",
 				title: 'Paramètre de densité <b>Ω<sub>i</sub></b>',
-				titlefont:{family:"Arial black, monospace",size:20,color:"#7f7f7f"},
+				titlefont:{family:"Arial black, monospace",size:16,color:"#7f7f7f"},
 
 				showline: true
 			},
