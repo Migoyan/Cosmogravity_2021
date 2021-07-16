@@ -577,7 +577,7 @@ function calcu(path) {
 				y: val_graph[0],
 
 				type: 'scatter',
-				name: 'Ω<sub>m</sub>'
+				name: '<b>Ω<sub>m</sub><b>'
 			},
 			{
 				x: val_graph[4],
@@ -585,7 +585,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: 'Ω<sub>Λ</sub>'
+				name: '<b>Ω<sub>Λ</sub><b>'
 			},
 			{
 				x: val_graph[4],
@@ -593,7 +593,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: 'Ω<sub>r</sub>'
+				name: '<b>Ω<sub>r</sub><b>'
 			},
 			{
 				x: val_graph[4],
@@ -601,7 +601,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: 'Ω<sub>k</sub>'
+				name: '<b>Ω<sub>k</sub><b>'
 			}
 		];
 		let layout = {
@@ -831,7 +831,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: 'Ω<sub>m</sub>'
+				name: '<b>Ω<sub>m</sub><b>'
 			},
 			{
 				x: val_abscissa[1],
@@ -839,7 +839,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: 'Ω<sub>Λ</sub>'
+				name: '<b>Ω<sub>Λ</sub><b>'
 			},
 			{
 				x: val_abscissa[1],
@@ -847,7 +847,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: 'Ω<sub>r</sub>'
+				name: '<b>Ω<sub>r</sub><b>'
 			},
 			{
 				x: val_abscissa[1],
@@ -855,7 +855,7 @@ function calcu(path) {
 
 				type: 'scatter',
 
-				name: 'Ω<sub>k</sub>'
+				name: '<b>Ω<sub>k</sub><b>'
 			}
 		];
 		let layout = {
