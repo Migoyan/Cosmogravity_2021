@@ -106,7 +106,7 @@ function supprHtml(){
 	for (countt = 1; countt <= nbrfuseesuppr; countt += 1) {
 		var elementrayonasuppr = document.getElementById("rayon"+countt.toString()+"");
 		elementrayonasuppr.parentNode.removeChild(elementrayonasuppr);
-		var elementvpasuppr = document.getElementById("vitesseur"+countt.toString()+"");
+		var elementvpasuppr = document.getElementById("vitessep"+countt.toString()+"");
 		elementvpasuppr.parentNode.removeChild(elementvpasuppr);
 		var elementvrasuppr = document.getElementById("tetaid"+countt.toString()+"");
 		elementvrasuppr.parentNode.removeChild(elementvrasuppr);
@@ -212,7 +212,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
-			newlabel.innerHTML = " "+htmlDecode("&phi; ")+"<sub>en degrée</sub> =";
+			newlabel.innerHTML = " "+htmlDecode("&phi; ")+"° =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -234,7 +234,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","thetalabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta1");
-			newlabel.innerHTML =" "+ htmlDecode("&alpha;")+"<sub>en degrée</sub> =";
+			newlabel.innerHTML =" "+ htmlDecode("&alpha;")+"° =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -457,7 +457,7 @@ function initialisation(compteur){
 	}
 	if (compteur==2){
 		vphi2i = vphi;
-		vr2i =vr2;
+		vr2i =vr;
 	}
   	return mobile;
 }  // fin fonction initialisation

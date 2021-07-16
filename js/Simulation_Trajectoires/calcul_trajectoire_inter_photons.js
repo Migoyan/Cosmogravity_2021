@@ -177,7 +177,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
-			newlabel.innerHTML = " "+htmlDecode(" &phi;")+" <sub>en degré</sub> =";
+			newlabel.innerHTML = " "+htmlDecode(" &phi;")+"° =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -205,7 +205,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","thetalabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","teta");
-			newlabel.innerHTML =" "+ htmlDecode(" &alpha;")+" <sub>en degré</sub> =";
+			newlabel.innerHTML =" "+ htmlDecode(" &alpha;")+"° =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
