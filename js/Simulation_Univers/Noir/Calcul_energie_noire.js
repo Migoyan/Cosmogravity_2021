@@ -196,7 +196,9 @@ function Calc() {
 		let age_univ_sec = Number(age_sec) + temps_restant;
 		let age_univ_Ga = age_univ_sec / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
 		document.getElementById("resultat_bigcrunch").innerHTML = "Temps avant Big rip : " + (temps_restant_Ga).toExponential(4) + " Ga = " + (temps_restant).toExponential(4) + " s";
-		document.getElementById("resultat_dureeuniv").innerHTML = (age_univ_Ga).toExponential(4) + " Ga = " + (age_univ_sec).toExponential(4) + " s";
+		if (!isNaN(age_univ_sec)) {
+			document.getElementById("resultat_dureeuniv").innerHTML = (age_univ_Ga).toExponential(4) + " Ga = " + (age_univ_sec).toExponential(4) + " s";
+		}
 	} else {
 		document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.pasBC;
 	}
