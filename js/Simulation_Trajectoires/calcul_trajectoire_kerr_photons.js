@@ -831,8 +831,8 @@ function majFondFixe(){
 	context.fillText("M = "+M.toExponential(3)+" kg",5,90);
 	context.fillText("r\u2080 = "+r0.toExponential(3)+" m",5,110);
 	context.fillText("a = "+a.toExponential(3)+" m",5,130);
-	context.fillText("U\u1D69(r\u2080) = "+vphi.toExponential(3)+" m.s\u207B\u00B9",5,150);
-	context.fillText("U\u1D63(r\u2080) = "+vr.toExponential(3)+" m.s\u207B\u00B9",5,170);
+	context.fillText("V\u2080 = "+c.toExponential(8)+" m.s\u207B\u00B9",5,150);
+	context.fillText("\u03C6 = "+phi0.toExponential(3)+"",5,170);
 	if(document.getElementById('traject_type2').value=="observateur"){
 		context.fillText(texte.pages_trajectoire.observateur,5,190);
 	} 

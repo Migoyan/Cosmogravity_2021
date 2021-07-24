@@ -452,12 +452,12 @@ function initialisation(compteur){
 	}
 	//pour l'affichage sur le graph avec les condition initiale
 	if (compteur==1){
-		vphiblab=vphi;
-		vrblab=vr;
+		vphiblab=v0;
+		vrblab=phi0;
 	}
 	if(compteur==2){
-		vphi2i = vphi;
-		vr2i = vr;
+		vphi2i = v0;
+		vr2i = phi0;
 	}
 	
 	return mobile;
@@ -1394,14 +1394,14 @@ function majFondFixe(){
 	else { context.fillText(texte.pages_trajectoire.mobile,5,150); }
 		context.fillText("mobile1:",5,170);
 		context.fillText("r\u2080 = "+(r0o2[1]).toExponential(3)+" m",5,190);
-		context.fillText("U\u1D69(r\u2080) = "+vphiblab.toExponential(3)+" m.s\u207B\u00B9",5,210);
-		context.fillText("U\u1D63(r\u2080) = "+vrblab.toExponential(3)+" m.s\u207B\u00B9",5,230);
+		context.fillText("V\u2080 = "+vphiblab.toExponential(3)+" m.s\u207B\u00B9",5,210);
+		context.fillText("\u03C6 = "+vrblab.toExponential(3),5,230);
 		nombeuhreudefusees = Number(document.getElementById("nombredefusees").value);
 	if (nombeuhreudefusees>=2) {
 		context.fillText("mobile2:",5,250);
 		context.fillText("r\u2080 = "+r0o2[2].toExponential(3)+" m",5,270);
-		context.fillText("U\u1D69(r\u2080) = "+vphi2i.toExponential(3)+" m.s\u207B\u00B9",5,290);
-		context.fillText("U\u1D63(r\u2080) = "+vr2i.toExponential(3)+" m.s\u207B\u00B9",5,310);
+		context.fillText("V\u2080 = "+vphi2i.toExponential(3)+" m.s\u207B\u00B9",5,290);
+		context.fillText("\u03C6= "+vr2i.toExponential(3),5,310);
 	}
 }
 
