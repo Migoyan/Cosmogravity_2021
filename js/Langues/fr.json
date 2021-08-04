@@ -208,8 +208,7 @@
 		"vphiarret":"0",
 		"v_total":"Vitesse (m/s)",
 		"vphikerrarret":"Infinity",
-		"vitesseurlabelt":"dr/dt initial ",
-		"vitesseuphilabelt":"r.(d&phi;/dt) initial ", 
+		
 		"vitesseurt":"Vitesse Radial",
 		"vitesseuphi":"Vitesse tangentielle",
 		"vitesseuphit":"r.(d&phi;/dt)",

@@ -190,7 +190,6 @@ function notationvitesseree2(){
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
 		for (count = 1; count <= numberoftherockets; count += 1) {
 			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 			document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 
 		}
@@ -200,7 +199,6 @@ function notationvitesseree2(){
 		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label	);
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabelt);
 		for (count = 1; count <= numberoftherockets; count += 1) {
-			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 			document.getElementById("vitesseur"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 			document.getElementById("vitesseuphi"+count.toString()+"").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 		}
@@ -261,7 +259,7 @@ function notationvitesseree2kerr(){
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
 		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 
 	}
 	else{
@@ -269,7 +267,7 @@ function notationvitesseree2kerr(){
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.hilabel);
 		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurtau);
-		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 	}
 }
 
@@ -279,11 +277,11 @@ function notationvitesseree1kerr(){
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
 		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
-		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphit);
+		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 	}
 	else{
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.philabel);
-		document.getElementById("vitesseuphilabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
+		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
 		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurlambda);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphilambda);
 	}
