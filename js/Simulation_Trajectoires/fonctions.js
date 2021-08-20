@@ -21,13 +21,12 @@ var calculs = calculs || (function() {
             vphi=Math.sqrt(((r**2)*(dphi/dt)**2)/(1-rs/r));
             if(photon){ // calcule photon
                 dr=(c/E)**2*(1-rs/r)**2*(E**2-(1-rs/r)*((L/r)**2));
-                vr=Math.sqrt(Math.abs(dr/(1-rs/r)**2));
+                vr=Math.sqrt(dr/((1-rs/r)**2));
             }
             else{ // calcule particule
                 dr=(c/E)**2*(1-rs/r)**2*(E**2-(1-rs/r)*(1+(L/r)**2));
-                vr=Math.sqrt(Math.abs(dr/(1-rs/r)**2));
+                vr=Math.sqrt(dr/((1-rs/r)**2));
             }
-            //vtot=Math.abs((dr+(1-rs/r)*(r**2)*(dphi/dt)**2)/(1-rs/r)**2);
             vtot=Math.sqrt(vphi**2+vr**2);
             return [vtot,vr,vphi];
         },

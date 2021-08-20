@@ -341,7 +341,7 @@ function initialisation(compteur){
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value); //angle de départ
 	teta = Number(document.getElementById("teta"+compteur.toString()).value); // angle de la vitesse
-	
+	teta1=teta;
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
 	
@@ -354,6 +354,8 @@ function initialisation(compteur){
 		vr=Math.cos(teta)*Math.sqrt(alpha(r0))*c/beta(r0);
 		
 	}
+	if(teta1==180){vphi=0;}
+	if(teta1==90){vr=0;}
 
 	//pr majFondFixe
 	if(compteur==1){

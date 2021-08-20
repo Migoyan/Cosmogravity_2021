@@ -393,6 +393,7 @@ function initialisation(compteur){
 	v0= Number(document.getElementById("v0"+compteur.toString()).value);
 	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value); //angle de départ
 	teta = Number(document.getElementById("teta"+compteur.toString()).value); // angle de la vitesse
+	teta1=teta;
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
 
@@ -402,9 +403,12 @@ function initialisation(compteur){
 	}
 	E=Math.sqrt(1-rs/r0)/Math.sqrt(1-v0**2/c**2);
 	vphi=Math.sin(teta)*v0*E/Math.sqrt(1-rs/r0);
+	
 	vr=Math.cos(teta)*v0*E;
 	L = vphi * r0 / c;
-
+	if(teta1==180){vphi=0;}
+	if(teta1==90){vr=0;}
+	console.log(vphi);
 	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
 	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
 	document.getElementById("m").innerHTML = rs.toExponential(3);

@@ -65,6 +65,7 @@ function initialisation(){
 	teta = Number(document.getElementById("teta").value);
 	phi0=Number(document.getElementById("phi0").value);
 	phi0=phi0*Math.PI/180;
+	teta1=teta;
 	if(v0>c){
 		alert("V0 supérieur à c");
 		return;
@@ -78,7 +79,8 @@ function initialisation(){
 	
 	vr=v0*Math.cos(teta*Math.PI/180)*c*Math.sqrt(delta(r0))/(r0*Math.sqrt(c**2-v0**2)); 
 	vphi=v0*Math.sin(teta*Math.PI/180)*c*Math.sqrt(Math.abs(r0*(r0-rs))/Math.sqrt(delta(r0)*(c**2-v0**2))); 
-	
+	if(teta1==180){vphi=0;}
+	if(teta1==90){vr=0;}
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
     rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-

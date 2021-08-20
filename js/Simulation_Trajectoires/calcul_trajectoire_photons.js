@@ -337,13 +337,14 @@ function initialisation(compteur){
 	r0 = Number(document.getElementById("r0"+compteur.toString()).value);
 	phi0 = Number(document.getElementById("phi0"+compteur.toString()).value);
 	teta = Number(document.getElementById("teta"+compteur.toString()).value);
-
+	teta1=teta;
 	phi0=(phi0*Math.PI)/180;
 	teta=(teta*Math.PI)/180;
 
 	vphi=Math.sin(teta)*c/Math.sqrt(1-rs/r0);
 	vr=Math.cos(teta)*c;
-
+	if(teta1==180){vphi=0;}
+	if(teta1==90){vr=0;}
 	L = vphi * r0 / c;
 	E = Math.sqrt(Math.pow(vr / c, 2) + (1 - rs / r0)* Math.pow(L / r0, 2));
 
