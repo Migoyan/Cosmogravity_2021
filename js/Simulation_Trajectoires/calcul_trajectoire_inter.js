@@ -881,7 +881,7 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile.phi = mobile.phi + varphi;
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); //voir fonctions.js
 			vtotal=resultat[0];
-			vr_1=resultat[1];
+			vr_1=resultat[1]*Math.sign(mobile.A_part);
 			vp_1=resultat[2]; 
 		
 		} 
@@ -897,7 +897,7 @@ function animate(compteur,mobile,mobilefactor) {
 			else { mobile.phi = mobile.phi + varphi;}
 			resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,vr_1,false); //voir fonctions.js
 			vtotal=resultat[0];
-			vr_1=resultat[1];
+			vr_1=resultat[1]*Math.sign(mobile.A_part);
 			vp_1=resultat[2];  
 		}
 	}
@@ -913,7 +913,7 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile.phi_obs=mobile.phi_obs+varphi_obs;
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
 			vtotal=resultat[0];
-			vr_1_obs=resultat[1];
+			vr_1_obs=resultat[1]*Math.sign(mobile.A_part_obs);
 			vp_1_obs=resultat[2]; 
 		
 		} 
@@ -934,7 +934,7 @@ function animate(compteur,mobile,mobilefactor) {
 			else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
 			resultat=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,false); //voir fonctions.js
 			vtotal=resultat[0];
-			vr_1_obs=resultat[1];
+			vr_1_obs=resultat[1]*Math.sign(mobile.A_part_obs);
 			vp_1_obs=resultat[2];
 		}
 	}	

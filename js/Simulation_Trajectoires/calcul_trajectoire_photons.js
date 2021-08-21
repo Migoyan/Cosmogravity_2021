@@ -798,7 +798,7 @@ function animate(compteur,mobile,mobilefactor) {
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,true); /// voir fichier fonctions.j 
 			vtotal=resultat[0];
 			mobile.phi = mobile.phi + c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
-			vr_2=resultat[1];
+			vr_2=resultat[1]*Math.sign(mobile.A_part);
 			vp_2=resultat[2];
 
 		}
@@ -811,7 +811,7 @@ function animate(compteur,mobile,mobilefactor) {
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true); /// voir fichier fonctions.j 
 			vtotal=resultat[0];
 			if(mobile.r_part_obs<rs*1.0001) { mobile.r_part_obs=rs;}
-			vr_2_obs=resultat[1];
+			vr_2_obs=resultat[1]*Math.sign(mobile.A_part_obs);
 			vp_2_obs=resultat[2]; 
 		}
 

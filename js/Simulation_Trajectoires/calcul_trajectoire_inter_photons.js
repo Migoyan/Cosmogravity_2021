@@ -833,7 +833,7 @@ function animate(compteur,mobile,mobilefactor) {
 		
 				resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true); //voir fonctions.js
 				vtotal=resultat[0];
-				vr_1=resultat[1];
+				vr_1=resultat[1]*Math.sign(mobile.A_part);
 				vp_1=resultat[2];  
 		
 			} 
@@ -851,7 +851,7 @@ function animate(compteur,mobile,mobilefactor) {
 				else {mobile.phi = mobile.phi + varphi;}
 				var vitess_phys=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part,rs,r_phy,true);
 				vtotal=vitess_phys[0];
-				vr_1=vitess_phys[1];
+				vr_1=vitess_phys[1]*Math.sign(mobile.A_part);
 				vp_1=vitess_phys[2];  
 			}
 			mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
@@ -869,7 +869,7 @@ function animate(compteur,mobile,mobilefactor) {
 
 				resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,true); //voir fonctions.js
 				vtotal=resultat[0];
-				vr_1_obs=resultat[1];
+				vr_1_obs=resultat[1]*Math.sign(mobile.A_part_obs);
 				//alert(vr_1_obs);
 				vp_1_obs=resultat[2]; 
 		
@@ -889,7 +889,7 @@ function animate(compteur,mobile,mobilefactor) {
 				else{mobile.phi_obs= mobile.phi_obs+varphi_obs;} 
 				var vitess_phys=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,true);
 				vtotal=vitess_phys[0];
-				vr_1_obs=vitess_phys[1];
+				vr_1_obs=vitess_phys[1]*Math.sign(mobile.A_part_obs);
 				v_1_obs=vitess_phys[2];
 			}
 			mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);

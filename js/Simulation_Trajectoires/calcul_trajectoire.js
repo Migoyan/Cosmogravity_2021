@@ -408,7 +408,6 @@ function initialisation(compteur){
 	L = vphi * r0 / c;
 	if(teta1==180){vphi=0;}
 	if(teta1==90){vr=0;}
-	console.log(vphi);
 	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
 	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
 	document.getElementById("m").innerHTML = rs.toExponential(3);
@@ -877,7 +876,7 @@ function animate(compteur,mobile,mobilefactor) {
 
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false);        /// voir fichier fonctions.js
 			vtotal=resultat[0];
-			vr_1_obs=resultat[1];
+			vr_1_obs=resultat[1]*Math.sign(mobile.A_part_obs);
 			vp_1_obs=resultat[2]; 
 
 			if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
@@ -894,7 +893,7 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile.A_part = val[1];
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part,rs,false); /// voir fichier fonctions.js
 			vtotal=resultat[0];
-			vr_1=resultat[1];
+			vr_1=resultat[1]*Math.sign(mobile.A_part);
 			vp_1=resultat[2];
 			varphi = c * mobile.L * mobile.dtau / Math.pow(mobile.r_part, 2);
 			mobile.phi = mobile.phi + varphi;

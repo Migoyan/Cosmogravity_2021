@@ -65,7 +65,7 @@ function initialisation(){
 	teta = Number(document.getElementById("teta").value);
 	phi0=Number(document.getElementById("phi0").value);
 	phi0=phi0*Math.PI/180;
-	teta1=teta;
+	
 	if(v0>c){
 		alert("V0 supérieur à c");
 		return;
@@ -406,7 +406,7 @@ function animate() {
 			else{
 				resulta=calculs.MK_vitess(E,L,a,r_part_obs,rs,false); /// voir fichier fonctions.js
 				vtot=resulta[0];
-				vr_3_obs=resulta[1];
+				vr_3_obs=resulta[1]*Math.sign(A_part_obs);
 				vp_3_obs= resulta[2]; 
 			}
 			posX2 = scale_factor * r_part_obs * (Math.cos(phi_obs) / rmax) + (canvas.width / 2.);
@@ -429,7 +429,7 @@ function animate() {
 				resulta=calculs.MK_vitess(E,L,a,r_part,rs,false); /// voir fichier fonctions.js
 				vtot=resulta[0];
 				//console.log(vtot)
-				vr_3=resulta[1];
+				vr_3=resulta[1]*Math.sign(A_part);
 				vp_3=resulta[2];
 			}
 			posX1 = scale_factor * r_part * (Math.cos(phi) / rmax) + (canvas.width / 2.);
