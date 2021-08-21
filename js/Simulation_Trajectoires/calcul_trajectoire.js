@@ -198,7 +198,7 @@ function genereHtml(){
 
 	for (countt = 1; countt <= nbredefuseesgenere; countt += 1) {
 		var span = document.createElement("span");
-		span.setAttribute("id","vitesseur"+countt.toString()+"");
+		span.setAttribute("id","vitesseu"+countt.toString()+"");
 		var divchampsr = document.getElementById('champs_a_remplir');
 		divchampsr.appendChild(span);
 		if(countt==1){
@@ -1475,7 +1475,7 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2,compteur){
 	r2bis=(80*r0ou2)/(mobilefactor[cle]);
 	r1bis=Math.round((80*r0ou2)/(mobilefactor[cle]*10**testnum(r2bis)));
 	ech=r1bis*10**testnum(r2bis);
-	console.log(r1bis,r2bis);
+	//console.log(r1bis,r2bis);
 	context.lineWidth = "1";
 	context.fillStyle = COULEUR_NOIR;
 	if ((mobilefactor[cle] * m / rmaxjson[cle]) < 3) {

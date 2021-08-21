@@ -597,7 +597,7 @@ function trajectoire(compteur,mobile) {
 	document.getElementById("bloc_resultats").style.display= "block";
 		for (countt = 1; countt <= nbredefusees; countt += 1) {
 			var node = document.getElementById("grsvg_"+countt.toString()+"");
-			console.log("Le film Hackers de 1995 est vraiment bien",countt.toString());
+			//console.log("Le film Hackers de 1995 est vraiment bien",countt.toString());
             if(node){
 				if (node.parentNode){
 					node.parentNode.removeChild(node);
