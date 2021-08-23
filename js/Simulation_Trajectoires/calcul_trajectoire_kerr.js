@@ -57,9 +57,7 @@ function initialisation(){
 	c = 299792458;
 	G = 6.6742 * Math.pow(10, -11);
 	r0 = Number(document.getElementById("r0").value);
-	//vphi = Number(document.getElementById("teta").value);
 	M = Number(document.getElementById("M").value);
-	//vr = Number(document.getElementById("vr").value);
 	J = Number(document.getElementById("J").value);
 	v0 = Number(document.getElementById("v0").value);
 	teta = Number(document.getElementById("teta").value);
@@ -76,11 +74,12 @@ function initialisation(){
 	a = J / (c * M);
 	E=c*Math.sqrt((r0-rs)/(r0*(c**2-v0**2)));
 	L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(teta*Math.PI/180)*Math.sqrt(r0*delta(r0)))/Math.sqrt((c**2-v0**2)*(r0-rs));
+	if(a==0 && teta==180){L=0};
 	
 	vr=v0*Math.cos(teta*Math.PI/180)*c*Math.sqrt(delta(r0))/(r0*Math.sqrt(c**2-v0**2)); 
 	vphi=v0*Math.sin(teta*Math.PI/180)*c*Math.sqrt(Math.abs(r0*(r0-rs))/Math.sqrt(delta(r0)*(c**2-v0**2))); 
-	if(teta1==180){vphi=0;}
-	if(teta1==90){vr=0;}
+	if(teta==180){vphi=0;}
+	if(teta==90){vr=0;}
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
     rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
@@ -492,11 +491,14 @@ function animate() {
 			arretkerr();
 			peuxonrelancer=false;
 	   }	
-   }
+	}
 
+	// Decalage spectral
 	if (element2.value != "mobile"){
-		z_obs=Math.pow(1-((vr_3_obs*vr_3_obs+ vp_3_obs* vp_3_obs)/(c*c)),(-1/2))*Math.pow(1-rs*r_part_obs/(r_part_obs*r_part_obs + a*a),-(1/2))-1;
+		//z_obs=Math.pow(1-((vr_3_obs*vr_3_obs+ vp_3_obs* vp_3_obs)/(c*c)),(-1/2))*Math.pow(1-rs*r_part_obs/(r_part_obs*r_part_obs + a*a),-(1/2))-1;
+		z_obs=(1+vr_3_obs/c)/((1-(vtot/c)**2)**(1/2))*(1-rs/r_part_obs)**(-1/2)-1;
 		document.getElementById("decal").innerHTML=z_obs.toExponential(3)
+		if(isNaN(z_obs)){document.getElementById("decal").innerHTML="";}
 	}
 	else{
 		document.getElementById("decal").innerHTML="";
@@ -523,6 +525,12 @@ function animate() {
 			document.getElementById("vrk").innerHTML = vr_3_obs.toExponential(3);
 		    document.getElementById("vpk").innerHTML = vp_3_obs.toExponential(3);
 		    document.getElementById("v_tot").innerHTML = vtot.toExponential(3);
+			if(isNaN(vtot)){
+				document.getElementById("v_tot").innerHTML = "";
+				document.getElementById("vrk").innerHTML = "";
+		    	document.getElementById("vpk").innerHTML = "";
+			}	
+
         }
 
 	}	
@@ -537,7 +545,13 @@ function animate() {
 			if(r_part<=rhp && J!=0) {vp_3=1/0;}
 		    document.getElementById("v_tot").innerHTML = vtot.toExponential(3);
 			document.getElementById("vpk").innerHTML = vp_3.toExponential(3);
-			console.log("ligne 609 vp_3",vp_3);
+			if(isNaN(vtot)){
+				document.getElementById("v_tot").innerHTML = "";
+				document.getElementById("vrk").innerHTML = "";
+		    	document.getElementById("vpk").innerHTML = "";
+			}	
+			
+			//console.log("ligne 609 vp_3",vp_3);
 		}
 	}
     

@@ -66,7 +66,6 @@ function initialisation(){
 	teta = Number(document.getElementById("teta").value); //angle de la vitess
 
 	phi0=Number(document.getElementById("phi0").value);  // angle de départ
-	teta1=teta;
 	phi0=phi0*Math.PI/180;
 
 	J = Number(document.getElementById("J").value);
@@ -77,8 +76,8 @@ function initialisation(){
 	
 	vr=c*Math.cos(teta*Math.PI/180)*Math.sqrt(delta(r0)/(r0*(r0-rs)));
 	vphi=c*Math.sin(teta*Math.PI/180)*r0/Math.sqrt(delta(r0));
-	if(teta1==180){vphi=0;}
-	if(teta1==90){vr=0;}
+	if(teta==180){vphi=0;}
+	if(teta==90){vr=0;}
 	rh = G * M / Math.pow(c, 2) * (1 + Math.sqrt(1 - Math.pow(J * c / (G * M * M), 2))); //rayon de Kerr
 	rhp = 0.5 * ( (2 * G * M / Math.pow(c, 2)) + Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH+
 	rhm = 0.5 * ( (2 * G * M / Math.pow(c, 2)) - Math.sqrt(Math.pow( (2 * G * M / Math.pow(c, 2)), 2) - 4 * Math.pow( (J / (c * M)) , 2)));     //RH-
@@ -524,8 +523,12 @@ function animate() {
 				document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 				document.getElementById("vrkp").innerHTML = vr_3_obs.toExponential(3);
 				document.getElementById("vpkp").innerHTML = vp_3_obs.toExponential(3);
-				//vtot=calculs.MK_vitess(E,L,a,r_part_obs,rs,true);/// voir fonctions.js
 				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);
+				if(isNaN(vtot)){
+					document.getElementById("v_tot").innerHTML = "";
+					document.getElementById("vrkp").innerHTML = "";
+					document.getElementById("vpkp").innerHTML = "";
+				}
 			}
         }
 		else{    
@@ -538,8 +541,12 @@ function animate() {
                 if(J==0) {vp_3= c*L/r_part;}
                 if(r_part<=rhp && J!=0) {vp_3=1/0;}
                 document.getElementById("vpkp").innerHTML = vp_3.toExponential(3);
-				//vtot=calculs.MK_vitess(E,L,a,r_part,rs,true);
-				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);				
+				document.getElementById("v_tot").innerHTML = vtot.toExponential(8);	
+				if(isNaN(vtot)){
+					document.getElementById("v_tot").innerHTML = "";
+					document.getElementById("vrkp").innerHTML = "";
+					document.getElementById("vpkp").innerHTML = "";
+				}	
             }
         }
         if (element2.value != "mobile"){

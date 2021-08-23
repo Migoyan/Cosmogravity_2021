@@ -902,9 +902,7 @@ function animate(compteur,mobile,mobilefactor) {
 		}
 	}
 	else{ // observateur
-
 		if(mobile.r_part_obs > r_phy) {
-			
 			val = rungekutta_externe_massif_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
 			mobile.r_part_obs = val[0];
 			mobile.A_part_obs = val[1];
@@ -914,11 +912,9 @@ function animate(compteur,mobile,mobilefactor) {
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false); //voir fonctions.js
 			vtotal=resultat[0];
 			vr_1_obs=resultat[1]*Math.sign(mobile.A_part_obs);
-			vp_1_obs=resultat[2]; 
-		
+			vp_1_obs=resultat[2];
 		} 
 		else {
-				
 			val = rungekutta_interne_massif_obs(mobile.dtau, mobile.r_part_obs, mobile.A_part_obs,mobile.E,mobile.L);
 			mobile.r_part_obs = val[0];
 			mobile.A_part_obs = val[1];
@@ -937,12 +933,10 @@ function animate(compteur,mobile,mobilefactor) {
 			vr_1_obs=resultat[1]*Math.sign(mobile.A_part_obs);
 			vp_1_obs=resultat[2];
 		}
-	}	
-		
-		
+	}
+
 		mobile.posinterm= mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax);
-		mobile.posintero= mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax);
-			
+		mobile.posintero= mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax);	
 		mobile.positionspatio.posX1 = mobilefactor[compteur] * mobile.r_part * (Math.cos(mobile.phi) / mobile.rmax) + (canvas.width / 2.);
 		mobile.positionspatio.posY1 = mobilefactor[compteur] * mobile.r_part * (Math.sin(mobile.phi) / mobile.rmax) + (canvas.height / 2.);
 		mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
@@ -993,7 +987,7 @@ function animate(compteur,mobile,mobilefactor) {
 			data2 = [];
 			data2.push({date: mobile.r_part, close: V });
 			if(mobile.point !== undefined){update_graphique_2(mobile.point,data2,mobile);}			
-		}									
+		}
 		if(mobile.r_part<0){ mobile.r_part=0; }
 		
 		// gradient d'accélération
@@ -1024,11 +1018,13 @@ function animate(compteur,mobile,mobilefactor) {
 
 		if (element2.value != "mobile"){
 			if(mobile.r_part_obs >= r_phy) {
-				z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
+				//z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
+				z_obs=(1+vr_1_obs/c)/((1-(vtotal/c)**2)**(1/2))*(1-rs/mobile.r_part_obs)**(-1/2)-1;
 				document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
 			} 
 			else {
 				z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
+				//z_obs=(1+vr_1_obs/c)/((1-(vtotal/c)**2)**(1/2))*(1-rs/mobile.r_part_obs)**(-1/2)-1;
 				document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
 			}
 		}

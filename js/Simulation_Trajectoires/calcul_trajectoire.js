@@ -405,9 +405,10 @@ function initialisation(compteur){
 	vphi=Math.sin(teta)*v0*E/Math.sqrt(1-rs/r0);
 	
 	vr=Math.cos(teta)*v0*E;
-	L = vphi * r0 / c;
 	if(teta1==180){vphi=0;}
 	if(teta1==90){vr=0;}
+	L = vphi * r0 / c;
+	
 	document.getElementById("L"+compteur.toString()).innerHTML = L.toExponential(3);
 	document.getElementById("E"+compteur.toString()).innerHTML = E.toExponential(3);
 	document.getElementById("m").innerHTML = rs.toExponential(3);
@@ -877,11 +878,8 @@ function animate(compteur,mobile,mobilefactor) {
 			resultat=calculs.MSC_Ex_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,false);        /// voir fichier fonctions.js
 			vtotal=resultat[0];
 			vr_1_obs=resultat[1]*Math.sign(mobile.A_part_obs);
-			vp_1_obs=resultat[2]; 
-
-			if(mobile.r_part_obs<rs*1.0001) { vr_1_obs=0;}
-			if(mobile.r_part_obs<rs*1.0001) { vp_1_obs=0;}
-
+			vp_1_obs=resultat[2];
+			if(mobile.r_part_obs<=rs){vtotal=c;}
 			varphi_obs = c * mobile.L * mobile.dtau*(1-rs/mobile.r_part_obs) / Math.pow(mobile.r_part_obs, 2)/mobile.E; 
 			mobile.phi_obs=mobile.phi_obs+varphi_obs;
 			mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
@@ -1096,7 +1094,8 @@ function animate(compteur,mobile,mobilefactor) {
 
 //decalage spectrale
 	if (element2.value != "mobile"){
-		z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
+		//z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
+		z_obs=(1+vr_1_obs/c)/((1-(vtotal/c)**2)**(1/2))*(1-rs/mobile.r_part_obs)**(-1/2)-1;
 		document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
 	}
 	else{

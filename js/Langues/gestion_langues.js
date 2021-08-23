@@ -266,7 +266,7 @@ function notationvitesseree2kerr(){
 		document.getElementById("vitesseurlabel").title = htmlDecode(texte.pages_trajectoire.vitesseurlabeld);
 		document.getElementById("philabel").title = htmlDecode(texte.pages_trajectoire.hilabel);
 		document.getElementById("thetalabel").title = htmlDecode(texte.pages_trajectoire.theta_label);
-		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurtau);
+		document.getElementById("vitesseur").title = htmlDecode(texte.pages_trajectoire.vitesseurt);
 		document.getElementById("vitesseuphi").title = htmlDecode(texte.pages_trajectoire.vitesseuphi);
 	}
 }
