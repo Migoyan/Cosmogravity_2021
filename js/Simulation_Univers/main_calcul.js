@@ -222,7 +222,7 @@ function calcul() { // fonction principale de cosmogravity
     amin=0;
     
     amin = Number(document.getElementById("ami").value);
-        amax = Number(document.getElementById("ama").value);
+    amax = Number(document.getElementById("ama").value);
     amax3=amax; amin3=amin;
     amax2=amax; amin2=amin;
     amax1=amax; amin1=amin;

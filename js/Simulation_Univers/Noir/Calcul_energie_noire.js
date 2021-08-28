@@ -33,23 +33,23 @@ function Calc() {
 
 	//on recupere le bon nombre de jour par an.
 	if (typeannee == "Sidérale") {
-		nbrjours = 365.256363051;
+		var nbrjours = 365.256363051;
 	} else if (typeannee == "Julienne") {
-		nbrjours = 365.25;
+		var nbrjours = 365.25;
 	} else if (typeannee == "Tropique (2000)") {
-		nbrjours = 365.242190517;
+		var nbrjours = 365.242190517;
 	} else {
-		nbrjours = 365.2425;
+		var nbrjours = 365.2425;
 	}
 
 	//calcule des h0 par seconde par anneee et par gigaannee
-	au = 149597870700;
-	H0parsec = h0 * 1000 / ((au * (180 * 3600)) / Math.PI * Math.pow(10, 6));
-	H0enannee = H0parsec * (3600 * 24 * nbrjours);
-	H0engannee = H0parsec * (3600 * 24 * nbrjours) * Math.pow(10, 9);
+	let au = 149597870700;
+	let H0parsec = h0 * 1000 / ((au * (180 * 3600)) / Math.PI * Math.pow(10, 6));
+	let H0enannee = H0parsec * (3600 * 24 * nbrjours);
+	let H0engannee = H0parsec * (3600 * 24 * nbrjours) * Math.pow(10, 9);
 
 	//on calcule omegar
-	Or = 0;
+	let Or = 0;
 	if (document.getElementById("liste").options[0].selected) {
 		sigma = (2 * Math.pow(Math.PI, 5) * Math.pow(k, 4)) / (15 * Math.pow(h, 3) * Math.pow(c, 2));
 		rho_r = (4 * sigma * Math.pow(t0, 4)) / (Math.pow(c, 3));
@@ -134,6 +134,8 @@ function Calc() {
 
 
 	//on fait appel a la methode de rungekutta pour calculer les points de la courbe
+	amin = Number(document.getElementById("ami").value);
+    amax = Number(document.getElementById("ama").value);
 	ymoinsrunge = [1, 1];
 	ymoinsrungederiv = [1, 1];
 	k = [0, 0, 0, 0];
@@ -144,7 +146,7 @@ function Calc() {
 	yrunge2 = 1;
 	data_x = [];
 	data_y = [];
-	while (yrunge2 > 0.01 && yrunge2 < 5.) {
+	while (yrunge2 > amin && yrunge2 < amax) {
 		yrunge2 = rungekutta_neg(m);
 		ymoinsrunge[0] = ymoinsrunge[1];
 		res = age + m / H0engannee;
@@ -167,7 +169,7 @@ function Calc() {
 	ymoinsrungederiv = [1, 1];
 	k = [0, 0, 0, 0];
 	j = [0, 0, 0, 0];
-	while (yrunge > 0 && yrunge < 5.) { // permet de boucler sur une valeur de reference
+	while (yrunge > amin && yrunge < amax) { // permet de boucler sur une valeur de reference
 		yrunge = rungekutta(i); //position f(x) Runge-Kutta
 		if (yrunge > 0) {
 			data_x.push(age + i / H0engannee);

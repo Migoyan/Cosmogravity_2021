@@ -272,6 +272,20 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 	<div style="display:none;" id="graphique_enr"></div>
 	<!-- Sauvegarde graphique -->
 	<div id="enregistrer_sbr">
+		<div>
+			<label> a<sub>min</sub> =  </label>
+			<input id="ami" type="text" value="0" onfocus="this.oldvalue = this.value;" onchange="
+				if ( this.value < 0 || this.value >= 1) {
+					this.value = this.oldvalue;
+				}
+			"></input>&nbsp;&nbsp;
+			<label> a<sub>max</sub> = </label>
+			<input id="ama" type="text" value="5" onfocus="this.oldvalue = this.value;" onchange="
+				if ( this.value < 0 || this.value < 1) {
+					this.value = this.oldvalue;
+				}
+			"></input>&nbsp;&nbsp;
+		</div>
 		<span id="txt_enregistrerEn" style="font-weight:bold;"></span>
 		<select id="format_enr">
 		<option selected>png</option>
