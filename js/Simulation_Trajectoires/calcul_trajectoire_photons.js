@@ -168,7 +168,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
-			newlabel.innerHTML =" "+ htmlDecode("&phi;")+"° =";
+			newlabel.innerHTML =" "+ htmlDecode("&phi;")+"°<sub>0</sub> =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");

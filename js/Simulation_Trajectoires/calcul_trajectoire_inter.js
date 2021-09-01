@@ -212,7 +212,7 @@ function genereHtml(){
 			newlabel.setAttribute("id","philabel");
 			newlabel.setAttribute("title","");
 			newlabel.setAttribute("for","phi01");
-			newlabel.innerHTML = " "+htmlDecode("&phi; ")+"° =";
+			newlabel.innerHTML = " "+htmlDecode("&phi; ")+"°<sub>0</sub> =";
 			span.appendChild(newlabel);
 		}
 		var newinput = document.createElement("Input");
@@ -1023,8 +1023,8 @@ function animate(compteur,mobile,mobilefactor) {
 				document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
 			} 
 			else {
-				z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
-				//z_obs=(1+vr_1_obs/c)/((1-(vtotal/c)**2)**(1/2))*(1-rs/mobile.r_part_obs)**(-1/2)-1;
+				//z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))/beta(mobile.r_part_obs) -1;
+				z_obs=(1+vr_1_obs/c)/((1-(vtotal/c)**2)**(1/2))*beta(mobile.r_part_obs)-1;
 				document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
 			}
 		}
