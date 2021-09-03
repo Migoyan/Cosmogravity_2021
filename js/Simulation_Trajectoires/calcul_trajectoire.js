@@ -1097,7 +1097,7 @@ function animate(compteur,mobile,mobilefactor) {
 		//z_obs=Math.pow(1-((vr_1_obs*vr_1_obs + vp_1_obs*vp_1_obs)/(c*c)),(-1/2))*Math.pow(1-rs/mobile.r_part_obs,-(1/2)) -1;
 		z_obs=(1+vr_1_obs/c)/((1-(vtotal/c)**2)**(1/2))*(1-rs/mobile.r_part_obs)**(-1/2)-1;
 		document.getElementById("decal"+compteur.toString()).innerHTML=z_obs.toExponential(3);
-		if(mobile.r_part_obs<rs){document.getElementById("decal"+compteur.toString()).innerHTML="";}
+		if(mobile.r_part_obs<=rs){document.getElementById("decal"+compteur.toString()).innerHTML="";}
 	}
 	else{
 		document.getElementById("decal"+compteur.toString()).innerHTML="";
@@ -1114,8 +1114,7 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = (vr_1_obs).toExponential(3);
 		    document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = vp_1_obs.toExponential(3);
 			document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3);	
-			if(mobile.r_part_obs<rs){
-				document.getElementById("v_tot"+compteur.toString()).innerHTML ="";
+			if(mobile.r_part_obs<=rs){
 				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = "";
 				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = "";
 			}
@@ -1130,7 +1129,7 @@ function animate(compteur,mobile,mobilefactor) {
 			document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = vr_1.toExponential(3);
 			document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);
 		    document.getElementById("v_tot"+compteur.toString()).innerHTML = vtotal.toExponential(3); 
-			if(mobile.r_part<rs){
+			if(mobile.r_part<=rs){
 				document.getElementById("v_tot"+compteur.toString()).innerHTML ="";
 				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = "";
 				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = "";
