@@ -890,7 +890,7 @@ function animate(compteur,mobile,mobilefactor) {
 				var vitess_phys=calculs.MSC_In_vitess(mobile.E,mobile.L,mobile.r_part_obs,rs,r_phy,true);
 				vtotal=vitess_phys[0];
 				vr_1_obs=vitess_phys[1]*Math.sign(mobile.A_part_obs);
-				v_1_obs=vitess_phys[2];
+				vp_1_obs=vitess_phys[2];
 			}
 			mobile.position.posX2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.cos(mobile.phi_obs) / mobile.rmax) + (canvas.width / 2.);
     		mobile.position.posY2 = mobilefactor[compteur] * mobile.r_part_obs * (Math.sin(mobile.phi_obs) / mobile.rmax) + (canvas.height / 2.);
