@@ -165,6 +165,7 @@
 	"calculs_univers":{
 		"tempsdepuisBC":"Temps depuis le Big Crunch = ",
 		"tempsavtBC":"Temps avant le Big Crunch = ",
+		"temps_avt_BF": "Temps avant Big Rip = ",
 		"calculBC":"Big Crunch &agrave; calculer",
 		"pasBC":"Pas de Big Crunch",
 		"pasBB":"Pas de Big Bang",

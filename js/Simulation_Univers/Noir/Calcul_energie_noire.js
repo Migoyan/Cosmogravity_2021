@@ -197,7 +197,7 @@ function Calc() {
 		let temps_restant_Ga = temps_restant / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
 		let age_univ_sec = Number(age_sec) + temps_restant;
 		let age_univ_Ga = age_univ_sec / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
-		document.getElementById("resultat_bigcrunch").innerHTML = "Temps avant Big rip : " + (temps_restant_Ga).toExponential(3) + " Ga = " + (temps_restant).toExponential(3) + " s";
+		document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.temps_avt_BF + (temps_restant_Ga).toExponential(3) + " Ga = " + (temps_restant).toExponential(3) + " s";
 		if (!isNaN(age_univ_sec)) {
 			document.getElementById("resultat_dureeuniv").innerHTML = (age_univ_Ga).toExponential(3) + " Ga = " + (age_univ_sec).toExponential(3) + " s";
 		}
@@ -364,6 +364,9 @@ function graphique_creation_noir() {
 	var img_jpg = d3.select('#jpg');
 	var img_svg = d3.select('#svg-1');
 
+	var Amin = Number(document.getElementById("ami").value);
+    var Amax = Number(document.getElementById("ama").value);
+
 	Plotly.newPlot('graphique_sombre', tracer1, {
 		title: {
 			text: texte.calculs_univers.titre,
@@ -373,7 +376,7 @@ function graphique_creation_noir() {
 				color: '#111111'
 			},
 			
-	 },
+		},
 
 		xaxis: {
 			autorange: true,
@@ -383,8 +386,10 @@ function graphique_creation_noir() {
 
 
 		yaxis: {
+			fixedrange: true,
 			rangemode: 'tozero',
-			autorange: true,
+			autorange: false,
+			range:[Amin,Amax],
 			title: 'a(t)',
 			showline: true
 		},
@@ -409,14 +414,15 @@ function graphique_creation_noir() {
 
 		xaxis: {
 			autorange: true,
-			autorange: true,
 			title: 't (Ga)'
 		},
 
 
 		yaxis: {
+			fixedrange: true,
 			rangemode: 'tozero',
-			autorange: true,
+			autorange: false,
+			range:[Amin,Amax],
 			title: 'a(t)'
 		},
 		annotations: annots,

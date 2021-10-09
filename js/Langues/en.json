@@ -135,9 +135,9 @@
 		"titre": "FL universe evolution with Dark Energy",
 		"bouton_monofluides":"Monofluids Models",
 		"univers_plat":"Flat universe(Ω<sub>k0</sub> = 0)",
-		"matiereEsombreRFCNeu":"Matter, Dark Energie, CMB and Neutrinos",
-		"matiereEsombreRFC":"Matter, Dark Energie and CMB",
-		"matiereEsombre":"Matter and Dark Energie"
+		"matiereEsombreRFCNeu":"Matter, Dark energy, CMB and Neutrinos",
+		"matiereEsombreRFC":"Matter, Dark energy and CMB",
+		"matiereEsombre":"Matter and Dark energy"
 	},
 
 	"page_univers_monofluides":{
@@ -163,6 +163,7 @@
 	"calculs_univers":{
 		"tempsdepuisBC":"Time since Crunch = ",
 		"tempsavtBC":"Time before Big Crunch = ",
+		"temps_avt_BF": "Time before Big Rip = ",
 		"calculBC":"Big Crunch &agrave; calculate.",
 		"pasBC":"No Big Crunch",
 		"pasBB":"No Big Bang",

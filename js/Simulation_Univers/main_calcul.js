@@ -648,9 +648,9 @@ function graphique_creation2(){
     var img_jpg = d3.select('#jpg');
     var img_svg = d3.select('#svg-1');
  
-     Amin = Number(document.getElementById("ami").value);
+    Amin = Number(document.getElementById("ami").value);
     Amax = Number(document.getElementById("ama").value);
- console.log("ligne 683 Amin Amax", Amin,Amax); 
+    console.log("ligne 683 Amin Amax", Amin,Amax); 
     
      
 
@@ -669,7 +669,9 @@ function graphique_creation2(){
         xaxis: {
             automargin: true,
             fixedrange: true,
-            autorange: false, range:[data_x[1],data_x[data_x.length-1]],
+            autorange: false,
+            range:[data_x[1],
+            data_x[data_x.length-1]],
             title: 't (Ga)',
             showline: true
         },
@@ -677,7 +679,8 @@ function graphique_creation2(){
         yaxis: {
             fixedrange: true,
             rangemode: 'tozero',
-            autorange: false,range:[Amin,Amax],
+            autorange: false,
+            range:[Amin,Amax],
             title: 'a(t)',
             showline: true
         },
@@ -699,20 +702,22 @@ function graphique_creation2(){
                     color: '#111111'
                 },
             xref: 'paper',
-                x: 0.55, 
+            x: 0.55, 
             
         },
         
 
         xaxis: {
-            autorange: false, range:[data_x[1],data_x[data_x.length-1]],
+            autorange: false,
+            range:[data_x[1],data_x[data_x.length-1]],
             title: 't (Ga)',
             showline: true
         },
 
         yaxis: {
             rangemode: 'tozero',
-            autorange: false,range:[Amin,Amax],
+            autorange: false,
+            range:[Amin,Amax],
             title: 'a(t)',
             showline: true
         },
