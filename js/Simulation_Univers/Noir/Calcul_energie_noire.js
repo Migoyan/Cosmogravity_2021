@@ -120,6 +120,7 @@ function Calc() {
 
 
 	//on réinitialise les 3 champs pour eviter les erreurs d'affichage
+	document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
 	document.getElementById("resultat_ageunivers_ga").innerHTML = texte.calculs_univers.pasBB;
 	document.getElementById("resultat_ageunivers_s").innerHTML = texte.calculs_univers.pasBB;
 	document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.pasBC;
@@ -199,16 +200,22 @@ function Calc() {
 		let temps_restant = (1 / H0parsec) * simpson(-.99999, 0, cv_Enoire_temps, omegam0, Number(omegaDE0), Number(Or), eps);
 		let temps_restant_Ga = temps_restant / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
 		if (isNaN(age_sec)) {
+			modele = 0;
 			let a_min = getMinTableau(data_y);
 			let z_value = (1/a_min) - 1;
 			let z_value_s = Math.trunc((z_value / (1 + z_value)) * 1000) / 1000;
 			age_sec = (1. / H0parsec) * simpson(0, z_value_s, cv_Enoire_temps_substitution, omegam0, Number(omegaDE0), Number(Or), eps);
 			age_univ_sec = (Number(age_sec) + temps_restant) * 2;
+			let tps_big_fall = Number(age_sec) * 2 + temps_restant;
+			let tps_big_fall_Ga = tps_big_fall / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
+			document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.temps_BF;
+			document.getElementById("resultat_ageunivers_ga").innerHTML = tps_big_fall_Ga.toExponential(3);
+			document.getElementById("resultat_ageunivers_s").innerHTML = tps_big_fall.toExponential(3);
 		} else {
 			age_univ_sec = Number(age_sec) + temps_restant;
 		}
 		let age_univ_Ga = age_univ_sec / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
-		document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.temps_avt_BF + (temps_restant_Ga).toExponential(3) + " Ga = " + (temps_restant).toExponential(3) + " s";
+		document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.temps_avt_BR + (temps_restant_Ga).toExponential(3) + " Ga = " + (temps_restant).toExponential(3) + " s";
 		if (!isNaN(age_univ_sec)) {
 			document.getElementById("resultat_dureeuniv").innerHTML = (age_univ_Ga).toExponential(3) + " Ga = " + (age_univ_sec).toExponential(3) + " s";
 		}

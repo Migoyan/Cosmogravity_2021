@@ -63,6 +63,7 @@
 		"entrees":"Entrées",
 		"sorties":"Sorties",
 		"tempsBigBang":"Temps depuis le Big Bang",
+		"temps_BF": "Temps depuis le Big Fall",
 		"dureeUnivers":"Durée de l'univers",
 		"simuavertissement":"Avertissement",
 		"avertissement":"La simulation Univers avec ses calculs annexes permet de choisir les valeurs d'une dizaine de paramètres (en comptant celles des constantes fondamentales). Le code actuel n'est évidemment pas robuste sur tout le domaine accessible de cet espace à 10 dimensions.   Nous espérons que les résultats sont exacts dans un voisinage 'prudent' du modèle standard, des valeurs usuelles des observables (z, thêta) et des constantes fondamentales. Nous pensons qu'ils le sont encore pour des univers très différents du nôtre mais il est évident que le risque d'échec de la simulation (temps de calcul excessif sur le processeur de l'utilisateur) ou, pire, de résultat inexact augmente lorsque l'on s'aventure très loin du modèle standard. L'option 'mono-fluides', avec son formalisme analytique, permet d'aller plus fiablement explorer les extrêmes. Près des 'séparatrices' entre types d'univers différents (avec ou sans Big Bang, avec ou sans Big Crunch), un avertissement automatique est normalement affiché."
@@ -165,7 +166,8 @@
 	"calculs_univers":{
 		"tempsdepuisBC":"Temps depuis le Big Crunch = ",
 		"tempsavtBC":"Temps avant le Big Crunch = ",
-		"temps_avt_BF": "Temps avant Big Rip = ",
+		"temps_avt_BR": "Temps avant Big Rip = ",
+		"temps_BF": "Temps depuis Big Fall = ",
 		"calculBC":"Big Crunch &agrave; calculer",
 		"pasBC":"Pas de Big Crunch",
 		"pasBB":"Pas de Big Bang",
