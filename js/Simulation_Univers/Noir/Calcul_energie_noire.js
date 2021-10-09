@@ -105,10 +105,12 @@ function Calc() {
 		eps = 0.1;
 	}
 	initial_a = 0;
-	age_sec = simpson(0, 0.999999, cv_Enoire_temps_substitution, omegam0, Number(omegaDE0), Number(Or), eps);
-	if(isNaN(age_sec)) { modele=1; age_afficher="NaN";  
+	age_sec = simpson(0, 0.99999999, cv_Enoire_temps_substitution, omegam0, Number(omegaDE0), Number(Or), eps);
+	if(isNaN(age_sec)) {
+		modele=1;
+		age_afficher="NaN";  
 	} else {
-		age_sec = age_sec * (1. / H0parsec) * H0enannee;
+		age_sec = age_sec * (1. / H0parsec);
 		//on le passe en gigaannees
 		age = age_sec / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
 		//on creer une variable limite en nombre de decimal pour l'affichage
@@ -193,9 +195,18 @@ function Calc() {
 	} else if (h0 < 0 && (yrunge2 <= 0 || isNaN(yrunge2))) {
 		document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.calculBC;
 	} else if (big_rip_detection(yrunge)) {
+		let age_univ_sec;
 		let temps_restant = (1 / H0parsec) * simpson(-.99999, 0, cv_Enoire_temps, omegam0, Number(omegaDE0), Number(Or), eps);
 		let temps_restant_Ga = temps_restant / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
-		let age_univ_sec = Number(age_sec) + temps_restant;
+		if (isNaN(age_sec)) {
+			let a_min = getMinTableau(data_y);
+			let z_value = (1/a_min) - 1;
+			let z_value_s = Math.trunc((z_value / (1 + z_value)) * 1000) / 1000;
+			age_sec = (1. / H0parsec) * simpson(0, z_value_s, cv_Enoire_temps_substitution, omegam0, Number(omegaDE0), Number(Or), eps);
+			age_univ_sec = (Number(age_sec) + temps_restant) * 2;
+		} else {
+			age_univ_sec = Number(age_sec) + temps_restant;
+		}
 		let age_univ_Ga = age_univ_sec / ((3600 * 24 * nbrjours) * Math.pow(10, 9));
 		document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.temps_avt_BF + (temps_restant_Ga).toExponential(3) + " Ga = " + (temps_restant).toExponential(3) + " s";
 		if (!isNaN(age_univ_sec)) {
@@ -258,7 +269,7 @@ function F(x, omegam0, omegaDE0, Or) {
  * @returns value
  */
 function cv_Enoire_temps_substitution(y, omegam0, omegaDE0, Or) {
-	return (1 / H0enannee) / Math.sqrt(F(y / (1 - y), omegam0, omegaDE0, Or)) / (1 - y);
+	return 1 / Math.sqrt(F(y / (1 - y), omegam0, omegaDE0, Or)) / (1 - y);
 }
 
 /**
