@@ -45,7 +45,7 @@ var calculs = calculs || (function() {
         MSC_In_vitess : function(E,L,r,rs,ra,photon){
             alpha_=1-((r**2)*rs)/(ra**3); /// alpha pour la métrique de Schawr interne
             beta_=(3/2)*Math.sqrt(1-rs/ra)-(1/2)*Math.sqrt(alpha_);/// beta pour la métrique de Schawr interne
-            vphi=Math.sqrt((r**2/beta_**2)*(c*L*beta_**2/r**2)**2);
+            vphi=Math.sqrt((r**2/beta_**2)*(c*L*beta_**2/(E*r**2))**2);
             if(photon){
                 dr=((c/E)**2)*alpha_*(beta_**4)*((E/beta_)**2-(L/r)**2);
                 vr=Math.sqrt(dr/(alpha_*beta_**2));
