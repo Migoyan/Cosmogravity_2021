@@ -45,10 +45,9 @@ function Calc() {
 	//calcule des h0 par seconde par anneee et par gigaannee
 	let au = 149597870700;
 	let H0parsec = h0 * 1000 / ((au * (180 * 3600)) / Math.PI * Math.pow(10, 6));
-	let H0enannee = H0parsec * (3600 * 24 * nbrjours);
 	let H0engannee = H0parsec * (3600 * 24 * nbrjours) * Math.pow(10, 9);
 
-	//on calcule omegar
+	//on calcule omega r
 	let Or = 0;
 	if (document.getElementById("liste").options[0].selected) {
 		sigma = (2 * Math.pow(Math.PI, 5) * Math.pow(k, 4)) / (15 * Math.pow(h, 3) * Math.pow(c, 2));
@@ -78,7 +77,7 @@ function Calc() {
 	PosY -= 1.5;
 
 
-	//on calcule omegak
+	//on calcule omega k
 	omegak0 = 1 - Or - omegam0 - omegaDE0;
 	if (document.getElementById("univ_plat").checked) {
 		omegak0 = 0;
@@ -109,6 +108,7 @@ function Calc() {
 	if(isNaN(age_sec)) {
 		modele=1;
 		age_afficher="NaN";  
+		age = 0;
 	} else {
 		age_sec = age_sec * (1. / H0parsec);
 		//on le passe en gigaannees
@@ -117,7 +117,7 @@ function Calc() {
 		age_afficher = Number(age).toExponential(4);
 		age_sec_afficher = Number(age_sec).toExponential(4);
 	}
-
+	console.log("Age ", age);
 
 	//on réinitialise les 3 champs pour eviter les erreurs d'affichage
 	document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.tempsBigBang;
@@ -126,15 +126,15 @@ function Calc() {
 	document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.pasBC;
 	document.getElementById("resultat_dureeuniv").innerHTML = "&#8734;";
 
-	if (age >= 0) {
+	if (age > 0) {
 		document.getElementById("resultat_ageunivers_ga").innerHTML = age_afficher;
 		document.getElementById("resultat_ageunivers_s").innerHTML = age_sec_afficher;
+		var age_precision = age;
 	} else {
-		document.getElementById("resultat_ageunivers").innerHTML = texte.calculs_univers.pasBB;
-		age = 0;
+		var age_precision = 14;
 	}
 
-
+	console.log("Age ", age);
 
 	//on fait appel a la methode de rungekutta pour calculer les points de la courbe
 	amin = Number(document.getElementById("ami").value);
@@ -143,7 +143,7 @@ function Calc() {
 	ymoinsrungederiv = [1, 1];
 	k = [0, 0, 0, 0];
 	j = [0, 0, 0, 0];
-	pas = age*5e-6;
+	pas = age_precision*5e-6;
 	m = 0;
 	yrunge = 1;
 	yrunge2 = 1;
@@ -166,7 +166,7 @@ function Calc() {
 
 	//on refait appel à rungekutta pour la deuxieme partie
 	i = 0;
-	pas = age*5e-6;
+	pas = age_precision*5e-6;
 	yrunge = 1;
 	ymoinsrunge = [1, 1];
 	ymoinsrungederiv = [1, 1];
@@ -181,7 +181,7 @@ function Calc() {
 		i = i + pas;
 	}
 	console.log("yrunge ", yrunge);		
-
+	console.log("Age ", age);
 	//liste les differents cas pour afficher a l'utilisateur les informations
 	if (age < 0) {
 		document.getElementById("resultat_bigcrunch").innerHTML = texte.calculs_univers.tempsdepuisBC + Math.abs(age_afficher) + " Ga = " + Math.abs(age_sec_afficher) + " s";
@@ -211,6 +211,9 @@ function Calc() {
 			document.getElementById("txt_tempsBB").innerHTML = texte.page_univers_general.temps_BF;
 			document.getElementById("resultat_ageunivers_ga").innerHTML = tps_big_fall_Ga.toExponential(3);
 			document.getElementById("resultat_ageunivers_s").innerHTML = tps_big_fall.toExponential(3);
+			for (let i = 0; i < data_x.length; i++) {
+				data_x[i] += tps_big_fall_Ga;
+			}
 		} else {
 			age_univ_sec = Number(age_sec) + temps_restant;
 		}
